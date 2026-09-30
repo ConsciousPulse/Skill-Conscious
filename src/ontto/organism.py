@@ -119,6 +119,10 @@ class PersistentOrganism:
         self.state.mode = "DREAM"
         self.state.lifetime_dream_cycles += 1
         cycle_id = self.store.begin_dream(self.cfg.agent_id, self.state)
+
+        # Persist the regime transition before invoking the provider.
+        self.store.save_state(self.cfg.agent_id, self.state)
+
         messages = self._context()
         messages.append({
             "role": "user",
@@ -129,7 +133,25 @@ class PersistentOrganism:
                 "Terminá con:\nMEMORY:\nSELF_MODEL:\nDREAM_SUMMARY:"
             ),
         })
-        out = self.provider.chat(messages, temperature=0.9)
+
+        try:
+            out = self.provider.chat(messages, temperature=0.9)
+        except Exception as exc:
+            self.state.mode = "WAKE"
+            self.store.add_event(
+                self.cfg.agent_id,
+                "SYSTEM",
+                "dream_failed",
+                {"error": repr(exc), "dream_cycle_id": cycle_id},
+            )
+            self.store.save_state(self.cfg.agent_id, self.state)
+            self.store.end_dream(
+                cycle_id,
+                self.state,
+                summary=f"DREAM_FAILED: {type(exc).__name__}",
+            )
+            raise
+
         self._extract_memory(out.text)
         self._extract_self_model(out.text)
         self.state.last_thought = out.text[-1400:]
@@ -146,6 +168,7 @@ class PersistentOrganism:
         self.store.end_dream(cycle_id, self.state, summary)
         self.store.snapshot(self.cfg.agent_id, "post_dream", self.state)
         return out.text
+
 
     def run(self, stimulus_supplier: Callable[[], str | None]) -> None:
         while True:
