@@ -32,7 +32,15 @@ class PersistentOrganism:
         self.provider = provider
         self.sleep_fn = sleep_fn
         self.state = store.load_state(cfg.agent_id)
+        self.state.boot_count += 1
         self.cycles = 0
+        self.store.save_state(cfg.agent_id, self.state)
+        self.store.add_event(
+            cfg.agent_id,
+            "WAKE",
+            "boot",
+            {"boot_count": self.state.boot_count},
+        )
 
     def _context(self) -> list[dict[str, str]]:
         memories = self.store.recent_memories(self.cfg.agent_id, self.cfg.memory_limit)
@@ -57,6 +65,7 @@ class PersistentOrganism:
 
     def wake_cycle(self, stimulus: str) -> str:
         self.state.mode = "WAKE"
+        self.state.lifetime_wake_cycles += 1
         messages = self._context()
         messages.append({
             "role": "user",
@@ -108,6 +117,7 @@ class PersistentOrganism:
 
     def dream_cycle(self) -> str:
         self.state.mode = "DREAM"
+        self.state.lifetime_dream_cycles += 1
         cycle_id = self.store.begin_dream(self.cfg.agent_id, self.state)
         messages = self._context()
         messages.append({
