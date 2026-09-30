@@ -17,9 +17,13 @@ def now_iso() -> str:
 class OntologicalState:
     state: float = 0.0
     pressure: float = 0.0
+    # Operationally interpreted as persistent-memory coverage.
     memory_strength: float = 0.0
     attractor: float = 0.0
     mode: str = "WAKE"
+    # Deprecated scalar kept for state-file compatibility. Continuity is
+    # validated from persisted trajectory/state observables, not by incrementing
+    # this field heuristically.
     continuity_index: float = 0.0
     self_model_version: int = 0
     self_model: str = ""
