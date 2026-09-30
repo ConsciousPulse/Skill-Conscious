@@ -56,6 +56,7 @@ jobs:
           python experiments/v0_validate.py | tee results/v0_validate.txt
           python experiments/continuity_validation_v1.py | tee results/continuity_validation_v1.txt
           python experiments/persistent_trajectory_stress_v1.py | tee results/persistent_trajectory_stress_v1.txt
+          python experiments/dream_ablation_v1.py | tee results/dream_ablation_v1.txt
 
       - name: Write run manifest
         run: |
