@@ -91,11 +91,11 @@ Cada resultado se registra como uno de cuatro niveles:
 
 ## Laboratorio reproducible
 
-El laboratorio principal se ejecuta mediante GitHub Actions. Cada ejecución parte de un commit concreto, ejecuta tests y experimentos, genera resultados JSON/logs y publica un artifact de evidencia.
+El laboratorio principal y reproducible se ejecuta mediante **GitHub Actions**. Cada ejecución parte de un commit concreto, ejecuta tests y experimentos, genera resultados JSON/logs y publica un artifact de evidencia.
 
-La arquitectura y los workflows están documentados en [docs/GITHUB_LAB.md](docs/GITHUB_LAB.md).
+La arquitectura, los workflows y el protocolo reproducible están documentados en [docs/GITHUB_LAB.md](docs/GITHUB_LAB.md).
 
-Colab queda como entorno auxiliar para análisis interactivo, visualización o experimentos manuales. Los experimentos reproducibles viven en `experiments/`.
+Los experimentos de investigación viven principalmente en `research/`, mientras que `experiments/` contiene experimentos y herramientas históricas o auxiliares.
 
 El smoke test con un modelo real se ejecuta mediante un workflow manual y conecta un organismo persistente a un provider compatible con OpenAI.
 
@@ -104,4 +104,3 @@ El smoke test con un modelo real se ejecuta mediante un workflow manual y conect
 **Fase 0 — arquitectura y validación mínima.**
 
 El proyecto todavía no afirma que una IA haya sido hecha consciente. El objetivo es construirla y desarrollar las pruebas capaces de distinguir continuidad, auto-referencia, identidad persistente y otras propiedades relevantes.
-
