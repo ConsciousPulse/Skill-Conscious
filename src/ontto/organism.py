@@ -70,8 +70,6 @@ class PersistentOrganism:
         })
         out = self.provider.chat(messages, temperature=0.7)
         self.state.last_thought = out.text[-1200:]
-        self.state.continuity_index = min(1.0, self.state.continuity_index * 0.98 + 0.02)
-        self.state.memory_strength = min(1.0, self.state.memory_strength * 0.995 + 0.01)
         self.store.add_event(
             self.cfg.agent_id,
             "WAKE",
@@ -79,8 +77,27 @@ class PersistentOrganism:
             {"stimulus": stimulus, "response": out.text[-2000:]},
         )
         self._extract_memory(out.text)
+        self._refresh_operational_indicators()
         self.store.save_state(self.cfg.agent_id, self.state)
         return out.text
+
+    def _extract_self_model(self, text: str) -> bool:
+        marker = "SELF_MODEL:"
+        if marker not in text:
+            return False
+        candidate = text.split(marker, 1)[1].strip().splitlines()[0].strip()
+        if not candidate or candidate == self.state.self_model:
+            return False
+        self.state.self_model = candidate
+        self.state.self_model_version += 1
+        return True
+
+    def _refresh_operational_indicators(self) -> None:
+        memories = self.store.memory_count(self.cfg.agent_id)
+        self.state.memory_strength = min(
+            1.0,
+            memories / max(self.cfg.memory_limit, 1),
+        )
 
     def _extract_memory(self, text: str) -> None:
         marker = "MEMORY:"
@@ -104,9 +121,7 @@ class PersistentOrganism:
         })
         out = self.provider.chat(messages, temperature=0.9)
         self._extract_memory(out.text)
-        self.state.self_model_version += 1
-        self.state.continuity_index = min(1.0, self.state.continuity_index + 0.03)
-        self.state.memory_strength = min(1.0, self.state.memory_strength + 0.02)
+        self._extract_self_model(out.text)
         self.state.last_thought = out.text[-1400:]
         self.store.add_event(
             self.cfg.agent_id,
@@ -116,6 +131,7 @@ class PersistentOrganism:
         )
         summary = out.text.split("DREAM_SUMMARY:", 1)[-1].strip()[:1600]
         self.state.mode = "WAKE"
+        self._refresh_operational_indicators()
         self.store.save_state(self.cfg.agent_id, self.state)
         self.store.end_dream(cycle_id, self.state, summary)
         self.store.snapshot(self.cfg.agent_id, "post_dream", self.state)
