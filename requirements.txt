@@ -1,1 +1,6 @@
-numpy\npandas\nmatplotlib\nscikit-learn\n
+numpy
+pandas
+matplotlib
+scikit-learn
+requests
+python-dotenv
