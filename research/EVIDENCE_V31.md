@@ -1,11 +1,11 @@
-# V31 — Methodological Audit
+# V31 — Methodological Disposition
 
-The initial V31 run `36787649896` is **discarded**.
+V31 run `36788417751` is **discarded**.
 
-Reason: the test continuation and its A/B reference continuations used the same rotation angle. Consequently, each test condition was effectively compared against itself, producing 100% identity across the table.
+The corrected source fixed the earlier reference-angle bug, but the resulting affinity metric saturated at exactly ±1 across all tested memory/pressure contexts and angles. This makes the intended continuous context-effect decomposition non-informative.
 
-No scientific inference is retained from that run.
+No scientific conclusion is retained from V31.
 
-A corrected V31 implementation has been committed. It compares rotated test states (30°, 90°, 150°) against the unrotated local A/B reference pair inside the same donor-independent receiver context.
+The failure mode is addressed in V32 by using independent continuation-noise seeds for reference and test trajectories and ensemble reference signatures rather than a single same-noise reference trajectory.
 
-The corrected run is the only version that should be interpreted.
+This is a methodological correction, not a reinterpretation of the V31 outcome.
