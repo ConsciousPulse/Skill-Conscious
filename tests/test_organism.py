@@ -49,11 +49,11 @@ def test_wake_dream_wake_persistence(tmp_path: Path):
     assert state_after_dream.self_model != ""
     assert len(store.recent_memories("test-agent")) >= 2
 
-    trajectory_before_reopen = store.persistence_observables("test-agent")
-
     organism.wake_cycle("Segunda interacción")
     events = store.recent_events("test-agent", 20)
     assert [e["mode"] for e in events] == ["WAKE", "DREAM", "WAKE"]
+
+    trajectory_before_reopen = store.persistence_observables("test-agent")
 
     restored_store = MemoryStore(tmp_path / "organism.db")
     restored = restored_store.load_state("test-agent")
