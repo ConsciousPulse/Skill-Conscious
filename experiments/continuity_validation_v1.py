@@ -259,20 +259,20 @@ def experiment_f_continuity_ablation() -> dict:
     continuous = simulate(u, cfg, seed=SEED)
 
     segment = 200
-    restart = np.zeros(steps)
+    restart_state = np.zeros(steps)
     restart_q = np.empty(steps, dtype=object)
 
     for start in range(0, steps, segment):
         end = min(steps, start + segment)
         chunk = simulate(u[start:end], cfg, seed=SEED)
-        restart[start:end] = chunk["state"]
+        restart_state[start:end] = chunk["state"]
         restart_q[start:end] = chunk["q"]
 
     suffix_start = segment
     return {
         "continuous_vs_restart_mean_state_gap": mean_abs_gap(
             continuous["state"][suffix_start:],
-            restart["state"][suffix_start:],
+            restart_state[suffix_start:],
         ),
         "continuous_x_occupancy": float(
             np.mean(continuous["q"] == "X")
