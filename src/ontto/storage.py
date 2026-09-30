@@ -87,6 +87,17 @@ class MemoryStore:
                 state_json TEXT NOT NULL,
                 created_at TEXT NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS input_queue (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                agent_id TEXT NOT NULL,
+                content TEXT NOT NULL,
+                source TEXT NOT NULL,
+                status TEXT NOT NULL DEFAULT 'PENDING',
+                created_at TEXT NOT NULL,
+                processed_at TEXT
+            );
+            CREATE INDEX IF NOT EXISTS idx_input_queue_pending
+            ON input_queue(agent_id, status, id);
         """)
         self.conn.commit()
 
@@ -115,6 +126,74 @@ class MemoryStore:
             (agent_id, float(importance), content, now_iso()),
         )
         self.conn.commit()
+
+    def enqueue_input(
+        self,
+        agent_id: str,
+        content: str,
+        source: str = "external",
+    ) -> int:
+        content = str(content).strip()
+        if not content:
+            raise ValueError("input content cannot be empty")
+        cur = self.conn.execute(
+            "INSERT INTO input_queue(agent_id,content,source,status,created_at) "
+            "VALUES(?,?,?,?,?)",
+            (agent_id, content, source, "PENDING", now_iso()),
+        )
+        self.conn.commit()
+        return int(cur.lastrowid)
+
+    def claim_next_input(self, agent_id: str) -> dict[str, Any] | None:
+        self.conn.execute("BEGIN IMMEDIATE")
+        try:
+            row = self.conn.execute(
+                "SELECT id,content,source,created_at "
+                "FROM input_queue "
+                "WHERE agent_id=? AND status='PENDING' "
+                "ORDER BY id ASC LIMIT 1",
+                (agent_id,),
+            ).fetchone()
+            if row is None:
+                self.conn.commit()
+                return None
+
+            input_id, content, source, created_at = row
+            self.conn.execute(
+                "UPDATE input_queue SET status='PROCESSING' WHERE id=?",
+                (input_id,),
+            )
+            self.conn.commit()
+            return {
+                "id": int(input_id),
+                "content": content,
+                "source": source,
+                "created_at": created_at,
+            }
+        except Exception:
+            self.conn.rollback()
+            raise
+
+    def complete_input(self, input_id: int) -> None:
+        self.conn.execute(
+            "UPDATE input_queue SET status='DONE', processed_at=? WHERE id=?",
+            (now_iso(), int(input_id)),
+        )
+        self.conn.commit()
+
+    def fail_input(self, input_id: int) -> None:
+        self.conn.execute(
+            "UPDATE input_queue SET status='PENDING' WHERE id=?",
+            (int(input_id),),
+        )
+        self.conn.commit()
+
+    def pending_input_count(self, agent_id: str) -> int:
+        row = self.conn.execute(
+            "SELECT COUNT(*) FROM input_queue WHERE agent_id=? AND status='PENDING'",
+            (agent_id,),
+        ).fetchone()
+        return int(row[0])
 
     def recent_memories(self, agent_id: str, limit: int = 12) -> list[str]:
         rows = self.conn.execute(
@@ -219,6 +298,7 @@ class MemoryStore:
             "lifetime_wake_cycles": state.lifetime_wake_cycles,
             "lifetime_dream_cycles": state.lifetime_dream_cycles,
             "boot_count": state.boot_count,
+            "pending_inputs": self.pending_input_count(agent_id),
         }
 
     def begin_dream(self, agent_id: str, state_before: OntologicalState) -> int:
