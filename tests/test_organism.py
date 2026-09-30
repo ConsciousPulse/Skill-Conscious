@@ -75,3 +75,39 @@ def test_wake_dream_wake_persistence(tmp_path: Path):
     organism.dream_cycle()
     repeated_dream = store.load_state("test-agent")
     assert repeated_dream.self_model_version == 1
+
+
+class FailingDreamProvider:
+    def chat(self, messages, temperature=0.7):
+        last = messages[-1]["content"]
+        if "Entraste en SUEÑO" in last:
+            raise RuntimeError("synthetic dream provider failure")
+        return LLMResponse(
+            text="MEMORY: wake event survived provider failure.",
+            raw={"fake": True},
+        )
+
+
+def test_dream_provider_failure_recovers_to_wake(tmp_path: Path):
+    db = tmp_path / "dream-failure.db"
+    store = MemoryStore(db)
+    organism = PersistentOrganism(
+        OrganismConfig(agent_id="failure-agent"),
+        store,
+        FailingDreamProvider(),
+        lambda _: None,
+    )
+
+    try:
+        organism.dream_cycle()
+    except RuntimeError:
+        pass
+    else:
+        raise AssertionError("dream provider failure was expected")
+
+    state = store.load_state("failure-agent")
+    events = store.recent_events("failure-agent", 20)
+
+    assert state.mode == "WAKE"
+    assert state.lifetime_dream_cycles == 1
+    assert any(e["kind"] == "dream_failed" for e in events)
