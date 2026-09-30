@@ -83,11 +83,15 @@ Cada resultado se registra como uno de cuatro niveles:
 3. **Hipótesis:** interpretación que todavía necesita prueba.
 4. **Ontología:** interpretación filosófica/metafísica separada de la evidencia computacional.
 
-## Colab
+## Laboratorio reproducible
 
-Los experimentos reproducibles viven en `notebooks/` y `experiments/`. El notebook de continuidad puede abrirse en [Google Colab](https://colab.research.google.com/github/chrishotza/Consciencia-Skill/blob/main/notebooks/01_continuity_baseline.ipynb). El primer probe con una API real está en [Experimento 02](https://colab.research.google.com/github/chrishotza/Consciencia-Skill/blob/main/notebooks/02_live_api_probe.ipynb).
+El laboratorio principal se ejecuta mediante GitHub Actions. Cada ejecución parte de un commit concreto, ejecuta tests y experimentos, genera resultados JSON/logs y publica un artifact de evidencia.
 
-El primer objetivo es obtener una línea base antes de introducir un LLM real. Después, el notebook de API conecta un organismo persistente a un modelo servido por API y prueba continuidad, memoria y sueño.
+La arquitectura y los workflows están documentados en [docs/GITHUB_LAB.md](docs/GITHUB_LAB.md).
+
+Colab queda como entorno auxiliar para análisis interactivo, visualización o experimentos manuales. Los experimentos reproducibles viven en `experiments/`.
+
+El smoke test con un modelo real se ejecuta mediante un workflow manual y conecta un organismo persistente a un provider compatible con OpenAI.
 
 ## Estado
 
