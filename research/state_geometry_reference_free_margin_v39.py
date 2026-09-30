@@ -97,10 +97,6 @@ def main():
             sub=test[test.angle_deg==angle]
             proba=model.predict_proba(sub[feat])[:,1]
             signed=(2*sub.label.to_numpy()-1)*(2*proba-1)
-            signed_logit=(2*sub.label.to_numpy()-1)*model[-1].decision_function(
-                model[:-1].transform(sub[feat]) if hasattr(model,"steps") else sub[feat]
-            )
-            # The pipeline's decision_function is the safest exact implementation.
             signed_logit=(2*sub.label.to_numpy()-1)*model.decision_function(sub[feat])
             for context_key,g in sub.assign(signed_margin=signed,signed_logit=signed_logit).groupby(["pair","memory","pressure"]):
                 rec.append({
