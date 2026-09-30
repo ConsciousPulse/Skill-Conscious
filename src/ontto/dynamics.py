@@ -4,6 +4,8 @@ from dataclasses import dataclass
 from typing import Dict
 import numpy as np
 
+# Research note: v5 memory-lifetime scans use this same dynamics implementation.
+
 
 @dataclass
 class Config:
