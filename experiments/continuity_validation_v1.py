@@ -231,6 +231,8 @@ def experiment_e_wake_dream_persistence() -> dict:
         restored = reopened.load_state("validation-agent")
         restored_events = reopened.recent_events("validation-agent", 20)
         restored_memories = reopened.recent_memories("validation-agent", 20)
+        persisted_before_reopen = store.persistence_observables("validation-agent")
+        persisted_after_reopen = reopened.persistence_observables("validation-agent")
 
         return {
             "wake_memory_detected": "MEMORY:" in first,
@@ -245,6 +247,14 @@ def experiment_e_wake_dream_persistence() -> dict:
                 and restored.last_thought == final_state.last_thought
             ),
             "dream_event_exists": any(e["mode"] == "DREAM" for e in events_after_dream),
+            "trajectory_fingerprint_survives_reopen": (
+                persisted_before_reopen["trajectory_fingerprint"]
+                == persisted_after_reopen["trajectory_fingerprint"]
+            ),
+            "state_fingerprint_survives_reopen": (
+                persisted_before_reopen["state_fingerprint"]
+                == persisted_after_reopen["state_fingerprint"]
+            ),
         }
 
 
