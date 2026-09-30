@@ -29,7 +29,9 @@ class Config:
 
 
 def simulate(inputs: np.ndarray, cfg: Config | None = None, seed: int = 0,
-             initial_state: float = 0.0, shared_attractor: float | None = None) -> Dict[str, np.ndarray]:
+             initial_state: float = 0.0, shared_attractor: float | None = None,
+             initial_prev_state: float | None = None, initial_memory: float = 0.0,
+             initial_pressure: float = 0.0) -> Dict[str, np.ndarray]:
     """Simulate one relational agent.
 
     L3/L6/L9/Lx are operational analogues inspired by project terminology.
@@ -51,7 +53,11 @@ def simulate(inputs: np.ndarray, cfg: Config | None = None, seed: int = 0,
     theta = np.zeros(n)
     cross = np.zeros(n)
 
-    r[0] = initial_state
+    r[0] = initial_prev_state if initial_prev_state is not None else initial_state
+    if n > 1:
+        r[1] = initial_state
+        m[1] = initial_memory
+        p[1] = initial_pressure
     target = cfg.attractor if shared_attractor is None else shared_attractor
     q[0] = 1 if r[0] >= 0 else 0
 
