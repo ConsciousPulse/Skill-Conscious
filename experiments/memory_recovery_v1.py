@@ -47,6 +47,7 @@ def main() -> None:
         memory_before = store.memory_count("recovery-agent")
         event_count_before = store.event_count("recovery-agent")
         fingerprint_before_damage = store.trajectory_fingerprint("recovery-agent")
+        event_fingerprint_before = store.event_trajectory_fingerprint("recovery-agent")
 
         # Controlled damage: remove every other memory, but leave the event
         # trajectory intact so recovery can reconstruct from the log.
@@ -69,6 +70,7 @@ def main() -> None:
         memory_after_recovery = store.memory_count("recovery-agent")
         event_count_after = store.event_count("recovery-agent")
         fingerprint_after_recovery = store.trajectory_fingerprint("recovery-agent")
+        event_fingerprint_after = store.event_trajectory_fingerprint("recovery-agent")
 
         report = {
             "memory_before_damage": memory_before,
@@ -78,8 +80,13 @@ def main() -> None:
             "event_count_preserved": event_count_before == event_count_after,
             "trajectory_fingerprint_before_damage": fingerprint_before_damage,
             "trajectory_fingerprint_after_recovery": fingerprint_after_recovery,
+        "event_fingerprint_before_damage": event_fingerprint_before,
+        "event_fingerprint_after_recovery": event_fingerprint_after,
             "trajectory_changed_after_recovery": (
                 fingerprint_before_damage != fingerprint_after_recovery
+            ),
+            "event_trajectory_preserved": (
+                event_fingerprint_before == event_fingerprint_after
             ),
         }
 
@@ -89,6 +96,7 @@ def main() -> None:
     assert report["memory_after_recovery"] == report["recovered_memories"]
     assert report["event_count_preserved"]
     assert report["trajectory_changed_after_recovery"]
+    assert report["event_trajectory_preserved"]
 
     output = Path("results/memory_recovery_v1.json")
     output.parent.mkdir(parents=True, exist_ok=True)
