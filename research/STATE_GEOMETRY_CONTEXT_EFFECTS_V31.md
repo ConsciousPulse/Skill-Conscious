@@ -1,19 +1,24 @@
 # V31 — Paired Context Effect Decomposition
 
-V31 turns the V30 context surface into paired effect estimates.
+## Status
+The first V31 run (`36787649896`) is **discarded as methodological invalidity**, not as a scientific result. Its implementation generated the A/B reference continuations using the same rotation angle as the test condition, which makes the identity score tautological.
 
-The receiver state is fixed to the common A/B midpoint. Receiver memory and pressure are synthetic and donor-independent. The state geometry is fixed at radius 1.1 and angles 30°, 90°, and 150°.
+The corrected implementation uses:
+- unrotated donor A/B state geometry (0°) as the local reference pair;
+- rotated donor geometry (30°, 90°, 150°) as the test conditions;
+- identical receiver state, memory, and pressure context in reference and test.
 
-The reference context is memory 0.0 and pressure 1.0.
+## Corrected design
+- six fixed V12 blind parameter points;
+- four history pairs;
+- independent seeds 60–69;
+- receiver state fixed to A/B midpoint;
+- donor-independent synthetic memory and pressure;
+- radius 1.1;
+- test angles 30°, 90°, 150°;
+- future input exactly zero;
+- primary continuous endpoint: signed affinity relative to the **unrotated** local A/B reference.
 
-For each identical history pair and seed, V31 computes:
-- memory main effects by changing memory while pressure stays at 1.0;
-- pressure main effects by changing pressure while memory stays at 0.0;
-- a two-way interaction term:
-  f(memory, pressure) − f(memory, baseline pressure) − f(baseline memory, pressure) + f(baseline context).
+The corrected push automatically launches a new V31 run.
 
-The primary outcome is continuous signed affinity rather than binary identity accuracy.
-
-Seeds 60–69 are independent of V30.
-
-The purpose is mechanistic decomposition, not parameter optimization. It does not establish consciousness or subjective experience.
+This experiment is mechanistic and does not establish consciousness or subjective experience.
