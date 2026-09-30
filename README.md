@@ -85,9 +85,9 @@ Cada resultado se registra como uno de cuatro niveles:
 
 ## Colab
 
-Los experimentos reproducibles viven en `notebooks/` y `experiments/`. El notebook principal puede abrirse directamente en [Google Colab](https://colab.research.google.com/github/chrishotza/Consciencia-Skill/blob/main/notebooks/01_continuity_baseline.ipynb).
+Los experimentos reproducibles viven en `notebooks/` y `experiments/`. El notebook de continuidad puede abrirse en [Google Colab](https://colab.research.google.com/github/chrishotza/Consciencia-Skill/blob/main/notebooks/01_continuity_baseline.ipynb). El primer probe con una API real está en [Experimento 02](https://colab.research.google.com/github/chrishotza/Consciencia-Skill/blob/main/notebooks/02_live_api_probe.ipynb).
 
-El primer objetivo es obtener una línea base antes de introducir un LLM real.
+El primer objetivo es obtener una línea base antes de introducir un LLM real. Después, el notebook de API conecta un organismo persistente a un modelo servido por API y prueba continuidad, memoria y sueño.
 
 ## Estado
 
