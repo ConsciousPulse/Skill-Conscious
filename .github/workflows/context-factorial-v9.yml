@@ -1,0 +1,26 @@
+name: context-factorial-v9
+on:
+  push:
+    paths:
+      - "research/context_factorial_v9.py"
+      - ".github/workflows/context-factorial-v9.yml"
+      - "src/ontto/dynamics.py"
+      - "requirements.txt"
+  workflow_dispatch:
+jobs:
+  factorial:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: python research/context_factorial_v9.py | tee /tmp/context_factorial_v9.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: context-factorial-v9
+          path: results/context_factorial_v9/
+          if-no-files-found: error
