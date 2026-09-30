@@ -20,6 +20,9 @@ def main() -> None:
 
     agent_id = os.environ.get("ONTTO_AGENT_ID", "consciencia-001")
     poll_seconds = int(os.environ.get("ONTTO_POLL_SECONDS", "10"))
+    error_backoff_seconds = int(
+        os.environ.get("ONTTO_ERROR_BACKOFF_SECONDS", "30")
+    )
     autonomous_when_idle = os.environ.get(
         "ONTTO_AUTONOMOUS_WHEN_IDLE", "true"
     ).lower() in {"1", "true", "yes", "on"}
@@ -85,10 +88,22 @@ def main() -> None:
             else:
                 time.sleep(cfg.wake_seconds)
 
-        except Exception:
+        except Exception as exc:
             if item is not None:
                 store.fail_input(item["id"])
-            raise
+
+            store.add_event(
+                agent_id,
+                "SYSTEM",
+                "provider_error",
+                {
+                    "error": repr(exc),
+                    "input_id": item["id"] if item is not None else None,
+                },
+            )
+            organism.state.mode = "WAKE"
+            store.save_state(agent_id, organism.state)
+            time.sleep(error_backoff_seconds)
 
 
 if __name__ == "__main__":
