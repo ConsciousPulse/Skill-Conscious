@@ -46,7 +46,10 @@ def test_wake_dream_wake_persistence(tmp_path: Path):
     state_after_dream = store.load_state("test-agent")
     assert state_after_dream.mode == "WAKE"
     assert state_after_dream.self_model_version == 1
+    assert state_after_dream.self_model != ""
     assert len(store.recent_memories("test-agent")) >= 2
+
+    trajectory_before_reopen = store.persistence_observables("test-agent")
 
     organism.wake_cycle("Segunda interacción")
     events = store.recent_events("test-agent", 20)
@@ -56,3 +59,11 @@ def test_wake_dream_wake_persistence(tmp_path: Path):
     restored = restored_store.load_state("test-agent")
     assert restored.self_model_version == 1
     assert restored.last_thought != ""
+
+    trajectory_after_reopen = restored_store.persistence_observables("test-agent")
+    assert trajectory_after_reopen["trajectory_fingerprint"] == trajectory_before_reopen["trajectory_fingerprint"]
+    assert trajectory_after_reopen["state_fingerprint"] == trajectory_before_reopen["state_fingerprint"]
+
+    organism.dream_cycle()
+    repeated_dream = store.load_state("test-agent")
+    assert repeated_dream.self_model_version == 1
