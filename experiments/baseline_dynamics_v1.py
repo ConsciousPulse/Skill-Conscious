@@ -47,7 +47,7 @@ for key in required:
     assert key in result, f"missing series: {key}"
     assert len(result[key]) == STEPS, f"invalid length for {key}"
 
-unique_q = np.unique(result["q"])
+unique_q = sorted({str(x) for x in result["q"]})
 
 payload = {
     "experiment": "baseline_dynamics_v1",
@@ -65,10 +65,7 @@ payload = {
     "metrics": {
         key: float(value) for key, value in report.items()
     },
-    "unique_q": [
-        value.item() if hasattr(value, "item") else str(value)
-        for value in unique_q
-    ],
+    "unique_q": unique_q,
     "commit_placeholder": "recorded by GitHub Actions workflow",
 }
 
@@ -86,6 +83,6 @@ print(f"seed={SEED}")
 print("metrics:")
 for key, value in report.items():
     print(f"  {key}={value}")
-print(f"unique_q={list(unique_q)}")
+print(f"unique_q={unique_q}")
 print(f"artifact={output}")
 print("=" * 70)
