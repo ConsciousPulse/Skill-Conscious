@@ -71,8 +71,9 @@ def main():
         ca=transform(a,cc,radius,angle)
         cb=transform(b,cc,radius,angle)
         # Local reference continuations under exactly the same receiver context.
-        ra=cont(cfg,transform(a,cc,1.0,0),seed+12000)
-        rb=cont(cfg,transform(b,cc,1.0,0),seed+12000)
+        ref_radius = 1.1 if radius == 1.1 else 0.0
+        ra=cont(cfg,transform(a,cc,ref_radius,0),seed+12000)
+        rb=cont(cfg,transform(b,cc,ref_radius,0),seed+12000)
         chosen=ca if donor_name=="A" else cb
         run=cont(cfg,chosen,seed+12000)
         x=aff(run,ra,rb)
