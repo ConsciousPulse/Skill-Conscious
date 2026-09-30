@@ -1,0 +1,26 @@
+name: state-lesion-v15
+on:
+  push:
+    paths:
+      - "research/state_lesion_v15.py"
+      - ".github/workflows/state-lesion-v15.yml"
+      - "src/ontto/dynamics.py"
+      - "requirements.txt"
+  workflow_dispatch:
+jobs:
+  lesion:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: python research/state_lesion_v15.py | tee /tmp/state_lesion_v15.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: state-lesion-v15
+          path: results/state_lesion_v15/
+          if-no-files-found: error
