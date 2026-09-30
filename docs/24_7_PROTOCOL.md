@@ -39,7 +39,31 @@ Durante vigilia el sistema puede recibir entradas, consultar herramientas, respo
 
 Durante sueño el sistema puede resumir trayectorias, consolidar memoria, detectar contradicciones, recombinar conceptos, simular futuros, revisar su propio estado y actualizar el auto-modelo.
 
-## Fuente externa
+## Entrada externa persistente
+
+Las interacciones externas ingresan mediante una cola persistente en SQLite.
+
+```
+EXTERNAL INPUT
+     ↓
+PERSISTENT QUEUE
+     ↓
+CLAIM
+     ↓
+WAKE
+     ↓
+EVENT + MEMORY
+     ↓
+DONE
+```
+
+La cola sobrevive al cierre del proceso. Si el proceso cae después de reclamar una entrada pero antes de marcarla como procesada, el siguiente boot puede reencolarla.
+
+Esto implementa semántica **at-least-once** para la entrada. No se afirma exactamente-una-vez sin un mecanismo adicional de idempotencia.
+
+## Autonomía sin entrada
+
+Cuando no hay entrada externa, el daemon puede ejecutar un ciclo autónomo de vigilia para observar y reorganizar su propio estado. Esta opción se controla con `ONTTO_AUTONOMOUS_WHEN_IDLE`.
 
 El sueño puede recibir fuentes adicionales de señales o entropía en módulos experimentales. Una eventual fuente cuántica debe tratarse como entrada física específica y medirse por separado.
 
