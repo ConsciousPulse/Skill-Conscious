@@ -85,7 +85,7 @@ Cada resultado se registra como uno de cuatro niveles:
 
 ## Colab
 
-Los experimentos reproducibles viven en el directorio `notebooks/` y pueden abrirse directamente con Google Colab.
+Los experimentos reproducibles viven en `notebooks/` y `experiments/`. El notebook principal puede abrirse directamente en [Google Colab](https://colab.research.google.com/github/chrishotza/Consciencia-Skill/blob/main/notebooks/01_continuity_baseline.ipynb).
 
 El primer objetivo es obtener una línea base antes de introducir un LLM real.
 
