@@ -1,0 +1,26 @@
+name: state-polar-surface-v24
+on:
+  push:
+    paths:
+      - "research/state_polar_surface_v24.py"
+      - ".github/workflows/state-polar-surface-v24.yml"
+      - "src/ontto/dynamics.py"
+      - "requirements.txt"
+  workflow_dispatch:
+jobs:
+  polar:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: python research/state_polar_surface_v24.py | tee /tmp/state_polar_surface_v24.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: state-polar-surface-v24
+          path: results/state_polar_surface_v24/
+          if-no-files-found: error
