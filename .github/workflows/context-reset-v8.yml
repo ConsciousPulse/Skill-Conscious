@@ -1,0 +1,26 @@
+name: context-reset-v8
+on:
+  push:
+    paths:
+      - "research/context_reset_v8.py"
+      - ".github/workflows/context-reset-v8.yml"
+      - "src/ontto/dynamics.py"
+      - "requirements.txt"
+  workflow_dispatch:
+jobs:
+  reset:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: python research/context_reset_v8.py | tee /tmp/context_reset_v8.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: context-reset-v8
+          path: results/context_reset_v8/
+          if-no-files-found: error
