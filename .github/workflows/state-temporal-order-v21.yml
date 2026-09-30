@@ -1,0 +1,26 @@
+name: state-temporal-order-v21
+on:
+  push:
+    paths:
+      - "research/state_temporal_order_v21.py"
+      - ".github/workflows/state-temporal-order-v21.yml"
+      - "src/ontto/dynamics.py"
+      - "requirements.txt"
+  workflow_dispatch:
+jobs:
+  order:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: python research/state_temporal_order_v21.py | tee /tmp/state_temporal_order_v21.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: state-temporal-order-v21
+          path: results/state_temporal_order_v21/
+          if-no-files-found: error
