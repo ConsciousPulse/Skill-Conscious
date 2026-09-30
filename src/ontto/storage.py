@@ -169,6 +169,41 @@ class MemoryStore:
         canonical = state.to_json().encode("utf-8")
         return hashlib.sha256(canonical).hexdigest()
 
+    def recover_memories_from_events(self, agent_id: str) -> int:
+        rows = self.conn.execute(
+            "SELECT payload_json FROM events WHERE agent_id=? ORDER BY id ASC",
+            (agent_id,),
+        ).fetchall()
+
+        existing = {
+            row[0]
+            for row in self.conn.execute(
+                "SELECT content FROM memories WHERE agent_id=?",
+                (agent_id,),
+            ).fetchall()
+        }
+
+        recovered = 0
+        for (payload_json,) in rows:
+            payload = json.loads(payload_json)
+            text = " ".join(
+                str(payload.get(key, "")) for key in ("response", "summary")
+            )
+            marker = "MEMORY:"
+            if marker not in text:
+                continue
+
+            for line in text.splitlines():
+                if marker not in line:
+                    continue
+                memory = line.split(marker, 1)[1].strip()
+                if memory and memory not in existing:
+                    self.add_memory(agent_id, memory, importance=0.55)
+                    existing.add(memory)
+                    recovered += 1
+
+        return recovered
+
     def persistence_observables(self, agent_id: str) -> dict[str, Any]:
         state = self.load_state(agent_id)
         return {
