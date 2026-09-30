@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import sqlite3
 from dataclasses import dataclass, asdict
@@ -21,6 +22,7 @@ class OntologicalState:
     mode: str = "WAKE"
     continuity_index: float = 0.0
     self_model_version: int = 0
+    self_model: str = ""
     last_thought: str = ""
 
     def to_json(self) -> str:
@@ -120,6 +122,59 @@ class MemoryStore:
             (agent_id, limit),
         ).fetchall()
         return [{"mode":r[0],"kind":r[1],"payload":json.loads(r[2]),"created_at":r[3]} for r in reversed(rows)]
+
+    def event_count(self, agent_id: str) -> int:
+        row = self.conn.execute(
+            "SELECT COUNT(*) FROM events WHERE agent_id=?",
+            (agent_id,),
+        ).fetchone()
+        return int(row[0])
+
+    def memory_count(self, agent_id: str) -> int:
+        row = self.conn.execute(
+            "SELECT COUNT(*) FROM memories WHERE agent_id=?",
+            (agent_id,),
+        ).fetchone()
+        return int(row[0])
+
+    def trajectory_fingerprint(self, agent_id: str) -> str:
+        events = self.conn.execute(
+            "SELECT id,mode,kind,payload_json,created_at FROM events "
+            "WHERE agent_id=? ORDER BY id ASC",
+            (agent_id,),
+        ).fetchall()
+        memories = self.conn.execute(
+            "SELECT id,importance,content,created_at FROM memories "
+            "WHERE agent_id=? ORDER BY id ASC",
+            (agent_id,),
+        ).fetchall()
+        payload = {
+            "events": events,
+            "memories": memories,
+        }
+        canonical = json.dumps(
+            payload,
+            ensure_ascii=False,
+            separators=(",", ":"),
+            default=str,
+        ).encode("utf-8")
+        return hashlib.sha256(canonical).hexdigest()
+
+    def state_fingerprint(self, agent_id: str) -> str:
+        state = self.load_state(agent_id)
+        canonical = state.to_json().encode("utf-8")
+        return hashlib.sha256(canonical).hexdigest()
+
+    def persistence_observables(self, agent_id: str) -> dict[str, Any]:
+        state = self.load_state(agent_id)
+        return {
+            "event_count": self.event_count(agent_id),
+            "memory_count": self.memory_count(agent_id),
+            "trajectory_fingerprint": self.trajectory_fingerprint(agent_id),
+            "state_fingerprint": self.state_fingerprint(agent_id),
+            "self_model_version": state.self_model_version,
+            "self_model": state.self_model,
+        }
 
     def begin_dream(self, agent_id: str, state_before: OntologicalState) -> int:
         cur = self.conn.execute(
