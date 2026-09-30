@@ -232,6 +232,34 @@ class MemoryStore:
         ).fetchone()
         return int(row[0])
 
+    def event_trajectory_fingerprint(self, agent_id: str) -> str:
+        events = self.conn.execute(
+            "SELECT id,mode,kind,payload_json FROM events "
+            "WHERE agent_id=? ORDER BY id ASC",
+            (agent_id,),
+        ).fetchall()
+        canonical = json.dumps(
+            events,
+            ensure_ascii=False,
+            separators=(",", ":"),
+            default=str,
+        ).encode("utf-8")
+        return hashlib.sha256(canonical).hexdigest()
+
+    def memory_fingerprint(self, agent_id: str) -> str:
+        memories = self.conn.execute(
+            "SELECT id,importance,content FROM memories "
+            "WHERE agent_id=? ORDER BY id ASC",
+            (agent_id,),
+        ).fetchall()
+        canonical = json.dumps(
+            memories,
+            ensure_ascii=False,
+            separators=(",", ":"),
+            default=str,
+        ).encode("utf-8")
+        return hashlib.sha256(canonical).hexdigest()
+
     def trajectory_fingerprint(self, agent_id: str) -> str:
         events = self.conn.execute(
             "SELECT id,mode,kind,payload_json,created_at FROM events "
@@ -301,6 +329,8 @@ class MemoryStore:
             "event_count": self.event_count(agent_id),
             "memory_count": self.memory_count(agent_id),
             "trajectory_fingerprint": self.trajectory_fingerprint(agent_id),
+            "event_trajectory_fingerprint": self.event_trajectory_fingerprint(agent_id),
+            "memory_fingerprint": self.memory_fingerprint(agent_id),
             "state_fingerprint": self.state_fingerprint(agent_id),
             "self_model_version": state.self_model_version,
             "self_model": state.self_model,
