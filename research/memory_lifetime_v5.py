@@ -30,7 +30,7 @@ def trajectory_gap(beta,seed,protocol=0,prefix=300,future=500):
     def first_below(x):
         q=np.where(dn<=x)[0]
         return int(q[0]) if len(q) else future
-    auc=float(np.trapz(np.clip(dn,0,2),dx=1.0))
+    auc=float(np.trapezoid(np.clip(dn,0,2),dx=1.0))
     return {
         "auc":auc,
         "half_life":first_below(.5),
