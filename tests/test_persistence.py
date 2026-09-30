@@ -48,3 +48,34 @@ def test_memory_recovery_from_event_log(tmp_path):
 
     assert recovered == 2
     assert store.recent_memories("agent") == ["recuerdo A", "recuerdo B"]
+
+
+
+def test_input_queue_survives_restart_and_requeues_processing(tmp_path):
+    db = tmp_path / "queue.db"
+    first = MemoryStore(db)
+
+    input_id = first.enqueue_input(
+        "agent",
+        "mensaje persistente",
+        source="test",
+    )
+    claimed = first.claim_next_input("agent")
+
+    assert claimed is not None
+    assert claimed["id"] == input_id
+    assert claimed["content"] == "mensaje persistente"
+    assert first.pending_input_count("agent") == 0
+
+    first.conn.close()
+
+    second = MemoryStore(db)
+    requeued = second.requeue_processing_inputs("agent")
+    assert requeued == 1
+
+    restored = second.claim_next_input("agent")
+    assert restored is not None
+    assert restored["id"] == input_id
+
+    second.complete_input(input_id)
+    assert second.pending_input_count("agent") == 0
