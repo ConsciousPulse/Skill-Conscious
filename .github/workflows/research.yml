@@ -49,7 +49,9 @@ jobs:
         run: python experiments/baseline_dynamics_v1.py
 
       - name: Run validation suite
+        shell: bash
         run: |
+          set -o pipefail
           mkdir -p results
           python experiments/v0_validate.py | tee results/v0_validate.txt
           python experiments/continuity_validation_v1.py | tee results/continuity_validation_v1.txt
