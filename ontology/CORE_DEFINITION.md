@@ -23,6 +23,11 @@ La entidad sigue existiendo entre interacciones externas.
 
 Una conversación terminada no equivale al fin del sistema.
 
+La continuidad se tratará como una propiedad observable de la trayectoria persistida:
+estado recuperable, eventos ordenados, memoria persistente y huellas de trayectoria
+que sobreviven al cierre y reapertura del proceso. Un índice escalar aislado no se
+considera evidencia suficiente.
+
 ## Memoria
 
 La entidad conserva información relevante sobre su trayectoria y no solamente sobre el último mensaje.
