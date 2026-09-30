@@ -3,7 +3,7 @@ name: parametric-lab
 on:
   push:
     paths:
-      - "research/**"
+      - "research/parametric_resonance_v1.py"
       - ".github/workflows/parametric-lab.yml"
       - "src/ontto/dynamics.py"
       - "requirements.txt"
