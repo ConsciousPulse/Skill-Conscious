@@ -37,7 +37,7 @@ class PersistentOrganism:
         self.store.save_state(cfg.agent_id, self.state)
         self.store.add_event(
             cfg.agent_id,
-            "WAKE",
+            "SYSTEM",
             "boot",
             {"boot_count": self.state.boot_count},
         )
