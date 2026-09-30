@@ -1,0 +1,26 @@
+name: state-geometry-temporal-v26
+on:
+  push:
+    paths:
+      - "research/state_geometry_temporal_v26.py"
+      - ".github/workflows/state-geometry-temporal-v26.yml"
+      - "src/ontto/dynamics.py"
+      - "requirements.txt"
+  workflow_dispatch:
+jobs:
+  temporal:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: python research/state_geometry_temporal_v26.py | tee /tmp/state_geometry_temporal_v26.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: state-geometry-temporal-v26
+          path: results/state_geometry_temporal_v26/
+          if-no-files-found: error
