@@ -104,8 +104,11 @@ def stratified_null(block,metric,exclude_pair=None):
     p=float((1+np.sum(null>=obs))/(N_PERM+1))
     boot=np.empty(N_BOOT)
     for i in range(N_BOOT):
-        idx=rng.integers(0,mat.shape[1],size=mat.shape[1]*mat.shape[0])
-        boot[i]=float(mat.reshape(-1)[idx].mean())
+        sampled_rows=[]
+        for row in mat:
+            idx=rng.integers(0,len(row),size=len(row))
+            sampled_rows.extend(row[idx])
+        boot[i]=float(np.mean(sampled_rows))
     return obs,float(null.mean()),float(np.quantile(null,.95)),p,float(np.quantile(boot,.025)),float(np.quantile(boot,.975)),int(mat.size)
 
 def main():
