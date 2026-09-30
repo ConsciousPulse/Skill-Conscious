@@ -147,10 +147,16 @@ class PersistentOrganism:
         self.store.snapshot(self.cfg.agent_id, "post_dream", self.state)
         return out.text
 
-    def run(self, stimulus_supplier: Callable[[], str]) -> None:
+    def run(self, stimulus_supplier: Callable[[], str | None]) -> None:
         while True:
             self.cycles += 1
-            self.wake_cycle(stimulus_supplier())
+
+            stimulus = stimulus_supplier()
+            if stimulus is None:
+                self.autonomous_wake_cycle()
+            else:
+                self.wake_cycle(stimulus)
+
             if self.cycles % self.cfg.dream_every_cycles == 0:
                 self.dream_cycle()
                 self.sleep_fn(self.cfg.dream_seconds)
