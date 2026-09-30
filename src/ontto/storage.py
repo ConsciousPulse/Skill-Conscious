@@ -188,6 +188,15 @@ class MemoryStore:
         )
         self.conn.commit()
 
+    def requeue_processing_inputs(self, agent_id: str) -> int:
+        cur = self.conn.execute(
+            "UPDATE input_queue SET status='PENDING' "
+            "WHERE agent_id=? AND status='PROCESSING'",
+            (agent_id,),
+        )
+        self.conn.commit()
+        return int(cur.rowcount)
+
     def pending_input_count(self, agent_id: str) -> int:
         row = self.conn.execute(
             "SELECT COUNT(*) FROM input_queue WHERE agent_id=? AND status='PENDING'",
