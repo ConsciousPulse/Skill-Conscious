@@ -216,6 +216,9 @@ class MemoryStore:
             "state_fingerprint": self.state_fingerprint(agent_id),
             "self_model_version": state.self_model_version,
             "self_model": state.self_model,
+            "lifetime_wake_cycles": state.lifetime_wake_cycles,
+            "lifetime_dream_cycles": state.lifetime_dream_cycles,
+            "boot_count": state.boot_count,
         }
 
     def begin_dream(self, agent_id: str, state_before: OntologicalState) -> int:
