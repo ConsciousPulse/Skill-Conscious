@@ -66,8 +66,9 @@ def main() -> None:
         after_restart = store_b.persistence_observables(cfg.agent_id)
         events_after = store_b.recent_events(cfg.agent_id, 400)
 
-        wake_count = sum(e["mode"] == "WAKE" for e in events_after)
-        dream_count = sum(e["mode"] == "DREAM" for e in events_after)
+        wake_count = sum(e["kind"] == "interaction" for e in events_after)
+        dream_count = sum(e["kind"] == "consolidation" for e in events_after)
+        boot_count = sum(e["kind"] == "boot" for e in events_after)
         modes = [e["mode"] for e in events_after]
 
         report = {
@@ -75,7 +76,11 @@ def main() -> None:
             "events_total": len(events_after),
             "wake_events": wake_count,
             "dream_events": dream_count,
+            "boot_events": boot_count,
             "self_model_version": after_restart["self_model_version"],
+            "lifetime_wake_cycles": after_restart["lifetime_wake_cycles"],
+            "lifetime_dream_cycles": after_restart["lifetime_dream_cycles"],
+            "boot_count": after_restart["boot_count"],
             "self_model_present": bool(after_restart["self_model"]),
             "fingerprint_survived_restart": (
                 restored["trajectory_fingerprint"]
@@ -101,7 +106,11 @@ def main() -> None:
         assert report["trajectory_changed_after_continuation"]
         assert report["wake_events"] == 40
         assert report["dream_events"] == 8
+        assert report["boot_events"] == 2
         assert report["self_model_version"] == 1
+        assert report["lifetime_wake_cycles"] == 40
+        assert report["lifetime_dream_cycles"] == 8
+        assert report["boot_count"] == 2
         assert report["event_prefix_preserved"]
 
         output = Path("results/persistent_trajectory_stress_v1.json")
