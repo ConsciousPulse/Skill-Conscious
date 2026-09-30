@@ -24,3 +24,5 @@ jobs:
           name: state-polar-replication-v25
           path: results/state_polar_replication_v25/
           if-no-files-found: error
+
+# reproducible trigger: V25 confirmation workflow
