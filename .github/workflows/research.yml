@@ -58,6 +58,7 @@ jobs:
           python experiments/persistent_trajectory_stress_v1.py | tee results/persistent_trajectory_stress_v1.txt
           python experiments/dream_ablation_v1.py | tee results/dream_ablation_v1.txt
           python experiments/memory_recovery_v1.py | tee results/memory_recovery_v1.txt
+          python experiments/internal_state_prediction_v2.py | tee results/internal_state_prediction_v2.txt
 
       - name: Write run manifest
         run: |
