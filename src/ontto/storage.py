@@ -27,6 +27,9 @@ class OntologicalState:
     continuity_index: float = 0.0
     self_model_version: int = 0
     self_model: str = ""
+    lifetime_wake_cycles: int = 0
+    lifetime_dream_cycles: int = 0
+    boot_count: int = 0
     last_thought: str = ""
 
     def to_json(self) -> str:
