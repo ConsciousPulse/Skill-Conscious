@@ -45,7 +45,13 @@ No tratamos una respuesta lingüística aislada como evidencia suficiente. El ob
 
 El LLM o modelo servido por API es un componente cognitivo del sistema. La continuidad pertenece al organismo persistente que mantiene estado entre llamadas.
 
-## Estados
+## Entrada persistente
+
+El organismo no depende de que una interacción llegue mientras el proceso está despierto. Las entradas externas se almacenan en una cola SQLite durable y son procesadas por el organismo cuando corresponde.
+
+El daemon también puede ejecutar actividad autónoma durante períodos sin entrada externa.
+
+### Estados
 
 ### Vigilia
 Interacción con el entorno, percepción, lenguaje, decisión, acción y actualización de memoria.
