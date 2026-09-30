@@ -62,11 +62,11 @@ def main():
     for mem in MEMS:
      for pressure in PRESS:
       rc=dict(receiver_state); rc["memory"]=mem; rc["pressure"]=pressure
-      refs={angle:(cont(cfg,transform(a,rc,RADIUS,angle),seed+12000),
-                   cont(cfg,transform(b,rc,RADIUS,angle),seed+12000)) for angle in ANGLES}
+      refs=(cont(cfg,transform(a,rc,RADIUS,0),seed+12000),
+                    cont(cfg,transform(b,rc,RADIUS,0),seed+12000))
       # The reference continuation for each context is the unrotated local donor geometry.
       for angle in ANGLES:
-       ra,rb=refs[angle]
+       ra,rb=refs
        for donor_name,donor in [("A",a),("B",b)]:
         expected=1 if donor_name=="A" else -1
         c=transform(donor,rc,RADIUS,angle)
