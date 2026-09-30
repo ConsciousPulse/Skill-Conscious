@@ -17,6 +17,10 @@ on:
       - ".github/workflows/research.yml"
   workflow_dispatch:
 
+concurrency:
+  group: research-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   research:
     runs-on: ubuntu-latest
