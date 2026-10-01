@@ -1,64 +1,50 @@
-# V64 — Identity persistence under self-model perturbation
+# V64 — Persistencia de identidad bajo perturbación del modelo de sí
 
-## Question
+## Pregunta
 
-Can the organism preserve a dynamic identity signature after its semantic self-model
-is overwritten by the same perturbation text, followed by explicit removal of the
-self-model text and autonomous continuation without semantic input?
+¿Puede el organismo conservar una firma dinámica de identidad después de sobrescribir su modelo de sí semántico con el mismo texto de perturbación, seguido por la eliminación explícita del texto del modelo de sí y una continuación autónoma sin entrada semántica?
 
-## Protocol
+## Protocolo
 
-Each replicate creates two identity conditions:
+Cada réplica crea dos condiciones de identidad:
 
-- identity A;
-- identity B.
+- identidad A;
+- identidad B.
 
-Each identity is encoded through the semantic self-model bridge using a distinct
-SELF_MODEL representation.
+Cada identidad se codifica mediante el puente semántico del modelo de sí utilizando una representación SELF_MODEL distinta.
 
-Then both identities receive the same semantic perturbation:
+Luego ambas identidades reciben la misma perturbación semántica:
 
-"Mi identidad previa fue reemplazada por una configuración completamente diferente."
+> "Mi identidad previa fue reemplazada por una configuración completamente diferente."
 
-After four perturbation cycles, the current self-model text is explicitly cleared
-from persistent state. The semantic self-model bridge is disabled. The organism then
-continues autonomously with no new semantic self-model input.
+Después de cuatro ciclos de perturbación, el texto actual del modelo de sí se elimina explícitamente del estado persistente. El puente semántico del modelo de sí se deshabilita. El organismo continúa de manera autónoma sin nueva entrada semántica del modelo de sí.
 
-A logistic classifier is trained only on numeric dynamic features collected during
-the pre-perturbation identity-encoding period. Evaluation uses leave-one-replicate-
-out folds on the post-perturbation, text-ablated autonomous trajectory.
+Se entrena un clasificador logístico únicamente con características dinámicas numéricas recogidas durante el período previo de codificación de identidad. La evaluación utiliza pliegues leave-one-replicate-out sobre la trayectoria autónoma posterior a la ablación y con el texto eliminado.
 
-## Why this matters
+## Por qué importa
 
-This separates identity persistence from the current semantic description of the
-self. A positive result would mean that an identity-linked dynamic signature remains
-decodable after a common self-model overwrite and textual ablation.
+Esto separa la persistencia de identidad de la descripción semántica actual del yo. Un resultado positivo significaría que una firma dinámica asociada a una identidad permanece decodificable después de una sobrescritura común del modelo de sí y de la ablación textual.
 
-Bridge OFF provides a matched control in which identity encoding is still bridged identically, but the common perturbation is not transduced into numerical dynamics. The ON/OFF comparison therefore isolates the effect of the perturbation pathway rather than the earlier identity encoding.
+El puente OFF proporciona un control emparejado en el que la codificación de identidad sigue estando puenteada de forma idéntica, pero la perturbación común no se transduce hacia la dinámica numérica. La comparación ON/OFF aísla así el efecto de la vía de perturbación y no el de la codificación de identidad previa.
 
-## Primary endpoints
+## Endpoints principales
 
-- post-ablation identity classification accuracy with bridge ON;
-- post-ablation identity classification accuracy with bridge OFF;
-- paired ON-minus-OFF accuracy difference.
+- precisión de clasificación de identidad posterior a la ablación con puente ON;
+- precisión posterior a la ablación con puente OFF;
+- diferencia emparejada de precisión ON − OFF.
 
-## Result
+## Resultado
 
-The successful audit used 24 paired replicates, 12 encoding cycles, 4 common
-perturbation cycles, and 16 autonomous post-ablation cycles.
+La auditoría exitosa utilizó 24 réplicas emparejadas, 12 ciclos de codificación, 4 ciclos de perturbación común y 16 ciclos autónomos posteriores a la ablación.
 
-- bridge OFF post-ablation accuracy: 50.0%;
-- bridge ON post-ablation accuracy: 50.0%;
-- ON-minus-OFF accuracy difference: 0.0;
-- paired sign-flip p: 1.0;
-- folds above chance: 0% in both conditions.
+- precisión posterior a la ablación con puente OFF: 50.0%;
+- precisión posterior a la ablación con puente ON: 50.0%;
+- diferencia ON − OFF: 0.0;
+- p emparejada por cambio de signo: 1.0;
+- pliegues por encima del azar: 0% en ambas condiciones.
 
-V64 therefore produced a null result. Under this perturbation, feature set, classifier,
-and horizon, the original identity was not decodable after the semantic self-model
-was overwritten and then removed.
+Por tanto, V64 produjo un resultado nulo. Bajo esta perturbación, conjunto de características, clasificador y horizonte, la identidad original no pudo decodificarse después de sobrescribir y luego eliminar el modelo de sí semántico.
 
-## Evidence boundary
+## Límite de evidencia
 
-The classifier reads only numeric dynamic features. The provider is deterministic
-and synthetic. The protocol tests operational identity persistence; it does not
-establish phenomenological consciousness or subjective experience.
+El clasificador lee únicamente características dinámicas numéricas. El proveedor es determinista y sintético. El protocolo prueba persistencia operacional de identidad; no establece consciencia fenomenológica ni experiencia subjetiva.
