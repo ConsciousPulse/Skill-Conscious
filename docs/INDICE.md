@@ -66,6 +66,7 @@
 - [V75 active continuity](V75_ACTIVE_CONTINUITY.md) — recuperación activa de autopredicción bajo perturbación, con continuidad como endpoint secundario.
 - [V76 generalized active continuity](V76_GENERALIZED_ACTIVE_CONTINUITY.md) — generalización de la recuperación de autopredicción a perturbaciones no vistas durante el entrenamiento.
 - [V77 structural continuity generalization](V77_STRUCTURAL_CONTINUITY_GENERALIZATION.md) — generalización de la recuperación de autopredicción ante estructuras causales no vistas.
+- [V78 repeated active continuity](V78_REPEATED_ACTIVE_CONTINUITY.md) — reutilización repetida de la política de autopredicción ante secuencias nuevas de perturbaciones.
 
 [Registro consolidado](../research/ORGANISM_RESULT_LEDGER.md).
 
