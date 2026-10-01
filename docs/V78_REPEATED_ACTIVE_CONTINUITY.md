@@ -87,6 +87,54 @@ También se calcula:
 - respuesta de primera acción al estado en el primer y segundo evento de una secuencia OOD;
 - error entre estado inmediatamente posterior a cada intervención y su objetivo.
 
+## Resultado observado
+
+La ejecución corregida de GitHub Actions completó **64 réplicas por condición**, con **64 episodios de entrenamiento**, **512 muestras del SelfObserver** y **12 pasos de recuperación por intervención**. La política fue guardada y recargada sin reentrenamiento.
+
+### Endpoint primario
+
+Sobre todas las condiciones:
+
+- ganancia media de autopredicción, política aprendida: **0.2422976**;
+- estado cegado: **-0.2408441**;
+- política fija: **-0.1844678**;
+- selección aleatoria: **0.0518725**;
+- aprendido − cegado, p emparejada: **0.00005**;
+- aprendido − fijo, p emparejada: **0.00005**;
+- aprendido − aleatorio, p emparejada: **0.00005**.
+
+La ventaja aprendida frente a aleatorio fue:
+
+- **in-domain:** 0.1897230;
+- **OOD:** 0.1906591;
+- retención OOD/in-domain: **1.0049**.
+
+| Secuencia | Ganancia aprendida | Ganancia aleatoria | Primer evento | Segundo evento |
+|---|---:|---:|---:|---:|
+| single_impulse | 0.2421173 | 0.0523943 | 0.2421173 | 0.2421173 |
+| double_same_sign | 0.2396398 | 0.0600594 | 0.2425893 | 0.2366903 |
+| double_alternating | 0.2486624 | 0.0509057 | 0.2632883 | 0.2340365 |
+| triple_alternating | 0.2387709 | 0.0441307 | 0.2532114 | 0.2363238 |
+
+En el conjunto OOD, la diferencia media entre segundo y primer evento fue **-0.0173461**: existe una pequeña atenuación de la ganancia en el segundo evento, pero la ventaja global frente a aleatorio se mantuvo.
+
+### Endpoints secundarios
+
+- continuidad aprendida: **0.7905914**;
+- continuidad aleatoria: **0.7922640**;
+- p emparejada: **0.58767**;
+- respuesta de primera acción dependiente del estado en el primer evento OOD: **100%** frente a **0%** cegado;
+- respuesta de primera acción dependiente del estado en el segundo evento OOD: **100%** frente a **0%** cegado;
+- error máximo entre el estado inmediatamente posterior a cada intervención y su objetivo: **0.0**.
+
+### Interpretación
+
+V78 respalda una forma de **generalización temporal/composicional**: una política entrenada únicamente con una perturbación aislada conservó una ventaja de autopredicción cuando tuvo que recuperarse repetidamente ante secuencias no vistas y sin reentrenamiento.
+
+La retención OOD fue prácticamente igual a la in-domain (**1.0049**). La ventaja no depende de una mejora del índice secundario de continuidad, que no se separó del control aleatorio bajo esta prueba.
+
+El descenso de **0.01735** entre el primer y segundo evento OOD indica que la reutilización repetida no es completamente invariante al número de perturbaciones. El resultado positivo, por tanto, es de **reutilización robusta de la política**, no de ausencia de degradación.
+
 ## Qué significaría un resultado favorable
 
 Un resultado favorable respaldaría una propiedad adicional:
