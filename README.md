@@ -58,7 +58,7 @@ SELECCIÓN DE TRAYECTORIA
 
 ## Programa experimental
 
-Cada capacidad se convierte en una hipótesis y después en un protocolo reproducible. **V47 → V70** estudia progresivamente memoria, estado dinámico, autoobservación, modelo de sí, selección de trayectorias, identidad, SUEÑO y persistencia de información interna.
+Cada capacidad se convierte en una hipótesis y después en un protocolo reproducible. **V47 → V73** estudia progresivamente memoria, estado dinámico, autoobservación, modelo de sí, selección de trayectorias, identidad, SUEÑO, persistencia y aprendizaje de políticas basadas en el propio modelo.
 
 Los resultados positivos, nulos y negativos se conservan.
 
@@ -77,6 +77,9 @@ Los resultados positivos, nulos y negativos se conservan.
 | V68 | Persistencia temporal de la huella dinámica | **Huella inmediata y atenuada** |
 | V69 | Lectura del estado mediante modelo de sí | **Lectura numérica positiva; selección nula** |
 | V70 | Persistencia del lector propio | **Sobrevive reinicio** |
+| V71 | Lector propio integrado en el ciclo autónomo | **Protocolo activo** |
+| V72 | Aprendizaje de política desde el modelo de sí | **Protocolo activo** |
+| V73 | Política propia persistida e integrada en el organismo | **Protocolo activo** |
 
 ## Fundamentos
 
@@ -109,7 +112,7 @@ El laboratorio funciona mediante **GitHub Actions**. Cada protocolo puede partir
 
 ## Estado actual
 
-**Investigación activa — organismo persistente, modelo de sí mismo, dinámica vigilia/sueño y experimentos de continuidad.**
+**Investigación activa — organismo persistente, modelo de sí mismo, dinámica vigilia/sueño, selección de trayectorias y políticas basadas en el propio modelo.**
 
 ## Licencia
 
@@ -159,7 +162,7 @@ TRAJECTORY SELECTION
 
 ## Experimental program
 
-Each capability becomes a hypothesis and then a reproducible protocol. **V47 → V70** progressively studies memory, dynamic state, self-observation, self-modeling, trajectory selection, identity, SLEEP, and persistence of internal information.
+Each capability becomes a hypothesis and then a reproducible protocol. **V47 → V73** progressively studies memory, dynamic state, self-observation, self-modeling, trajectory selection, identity, SLEEP, persistence, and policy learning from the self-model.
 
 Positive, null, and negative results are all kept.
 
@@ -178,6 +181,9 @@ Positive, null, and negative results are all kept.
 | V68 | Temporal persistence of the dynamic trace | **Immediate, attenuated trace** |
 | V69 | Reading internal state through a self-model | **Positive numeric readout; null selection effect** |
 | V70 | Persistent self-reader | **Survives restart** |
+| V71 | Integrated self-reader in autonomous cycle | **Active protocol** |
+| V72 | Self-model-based policy learning | **Active protocol** |
+| V73 | Persisted self-policy integrated into the organism | **Active protocol** |
 
 ## Foundations
 
@@ -210,7 +216,7 @@ The laboratory runs through **GitHub Actions**. Each protocol can start from a s
 
 ## Current status
 
-**Active research — persistent organism, self-model, WAKE/SLEEP dynamics, and continuity experiments.**
+**Active research — persistent organism, self-model, WAKE/SLEEP dynamics, trajectory selection, and policy learning from the self-model.**
 
 ## License
 
