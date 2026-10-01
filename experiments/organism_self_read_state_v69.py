@@ -160,6 +160,8 @@ def main() -> None:
     decision_sensitivity_off = []
     swap_following_on = []
     swap_following_off = []
+    decision_swap_change_on = []
+    decision_swap_change_off = []
     prediction_gaps = []
     prediction_swap_gaps = []
     rows = []
@@ -263,6 +265,15 @@ def main() -> None:
             + int(frontier_swap_off["signal"] == stable_off["signal"])
         ) / 2.0
 
+        on_swap_change = (
+            int(stable_swap_on["signal"] != stable_on["signal"])
+            + int(frontier_swap_on["signal"] != frontier_on["signal"])
+        ) / 2.0
+        off_swap_change = (
+            int(stable_swap_off["signal"] != stable_off["signal"])
+            + int(frontier_swap_off["signal"] != frontier_off["signal"])
+        ) / 2.0
+
         stable_pred = np.asarray(
             [row["predicted_state"] for row in stable_candidates_on],
             dtype=float,
@@ -300,6 +311,8 @@ def main() -> None:
         decision_sensitivity_off.append(float(off_decision_changed))
         swap_following_on.append(float(on_swap_followed))
         swap_following_off.append(float(off_swap_followed))
+        decision_swap_change_on.append(float(on_swap_change))
+        decision_swap_change_off.append(float(off_swap_change))
 
         rows.append(
             {
@@ -323,6 +336,7 @@ def main() -> None:
 
     on_vs_off_decision = np.asarray(decision_sensitivity_on) - np.asarray(decision_sensitivity_off)
     on_vs_off_swap = np.asarray(swap_following_on) - np.asarray(swap_following_off)
+    on_vs_off_swap_change = np.asarray(decision_swap_change_on) - np.asarray(decision_swap_change_off)
 
     summary = {
         "experiment": "organism_self_read_state_v69",
@@ -337,10 +351,13 @@ def main() -> None:
         "decision_sensitivity_off": float(np.mean(decision_sensitivity_off)),
         "swap_following_on": float(np.mean(swap_following_on)),
         "swap_following_off": float(np.mean(swap_following_off)),
+        "decision_swap_change_on": float(np.mean(decision_swap_change_on)),
+        "decision_swap_change_off": float(np.mean(decision_swap_change_off)),
         "decision_sensitivity_on_minus_off_p": paired_sign_p(
             on_vs_off_decision, 69001
         ),
         "swap_following_on_minus_off_p": paired_sign_p(on_vs_off_swap, 69002),
+        "decision_swap_change_on_minus_off_p": paired_sign_p(on_vs_off_swap_change, 69003),
         "all_memories_removed_before_probe": True,
         "self_model_text_cleared_before_probe": True,
         "semantic_text_input_during_probe": False,
