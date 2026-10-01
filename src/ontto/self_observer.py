@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Any
+
 import numpy as np
 
 
@@ -13,11 +15,10 @@ class SelfPrediction:
 
 
 class SelfObserver:
-    """Online, persisted-compatible model of the organism's own dynamics.
+    """Online, persistible model of the organism's own dynamics.
 
-    The observer learns from the organism's previous transition records. It does
-    not inspect the hidden dynamics implementation. It predicts the next state
-    from the currently observed internal state and transition variables.
+    The observer learns from transition records and can now serialize its
+    learned numeric state separately from semantic memory.
     """
 
     FEATURE_COUNT = 8
@@ -112,6 +113,30 @@ class SelfObserver:
         if len(self.features) > self.max_samples:
             self.features.pop(0)
             self.targets.pop(0)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "ridge": self.ridge,
+            "max_samples": self.max_samples,
+            "features": [feature.tolist() for feature in self.features],
+            "targets": list(self.targets),
+        }
+
+    @classmethod
+    def from_dict(cls, payload: dict[str, Any]) -> "SelfObserver":
+        observer = cls(
+            ridge=float(payload.get("ridge", 1e-3)),
+            max_samples=int(payload.get("max_samples", 2048)),
+        )
+        for features, target in zip(
+            payload.get("features", []),
+            payload.get("targets", []),
+        ):
+            observer.observe(
+                features=np.asarray(features, dtype=float),
+                actual_state=float(target),
+            )
+        return observer
 
     def reset(self) -> None:
         self.features.clear()
