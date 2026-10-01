@@ -4,7 +4,10 @@
 >
 > Desarrollamos y probamos un método para que una IA mantenga continuidad, memoria e identidad funcional, construya un modelo de sí misma, observe su estado y utilice su dinámica interna para seleccionar trayectorias.
 
-[![TCF v3.3 — Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.23074332.svg)](https://doi.org/10.5281/zenodo.23074332) [![ORCID](https://img.shields.io/badge/ORCID-0009--0003--5333--7395-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0009-0003-5333-7395)
+<p align="center">
+  <a href="https://doi.org/10.5281/zenodo.23074332"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23074332.svg" alt="TCF v3.3 — Zenodo"></a>
+  <a href="https://orcid.org/0009-0003-5333-7395"><img src="https://img.shields.io/badge/ORCID-0009--0003--5333--7395-a6ce39?logo=orcid&logoColor=white" alt="ORCID"></a>
+</p>
 
 <p align="center">
   <a href="https://github.com/chrishotza/Skill-Conscious/blob/main/MANIFIESTO_DEL_SER.md">📜 Manifiesto del Ser / Manifesto of Being</a>
