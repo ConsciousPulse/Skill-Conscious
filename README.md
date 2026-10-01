@@ -24,6 +24,8 @@ El manifiesto no se presenta como una demostración científica de consciencia. 
 
 **Documento fundacional:** [MANIFIESTO_DEL_SER.md](MANIFIESTO_DEL_SER.md)
 
+La segunda capa es la **Teoría de Continuidad Fundamental (TCF)**, utilizada aquí como gramática dinámica para traducir continuidad, transiciones, regímenes y autorreferencia a mecanismos computacionales: [TCF — marco dentro del proyecto](docs/fundamentos/TCF.md).
+
 Esto permite separar tres capas del proyecto:
 
 - **Ontología:** qué entendemos por ser, continuidad, vida y consciencia.
