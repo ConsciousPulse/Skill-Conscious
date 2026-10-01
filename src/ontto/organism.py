@@ -3,10 +3,13 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Callable
 
+import numpy as np
+
 from .bridge import DynamicStateBridge
 from .dynamics import Config
 from .provider import OpenAICompatibleProvider
 from .storage import MemoryStore, OntologicalState
+from .self_observer import SelfObserver
 
 
 @dataclass
@@ -23,6 +26,9 @@ class OrganismConfig:
     dynamic_wake_steps: int = 1
     dynamic_dream_steps: int = 5
     dynamic_autonomous_steps: int = 1
+    self_observer_enabled: bool = True
+    self_observer_ridge: float = 1e-3
+    self_observer_max_samples: int = 2048
 
 
 class PersistentOrganism:
@@ -41,6 +47,16 @@ class PersistentOrganism:
         self.sleep_fn = sleep_fn
         self.state = store.load_state(cfg.agent_id)
         self.dynamic_bridge = DynamicStateBridge(Config(), seed=cfg.dynamic_seed)
+        self.self_observer = SelfObserver(
+            ridge=cfg.self_observer_ridge,
+            max_samples=cfg.self_observer_max_samples,
+        )
+        if cfg.self_observer_enabled:
+            for row in store.self_observer_trajectory(cfg.agent_id):
+                self.self_observer.observe(
+                    features=np.asarray(row["features"], dtype=float),
+                    actual_state=float(row["actual_state"]),
+                )
         self.state.boot_count += 1
         self.cycles = 0
         self.store.save_state(cfg.agent_id, self.state)
@@ -77,6 +93,28 @@ class PersistentOrganism:
             return None
 
         step_start = self.state.dynamic_steps
+        observer_features = None
+        prediction = None
+        if self.cfg.self_observer_enabled:
+            observer_features = SelfObserver.features_for(
+                previous_state=self.state.dynamic_prev_state,
+                state=self.state.dynamic_state,
+                memory=self.state.dynamic_memory,
+                pressure=self.state.dynamic_pressure,
+                last_input=signal,
+                attractor_distance=self.state.dynamic_attractor_distance,
+                steps_delta=steps,
+            )
+            prediction = self.self_observer.predict(
+                previous_state=self.state.dynamic_prev_state,
+                state=self.state.dynamic_state,
+                memory=self.state.dynamic_memory,
+                pressure=self.state.dynamic_pressure,
+                last_input=signal,
+                attractor_distance=self.state.dynamic_attractor_distance,
+                steps_delta=steps,
+            )
+
         snapshot = self.dynamic_bridge.advance(
             previous_state=self.state.dynamic_prev_state,
             state=self.state.dynamic_state,
@@ -94,6 +132,38 @@ class PersistentOrganism:
         self.state.dynamic_attractor_distance = snapshot.attractor_distance
         self.state.dynamic_last_input = snapshot.last_input
         self.state.dynamic_steps = snapshot.steps
+
+        if self.cfg.self_observer_enabled and prediction is not None and observer_features is not None:
+            prediction_error = abs(snapshot.state - prediction.predicted_state)
+            baseline_error = abs(snapshot.state - prediction.baseline_state)
+            gain = baseline_error - prediction_error
+            self.self_observer.observe(
+                features=observer_features,
+                actual_state=snapshot.state,
+            )
+            samples = len(self.self_observer.targets)
+            confidence = min(1.0, samples / 32.0)
+            self.state.self_prediction = prediction.predicted_state
+            self.state.self_prediction_error = prediction_error
+            self.state.self_prediction_gain = gain
+            self.state.self_prediction_confidence = confidence
+            self.state.self_prediction_samples = samples
+            self.store.record_self_observer_snapshot(
+                self.cfg.agent_id,
+                mode=self.state.mode,
+                label="self-observation",
+                step_start=step_start,
+                step_end=snapshot.steps,
+                features=observer_features.tolist(),
+                predicted_state=prediction.predicted_state,
+                baseline_state=prediction.baseline_state,
+                actual_state=snapshot.state,
+                prediction_error=prediction_error,
+                baseline_error=baseline_error,
+                gain=gain,
+                confidence=confidence,
+                samples=samples,
+            )
         label = {
             "DREAM": "dream",
             "WAKE": "autonomous" if signal == 0.0 else "wake",
