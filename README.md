@@ -145,11 +145,11 @@ V58 added an optional semantic bridge that converts the \`MEMORY:\` relation gen
 
 V59 added a 2×2 factorial crossing semantic bridge OFF/ON with \`self_model\`/random selection. The bridge produced a substantial internal change, while the measured utility of the self-model did not change detectably between conditions.
 
-V60 added a closed-loop semantic feedback protocol in which the selected trajectory is persisted as an event, conditions the next semantic memory, and that memory is transduced back into internal dynamics before the next trajectory selection. The V60 experiment is deterministic and synthetic; its CI audit is currently running.
+V60 added a closed-loop semantic feedback protocol in which the selected trajectory is persisted as an event, conditions the next semantic memory, and that memory is transduced back into internal dynamics before the next trajectory selection. The successful audit produced 24 paired replicates: self-model mean regret -0.0842 vs random 0.3028, self-model oracle-hit 96.18% vs random 45.31%, and paired sign-flip p = 0.00005. The self-model arm selected +1 in all replicates, so the secondary bidirectional feedback endpoint had no balanced action coverage; the result supports recurrent plumbing and functional self-model selection, but not a demonstrated two-branch feedback effect.
 
-V61 added an optional second-order meta-self-model: the organism learns to predict the error of its own first-order self-model and can use that predicted reliability when selecting among future trajectories. The V61 CI audit is running; no V61 result is claimed until its artifact is produced.
+V61 added an optional second-order meta-self-model: the organism learns to predict the error of its own first-order self-model and can use that predicted reliability when selecting among future trajectories. The completed audit was negative: meta-self-model regret 0.0888 vs first-order 0.0788, oracle-hit 41.28% vs 45.31%, meta prediction MAE 0.1277 vs constant baseline MAE 0.0850, and the meta model beat the constant baseline in 0% of replicates.
 
-V62 adds an optional semantic self-model bridge and persists SELF_MODEL updates during wake cycles. It tests whether changing only the organism's semantic self-representation can be causally transduced into its internal numerical dynamics under a matched OFF/ON intervention. The V62 audit is pending; no V62 result is claimed until its artifact is produced.
+V62 adds an optional semantic self-model bridge and persists SELF_MODEL updates during wake cycles. In 24 matched replicates, bridge OFF produced exactly 0.0 mean state and signal separation, while bridge ON produced 0.05675 mean state separation and 0.18446 mean signal separation, with successful transduction in all runs. This is a deterministic computational causal result, not evidence of phenomenological consciousness.
 
 ## Evidence boundary
 
