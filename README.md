@@ -118,3 +118,5 @@ V55 agrega recuperación de identidad bajo perturbación, comparando selección 
 V56 agrega una política opcional de admisión de memoria basada en compatibilidad futura AEVUM, todavía separada de la memoria canónica del organismo.
 
 V57 compara selección de trayectorias basada en self-model contra un control aleatorio emparejado y calcula regret frente a un oráculo post-hoc.
+
+V58 agrega un puente semántico opcional que convierte la relación `MEMORY:` generada por la IA en una señal dinámica mediante el operador AEVUM, con intervención OFF/ON emparejada.
