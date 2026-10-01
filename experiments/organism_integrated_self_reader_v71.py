@@ -70,6 +70,10 @@ def prepare_condition(path: Path, seed: int, condition: str, reader_samples: int
     for memory in memories:
         store.add_memory("organism", memory, importance=0.65)
 
+    # Create two controlled numeric conditions that survive semantic ablation.
+    # The perturbation is explicit and identical in magnitude, with opposite sign.
+    condition_signal = -1.0 if condition == "stable" else 1.0
+
     cfg = OrganismConfig(
         agent_id="organism",
         dynamic_seed=seed,
@@ -79,6 +83,7 @@ def prepare_condition(path: Path, seed: int, condition: str, reader_samples: int
         dream_semantic_bridge_enabled=False,
     )
     organism = PersistentOrganism(cfg, store, NullSemanticProvider(), lambda _: None)
+    organism._advance_dynamic(condition_signal, 1)
     organism.dream_cycle()
     store.conn.close()
 
