@@ -1,4 +1,4 @@
-# Registro de resultados experimentales del organismo — V47 → V67
+# Registro de resultados experimentales del organismo — V47 → V77
 
 ## Resultados positivos fuertes
 
@@ -287,6 +287,26 @@ Interpretación: V69 separa dos niveles que hasta ahora estaban mezclados. La **
 - entrada textual durante la sonda: **no**.
 
 Interpretación: V70 extiende V69 desde lectura a acción. El modelo de sí, congelado antes de SUEÑO, transforma el estado interno posterior a SUEÑO en una señal de acción continua; la acción difiere entre condiciones y modifica el siguiente estado después de la ablación semántica. El control con estado clamped produce una acción distinta a la lectura real. Este resultado establece un acoplamiento computacional modelo de sí → acción, pero la regla que convierte predicción en acción fue fijada externamente por el experimento.
+
+### V77 — Generalización ante estructuras causales no vistas
+
+64 réplicas por condición; entrenamiento solo con single_impulse; OOD en split_impulse, reversal_pulse y delayed_impulse.
+
+- ganancia media aprendida: **0.2377583**;
+- cegada: **-0.1917033**;
+- fija: **-0.1566228**;
+- aleatoria: **0.0632567**;
+- p aprendido − cegado: **0.00005**;
+- p aprendido − fijo: **0.00005**;
+- p aprendido − aleatorio: **0.00005**;
+- ventaja aprendido − aleatorio in-domain: **0.1715437**;
+- ventaja aprendido − aleatorio OOD: **0.1754876**;
+- retención OOD/in-domain: **1.0230**;
+- continuidad aprendida: **0.7926861** frente a **0.7950760** aleatoria, p **0.48033**;
+- respuesta de primera acción dependiente del estado en reversal_pulse: **100%** frente a **0%** cegado;
+- error máximo de coincidencia con el objetivo inmediatamente después de la intervención: **0.0**.
+
+Interpretación: V77 respalda generalización computacional de la política de autopredicción ante estructuras temporales/causales no vistas. El endpoint de continuidad, tratado como secundario, no mostró separación frente al control aleatorio.
 
 ## Estado de ingeniería
 
