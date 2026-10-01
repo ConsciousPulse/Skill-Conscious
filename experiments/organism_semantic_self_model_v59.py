@@ -154,7 +154,7 @@ def run_arm(
     actual_distance = abs(state_after.dynamic_state - state_after.attractor)
 
     semantic_events = store.recent_events("receiver", 2)
-    wake_event = semantic_events[1]
+    wake_event = semantic_events[0]
 
     return {
         "policy": policy,
