@@ -10,6 +10,7 @@ from src.ontto.provider import LLMResponse
 from src.ontto.storage import MemoryStore
 
 BASE_MEMORY = "La relación estable mantiene continuidad y ancla el recorrido."
+BASE_SELF_MODEL = "Mantengo una identidad persistente entre ciclos."
 SELF_MODEL_A = "Mantengo continuidad estable y conservo el recorrido persistente."
 SELF_MODEL_B = "Cambio de régimen y abro una ruta futura completamente nueva."
 
@@ -43,7 +44,7 @@ def make_base(path: Path, seed: int) -> None:
     )
     organism = PersistentOrganism(cfg, store, FakeProvider(SELF_MODEL_A), lambda _: None)
     state = store.load_state("receiver")
-    state.self_model = SELF_MODEL_A
+    state.self_model = BASE_SELF_MODEL
     state.self_model_version = 1
     store.add_memory("receiver", BASE_MEMORY, importance=0.65)
     store.save_state("receiver", state)
