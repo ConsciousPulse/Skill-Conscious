@@ -147,10 +147,14 @@ def run_zero_input_trace(state: OntologicalState, seed: int, steps: int = 12) ->
     return np.asarray([trace.as_features() for trace in traces], dtype=float)
 
 
-def build_swapped_state(target: OntologicalState, source: OntologicalState) -> OntologicalState:
-    target.dynamic_prev_state = source.dynamic_prev_state
-    target.dynamic_state = source.dynamic_state
-    target.dynamic_steps = source.dynamic_steps
+def build_swapped_state(
+    target: OntologicalState,
+    source_core: tuple[float, float, int],
+) -> OntologicalState:
+    previous_state, state, steps = source_core
+    target.dynamic_prev_state = previous_state
+    target.dynamic_state = state
+    target.dynamic_steps = steps
     return total_semantic_ablation(target)
 
 
@@ -223,6 +227,7 @@ def main() -> None:
     dream_signal_deltas = []
     dream_state_deltas = []
     raw_rows = []
+    swap_core_match = []
 
     for replicate in range(args.replicates):
         seed = 9701 + replicate
@@ -250,14 +255,29 @@ def main() -> None:
         stable_state = delete_semantic_surfaces(stable_db)
         frontier_state = delete_semantic_surfaces(frontier_db)
 
+        # Capture both cores before either target state is mutated. The previous
+        # implementation mutated stable_state first and then used that mutated
+        # object as the source for the frontier swap, collapsing both swap arms
+        # onto the frontier core and invalidating the causal comparison.
+        stable_core = (
+            stable_state.dynamic_prev_state,
+            stable_state.dynamic_state,
+            stable_state.dynamic_steps,
+        )
+        frontier_core = (
+            frontier_state.dynamic_prev_state,
+            frontier_state.dynamic_state,
+            frontier_state.dynamic_steps,
+        )
+
         stable_own = run_zero_input_trace(stable_state, seed, args.trace_steps)
         frontier_own = run_zero_input_trace(frontier_state, seed, args.trace_steps)
 
         stable_swap = run_zero_input_trace(
-            build_swapped_state(stable_state, frontier_state), seed, args.trace_steps
+            build_swapped_state(stable_state, frontier_core), seed, args.trace_steps
         )
         frontier_swap = run_zero_input_trace(
-            build_swapped_state(frontier_state, stable_state), seed, args.trace_steps
+            build_swapped_state(frontier_state, stable_core), seed, args.trace_steps
         )
 
         samples.extend(
@@ -267,6 +287,12 @@ def main() -> None:
                 ("stable", 0, stable_swap),
                 ("frontier", 1, frontier_swap),
             ]
+        )
+        swap_core_match.append(
+            bool(
+                np.allclose(stable_swap, frontier_own, atol=1e-12, rtol=0.0)
+                and np.allclose(frontier_swap, stable_own, atol=1e-12, rtol=0.0)
+            )
         )
         raw_rows.append(
             {
@@ -296,6 +322,7 @@ def main() -> None:
         "post_ablation_own_accuracy_p": sign_flip_p(own_centered, 67001),
         "state_swap_following_accuracy": float(np.mean(swap_accuracy)),
         "state_swap_following_p": sign_flip_p(swap_centered, 67002),
+        "swap_core_exact_match_fraction": float(np.mean(swap_core_match)),
         "all_memories_removed_before_probe": True,
         "self_model_cleared_before_probe": True,
         "semantic_text_input_during_probe": False,

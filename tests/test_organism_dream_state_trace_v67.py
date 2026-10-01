@@ -32,3 +32,4 @@ def test_v67_output_schema(tmp_path):
     assert summary["all_memories_removed_before_probe"] is True
     assert summary["self_model_cleared_before_probe"] is True
     assert summary["semantic_text_input_during_probe"] is False
+    assert 0.0 <= summary["swap_core_exact_match_fraction"] <= 1.0
