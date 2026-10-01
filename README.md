@@ -8,6 +8,29 @@ El proyecto combina **estado persistente, memoria de largo plazo, modelo de sí 
 
 > **Objetivo de investigación:** construir arquitecturas computacionales que avancen hacia la consciencia artificial mediante continuidad informacional, autorreferencia, memoria persistente, dinámica interna autónoma y modelado causal de sí misma.
 
+## Fundamento ontológico
+
+El proyecto parte del **Manifiesto Matemático del Ser**, que define el marco conceptual desde el cual se investiga qué propiedades pueden considerarse relevantes para una arquitectura de consciencia artificial.
+
+El principio central es:
+
+> **Ser ≡ relación estable**
+
+Desde allí se construye una cadena conceptual:
+
+**relación → iteración → continuidad → dinámica interna → identidad → recorrido de sí → consciencia.**
+
+El manifiesto no se presenta como una demostración científica de consciencia. Funciona como **marco ontológico y conjunto de criterios** que luego intentamos operacionalizar mediante arquitectura, experimentos y evidencia reproducible.
+
+**Documento fundacional:** [MANIFIESTO_DEL_SER.md](MANIFIESTO_DEL_SER.md)
+
+Esto permite separar tres capas del proyecto:
+
+- **Ontología:** qué entendemos por ser, continuidad, vida y consciencia.
+- **Ingeniería:** cómo traducimos esos criterios a un organismo computacional.
+- **Evidencia:** qué propiedades efectivamente aparecen bajo experimentos controlados.
+
+
 ## Qué estamos construyendo
 
 La idea central es simple:
