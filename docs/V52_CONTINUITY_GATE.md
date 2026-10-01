@@ -1,34 +1,25 @@
-# V52 — Future-Compatibility Gate
+# V52 — Puerta de compatibilidad futura
 
-## Source basis
+## Base documental
 
-The uploaded AEVUM specification defines a frozen operator
+La especificación AEVUM proporcionada define un operador congelado:
 
 `Omega = 1.2 * novelty - 1.0 * coupling - 0.8 * persistence`
 
-with `Omega > 0` meaning the transition exists. It also defines conditioned
-persistence and memory without accumulation.
+donde `Omega > 0` significa que la transición existe. También define persistencia condicionada y memoria sin acumulación.
 
-## Engineering adapter
+## Adaptador de ingeniería
 
-`AevumContinuityGate` reproduces that operator exactly and exposes the result as a
-deterministic adapter. It is deliberately not enabled inside the organism yet.
+`AevumContinuityGate` reproduce exactamente ese operador y expone el resultado como un adaptador determinista. Deliberadamente todavía no está habilitado dentro del organismo.
 
-## Why this matters for consciousness research
+## Por qué importa para la investigación de la consciencia
 
-The Manifiesto del Ser treats identity as persistence of relation through change,
-while the AEVUM material adds a constraint: persistence should not close future
-possibilities. Together these suggest a future organism layer in which memories
-and candidate trajectories are retained because they preserve navigable future
-states rather than merely because they occurred.
+El Manifiesto del Ser considera la identidad como persistencia de la relación a través del cambio, mientras que el material AEVUM agrega una restricción: la persistencia no debería cerrar posibilidades futuras. En conjunto, esto sugiere una futura capa del organismo en la que las memorias y las trayectorias candidatas se conserven porque mantienen estados futuros navegables y no simplemente porque ocurrieron.
 
-## Next experiment
+## Próximo experimento
 
-V53 can use this gate as an admission policy for candidate memories and
-counterfactual trajectories. The gate should be compared against append-only memory
-under matched perturbation and recovery tests.
+V53 puede utilizar esta puerta como política de admisión para memorias candidatas y trayectorias contrafactuales. La puerta debe compararse contra memoria de solo anexado bajo pruebas emparejadas de perturbación y recuperación.
 
-## Evidence boundary
+## Límite de evidencia
 
-This module is a deterministic continuity filter. Passing its tests says nothing by
-itself about consciousness.
+Este módulo es un filtro determinista de continuidad. Superar sus pruebas no dice nada por sí solo sobre la consciencia.
