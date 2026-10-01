@@ -22,11 +22,10 @@ def test_v76_output_schema(tmp_path):
             "--out",
             str(out),
         ],
-        check=False,
+        check=True,
         capture_output=True,
         text=True,
     )
-    assert result.returncode == 0, (f"stdout={result.stdout}\nstderr={result.stderr}")
     summary = json.loads(result.stdout)
 
     assert summary["experiment"] == "organism_generalized_active_continuity_v76"
