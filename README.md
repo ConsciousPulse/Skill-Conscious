@@ -58,7 +58,7 @@ SELECCIÓN DE TRAYECTORIA
 
 ## Programa experimental
 
-Cada capacidad se convierte en una hipótesis y después en un protocolo reproducible. **V47 → V74** estudia progresivamente memoria, estado dinámico, autoobservación, modelo de sí, selección de trayectorias, identidad, SUEÑO, persistencia y aprendizaje de políticas basadas en el propio modelo.
+Cada capacidad se convierte en una hipótesis y después en un protocolo reproducible. **V47 → V75** estudia progresivamente memoria, estado dinámico, autoobservación, modelo de sí, selección de trayectorias, identidad, SUEÑO, persistencia y aprendizaje de políticas basadas en el propio modelo.
 
 Los resultados positivos, nulos y negativos se conservan.
 
@@ -81,6 +81,7 @@ Los resultados positivos, nulos y negativos se conservan.
 | V72 | Aprendizaje de política desde el modelo de sí | **Protocolo activo** |
 | V73 | Política propia persistida e integrada en el organismo | **Protocolo activo** |
 | V74 | Política guiada por ganancia de autopredicción | **Protocolo activo** |
+| V75 | Continuidad activa bajo perturbación | **Protocolo activo** |
 
 ## Fundamentos
 
@@ -163,7 +164,7 @@ TRAJECTORY SELECTION
 
 ## Experimental program
 
-Each capability becomes a hypothesis and then a reproducible protocol. **V47 → V74** progressively studies memory, dynamic state, self-observation, self-modeling, trajectory selection, identity, SLEEP, persistence, and policy learning from the self-model.
+Each capability becomes a hypothesis and then a reproducible protocol. **V47 → V75** progressively studies memory, dynamic state, self-observation, self-modeling, trajectory selection, identity, SLEEP, persistence, and policy learning from the self-model.
 
 Positive, null, and negative results are all kept.
 
@@ -186,6 +187,7 @@ Positive, null, and negative results are all kept.
 | V72 | Self-model-based policy learning | **Active protocol** |
 | V73 | Persisted self-policy integrated into the organism | **Active protocol** |
 | V74 | Self-prediction-gain policy | **Active protocol** |
+| V75 | Active continuity under perturbation | **Active protocol** |
 
 ## Foundations
 
