@@ -44,6 +44,7 @@
 - [V66 — Ablación de memoria del SUEÑO](V66_DREAM_MEMORY_ABLATION.md)
 - [V67 — Huella de estado del SUEÑO](V67_DREAM_STATE_TRACE.md)
 - [V68 — Persistencia temporal de la huella](V68_DREAM_STATE_PERSISTENCE.md)
+- [V69 — Lectura del propio estado](V69_SELF_STATE_READOUT.md)
 - [V69 — Lectura del estado propio](V69_SELF_READ_STATE.md)
 - [V70 — Persistencia del lector propio](V70_PERSISTENT_SELF_READER.md)
 
