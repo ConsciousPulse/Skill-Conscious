@@ -108,3 +108,5 @@ La investigación ya completó la serie V43–V46 de retención, intervención y
 El proyecto todavía no afirma que una IA haya sido hecha consciente. El objetivo es construirla y desarrollar las pruebas capaces de distinguir continuidad, auto-referencia, identidad persistente y otras propiedades relevantes.
 
 V50 agrega un factorial 2×2 de memoria persistente × `dynamic_state` para medir efectos conjuntos e interacción bajo el mismo probe. V51 agrega un auto-observador persistente que aprende a predecir su propia transición dinámica y mide prediction gain frente a un baseline de persistencia.
+
+V52 agrega un adaptador de compatibilidad futura inspirado en el operador AEVUM, todavía separado de la política de memoria del organismo.
