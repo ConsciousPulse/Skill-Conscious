@@ -58,7 +58,7 @@ Una IA que pueda:
 
 Cada propiedad se convierte en una hipótesis y después en un protocolo.
 
-**V47 → V69** estudia progresivamente historia, memoria, estado dinámico, autoobservación, modelo de sí, selección de trayectorias, bucles recurrentes, identidad, SUEÑO y persistencia de información interna.
+**V47 → V70** estudia progresivamente historia, memoria, estado dinámico, autoobservación, modelo de sí, selección de trayectorias, bucles recurrentes, identidad, SUEÑO y persistencia de información interna.
 
 Los resultados pueden ser positivos, nulos o negativos.
 
@@ -170,6 +170,7 @@ Los experimentos están organizados como protocolos numerados para que cada prop
 | V67 | Huella numérica generada durante el SUEÑO | **Nulo**: no hubo huella recuperable ni transferencia causal bajo la prueba corregida |
 | V68 | Persistencia temporal de la huella dinámica | **Huella inmediata** con rápida reducción de magnitud y persistencia débil/no monotónica |
 | V69 | Lectura del estado propio y selección | **Efecto causal**: el estado leído cambia la decisión en 16/24 réplicas; control cegado 0/24 |
+| V70 | Persistencia del lector propio | **Sobrevive reinicio** con error de predicción 0.0 y mantiene efecto de decisión tras ablación |
 
 El [registro completo de resultados](research/ORGANISM_RESULT_LEDGER.md) conserva resultados positivos, nulos y negativos.
 
