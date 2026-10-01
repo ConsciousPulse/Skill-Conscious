@@ -193,8 +193,14 @@ def main() -> None:
                 "regret_difference_random_minus_self": (
                     random_row["regret"] - self_row["regret"]
                 ),
-                "oracle_hit_difference": (
+                        "oracle_hit_difference": (
                     int(self_row["oracle_hit"]) - int(random_row["oracle_hit"])
+                ),
+                "self_model_correct_direction": (
+                    self_row["chosen_signal"] == self_row["oracle_signal"]
+                ),
+                "random_correct_direction": (
+                    random_row["chosen_signal"] == random_row["oracle_signal"]
                 ),
             }
         )
@@ -226,6 +232,12 @@ def main() -> None:
         ),
         "random_oracle_hit_rate": float(
             np.mean([row["random_control"]["oracle_hit"] for row in rows])
+        ),
+        "self_minus_random_oracle_hit_rate": float(
+            np.mean([
+                int(row["self_model"]["oracle_hit"]) - int(row["random_control"]["oracle_hit"])
+                for row in rows
+            ])
         ),
         "paired_sign_flip_p": sign_permutation_p(regret_differences),
         "effect_positive_for_self_model": bool(regret_differences.mean() > 0),
