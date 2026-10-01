@@ -5,6 +5,7 @@ import json
 import os
 import re
 import shutil
+import random
 from pathlib import Path
 
 from src.ontto.organism import OrganismConfig, PersistentOrganism
@@ -186,7 +187,9 @@ def main() -> None:
     provider = build_provider(args.mode)
     results = []
     for replicate in range(1, args.replicates + 1):
-        for condition in CONDITIONS:
+        order = list(CONDITIONS)
+        random.Random(1000 + replicate).shuffle(order)
+        for condition in order:
             results.append(run_condition(base, condition, provider, replicate, out))
 
     summary = {
