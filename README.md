@@ -159,6 +159,8 @@ V65 adds a dedicated DREAM-to-dynamics bridge and compares no_dream, dream_no_br
 
 V66 extends this by ablating the raw episodic memories after DREAM while preserving or removing the consolidated lesson. The two matched arms shared the same post-dream state. Retaining the consolidated lesson versus deleting it produced identical outcomes: mean regret -0.10868 in both arms, oracle-hit 85.07% in both arms, regret difference 0.0 (p = 1.0), and hit-rate difference 0.0 (p = 1.0). The retained lesson did generate a retrieval bridge signal, but preserving it was not behaviorally discriminative in this protocol. V66 is therefore a real null result.
 
+V67 introduces a direct dream-state persistence protocol: after DREAM, all episodic memories, events, snapshots, self-model text, numeric memory, and pressure traces are removed, leaving only the dynamic core. A common zero-input continuation and a matched state-swap intervention test whether the numeric state generated during DREAM remains recoverable and causally transferable without semantic input. The V67 CI audit is pending.
+
 ## Evidence boundary
 
 The experiments in this repository establish computational properties of the tested system and harness.
