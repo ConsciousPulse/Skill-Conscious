@@ -293,6 +293,7 @@ def main() -> None:
         json.loads(policy_path.read_text(encoding="utf-8"))
     )
 
+    # Use the same episode seeds across policies so paired sign tests are valid.
     learned_score, learned_rows = run_policy(
         restored,
         observer,
@@ -303,13 +304,13 @@ def main() -> None:
     blinded_score, blinded_rows = run_policy(
         restored,
         observer,
-        seed=73003,
+        seed=72003,
         episodes=args.episodes,
         state_blind=True,
     )
     fixed_score, fixed_rows = run_fixed(
         observer,
-        seed=74003,
+        seed=72003,
         episodes=args.episodes,
     )
 
@@ -317,7 +318,6 @@ def main() -> None:
     blinded = np.asarray(blinded_rows)
     fixed = np.asarray(fixed_rows)
 
-    random_rng = np.random.default_rng(75003)
     random_rows = []
     for value in range(args.episodes):
         bridge = DynamicStateBridge(DynamicsConfig(), seed=75003 + value)
