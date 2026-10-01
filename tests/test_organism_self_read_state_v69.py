@@ -40,7 +40,10 @@ def test_v69_output_schema(tmp_path):
         "swap_following_off",
         "decision_sensitivity_on_minus_off_p",
         "swap_following_on_minus_off_p",
+        "decision_swap_change_on_minus_off_p",
     ):
         assert 0.0 <= summary[key] <= 1.0
     assert summary["mean_prediction_gap_stable_vs_frontier"] >= 0.0
+    assert 0.0 <= summary["decision_swap_change_on"] <= 1.0
+    assert 0.0 <= summary["decision_swap_change_off"] <= 1.0
     assert summary["mean_prediction_swap_gap"] >= 0.0
