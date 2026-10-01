@@ -501,8 +501,6 @@ def first_action_response_by_event(
     differences = []
     for episode in range(episodes):
         seed = base_seed + episode
-        rng = np.random.default_rng(seed + 2000)
-        base = float(rng.choice(np.asarray([-1.0, 1.0])))
         signs = schedule_signs(schedule, seed=seed + 2000)
         if event_index >= len(signs):
             continue
@@ -511,18 +509,22 @@ def first_action_response_by_event(
         context = warmup_context(bridge, seed=seed + 1000)
 
         for index, sign in enumerate(signs):
-            context, _, _ = apply_single_impulse(
-                context=context,
+            pre_event_context = context
+
+            actual_context, _, _ = apply_single_impulse(
+                context=pre_event_context,
                 sign=sign,
             )
+
             if index == event_index:
-                positive_context = context
-                negative_sign = -sign
-                negative_context, _, _ = apply_single_impulse(
-                    context=positive_context,
-                    sign=negative_sign,
+                positive_context, _, _ = apply_single_impulse(
+                    context=pre_event_context,
+                    sign=1.0,
                 )
-                del base
+                negative_context, _, _ = apply_single_impulse(
+                    context=pre_event_context,
+                    sign=-1.0,
+                )
                 positive = choose_learned_policy(
                     policy,
                     observer,
@@ -538,6 +540,7 @@ def first_action_response_by_event(
                 differences.append(float(positive != negative))
                 break
 
+            context = actual_context
             for _ in range(RECOVERY_STEPS):
                 signal = choose_learned_policy(
                     policy,
@@ -551,8 +554,8 @@ def first_action_response_by_event(
                     context=context,
                     signal=signal,
                 )
-    return float(np.mean(differences)) if differences else 0.0
 
+    return float(np.mean(differences)) if differences else 0.0
 
 def main() -> None:
     ap = argparse.ArgumentParser()
