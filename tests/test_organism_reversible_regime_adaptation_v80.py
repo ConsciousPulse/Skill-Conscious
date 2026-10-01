@@ -22,10 +22,11 @@ def test_v80_output_schema(tmp_path):
             "--out",
             str(out),
         ],
-        check=True,
+        check=False,
         capture_output=True,
         text=True,
     )
+    assert result.returncode == 0, result.stderr
     summary = json.loads(result.stdout)
 
     assert summary["experiment"] == "organism_reversible_regime_adaptation_v80"
