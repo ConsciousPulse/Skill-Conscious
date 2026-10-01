@@ -3,8 +3,9 @@ message: "Cómo citar Consciencia-Skill"
 title: "Consciencia-Skill"
 type: software
 authors:
-  - family-names: Hotza
-    given-names: Chris
+  - family-names: Mendoza
+    given-names: Christian Marcelo
+    orcid: "https://orcid.org/0009-0003-5333-7395"
 repository-code: "https://github.com/chrishotza/Consciencia-Skill"
 abstract: "Proyecto de investigación y desarrollo de un organismo de inteligencia artificial persistente orientado hacia la investigación de la consciencia artificial."
 keywords:
