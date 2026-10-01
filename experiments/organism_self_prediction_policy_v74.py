@@ -257,15 +257,10 @@ def run_policy(
                 step_index=step_index,
             )
 
-            total += (
-                abs(snapshot.state - state)
-                - abs(snapshot.state - state)
-                + 0.0
-            )
             state = snapshot.state
 
-        # Re-run the same trajectory conceptually as a measured self-prediction
-        # score: score the final system state against its own persistence baseline.
+        # Measure the same self-prediction criterion used by the training target
+        # on the final observed transition.
         final_prediction = observer.predict(
             previous_state=state,
             state=state,
@@ -275,8 +270,9 @@ def run_policy(
             attractor_distance=abs(state),
             steps_delta=1,
         )
-        total = -abs(final_prediction.predicted_state - state)
-        episode_scores.append(total)
+        episode_scores.append(
+            -abs(final_prediction.predicted_state - state)
+        )
 
     return float(np.mean(episode_scores)), episode_scores
 
