@@ -287,7 +287,7 @@ def main() -> None:
         "read_score_delta_p": paired_sign_p(read_score_arr, 69001),
         "prediction_delta_p": paired_sign_p(prediction_arr, 69002),
         "read_vs_clamped_action_change_fraction": float(np.mean(change_arr)),
-        "read_action_unique_fraction": float(len(set(read_actions)) / len(read_actions)),
+        "read_action_distinct_count": int(len(set(read_actions))),
         "state_swap_policy_following_fraction": float(np.mean(swap_arr + 0.5)),
         "state_swap_policy_following_informative": bool(len(set(read_actions)) > 1),
         "post_action_state_delta_abs_mean": float(np.mean(post_action_state_deltas)),
