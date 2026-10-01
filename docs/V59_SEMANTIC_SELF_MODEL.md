@@ -1,55 +1,55 @@
-# V59 — Semantic bridge × self-model trajectory selection
+# V59 — Puente semántico × selección mediante modelo de sí
 
-## Question
+## Pregunta
 
-Does the semantic memory → internal dynamics bridge change the functional usefulness of the learned self-model when the organism selects between future trajectories?
+¿El puente entre memoria semántica y dinámica interna cambia la utilidad funcional del modelo de sí aprendido cuando el organismo selecciona entre trayectorias futuras?
 
 ## Factorial
 
-The protocol crosses two independent factors:
+El protocolo cruza dos factores independientes:
 
-- semantic bridge OFF vs ON;
-- trajectory policy self-model vs matched random control.
+- puente semántico OFF frente a ON;
+- política de trayectoria mediante modelo de sí frente a control aleatorio emparejado.
 
-The candidate trajectories are fixed at {-1.0, +1.0}.
+Las trayectorias candidatas están fijadas en {-1.0, +1.0}.
 
-## Operational loop
+## Bucle operacional
 
-Each evaluation follows the same ordered chain:
+Cada evaluación sigue la misma cadena ordenada:
 
-1. fake LLM emits a novel MEMORY;
-2. when enabled, ContinuityMemoryPolicy converts that semantic memory into Ω and then a bounded dynamic signal;
-3. the organism advances its internal numerical state;
-4. the learned self-model evaluates the two future signals;
-5. either the learned self-model or a deterministic random control chooses a trajectory;
-6. the hidden dynamics are evaluated post-hoc against an oracle that is never exposed during selection.
+1. el LLM ficticio emite una MEMORY novedosa;
+2. cuando está habilitado, `ContinuityMemoryPolicy` convierte esa memoria semántica en Ω y luego en una señal dinámica acotada;
+3. el organismo avanza su estado numérico interno;
+4. el modelo de sí aprendido evalúa las dos señales futuras;
+5. el modelo de sí aprendido o el control aleatorio determinista selecciona una trayectoria;
+6. la dinámica oculta se evalúa a posteriori frente a un oráculo que nunca se expone durante la selección.
 
-The paired comparison therefore tests the interaction between semantic transduction and self-model-guided future choice.
+La comparación emparejada prueba, por tanto, la interacción entre transducción semántica y elección futura guiada por el modelo de sí.
 
-## Controls
+## Controles
 
-Warmup is performed independently inside each bridge condition with selection disabled, so the self-observer learns the local dynamics before the paired evaluation.
+El calentamiento se realiza de forma independiente dentro de cada condición del puente con la selección deshabilitada, de modo que el autoobservador aprenda la dinámica local antes de la evaluación emparejada.
 
-Each replicate uses the same seed across bridge and policy arms.
+Cada réplica utiliza la misma semilla en las condiciones de puente y política.
 
-The evaluation memory is novel relative to the warmup memories, preventing the bridge from collapsing to an exact-memory repeat.
+La memoria de evaluación es novedosa respecto de las memorias de calentamiento, evitando que el puente se reduzca a repetir exactamente una memoria conocida.
 
-## Primary endpoint
+## Endpoint principal
 
-The primary endpoint is:
+El endpoint principal es:
 
-selection_advantage = regret_random - regret_self_model
+`selection_advantage = regret_random - regret_self_model`
 
-and the factorial interaction:
+y la interacción factorial:
 
-interaction = selection_advantage_bridge_on - selection_advantage_bridge_off.
+`interaction = selection_advantage_bridge_on - selection_advantage_bridge_off`.
 
-A positive interaction means the measured self-model advantage is larger under the semantic bridge condition. It does not by itself establish phenomenological consciousness.
+Una interacción positiva significa que la ventaja medida del modelo de sí es mayor bajo la condición con puente semántico. No establece por sí sola consciencia fenomenológica.
 
-## Secondary endpoints
+## Endpoints secundarios
 
-Semantic state and signal deltas, oracle-hit rates, and the full candidate prediction records are stored for auditability.
+Se almacenan para auditoría los deltas de estado y señal semánticos, las tasas de acierto del oráculo y los registros completos de predicciones candidatas.
 
-## Evidence boundary
+## Límite de evidencia
 
-V59 is a deterministic computational protocol. Its provider is a fake deterministic LLM, not a live external model. Even a positive V59 result would establish an operational causal chain in this harness, not subjective experience.
+V59 es un protocolo computacional determinista. Su proveedor es un LLM ficticio determinista, no un modelo externo en vivo. Incluso un resultado positivo de V59 establecería una cadena causal operacional dentro de este arnés, no experiencia subjetiva.
