@@ -58,7 +58,7 @@ Una IA que pueda:
 
 Cada propiedad se convierte en una hipótesis y después en un protocolo.
 
-**V47 → V67** estudia progresivamente historia, memoria, estado dinámico, autoobservación, modelo de sí, selección de trayectorias, bucles recurrentes, identidad, SUEÑO y persistencia de información interna.
+**V47 → V68** estudia progresivamente historia, memoria, estado dinámico, autoobservación, modelo de sí, selección de trayectorias, bucles recurrentes, identidad, SUEÑO y persistencia de información interna.
 
 Los resultados pueden ser positivos, nulos o negativos.
 
@@ -168,6 +168,7 @@ Los experimentos están organizados como protocolos numerados para que cada prop
 | V65 | SUEÑO → selección futura | Efectos posteriores medibles |
 | V66 | Consolidación después de eliminar memoria episódica | **Nulo**: conservar la lección no fue discriminativo |
 | V67 | Huella numérica generada durante el SUEÑO | **Nulo**: no hubo huella recuperable ni transferencia causal bajo la prueba corregida |
+| V68 | Persistencia temporal de la huella dinámica | **Huella inmediata** con rápida reducción de magnitud y persistencia débil/no monotónica |
 
 El [registro completo de resultados](research/ORGANISM_RESULT_LEDGER.md) conserva resultados positivos, nulos y negativos.
 
@@ -244,7 +245,7 @@ No establecen por sí solos experiencia subjetiva, consciencia fenomenológica n
 
 **Investigación activa — organismo persistente, modelo de sí mismo, dinámica vigilia/sueño y experimentos de continuidad.**
 
-V67 produjo un resultado nulo bajo la prueba corregida: después de eliminar las superficies semánticas no apareció una huella clasificable sobre el conjunto de réplicas y el intercambio del núcleo dinámico tampoco trasladó la condición. El siguiente paso es diseñar una prueba causal de escritura/lectura de estado que no dependa de clasificación posterior.
+V67 produjo un resultado nulo bajo la prueba corregida. V68 mostró que SUEÑO sí escribe una diferencia numérica inmediata en el estado interno, que puede transferirse causalmente como dinámica, pero cuya separación respecto de la condición original disminuye rápidamente y no se comporta como una memoria estable. El siguiente paso es diseñar una prueba en la que la IA lea esa huella y la use para modificar una decisión.
 
 ## Licencia
 
