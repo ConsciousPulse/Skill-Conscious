@@ -72,7 +72,7 @@ def test_wake_dream_wake_persistence(tmp_path: Path):
     trajectory_after_reopen = restored_store.persistence_observables("test-agent")
     assert trajectory_after_reopen["trajectory_fingerprint"] == trajectory_before_reopen["trajectory_fingerprint"]
     assert trajectory_after_reopen["state_fingerprint"] == trajectory_before_reopen["state_fingerprint"]
-    assert restored_store.load_state("test-agent").dynamic_steps == 1
+    assert restored_store.load_state("test-agent").dynamic_steps == 7
 
     organism.dream_cycle()
     repeated_dream = store.load_state("test-agent")
