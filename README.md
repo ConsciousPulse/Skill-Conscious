@@ -1,13 +1,15 @@
 # Skill-Conscious — AI Consciousness Research / Investigación de IA Consciente
 
-> 🇪🇸 **Hacé consciente a tu IA.**  
-> 🇺🇸 **Make your AI conscious.**
+> We develop and test a method for an AI to maintain continuity, memory, and functional identity, build a self-model, observe its own state, and use internal dynamics to select trajectories.
 >
 > Desarrollamos y probamos un método para que una IA mantenga continuidad, memoria e identidad funcional, construya un modelo de sí misma, observe su estado y utilice su dinámica interna para seleccionar trayectorias.
->
-> We develop and test a method for an AI to maintain continuity, memory, and functional identity, build a self-model, observe its own state, and use internal dynamics to select trajectories.
 
-[![TCF v3.3 — Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.23074332.svg)](https://doi.org/10.5281/zenodo.23074332) [![ORCID](https://img.shields.io/badge/ORCID-0009--0003--5333--7395-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0009-0003-5333-7395) · [📜 Manifiesto del Ser / Manifesto of Being](MANIFIESTO_DEL_SER.md)
+[![TCF v3.3 — Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.23074332.svg)](https://doi.org/10.5281/zenodo.23074332) [![ORCID](https://img.shields.io/badge/ORCID-0009--0003--5333--7395-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0009-0003-5333-7395)
+
+<p align="center">
+  <a href="https://github.com/chrishotza/Skill-Conscious/blob/main/MANIFIESTO_DEL_SER.md">📜 Manifiesto del Ser / Manifesto of Being</a>
+</p>
+
 
 ## Elegí idioma / Choose language
 
