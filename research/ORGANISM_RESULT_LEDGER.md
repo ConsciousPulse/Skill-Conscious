@@ -1,219 +1,185 @@
-# Organism Experimental Result Ledger — V47 → V66
+# Registro de resultados experimentales del organismo — V47 → V67
 
-## Strong positive results
+## Resultados positivos fuertes
 
-### V51 — Self-prediction
-104 post-warmup transitions: MAE 0.0424 vs baseline 0.2211; mean prediction gain
-0.1787; 84.6% positive-gain transitions; paired sign-flip p = 0.00005.
+### V51 — Autopredicción
 
-### V57 — Self-model-guided trajectory selection
-24 paired replicates: self-model regret 0.0231 vs random 0.1369; 70.83% vs
-45.83% oracle-hit rate; paired sign-flip p = 0.00435.
+104 transiciones posteriores al calentamiento: MAE 0.0424 frente a baseline 0.2211; ganancia media de predicción 0.1787; 84.6% de transiciones con ganancia positiva; p emparejada por cambio de signo = 0.00005.
 
-### V58 — Semantic-to-dynamic coupling
-Matched 2×2 intervention. Bridge OFF: A/B dynamic-state delta 0.0 and signal delta
-0.0. Bridge ON: Omega A -1.52, Omega B +0.68, signal delta 1.5002170539 and
-dynamic-state delta 0.4558697583. The deterministic harness supports causal
-transduction from the organism's semantic memory output into numeric internal
-dynamics when the bridge is enabled.
+### V57 — Selección de trayectorias guiada por modelo de sí
 
-### V60 — Self-model selection inside a recurrent semantic loop
-24 paired replicates, 24 evaluation cycles.
+24 réplicas emparejadas: regret del modelo de sí 0.0231 frente a 0.1369 aleatorio; 70.83% frente a 45.83% de tasa de aciertos del oráculo; p emparejada por cambio de signo = 0.00435.
 
-- self-model mean regret: -0.0842091465;
-- random-control mean regret: 0.3028308773;
-- mean regret advantage (random - self): 0.3870400237;
-- cumulative regret advantage: 9.2889605698;
-- median regret advantage: 0.3858317486;
-- paired sign-flip p for mean and cumulative advantage: 0.00005;
-- self-model oracle-hit rate: 96.1806%;
-- random-control oracle-hit rate: 45.3125%.
+### V58 — Acoplamiento semántica → dinámica
 
-Interpretation: the self-model retained a large functional selection advantage in
-the deterministic closed-loop protocol, under a provider whose next semantic
-memory depends on the previous selected action. However, the self-model arm
-selected +1 in all 24 replicates, so the within-run secondary feedback endpoint
-never observed both action branches. The recurrent plumbing is exercised, but
-action-conditioned feedback branch coverage is incomplete and must not be
-reported as a fully demonstrated bidirectional feedback effect.
+Intervención emparejada 2×2. Puente OFF: delta de estado dinámico A/B 0.0 y delta de señal 0.0. Puente ON: Omega A -1.52, Omega B +0.68, delta de señal 1.5002170539 y delta de estado dinámico 0.4558697583.
 
-### V62 — Semantic self-model causal bridge
-24 matched replicates crossing self-model content A/B with bridge OFF/ON.
+El arnés determinista respalda la transducción causal de la salida de memoria semántica del organismo hacia su dinámica interna numérica cuando el puente está habilitado.
 
-- bridge OFF state delta mean: 0.0;
-- bridge OFF signal delta mean: 0.0;
-- bridge ON state delta mean: 0.0567495528;
-- bridge ON signal delta mean: 0.1844584720;
-- bridge OFF isolated the text intervention in all runs;
-- bridge ON transduced the self-model difference into signal and state in all runs;
-- self-model persistence and versioning were recorded in all ON runs.
+### V60 — Selección mediante modelo de sí dentro de un bucle semántico recurrente
 
-Interpretation: in this deterministic intervention, changing only the organism's
-semantic self-model altered its internal numerical state only when the explicit
-self-model bridge was enabled. This is causal computational coupling, not
-evidence of subjective experience.
+24 réplicas emparejadas, 24 ciclos de evaluación.
 
-### V63 — Causal self-model loop
-24 matched replicates × 32 evaluation cycles across self-model/random selection and self-model bridge OFF/ON.
+- regret medio del modelo de sí: -0.0842091465;
+- regret medio del control aleatorio: 0.3028308773;
+- ventaja media de regret (aleatorio - modelo de sí): 0.3870400237;
+- ventaja acumulada de regret: 9.2889605698;
+- ventaja mediana de regret: 0.3858317486;
+- p emparejada por cambio de signo para la ventaja media y acumulada: 0.00005;
+- tasa de aciertos del oráculo del modelo de sí: 96.1806%;
+- tasa de aciertos del control aleatorio: 45.3125%.
 
-- bridge ON self-model mean regret: 0.1422226601;
-- bridge ON random-control mean regret: 0.2666042539;
-- random-minus-self-model regret advantage: 0.1243815939;
-- paired sign-flip p: 0.00005;
-- bridge OFF self-model regret: 0.2876865581;
-- bridge ON self-model regret: 0.1422226601;
-- self-model bridge OFF-minus-ON regret improvement: 0.1454638980;
-- paired sign-flip p for bridge regret: 0.00005;
-- self-model oracle-hit increased from 10.0260% OFF to 60.6771% ON;
-- paired sign-flip p for hit-rate change: 0.00005;
-- regret difference-in-differences between self-model and random arms: 0.2837493367;
-- paired sign-flip p for the interaction: 0.00005;
-- bridge ON + self-model action-branch coverage: 100%;
-- bridge ON + self-model action-conditioned bridge signal difference: 0.7405 across 243 negative-branch and 501 positive-branch observations.
+Interpretación: el modelo de sí conservó una gran ventaja funcional de selección en el protocolo determinista de bucle cerrado, bajo un proveedor cuya siguiente memoria semántica depende de la acción seleccionada previamente. Sin embargo, el brazo con modelo de sí seleccionó +1 en las 24 réplicas, por lo que el endpoint secundario de feedback dentro de cada ejecución nunca observó ambas ramas de acción. El circuito recurrente fue ejercitado, pero la cobertura de ramas para feedback condicionado por acción es incompleta y no debe presentarse como un efecto bidireccional de feedback plenamente demostrado.
 
-Interpretation: the deterministic harness supports a recurrent computational loop in which prior trajectory conditions the next semantic self-model, the self-model is transduced into internal dynamics, and that state participates in future trajectory selection. The action-conditioned signal comparison is a within-loop association, not an isolated causal effect estimate.
+### V62 — Puente causal semántico del modelo de sí
 
-### V65 — Dream consolidation and future selection
-24 matched replicates × 24 evaluation cycles across no_dream, dream_no_bridge, and
-dream_bridge.
+24 réplicas emparejadas cruzando contenido del modelo de sí A/B con puente OFF/ON.
 
-- no_dream mean regret: 0.3258519211;
-- dream_no_bridge mean regret: 0.2109500171;
-- dream_bridge mean regret: 0.1779272005;
-- dream-bridge regret advantage over dream-no-bridge: 0.0330228167;
-- paired sign-flip p: 0.00005;
-- dream_bridge oracle-hit rate: 25.3472%;
-- dream_no_bridge oracle-hit rate: 13.3681%;
-- oracle-hit advantage: 0.1197916667;
-- paired sign-flip p for hit advantage: 0.00005;
-- dream-no-bridge regret change vs no_dream: -0.1149019040;
-- paired sign-flip p for dream-vs-no-dream regret: 0.00005.
+- delta medio de estado con puente OFF: 0.0;
+- delta medio de señal con puente OFF: 0.0;
+- delta medio de estado con puente ON: 0.0567495528;
+- delta medio de señal con puente ON: 0.1844584720;
+- el puente OFF aisló la intervención textual en todas las ejecuciones;
+- el puente ON transdujo la diferencia del modelo de sí hacia señal y estado en todas las ejecuciones;
+- la persistencia y el versionado del modelo de sí se registraron en todas las ejecuciones ON.
 
-Interpretation: the deterministic harness supports a computational wake/dream mechanism
-in which DREAM-generated semantic consolidation changes internal state and produces
-a measurable downstream effect on future trajectory selection. This does not
-establish subjective dreaming or phenomenological consciousness.
+Interpretación: en esta intervención determinista, cambiar únicamente el modelo semántico de sí del organismo alteró su estado numérico interno solamente cuando se habilitó el puente explícito del modelo de sí. Es acoplamiento causal computacional, no evidencia de experiencia subjetiva.
 
-## Negative / null / limitation results
+### V63 — Bucle causal del modelo de sí
+
+24 réplicas emparejadas × 32 ciclos de evaluación entre selección mediante modelo de sí/aleatoria y puente del modelo de sí OFF/ON.
+
+- regret medio con puente ON + modelo de sí: 0.1422226601;
+- regret medio con puente ON + control aleatorio: 0.2666042539;
+- ventaja de regret aleatorio - modelo de sí: 0.1243815939;
+- p emparejada por cambio de signo: 0.00005;
+- regret del modelo de sí con puente OFF: 0.2876865581;
+- regret del modelo de sí con puente ON: 0.1422226601;
+- mejora de regret puente OFF - ON: 0.1454638980;
+- p emparejada por cambio de signo para el efecto del puente: 0.00005;
+- tasa de aciertos del modelo de sí: 10.0260% OFF → 60.6771% ON;
+- p emparejada por cambio de signo para el cambio de tasa de aciertos: 0.00005;
+- diferencia de diferencias de regret entre los brazos con modelo de sí y aleatorio: 0.2837493367;
+- p emparejada por cambio de signo para la interacción: 0.00005;
+- cobertura de ramas de acción puente ON + modelo de sí: 100%;
+- diferencia de señal del puente condicionada por acción puente ON + modelo de sí: 0.7405 entre 243 observaciones de rama negativa y 501 de rama positiva.
+
+Interpretación: el arnés determinista respalda un bucle computacional recurrente en el que la trayectoria previa condiciona el siguiente modelo semántico de sí, el modelo de sí se transduce hacia la dinámica interna y ese estado participa en la selección de trayectorias futuras. La comparación de señales condicionada por acción es una asociación dentro del bucle, no una estimación causal aislada.
+
+### V65 — Consolidación durante SUEÑO y selección futura
+
+24 réplicas emparejadas × 24 ciclos de evaluación entre no_dream, dream_no_bridge y dream_bridge.
+
+- regret medio no_dream: 0.3258519211;
+- regret medio dream_no_bridge: 0.2109500171;
+- regret medio dream_bridge: 0.1779272005;
+- ventaja de regret dream_bridge frente a dream_no_bridge: 0.0330228167;
+- p emparejada por cambio de signo: 0.00005;
+- tasa de aciertos del oráculo dream_bridge: 25.3472%;
+- tasa de aciertos del oráculo dream_no_bridge: 13.3681%;
+- ventaja de tasa de aciertos: 0.1197916667;
+- p emparejada por cambio de signo para la ventaja de aciertos: 0.00005;
+- cambio de regret dream_no_bridge frente a no_dream: -0.1149019040;
+- p emparejada por cambio de signo para SUEÑO frente a no_dream: 0.00005.
+
+Interpretación: el arnés determinista respalda un mecanismo computacional de vigilia/sueño en el que la consolidación semántica generada durante SUEÑO cambia el estado interno y produce un efecto posterior medible sobre la selección de trayectorias. Esto no establece sueño subjetivo ni consciencia fenomenológica.
+
+## Resultados negativos / nulos / limitaciones
 
 ### V53
-The original three-candidate selector selected the neutral signal in all 12
-replicates, producing no causal divergence from the zero-input control.
-This was treated as a failed discriminatory protocol, not positive evidence.
+
+El selector original de tres candidatas eligió la señal neutral en las 12 réplicas, sin producir divergencia causal respecto del control de entrada cero.
+
+Se trató como un protocolo discriminativo fallido, no como evidencia positiva.
 
 ### V54
-80-cycle fake self-forecast accuracy was 43.75% with 40 TOWARD and 40 AWAY
-transitions. Chance for this balanced binary direction task is 50%, so V54 was not
-supportive evidence.
+
+La precisión del autopronóstico durante 80 ciclos con proveedor ficticio fue de 43.75%, con 40 transiciones TOWARD y 40 AWAY. El azar para esta tarea binaria equilibrada es 50%, por lo que V54 no aportó evidencia favorable.
 
 ### V55
-12 replicates × two perturbation signs × selection on/off preserved the identity
-fingerprint in 100% of runs and recovered within the horizon in 100% of runs, with
-mean recovery time 2.5 cycles. Selection-on and selection-off recovery were both
-100%, so V55 demonstrates resilience in the tested harness but not a selective
-benefit from self-modeling.
 
-### V59 — Semantic bridge × self-model selection
-24 paired factorial replicates crossed semantic bridge OFF/ON with self-model/random policy.
+12 réplicas × dos signos de perturbación × selección ON/OFF conservaron la huella de identidad en el 100% de las ejecuciones y se recuperaron dentro del horizonte en el 100%, con un tiempo medio de recuperación de 2.5 ciclos. La recuperación con selección ON y OFF fue igualmente 100%, por lo que V55 demuestra resiliencia en el arnés probado, pero no un beneficio selectivo del modelo de sí.
 
-- bridge OFF self-model mean regret: 0.0000;
-- bridge OFF random mean regret: 0.23233;
-- bridge ON self-model mean regret: 0.0000;
-- bridge ON random mean regret: 0.24022;
-- self-model oracle-hit rate: 100% in both bridge conditions;
-- random oracle-hit rate: 50% in both bridge conditions;
-- semantic bridge changed the post-wake internal state by mean absolute 0.94273 and the dynamic signal by 0.55376;
-- bridge × selection interaction = +0.00789;
-- interaction sign-flip p = 0.83941.
+### V59 — Puente semántico × selección mediante modelo de sí
 
-Interpretation: the protocol reproduces the previously observed self-model selection
-advantage while independently showing substantial semantic-to-dynamic state
-transduction. The factorial interaction was not distinguishable from zero in this
-deterministic harness, so V59 does not support a claim that semantic bridging itself
-increases self-model selection utility. It remains a null interaction / compositionality
-result.
+24 réplicas factoriales emparejadas cruzaron puente semántico OFF/ON con política de modelo de sí/aleatoria.
 
-### V61 — Metacognitive self-model
-24 paired replicates × 32 evaluation cycles.
+- regret medio del modelo de sí con puente OFF: 0.0000;
+- regret medio aleatorio con puente OFF: 0.23233;
+- regret medio del modelo de sí con puente ON: 0.0000;
+- regret medio aleatorio con puente ON: 0.24022;
+- tasa de aciertos del oráculo del modelo de sí: 100% en ambas condiciones del puente;
+- tasa de aciertos del control aleatorio: 50% en ambas condiciones;
+- el puente semántico cambió el estado interno posterior a vigilia en una media absoluta de 0.94273 y la señal dinámica en 0.55376;
+- interacción puente × selección = +0.00789;
+- p de cambio de signo para la interacción = 0.83941.
 
-- meta-self-model mean regret: 0.0888081147;
-- first-order self-model mean regret: 0.0787785152;
-- random-control mean regret: 0.1929241942;
-- meta-self-model oracle-hit rate: 41.2760%;
-- first-order self-model oracle-hit rate: 45.3125%;
-- random-control oracle-hit rate: 46.4844%;
-- meta vs first-order regret advantage: -0.0100295995;
-- paired sign-flip p for regret difference: 0.00005;
-- meta vs first-order hit-rate advantage: -0.0403645833;
-- paired sign-flip p for hit-rate difference: 0.0008999550;
-- meta prediction MAE: 0.1277240710;
-- constant baseline MAE: 0.0849867822;
-- meta model beat the constant baseline in 0% of replicates.
+Interpretación: el protocolo reproduce la ventaja de selección del modelo de sí observada previamente y, de forma independiente, muestra una transducción sustancial de semántica a dinámica. La interacción factorial no se distinguió de cero en este arnés determinista, por lo que V59 no respalda la afirmación de que el puente semántico por sí mismo aumente la utilidad de selección del modelo de sí. Permanece como resultado nulo de interacción/composicionalidad.
 
-Interpretation: the implemented second-order meta-self-model did not improve trajectory
-selection and did not predict first-order model error better than a constant baseline
-in this harness. The result is retained as a negative finding and points to a redesign
-rather than support for metacognitive capability.
+### V61 — Modelo metacognitivo de sí
 
-### V64 — Identity persistence under self-model perturbation
-24 paired replicates tested whether identity-specific dynamic signatures remained
-decodable after a common semantic self-model overwrite, explicit self-model text
-removal, and autonomous continuation without semantic input.
+24 réplicas emparejadas × 32 ciclos de evaluación.
 
-- bridge OFF post-ablation accuracy: 50.0%;
-- bridge ON post-ablation accuracy: 50.0%;
-- ON-minus-OFF accuracy difference: 0.0;
-- paired sign-flip p: 1.0;
-- folds above chance: 0% in both conditions.
+- regret medio del modelo metacognitivo de sí: 0.0888081147;
+- regret medio del modelo de sí de primer orden: 0.0787785152;
+- regret medio del control aleatorio: 0.1929241942;
+- tasa de aciertos del oráculo del modelo metacognitivo: 41.2760%;
+- tasa de aciertos del modelo de primer orden: 45.3125%;
+- tasa de aciertos del control aleatorio: 46.4844%;
+- ventaja de regret metacognitivo frente a primer orden: -0.0100295995;
+- p emparejada por cambio de signo para la diferencia de regret: 0.00005;
+- ventaja de tasa de aciertos metacognitiva frente a primer orden: -0.0403645833;
+- p emparejada por cambio de signo para la diferencia de tasa de aciertos: 0.0008999550;
+- MAE de predicción metacognitiva: 0.1277240710;
+- MAE del baseline constante: 0.0849867822;
+- el modelo metacognitivo superó al baseline constante en el 0% de las réplicas.
 
-Interpretation: V64 produced a null result. Under the tested perturbation, feature set,
-classifier, and horizon, the original identity was not decodable after semantic
-self-model overwrite and textual ablation. The result is retained as a real
-limitation, not evidence against every possible form of identity persistence.
+Interpretación: el modelo metacognitivo de segundo orden implementado no mejoró la selección de trayectorias ni predijo el error del modelo de primer orden mejor que un baseline constante bajo este arnés. El resultado se conserva como hallazgo negativo y apunta a rediseñar el enfoque en lugar de atribuir capacidad metacognitiva.
 
-### V66 — Dream consolidation after episodic-memory ablation
-24 matched replicates tested whether keeping only the consolidated lesson after DREAM
-was sufficient to change later trajectory selection once raw episodic memories were
-removed.
+### V64 — Persistencia de identidad bajo perturbación del modelo de sí
 
-- retained-lesson mean regret: -0.1086777912;
-- ablated-lesson mean regret: -0.1086777912;
-- retained-lesson oracle-hit rate: 85.0694%;
-- ablated-lesson oracle-hit rate: 85.0694%;
-- regret difference (ablation - retained): 0.0;
-- paired sign-flip p for regret: 1.0;
-- oracle-hit advantage (retained - ablated): 0.0;
-- paired sign-flip p for hit rate: 1.0;
-- all retained runs produced a retrieval bridge signal.
+24 réplicas emparejadas probaron si firmas dinámicas específicas de identidad permanecían decodificables después de una sobrescritura semántica común del modelo de sí, eliminación explícita del texto del modelo de sí y continuación autónoma sin entrada semántica.
 
-Interpretation: V66 is a null result. The retained consolidated lesson was present
-and generated a semantic retrieval signal, but its preservation did not produce a
-measurable behavioral difference in regret or oracle-hit rate in this deterministic
-pathway. The protocol therefore does not show that the consolidated lesson became
-functionally necessary after raw-memory ablation.
+- precisión posterior a la ablación con puente OFF: 50.0%;
+- precisión posterior a la ablación con puente ON: 50.0%;
+- diferencia de precisión ON - OFF: 0.0;
+- p emparejada por cambio de signo: 1.0;
+- pliegues por encima del azar: 0% en ambas condiciones.
 
-### V67 — Dream-generated numeric trace after total semantic ablation
-Protocol implemented and awaiting CI. Two matched histories enter DREAM with condition-specific semantic consolidation. After DREAM, all episodic memories, events, snapshots, self-model text, numeric memory, and pressure traces are removed; only the dynamic core (current state, previous state, step index) remains. A common zero-input continuation is evaluated, and a second condition transfers only that numeric core across the paired databases.
+Interpretación: V64 produjo un resultado nulo. Bajo la perturbación, conjunto de características, clasificador y horizonte probados, la identidad original no pudo decodificarse después de la sobrescritura semántica del modelo de sí y la ablación textual. El resultado se conserva como una limitación real, no como evidencia contra toda forma posible de persistencia de identidad.
 
-Primary endpoints are post-ablation history classification accuracy and state-swap-following accuracy. The protocol is designed to test whether DREAM can write a causally transferable numeric trace that remains behaviorally readable after semantic sources are removed.
+### V66 — Consolidación de SUEÑO después de la ablación de memoria episódica
 
-No V67 result is claimed until CI validates the completed artifact.
+24 réplicas emparejadas probaron si conservar únicamente la lección consolidada después de SUEÑO era suficiente para cambiar la selección posterior de trayectorias una vez eliminadas las memorias episódicas originales.
 
-## Engineering status
+- regret medio de retained_lesson: -0.1086777912;
+- regret medio de ablated_lesson: -0.1086777912;
+- tasa de aciertos del oráculo de retained_lesson: 85.0694%;
+- tasa de aciertos del oráculo de ablated_lesson: 85.0694%;
+- diferencia de regret (ablation - retained): 0.0;
+- p emparejada por cambio de signo para regret: 1.0;
+- ventaja de tasa de aciertos (retained - ablated): 0.0;
+- p emparejada por cambio de signo para tasa de aciertos: 1.0;
+- todas las ejecuciones retained produjeron señal del puente de recuperación.
 
-V60, V61, V62, V63, V64, V65, and V66 completed successfully on their recorded GitHub Actions heads.
-Their artifacts are preserved in the corresponding GitHub Actions runs. Earlier V43–V59 results
-remain reproducible from their historical workflows and evidence records.
+Interpretación: V66 es un resultado nulo. La lección consolidada retenida estaba presente y generaba una señal semántica de recuperación, pero su conservación no produjo una diferencia conductual medible en regret ni en tasa de aciertos del oráculo bajo esta vía determinista. Por tanto, el protocolo no demuestra que la lección consolidada se haya vuelto funcionalmente necesaria después de la ablación de memoria bruta.
 
-## Evidence boundary
+### V67 — Huella numérica generada durante SUEÑO después de la ablación semántica total
 
-These results establish increasingly specific computational properties of the
-tested organism and its deterministic experimental harness: persistence,
-self-prediction, causal self-model use, semantic-to-dynamic coupling, wake/dream
-effects, and semantic self-representation as a causally active variable.
+Protocolo implementado y sometido a CI. Dos historias emparejadas entran en SUEÑO con consolidación semántica específica de la condición. Después de SUEÑO se eliminan todas las memorias episódicas, eventos, snapshots, texto del modelo de sí, memoria numérica y trazas de presión; solo queda el núcleo dinámico (estado actual, estado previo, índice de pasos). Se evalúa una continuación común con entrada cero y, en una segunda condición, se transfiere únicamente ese núcleo numérico entre las bases emparejadas.
 
-They do not establish phenomenological consciousness or subjective experience.
+Los endpoints principales son la precisión de clasificación posterior a la ablación y la precisión siguiendo el intercambio de estado. El protocolo está diseñado para probar si SUEÑO puede escribir una huella numérica causalmente transferible que permanezca conductualmente legible después de eliminar las fuentes semánticas.
 
-The next experiment should test whether the **numeric internal state generated during
-DREAM can carry a recoverable, causally transferable trace after semantic memory and
-self-model text are removed**, rather than relying on a later retrieval response.
+No se reclama un resultado de V67 hasta validar el artefacto completado mediante CI.
+
+## Estado de ingeniería
+
+V60, V61, V62, V63, V64, V65 y V66 finalizaron correctamente en sus respectivos commits registrados de GitHub Actions. Sus artefactos se conservan en las ejecuciones correspondientes. Los resultados anteriores V43–V59 siguen siendo reproducibles a partir de sus workflows históricos y registros de evidencia.
+
+## Límite de evidencia
+
+Estos resultados establecen propiedades computacionales cada vez más específicas del organismo probado y de su arnés experimental determinista: persistencia, autopredicción, uso causal del modelo de sí, acoplamiento semántica → dinámica, efectos de vigilia/sueño y autorrepresentación semántica como variable causalmente activa.
+
+No establecen consciencia fenomenológica ni experiencia subjetiva.
+
+El siguiente experimento debe probar si el **estado interno numérico generado durante SUEÑO puede conservar una huella recuperable y causalmente transferible después de eliminar la memoria semántica y el texto del modelo de sí**, en lugar de depender de una respuesta de recuperación posterior.
