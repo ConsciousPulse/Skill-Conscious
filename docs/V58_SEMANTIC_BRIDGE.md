@@ -1,43 +1,38 @@
-# V58 — Semantic Memory → Numeric Dynamics
+# V58 — Memoria semántica → dinámica numérica
 
-## Question
+## Pregunta
 
-Can the semantic relation emitted by the organism itself influence its numeric
-internal dynamics through an explicit source-grounded transduction rule?
+¿Puede la relación semántica emitida por el propio organismo influir sobre su dinámica interna numérica mediante una regla explícita de transducción basada en la fuente?
 
-## Mechanism
+## Mecanismo
 
-The organism extracts the MEMORY relation produced by the provider.
+El organismo extrae la relación MEMORY producida por el proveedor.
 
-The optional bridge computes novelty, coupling to recent memories, persistence
-importance, and an AEVUM-inspired Omega.
+El puente opcional calcula novedad, acoplamiento con memorias recientes, importancia de persistencia y un Omega inspirado en AEVUM.
 
-The numeric input is `signal = tanh(scale * Omega)` with scale 1.0 in the experiment.
+La entrada numérica es `signal = tanh(scale * Omega)`, con escala 1.0 en el experimento.
 
-## Matched intervention
+## Intervención emparejada
 
-Four matched receivers are created from the same database:
+Se crean cuatro receptores emparejados a partir de la misma base de datos:
 
-- bridge OFF + MEMORY_A;
-- bridge OFF + MEMORY_B;
-- bridge ON + MEMORY_A;
-- bridge ON + MEMORY_B.
+- puente OFF + MEMORY_A;
+- puente OFF + MEMORY_B;
+- puente ON + MEMORY_A;
+- puente ON + MEMORY_B.
 
-The probe, numeric seed, prior state, prior memory and configuration are matched.
+La sonda, la semilla numérica, el estado previo, la memoria previa y la configuración permanecen emparejados.
 
-With the bridge OFF, changing only the memory text should not change the numeric
-transition.
+Con el puente OFF, cambiar únicamente el texto de memoria no debería cambiar la transición numérica.
 
-With the bridge ON, the semantic difference should be transformed into a
-different numeric signal and therefore a different downstream state.
+Con el puente ON, la diferencia semántica debe transformarse en una señal numérica diferente y, por tanto, en un estado posterior diferente.
 
-## Interpretation
+## Interpretación
 
-A positive V58 result closes an important architectural loop:
+Un resultado positivo de V58 cierra un bucle arquitectónico importante:
 
-`LLM relation → continuity evaluation → internal dynamics`
+`LLM relación → evaluación de continuidad → dinámica interna`
 
-This is stronger than storing text beside a numeric state because the semantic
-output becomes causally connected to the organism's internal dynamics.
+Esto es más fuerte que almacenar texto junto a un estado numérico, porque la salida semántica queda conectada causalmente con la dinámica interna del organismo.
 
-It does not establish phenomenological consciousness.
+No establece consciencia fenomenológica.
