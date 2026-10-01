@@ -43,3 +43,7 @@ organism architecture. It does not establish consciousness, subjective experienc
 sentience, or phenomenological awareness.
 
 Repeated live runs are required before treating the interaction as robust.
+
+## Order control
+
+La secuencia de las cuatro celdas se aleatoriza de forma determinista por réplica para evitar que el orden fijo de llamadas al provider sea un confusor del contraste factorial.
