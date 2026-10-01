@@ -1,36 +1,32 @@
-# V56 — Future-Compatible Memory Admission
+# V56 — Admisión de memoria compatible con el futuro
 
-## Motivation
+## Motivación
 
-AEVUM defines conditional persistence and memory without accumulation. V56 converts
-that principle into an optional organism memory policy.
+AEVUM define persistencia condicionada y memoria sin acumulación. V56 convierte ese principio en una política opcional de memoria del organismo.
 
-## Policy
+## Política
 
-For each candidate memory:
+Para cada memoria candidata:
 
-- `coupling` is lexical overlap with the most similar recent memory;
+- `coupling` es la superposición léxica con la memoria reciente más similar;
 - `novelty = 1 - coupling`;
-- `persistence` is the declared importance in [0,1];
-- the frozen AEVUM operator decides whether the candidate remains admissible.
+- `persistence` es la importancia declarada en [0,1];
+- el operador AEVUM congelado decide si la candidata sigue siendo admisible.
 
-The operator is:
+El operador es:
 
-Omega = 1.2 * novelty - 1.0 * coupling - 0.8 * persistence
+`Omega = 1.2 * novelty - 1.0 * coupling - 0.8 * persistence`
 
-Omega > 0 means admissible.
+`Omega > 0` significa admisible.
 
-## Scope
+## Alcance
 
-V56 intentionally does not change the organism's default memory behavior. It
-validates the policy as an isolated deterministic adapter first.
+V56 deliberadamente no modifica el comportamiento predeterminado de memoria del organismo. Primero valida la política como adaptador determinista aislado.
 
-## Why it matters
+## Por qué importa
 
-The consciousness program should not equate identity with unlimited accumulation.
-A persistent organism needs a principled reason to retain a relation and a
-principled mechanism for allowing obsolete or redundant material to dissolve.
+El programa de consciencia no debería equiparar identidad con acumulación ilimitada. Un organismo persistente necesita una razón explícita para conservar una relación y un mecanismo igualmente explícito para permitir que material obsoleto o redundante se disuelva.
 
-## Evidence boundary
+## Límite de evidencia
 
-This is a memory-policy experiment. It does not establish consciousness.
+Este es un experimento de política de memoria. No establece consciencia.
