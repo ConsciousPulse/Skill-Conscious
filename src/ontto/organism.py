@@ -11,6 +11,7 @@ from .provider import OpenAICompatibleProvider
 from .storage import MemoryStore, OntologicalState
 from .self_observer import SelfObserver
 from .trajectory_selector import TrajectorySelector
+from .memory_policy import ContinuityMemoryPolicy
 
 
 @dataclass
@@ -35,6 +36,9 @@ class OrganismConfig:
     self_selection_coherence_weight: float = 0.30
     self_selection_policy: str = "self_model"
     self_selection_signals: tuple[float, ...] = (-1.0, 0.0, 1.0)
+    semantic_dynamic_bridge_enabled: bool = False
+    semantic_dynamic_scale: float = 1.0
+    semantic_dynamic_importance: float = 0.65
 
 
 class PersistentOrganism:
@@ -61,6 +65,7 @@ class PersistentOrganism:
             attractor_weight=cfg.self_selection_attractor_weight,
             coherence_weight=cfg.self_selection_coherence_weight,
         )
+        self.memory_policy = ContinuityMemoryPolicy()
         if cfg.self_observer_enabled:
             for row in store.self_observer_trajectory(cfg.agent_id):
                 self.self_observer.observe(
@@ -209,8 +214,19 @@ class PersistentOrganism:
         })
         out = self.provider.chat(messages, temperature=0.7)
         self.state.last_thought = out.text[-1200:]
+
+        memory_candidate = self._extract_memory_candidate(out.text)
+        semantic_bridge = None
+        wake_signal = self.cfg.dynamic_wake_signal
+        if (
+            self.cfg.semantic_dynamic_bridge_enabled
+            and memory_candidate
+        ):
+            semantic_bridge = self._semantic_dynamic_signal(memory_candidate)
+            wake_signal = float(semantic_bridge["signal"])
+
         dynamic = self._advance_dynamic(
-            self.cfg.dynamic_wake_signal,
+            wake_signal,
             self.cfg.dynamic_wake_steps,
         )
         self.store.add_event(
@@ -221,6 +237,7 @@ class PersistentOrganism:
                 "stimulus": stimulus,
                 "response": out.text[-2000:],
                 "dynamic": dynamic,
+                "semantic_bridge": semantic_bridge,
             },
         )
         self._extract_memory(out.text)
@@ -246,12 +263,43 @@ class PersistentOrganism:
             memories / max(self.cfg.memory_limit, 1),
         )
 
-    def _extract_memory(self, text: str) -> None:
+    def _extract_memory_candidate(self, text: str) -> str | None:
         marker = "MEMORY:"
-        if marker in text:
-            memory = text.split(marker, 1)[1].strip().splitlines()[0].strip()
-            if memory:
-                self.store.add_memory(self.cfg.agent_id, memory, importance=0.65)
+        if marker not in text:
+            return None
+        memory = text.split(marker, 1)[1].strip().splitlines()[0].strip()
+        return memory or None
+
+    def _semantic_dynamic_signal(self, memory: str) -> dict[str, float | bool | str]:
+        recent = self.store.recent_memories(
+            self.cfg.agent_id,
+            self.cfg.memory_limit,
+        )
+        admission = self.memory_policy.admit(
+            memory,
+            recent,
+            importance=self.cfg.semantic_dynamic_importance,
+        )
+        omega = float(admission.decision.omega)
+        signal = float(np.tanh(self.cfg.semantic_dynamic_scale * omega))
+        return {
+            "memory": memory,
+            "novelty": float(admission.novelty),
+            "coupling": float(admission.coupling),
+            "persistence": float(admission.persistence),
+            "omega": omega,
+            "signal": signal,
+            "admissible": bool(admission.decision.exists),
+        }
+
+    def _extract_memory(self, text: str) -> None:
+        memory = self._extract_memory_candidate(text)
+        if memory:
+            self.store.add_memory(
+                self.cfg.agent_id,
+                memory,
+                importance=self.cfg.semantic_dynamic_importance,
+            )
 
     def autonomous_wake_cycle(self) -> dict[str, float | int] | None:
         self.state.mode = "WAKE"
