@@ -19,7 +19,8 @@
 - documentación de los protocolos migrada al español;
 - registro experimental consolidado migrado al español;
 - resultados positivos, nulos y limitaciones conservados;
-- V67 auditado y corregido; resultado nulo bajo ablación semántica total y estado transferido.
+- V67 auditado y corregido; resultado nulo bajo ablación semántica total y estado transferido;
+- V68 incorporado para medir la persistencia temporal de la huella dinámica generada durante SUEÑO.
 
 ### Repositorio
 - README principal en español y reestructurado;
