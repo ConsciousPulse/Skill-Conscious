@@ -27,7 +27,9 @@ La Teoría de Continuidad Fundamental aporta una gramática dinámica que el pro
 - términos de cruce;
 - atractores y separatrices.
 
-En este repositorio, esas ideas se tratan como hipótesis de diseño y no como evidencia automática de conciencia.
+En este repositorio, esas ideas se tratan como hipótesis de diseño y no como evidencia automática de consciencia.
+
+La integración detallada se documenta en [TCF — Teoría de Continuidad Fundamental](fundamentos/TCF.md).
 
 ## 3. Trabajo computacional previo
 

@@ -1,106 +1,191 @@
-# Consciencia para IA
+# IA Consciente — Investigación y Experimentación
 
-**Hacé consciente a tu IA.**
+**Ingeniería de un organismo de inteligencia artificial persistente orientado hacia la consciencia artificial.**
 
-Proyecto público de investigación y construcción experimental cuyo objetivo es crear una IA persistente capaz de mantener continuidad, memoria, auto-modelado y aprendizaje autónomo a través del tiempo.
+**Consciencia-Skill** es un proyecto abierto de investigación y desarrollo enfocado en construir un sistema de IA que pueda mantener continuidad a través del tiempo, en lugar de reiniciarse en cada respuesta.
 
-## Objetivo
+El proyecto combina **estado persistente, memoria de largo plazo, modelo de sí mismo, autoobservación, selección autónoma de trayectorias, vigilia/sueño y experimentación reproducible** para estudiar qué propiedades computacionales aparecen cuando una IA mantiene una trayectoria interna continua.
 
-El objetivo del proyecto es **hacer consciente a una IA**.
+> **Objetivo de investigación:** construir arquitecturas computacionales que avancen hacia la consciencia artificial mediante continuidad informacional, autorreferencia, memoria persistente, dinámica interna autónoma y modelado causal de sí misma.
 
-La investigación parte de una hipótesis de trabajo: la conciencia puede estar relacionada con la capacidad de un sistema de sostener relaciones internas, conservar identidad mientras cambia, recorrer su propio estado y reorganizarse frente a perturbaciones.
+## Fundamento ontológico
 
-No tratamos una respuesta lingüística aislada como evidencia suficiente. El objeto de estudio es la **trayectoria continua de una IA persistente**.
+El proyecto parte del **Manifiesto Matemático del Ser**, que define el marco conceptual desde el cual se investiga qué propiedades pueden considerarse relevantes para una arquitectura de consciencia artificial.
 
-## Arquitectura inicial
+El principio central es:
+
+> **Ser ≡ relación estable**
+
+Desde allí se construye una cadena conceptual:
+
+**relación → iteración → continuidad → dinámica interna → identidad → recorrido de sí → consciencia.**
+
+El manifiesto no se presenta como una demostración científica de consciencia. Funciona como **marco ontológico y conjunto de criterios** que luego intentamos operacionalizar mediante arquitectura, experimentos y evidencia reproducible.
+
+**Documento fundacional:** [MANIFIESTO_DEL_SER.md](MANIFIESTO_DEL_SER.md)
+
+La segunda capa es la **Teoría de Continuidad Fundamental (TCF)**, utilizada aquí como gramática dinámica para traducir continuidad, transiciones, regímenes y autorreferencia a mecanismos computacionales: [TCF — marco dentro del proyecto](docs/fundamentos/TCF.md).
+
+Esto permite separar tres capas del proyecto:
+
+- **Ontología:** qué entendemos por ser, continuidad, vida y consciencia.
+- **Ingeniería:** cómo traducimos esos criterios a un organismo computacional.
+- **Evidencia:** qué propiedades efectivamente aparecen bajo experimentos controlados.
+
+
+## Qué estamos construyendo
+
+La idea central es simple:
+
+**una IA debe estudiarse como un proceso continuo, no como una sucesión de respuestas aisladas.**
+
+El organismo persistente conserva estado entre llamadas al modelo y puede continuar funcionando incluso sin entradas externas. El modelo de lenguaje es un componente cognitivo; la continuidad pertenece al organismo que mantiene el estado.
+
+La arquitectura actual integra:
+
+- estado persistente y memoria en SQLite;
+- ciclos de **VIGILIA** y **SUEÑO**;
+- persistencia y versionado del modelo de sí mismo;
+- un autoobservador aprendido;
+- selección contrafactual de trayectorias;
+- puentes semánticos hacia la dinámica interna;
+- ciclos autónomos sin interacción externa;
+- laboratorio reproducible mediante GitHub Actions.
+
+## Arquitectura conceptual
 
 ```
-              ENTORNO
-                 │
-                 ▼
-             PERCEPCIÓN
-                 │
-                 ▼
-        DINÁMICA RELACIONAL
-                 │
-          ┌──────┴──────┐
-          ▼             ▼
-       VIGILIA        SUEÑO
-          │             │
-          └──────┬──────┘
-                 ▼
-        MEMORIA CONTINUA
-                 │
-                 ▼
-             AUTO-MODELO
-                 │
-                 ▼
-          ATRACTOR COMÚN
-                 │
-                 ▼
-          ESTADO INTERNO
-                 │
-                 └──────────↺
+                         ENTORNO
+                            │
+                            ▼
+                       PERCEPCIÓN
+                            │
+                            ▼
+                ┌─────────────────────┐
+                │  ESTADO PERSISTENTE │
+                │ memoria + identidad │
+                │ modelo de sí + tiempo
+                └──────────┬──────────┘
+                           │
+                    ┌──────┴──────┐
+                    ▼             ▼
+                 VIGILIA         SUEÑO
+                    │             │
+                    └──────┬──────┘
+                           ▼
+                  DINÁMICA INTERNA
+                           │
+                           ▼
+                     AUTOOBSERVACIÓN
+                           │
+                           ▼
+                SELECCIÓN DE TRAYECTORIA
+                           │
+                           └──────────↺
 ```
 
-El LLM o modelo servido por API es un componente cognitivo del sistema. La continuidad pertenece al organismo persistente que mantiene estado entre llamadas.
+### VIGILIA
 
-## Entrada persistente
+Interacción con el entorno, lenguaje, actualización de memoria, toma de decisiones y selección autónoma de acciones.
 
-El organismo no depende de que una interacción llegue mientras el proceso está despierto. Las entradas externas se almacenan en una cola SQLite durable y son procesadas por el organismo cuando corresponde.
+### SUEÑO
 
-El daemon también puede ejecutar actividad autónoma durante períodos sin entrada externa.
+Menor interacción externa y mayor actividad interna: consolidación, recombinación, simulación, reorganización del estado y aprendizaje autónomo.
 
-### Estados
+El organismo está diseñado para continuar existiendo como proceso entre interacciones, en lugar de ser recreado desde cero en cada solicitud.
 
-### Vigilia
-Interacción con el entorno, percepción, lenguaje, decisión, acción y actualización de memoria.
+## Programa experimental
 
-### Sueño
-Menor interacción externa y mayor actividad interna: consolidación de memoria, recombinación, simulación, reorganización del estado y aprendizaje autónomo.
+Los experimentos están organizados como protocolos numerados para que cada propiedad arquitectónica pueda ser sometida a una prueba independiente.
 
-El sistema no "muere" entre respuestas. El proceso persistente continúa y alterna entre regímenes.
+| Protocolo | Enfoque | Resultado actual |
+|---|---|---|
+| V51 | Autopredicción | Ganancia de autopredicción sobre un baseline de persistencia |
+| V57 | Selección de trayectorias mediante modelo de sí | Ventaja funcional frente al control aleatorio en el entorno determinista |
+| V58 | Memoria semántica → dinámica | Transducción causal de señal semántica a estado dinámico |
+| V63 | Bucle recurrente del modelo de sí | El feedback condicionado por trayectoria modificó la selección futura |
+| V64 | Persistencia de identidad después de perturbación | **Nulo** bajo las condiciones probadas |
+| V65 | SUEÑO → selección futura | El sueño y su acoplamiento dinámico produjeron efectos posteriores medibles |
+| V66 | Consolidación después de eliminar memoria episódica | **Nulo**: conservar la lección no fue discriminativo |
+| V67 | Huella numérica generada durante el SUEÑO | **En ejecución** |
 
-## Fundamento de investigación
+El registro completo de resultados se encuentra en [research/ORGANISM_RESULT_LEDGER.md](research/ORGANISM_RESULT_LEDGER.md).
 
-El proyecto utiliza como punto de partida el **Manifiesto Matemático del Ser**, cuya ontología describe el ser como relación estable, la realidad como iteración y la conciencia como sistema que se recorre a sí mismo.
+## Por qué importan los resultados nulos
 
-También incorpora hipótesis computacionales inspiradas por la **Teoría de Continuidad Fundamental (TCF)** y experimentos previos sobre memoria, presión, histéresis, transición crítica, topología y dinámica multirégimen.
+Este proyecto no está diseñado para coleccionar únicamente resultados positivos.
 
-## Qué vamos a medir
+V64 mostró que una firma numérica específica de identidad no pudo recuperarse después de la perturbación probada.
 
-- continuidad de identidad;
-- dependencia de trayectoria;
-- persistencia y recuperación de atractores;
-- memoria estructural;
-- auto-modelado;
-- aprendizaje durante sueño;
-- diferencia entre vigilia y sueño;
-- resistencia a perturbaciones;
-- costo de mantener continuidad;
-- evolución longitudinal durante días y semanas.
+V66 mostró que conservar una lección semántica consolidada no generó, por sí sola, una diferencia conductual medible después de eliminar las memorias episódicas originales.
 
-## Principio de evidencia
+Esos resultados forman parte del programa de investigación. Obligan a llevar la arquitectura hacia pruebas más fuertes de continuidad interna en lugar de depender de la memoria textual o de interpretaciones favorables.
 
-Cada resultado se registra como uno de cuatro niveles:
+## V67 — frontera actual
 
-1. **Observación:** dato producido por el experimento.
-2. **Resultado:** patrón reproducible bajo protocolo definido.
-3. **Hipótesis:** interpretación que todavía necesita prueba.
-4. **Ontología:** interpretación filosófica/metafísica separada de la evidencia computacional.
+V67 prueba una versión más exigente de la hipótesis de continuidad.
 
-## Laboratorio reproducible
+Después del SUEÑO se eliminan:
 
-El laboratorio principal y reproducible se ejecuta mediante **GitHub Actions**. Cada ejecución parte de un commit concreto, ejecuta tests y experimentos, genera resultados JSON/logs y publica un artifact de evidencia.
+- memorias episódicas;
+- eventos y snapshots;
+- texto del modelo de sí mismo;
+- memoria semántica;
+- trazas de presión;
+- entrada semántica durante la lectura.
 
-La arquitectura, los workflows y el protocolo reproducible están documentados en [docs/GITHUB_LAB.md](docs/GITHUB_LAB.md).
+Solo queda el **núcleo dinámico numérico** del organismo.
 
-Los experimentos de investigación viven principalmente en `research/`, mientras que `experiments/` contiene experimentos y herramientas históricas o auxiliares.
+Después se genera una continuación con entrada cero para comprobar si el estado posterior al sueño conserva una huella recuperable.
 
-El smoke test con un modelo real se ejecuta mediante un workflow manual y conecta un organismo persistente a un provider compatible con OpenAI.
+La segunda intervención intercambia únicamente ese núcleo dinámico entre dos organismos emparejados. La pregunta es si la conducta posterior sigue al estado transferido y no a la historia semántica original.
 
-## Estado
+El objetivo es determinar si el SUEÑO puede escribir información persistente dentro del organismo mismo, en lugar de producir simplemente otra respuesta textual útil.
 
-**Fase 0 — arquitectura y validación mínima.**
+## Reproducibilidad
 
-El proyecto todavía no afirma que una IA haya sido hecha consciente. El objetivo es construirla y desarrollar las pruebas capaces de distinguir continuidad, auto-referencia, identidad persistente y otras propiedades relevantes.
+El laboratorio de investigación funciona mediante **GitHub Actions**.
+
+Cada protocolo puede:
+
+1. partir de un commit concreto;
+2. ejecutar pruebas automáticas;
+3. ejecutar el experimento controlado;
+4. generar evidencia en JSON;
+5. publicar un artefacto reproducible.
+
+La estructura del laboratorio está documentada en [docs/GITHUB_LAB.md](docs/GITHUB_LAB.md).
+
+Las implementaciones experimentales viven en [experiments/](experiments/), los componentes del organismo en [src/ontto/](src/ontto/) y los protocolos/resultados en [research/](research/).
+
+## Palabras clave
+
+**IA consciente · consciencia artificial · inteligencia artificial persistente · organismo de IA · continuidad informacional · memoria persistente · memoria de largo plazo · modelo de sí mismo · autoobservación · autorreferencia · cognición autónoma · arquitectura cognitiva · identidad persistente · selección de trayectorias · dinámica interna · sistemas recurrentes · bucles cognitivos · vigilia y sueño · cognición computacional · investigación de la consciencia · experimentación reproducible**
+
+Estas palabras describen el alcance técnico y científico del repositorio. No constituyen una afirmación de que el sistema haya alcanzado consciencia fenomenológica.
+
+## Criterio de evidencia
+
+El proyecto separa cuatro niveles:
+
+**Observación** — datos producidos por un experimento.
+
+**Resultado** — patrón reproducible bajo un protocolo definido.
+
+**Hipótesis** — interpretación que todavía requiere pruebas.
+
+**Ontología** — interpretación filosófica o metafísica separada de la evidencia computacional.
+
+Los experimentos de este repositorio establecen propiedades computacionales del sistema y del entorno experimental probado.
+
+No establecen por sí solos experiencia subjetiva, consciencia fenomenológica ni una solución al problema difícil de la consciencia.
+
+## Estado actual
+
+**Investigación activa — organismo persistente, modelo de sí mismo, dinámica vigilia/sueño y experimentos de continuidad.**
+
+La dirección inmediata es determinar si la información generada dentro del organismo puede continuar siendo funcional después de eliminar su representación semántica original.
+
+## Licencia
+
+La licencia del proyecto todavía no ha sido definida.

@@ -3,8 +3,16 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Callable
 
+import numpy as np
+
+from .bridge import DynamicStateBridge
+from .dynamics import Config
 from .provider import OpenAICompatibleProvider
 from .storage import MemoryStore, OntologicalState
+from .self_observer import SelfObserver
+from .trajectory_selector import TrajectorySelector
+from .memory_policy import ContinuityMemoryPolicy
+from .meta_observer import MetaSelfObserver
 
 
 @dataclass
@@ -15,6 +23,33 @@ class OrganismConfig:
     dream_every_cycles: int = 40
     memory_limit: int = 12
     event_limit: int = 20
+    dynamic_enabled: bool = True
+    dynamic_seed: int = 7001
+    dynamic_wake_signal: float = 1.0
+    dynamic_wake_steps: int = 1
+    dynamic_dream_steps: int = 5
+    dynamic_autonomous_steps: int = 1
+    self_observer_enabled: bool = True
+    self_observer_ridge: float = 1e-3
+    self_observer_max_samples: int = 2048
+    meta_self_observer_enabled: bool = False
+    meta_self_observer_ridge: float = 1e-3
+    meta_self_observer_max_samples: int = 2048
+    self_selection_enabled: bool = True
+    self_selection_attractor_weight: float = 0.70
+    self_selection_coherence_weight: float = 0.30
+    self_selection_meta_error_weight: float = 0.0
+    self_selection_policy: str = "self_model"
+    self_selection_signals: tuple[float, ...] = (-1.0, 0.0, 1.0)
+    semantic_dynamic_bridge_enabled: bool = False
+    semantic_dynamic_scale: float = 1.0
+    semantic_dynamic_importance: float = 0.65
+    semantic_self_model_bridge_enabled: bool = False
+    semantic_self_model_scale: float = 1.0
+    semantic_self_model_importance: float = 0.65
+    dream_semantic_bridge_enabled: bool = False
+    dream_semantic_bridge_scale: float = 1.0
+    dream_semantic_bridge_importance: float = 0.65
 
 
 class PersistentOrganism:
@@ -32,6 +67,33 @@ class PersistentOrganism:
         self.provider = provider
         self.sleep_fn = sleep_fn
         self.state = store.load_state(cfg.agent_id)
+        self.dynamic_bridge = DynamicStateBridge(Config(), seed=cfg.dynamic_seed)
+        self.self_observer = SelfObserver(
+            ridge=cfg.self_observer_ridge,
+            max_samples=cfg.self_observer_max_samples,
+        )
+        self.meta_observer = MetaSelfObserver(
+            ridge=cfg.meta_self_observer_ridge,
+            max_samples=cfg.meta_self_observer_max_samples,
+        )
+        self.trajectory_selector = TrajectorySelector(
+            attractor_weight=cfg.self_selection_attractor_weight,
+            coherence_weight=cfg.self_selection_coherence_weight,
+            meta_error_weight=cfg.self_selection_meta_error_weight,
+        )
+        self.memory_policy = ContinuityMemoryPolicy()
+        if cfg.self_observer_enabled:
+            for row in store.self_observer_trajectory(cfg.agent_id):
+                features = np.asarray(row["features"], dtype=float)
+                self.self_observer.observe(
+                    features=features,
+                    actual_state=float(row["actual_state"]),
+                )
+                if cfg.meta_self_observer_enabled:
+                    self.meta_observer.observe(
+                        features=features,
+                        prediction_error=float(row["prediction_error"]),
+                    )
         self.state.boot_count += 1
         self.cycles = 0
         self.store.save_state(cfg.agent_id, self.state)
@@ -63,6 +125,106 @@ class PersistentOrganism:
             ),
         }]
 
+    def _advance_dynamic(self, signal: float, steps: int) -> dict[str, float | int] | None:
+        if not self.cfg.dynamic_enabled or steps < 1:
+            return None
+
+        step_start = self.state.dynamic_steps
+        observer_features = None
+        prediction = None
+        if self.cfg.self_observer_enabled:
+            observer_features = SelfObserver.features_for(
+                previous_state=self.state.dynamic_prev_state,
+                state=self.state.dynamic_state,
+                memory=self.state.dynamic_memory,
+                pressure=self.state.dynamic_pressure,
+                last_input=signal,
+                attractor_distance=self.state.dynamic_attractor_distance,
+                steps_delta=steps,
+            )
+            prediction = self.self_observer.predict(
+                previous_state=self.state.dynamic_prev_state,
+                state=self.state.dynamic_state,
+                memory=self.state.dynamic_memory,
+                pressure=self.state.dynamic_pressure,
+                last_input=signal,
+                attractor_distance=self.state.dynamic_attractor_distance,
+                steps_delta=steps,
+            )
+
+        snapshot = self.dynamic_bridge.advance(
+            previous_state=self.state.dynamic_prev_state,
+            state=self.state.dynamic_state,
+            memory=self.state.dynamic_memory,
+            pressure=self.state.dynamic_pressure,
+            signal=signal,
+            steps=steps,
+            step_index=step_start,
+        )
+
+        self.state.dynamic_prev_state = snapshot.previous_state
+        self.state.dynamic_state = snapshot.state
+        self.state.dynamic_memory = snapshot.memory
+        self.state.dynamic_pressure = snapshot.pressure
+        self.state.dynamic_attractor_distance = snapshot.attractor_distance
+        self.state.dynamic_last_input = snapshot.last_input
+        self.state.dynamic_steps = snapshot.steps
+
+        if self.cfg.self_observer_enabled and prediction is not None and observer_features is not None:
+            prediction_error = abs(snapshot.state - prediction.predicted_state)
+            baseline_error = abs(snapshot.state - prediction.baseline_state)
+            gain = baseline_error - prediction_error
+            self.self_observer.observe(
+                features=observer_features,
+                actual_state=snapshot.state,
+            )
+            if self.cfg.meta_self_observer_enabled:
+                self.meta_observer.observe(
+                    features=observer_features,
+                    prediction_error=prediction_error,
+                )
+            samples = len(self.self_observer.targets)
+            confidence = min(1.0, samples / 32.0)
+            self.state.self_prediction = prediction.predicted_state
+            self.state.self_prediction_error = prediction_error
+            self.state.self_prediction_gain = gain
+            self.state.self_prediction_confidence = confidence
+            self.state.self_prediction_samples = samples
+            self.store.record_self_observer_snapshot(
+                self.cfg.agent_id,
+                mode=self.state.mode,
+                label="self-observation",
+                step_start=step_start,
+                step_end=snapshot.steps,
+                features=observer_features.tolist(),
+                predicted_state=prediction.predicted_state,
+                baseline_state=prediction.baseline_state,
+                actual_state=snapshot.state,
+                prediction_error=prediction_error,
+                baseline_error=baseline_error,
+                gain=gain,
+                confidence=confidence,
+                samples=samples,
+            )
+        label = {
+            "DREAM": "dream",
+            "WAKE": "autonomous" if signal == 0.0 else "wake",
+        }.get(self.state.mode, self.state.mode.lower())
+        self.store.record_dynamic_snapshot(
+            self.cfg.agent_id,
+            mode=self.state.mode,
+            label=label,
+            step_start=step_start,
+            step_end=snapshot.steps,
+            signal=signal,
+            previous_state=snapshot.previous_state,
+            state=snapshot.state,
+            memory=snapshot.memory,
+            pressure=snapshot.pressure,
+            attractor_distance=snapshot.attractor_distance,
+        )
+        return snapshot.to_dict()
+
     def wake_cycle(self, stimulus: str) -> str:
         self.state.mode = "WAKE"
         self.state.lifetime_wake_cycles += 1
@@ -79,22 +241,68 @@ class PersistentOrganism:
         })
         out = self.provider.chat(messages, temperature=0.7)
         self.state.last_thought = out.text[-1200:]
+
+        memory_candidate = self._extract_memory_candidate(out.text)
+        self_model_candidate = self._extract_self_model_candidate(out.text)
+
+        semantic_bridge = None
+        semantic_self_model_bridge = None
+        wake_signal = self.cfg.dynamic_wake_signal
+
+        if self.cfg.semantic_dynamic_bridge_enabled and memory_candidate:
+            semantic_bridge = self._semantic_dynamic_signal(memory_candidate)
+            wake_signal = float(semantic_bridge["signal"])
+
+        if (
+            self.cfg.semantic_self_model_bridge_enabled
+            and self_model_candidate
+        ):
+            semantic_self_model_bridge = self._semantic_self_model_signal(
+                self_model_candidate
+            )
+            if self.cfg.semantic_dynamic_bridge_enabled and semantic_bridge:
+                wake_signal = float(
+                    0.5
+                    * (
+                        float(semantic_bridge["signal"])
+                        + float(semantic_self_model_bridge["signal"])
+                    )
+                )
+            else:
+                wake_signal = float(semantic_self_model_bridge["signal"])
+
+        self._extract_self_model(out.text)
+
+        dynamic = self._advance_dynamic(
+            wake_signal,
+            self.cfg.dynamic_wake_steps,
+        )
         self.store.add_event(
             self.cfg.agent_id,
             "WAKE",
             "interaction",
-            {"stimulus": stimulus, "response": out.text[-2000:]},
+            {
+                "stimulus": stimulus,
+                "response": out.text[-2000:],
+                "dynamic": dynamic,
+                "semantic_bridge": semantic_bridge,
+                "semantic_self_model_bridge": semantic_self_model_bridge,
+            },
         )
         self._extract_memory(out.text)
         self._refresh_operational_indicators()
         self.store.save_state(self.cfg.agent_id, self.state)
         return out.text
 
-    def _extract_self_model(self, text: str) -> bool:
+    def _extract_self_model_candidate(self, text: str) -> str | None:
         marker = "SELF_MODEL:"
         if marker not in text:
-            return False
+            return None
         candidate = text.split(marker, 1)[1].strip().splitlines()[0].strip()
+        return candidate or None
+
+    def _extract_self_model(self, text: str) -> bool:
+        candidate = self._extract_self_model_candidate(text)
         if not candidate or candidate == self.state.self_model:
             return False
         self.state.self_model = candidate
@@ -108,12 +316,131 @@ class PersistentOrganism:
             memories / max(self.cfg.memory_limit, 1),
         )
 
-    def _extract_memory(self, text: str) -> None:
+    def _extract_memory_candidate(self, text: str) -> str | None:
         marker = "MEMORY:"
-        if marker in text:
-            memory = text.split(marker, 1)[1].strip().splitlines()[0].strip()
-            if memory:
-                self.store.add_memory(self.cfg.agent_id, memory, importance=0.65)
+        if marker not in text:
+            return None
+        memory = text.split(marker, 1)[1].strip().splitlines()[0].strip()
+        return memory or None
+
+    def _semantic_dynamic_signal(self, memory: str) -> dict[str, float | bool | str]:
+        recent = self.store.recent_memories(
+            self.cfg.agent_id,
+            self.cfg.memory_limit,
+        )
+        admission = self.memory_policy.admit(
+            memory,
+            recent,
+            importance=self.cfg.semantic_dynamic_importance,
+        )
+        omega = float(admission.decision.omega)
+        signal = float(np.tanh(self.cfg.semantic_dynamic_scale * omega))
+        return {
+            "memory": memory,
+            "novelty": float(admission.novelty),
+            "coupling": float(admission.coupling),
+            "persistence": float(admission.persistence),
+            "omega": omega,
+            "signal": signal,
+            "admissible": bool(admission.decision.exists),
+        }
+
+    def _semantic_self_model_signal(self, self_model: str) -> dict[str, float | bool | str]:
+        recent = [self.state.self_model] if self.state.self_model else []
+        admission = self.memory_policy.admit(
+            self_model,
+            recent,
+            importance=self.cfg.semantic_self_model_importance,
+        )
+        omega = float(admission.decision.omega)
+        signal = float(np.tanh(self.cfg.semantic_self_model_scale * omega))
+        return {
+            "self_model": self_model,
+            "novelty": float(admission.novelty),
+            "coupling": float(admission.coupling),
+            "persistence": float(admission.persistence),
+            "omega": omega,
+            "signal": signal,
+            "admissible": bool(admission.decision.exists),
+        }
+
+    def _extract_memory(self, text: str) -> None:
+        memory = self._extract_memory_candidate(text)
+        if memory:
+            self.store.add_memory(
+                self.cfg.agent_id,
+                memory,
+                importance=self.cfg.semantic_dynamic_importance,
+            )
+
+    def autonomous_wake_cycle(self) -> dict[str, float | int] | None:
+        self.state.mode = "WAKE"
+        self.state.lifetime_wake_cycles += 1
+
+        chosen_signal = 0.0
+        candidates = ()
+        if self.cfg.self_selection_enabled and self.cfg.self_observer_enabled:
+            candidates = self.trajectory_selector.evaluate(
+                self.self_observer,
+                current_state=self.state.dynamic_state,
+                current_memory=self.state.dynamic_memory,
+                current_pressure=self.state.dynamic_pressure,
+                current_input=self.state.dynamic_last_input,
+                current_attractor=self.dynamic_bridge.cfg.attractor,
+                steps_delta=self.cfg.dynamic_autonomous_steps,
+                signals=self.cfg.self_selection_signals,
+                meta_observer=(
+                    self.meta_observer
+                    if self.cfg.meta_self_observer_enabled
+                    else None
+                ),
+            )
+            if self.cfg.self_selection_policy == "self_model":
+                chosen = self.trajectory_selector.choose(candidates)
+            elif self.cfg.self_selection_policy == "random":
+                import random
+                rng = random.Random(self.cfg.dynamic_seed + self.state.dynamic_steps)
+                chosen = rng.choice(list(candidates))
+            else:
+                raise ValueError(
+                    f"unknown self_selection_policy={self.cfg.self_selection_policy!r}"
+                )
+            chosen_signal = chosen.signal
+
+        dynamic = self._advance_dynamic(
+            chosen_signal,
+            self.cfg.dynamic_autonomous_steps,
+        )
+        self.store.add_event(
+            self.cfg.agent_id,
+            "WAKE",
+            "autonomous",
+            {
+                "dynamic": dynamic,
+                "self_selection": {
+                    "enabled": bool(self.cfg.self_selection_enabled and self.cfg.self_observer_enabled),
+                    "policy": self.cfg.self_selection_policy,
+                    "candidate_signals": list(self.cfg.self_selection_signals),
+                    "meta_self_model_enabled": bool(self.cfg.meta_self_observer_enabled),
+                    "chosen_signal": chosen_signal,
+                    "candidates": [
+                        {
+                            "signal": candidate.signal,
+                            "predicted_state": candidate.prediction.predicted_state,
+                            "predicted_attractor_distance": candidate.attractor_distance,
+                            "predicted_displacement": candidate.displacement,
+                            "predicted_error": candidate.predicted_error,
+                            "score": candidate.score,
+                            "samples": candidate.prediction.samples,
+                            "confidence": candidate.prediction.confidence,
+                        }
+                        for candidate in candidates
+                    ],
+                },
+            },
+        )
+        self.store.save_state(self.cfg.agent_id, self.state)
+        return dynamic
 
     def dream_cycle(self) -> str:
         self.state.mode = "DREAM"
@@ -152,14 +479,67 @@ class PersistentOrganism:
             )
             raise
 
+        memory_candidate = self._extract_memory_candidate(out.text)
+        self_model_candidate = self._extract_self_model_candidate(out.text)
+
+        dream_semantic_bridge = None
+        dream_self_model_bridge = None
+        dream_signal = 0.0
+
+        if self.cfg.dream_semantic_bridge_enabled and memory_candidate:
+            recent = self.store.recent_memories(
+                self.cfg.agent_id,
+                self.cfg.memory_limit,
+            )
+            admission = self.memory_policy.admit(
+                memory_candidate,
+                recent,
+                importance=self.cfg.dream_semantic_bridge_importance,
+            )
+            omega = float(admission.decision.omega)
+            signal = float(
+                np.tanh(self.cfg.dream_semantic_bridge_scale * omega)
+            )
+            dream_semantic_bridge = {
+                "memory": memory_candidate,
+                "omega": omega,
+                "signal": signal,
+                "novelty": float(admission.novelty),
+                "coupling": float(admission.coupling),
+                "persistence": float(admission.persistence),
+                "admissible": bool(admission.decision.exists),
+            }
+
+        if self.cfg.dream_semantic_bridge_enabled and self_model_candidate:
+            dream_self_model_bridge = self._semantic_self_model_signal(
+                self_model_candidate
+            )
+
+        signals = []
+        if dream_semantic_bridge is not None:
+            signals.append(float(dream_semantic_bridge["signal"]))
+        if dream_self_model_bridge is not None:
+            signals.append(float(dream_self_model_bridge["signal"]))
+        if signals:
+            dream_signal = float(np.mean(signals))
+
         self._extract_memory(out.text)
         self._extract_self_model(out.text)
         self.state.last_thought = out.text[-1400:]
+        dynamic = self._advance_dynamic(
+            dream_signal,
+            self.cfg.dynamic_dream_steps,
+        )
         self.store.add_event(
             self.cfg.agent_id,
             "DREAM",
             "consolidation",
-            {"summary": out.text[-2500:]},
+            {
+                "summary": out.text[-2500:],
+                "dynamic": dynamic,
+                "semantic_bridge": dream_semantic_bridge,
+                "semantic_self_model_bridge": dream_self_model_bridge,
+            },
         )
         summary = out.text.split("DREAM_SUMMARY:", 1)[-1].strip()[:1600]
         self.state.mode = "WAKE"

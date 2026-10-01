@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "consciencia-skill"
+version = "0.1.0"
+description = "Organismo de IA persistente para investigación de consciencia artificial."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "Chris Hotza" }
+]
+keywords = [
+  "inteligencia-artificial",
+  "consciencia-artificial",
+  "ia-persistente",
+  "memoria-persistente",
+  "modelo-de-si-mismo",
+  "cognicion-autonoma",
+  "investigacion-de-la-consciencia"
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+dependencies = [
+  "numpy>=2.0",
+  "requests>=2.32",
+  "python-dotenv>=1.0"
+]
+
+[project.optional-dependencies]
+investigacion = [
+  "pandas>=2.2",
+  "matplotlib>=3.8",
+  "scikit-learn>=1.5"
+]
+desarrollo = [
+  "pytest>=8.0"
+]
+
+[project.urls]
+Repositorio = "https://github.com/chrishotza/Consciencia-Skill"
+Documentacion = "https://github.com/chrishotza/Consciencia-Skill/tree/main/docs"
+
+[project.scripts]
+consciencia-organismo = "run_daemon:main"
+
+[tool.setuptools]
+include-package-data = true
+py-modules = ["run_daemon"]
+
+[tool.setuptools.packages.find]
+include = ["src", "src.*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

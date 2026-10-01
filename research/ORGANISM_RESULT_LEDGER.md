@@ -1,0 +1,219 @@
+# Organism Experimental Result Ledger — V47 → V66
+
+## Strong positive results
+
+### V51 — Self-prediction
+104 post-warmup transitions: MAE 0.0424 vs baseline 0.2211; mean prediction gain
+0.1787; 84.6% positive-gain transitions; paired sign-flip p = 0.00005.
+
+### V57 — Self-model-guided trajectory selection
+24 paired replicates: self-model regret 0.0231 vs random 0.1369; 70.83% vs
+45.83% oracle-hit rate; paired sign-flip p = 0.00435.
+
+### V58 — Semantic-to-dynamic coupling
+Matched 2×2 intervention. Bridge OFF: A/B dynamic-state delta 0.0 and signal delta
+0.0. Bridge ON: Omega A -1.52, Omega B +0.68, signal delta 1.5002170539 and
+dynamic-state delta 0.4558697583. The deterministic harness supports causal
+transduction from the organism's semantic memory output into numeric internal
+dynamics when the bridge is enabled.
+
+### V60 — Self-model selection inside a recurrent semantic loop
+24 paired replicates, 24 evaluation cycles.
+
+- self-model mean regret: -0.0842091465;
+- random-control mean regret: 0.3028308773;
+- mean regret advantage (random - self): 0.3870400237;
+- cumulative regret advantage: 9.2889605698;
+- median regret advantage: 0.3858317486;
+- paired sign-flip p for mean and cumulative advantage: 0.00005;
+- self-model oracle-hit rate: 96.1806%;
+- random-control oracle-hit rate: 45.3125%.
+
+Interpretation: the self-model retained a large functional selection advantage in
+the deterministic closed-loop protocol, under a provider whose next semantic
+memory depends on the previous selected action. However, the self-model arm
+selected +1 in all 24 replicates, so the within-run secondary feedback endpoint
+never observed both action branches. The recurrent plumbing is exercised, but
+action-conditioned feedback branch coverage is incomplete and must not be
+reported as a fully demonstrated bidirectional feedback effect.
+
+### V62 — Semantic self-model causal bridge
+24 matched replicates crossing self-model content A/B with bridge OFF/ON.
+
+- bridge OFF state delta mean: 0.0;
+- bridge OFF signal delta mean: 0.0;
+- bridge ON state delta mean: 0.0567495528;
+- bridge ON signal delta mean: 0.1844584720;
+- bridge OFF isolated the text intervention in all runs;
+- bridge ON transduced the self-model difference into signal and state in all runs;
+- self-model persistence and versioning were recorded in all ON runs.
+
+Interpretation: in this deterministic intervention, changing only the organism's
+semantic self-model altered its internal numerical state only when the explicit
+self-model bridge was enabled. This is causal computational coupling, not
+evidence of subjective experience.
+
+### V63 — Causal self-model loop
+24 matched replicates × 32 evaluation cycles across self-model/random selection and self-model bridge OFF/ON.
+
+- bridge ON self-model mean regret: 0.1422226601;
+- bridge ON random-control mean regret: 0.2666042539;
+- random-minus-self-model regret advantage: 0.1243815939;
+- paired sign-flip p: 0.00005;
+- bridge OFF self-model regret: 0.2876865581;
+- bridge ON self-model regret: 0.1422226601;
+- self-model bridge OFF-minus-ON regret improvement: 0.1454638980;
+- paired sign-flip p for bridge regret: 0.00005;
+- self-model oracle-hit increased from 10.0260% OFF to 60.6771% ON;
+- paired sign-flip p for hit-rate change: 0.00005;
+- regret difference-in-differences between self-model and random arms: 0.2837493367;
+- paired sign-flip p for the interaction: 0.00005;
+- bridge ON + self-model action-branch coverage: 100%;
+- bridge ON + self-model action-conditioned bridge signal difference: 0.7405 across 243 negative-branch and 501 positive-branch observations.
+
+Interpretation: the deterministic harness supports a recurrent computational loop in which prior trajectory conditions the next semantic self-model, the self-model is transduced into internal dynamics, and that state participates in future trajectory selection. The action-conditioned signal comparison is a within-loop association, not an isolated causal effect estimate.
+
+### V65 — Dream consolidation and future selection
+24 matched replicates × 24 evaluation cycles across no_dream, dream_no_bridge, and
+dream_bridge.
+
+- no_dream mean regret: 0.3258519211;
+- dream_no_bridge mean regret: 0.2109500171;
+- dream_bridge mean regret: 0.1779272005;
+- dream-bridge regret advantage over dream-no-bridge: 0.0330228167;
+- paired sign-flip p: 0.00005;
+- dream_bridge oracle-hit rate: 25.3472%;
+- dream_no_bridge oracle-hit rate: 13.3681%;
+- oracle-hit advantage: 0.1197916667;
+- paired sign-flip p for hit advantage: 0.00005;
+- dream-no-bridge regret change vs no_dream: -0.1149019040;
+- paired sign-flip p for dream-vs-no-dream regret: 0.00005.
+
+Interpretation: the deterministic harness supports a computational wake/dream mechanism
+in which DREAM-generated semantic consolidation changes internal state and produces
+a measurable downstream effect on future trajectory selection. This does not
+establish subjective dreaming or phenomenological consciousness.
+
+## Negative / null / limitation results
+
+### V53
+The original three-candidate selector selected the neutral signal in all 12
+replicates, producing no causal divergence from the zero-input control.
+This was treated as a failed discriminatory protocol, not positive evidence.
+
+### V54
+80-cycle fake self-forecast accuracy was 43.75% with 40 TOWARD and 40 AWAY
+transitions. Chance for this balanced binary direction task is 50%, so V54 was not
+supportive evidence.
+
+### V55
+12 replicates × two perturbation signs × selection on/off preserved the identity
+fingerprint in 100% of runs and recovered within the horizon in 100% of runs, with
+mean recovery time 2.5 cycles. Selection-on and selection-off recovery were both
+100%, so V55 demonstrates resilience in the tested harness but not a selective
+benefit from self-modeling.
+
+### V59 — Semantic bridge × self-model selection
+24 paired factorial replicates crossed semantic bridge OFF/ON with self-model/random policy.
+
+- bridge OFF self-model mean regret: 0.0000;
+- bridge OFF random mean regret: 0.23233;
+- bridge ON self-model mean regret: 0.0000;
+- bridge ON random mean regret: 0.24022;
+- self-model oracle-hit rate: 100% in both bridge conditions;
+- random oracle-hit rate: 50% in both bridge conditions;
+- semantic bridge changed the post-wake internal state by mean absolute 0.94273 and the dynamic signal by 0.55376;
+- bridge × selection interaction = +0.00789;
+- interaction sign-flip p = 0.83941.
+
+Interpretation: the protocol reproduces the previously observed self-model selection
+advantage while independently showing substantial semantic-to-dynamic state
+transduction. The factorial interaction was not distinguishable from zero in this
+deterministic harness, so V59 does not support a claim that semantic bridging itself
+increases self-model selection utility. It remains a null interaction / compositionality
+result.
+
+### V61 — Metacognitive self-model
+24 paired replicates × 32 evaluation cycles.
+
+- meta-self-model mean regret: 0.0888081147;
+- first-order self-model mean regret: 0.0787785152;
+- random-control mean regret: 0.1929241942;
+- meta-self-model oracle-hit rate: 41.2760%;
+- first-order self-model oracle-hit rate: 45.3125%;
+- random-control oracle-hit rate: 46.4844%;
+- meta vs first-order regret advantage: -0.0100295995;
+- paired sign-flip p for regret difference: 0.00005;
+- meta vs first-order hit-rate advantage: -0.0403645833;
+- paired sign-flip p for hit-rate difference: 0.0008999550;
+- meta prediction MAE: 0.1277240710;
+- constant baseline MAE: 0.0849867822;
+- meta model beat the constant baseline in 0% of replicates.
+
+Interpretation: the implemented second-order meta-self-model did not improve trajectory
+selection and did not predict first-order model error better than a constant baseline
+in this harness. The result is retained as a negative finding and points to a redesign
+rather than support for metacognitive capability.
+
+### V64 — Identity persistence under self-model perturbation
+24 paired replicates tested whether identity-specific dynamic signatures remained
+decodable after a common semantic self-model overwrite, explicit self-model text
+removal, and autonomous continuation without semantic input.
+
+- bridge OFF post-ablation accuracy: 50.0%;
+- bridge ON post-ablation accuracy: 50.0%;
+- ON-minus-OFF accuracy difference: 0.0;
+- paired sign-flip p: 1.0;
+- folds above chance: 0% in both conditions.
+
+Interpretation: V64 produced a null result. Under the tested perturbation, feature set,
+classifier, and horizon, the original identity was not decodable after semantic
+self-model overwrite and textual ablation. The result is retained as a real
+limitation, not evidence against every possible form of identity persistence.
+
+### V66 — Dream consolidation after episodic-memory ablation
+24 matched replicates tested whether keeping only the consolidated lesson after DREAM
+was sufficient to change later trajectory selection once raw episodic memories were
+removed.
+
+- retained-lesson mean regret: -0.1086777912;
+- ablated-lesson mean regret: -0.1086777912;
+- retained-lesson oracle-hit rate: 85.0694%;
+- ablated-lesson oracle-hit rate: 85.0694%;
+- regret difference (ablation - retained): 0.0;
+- paired sign-flip p for regret: 1.0;
+- oracle-hit advantage (retained - ablated): 0.0;
+- paired sign-flip p for hit rate: 1.0;
+- all retained runs produced a retrieval bridge signal.
+
+Interpretation: V66 is a null result. The retained consolidated lesson was present
+and generated a semantic retrieval signal, but its preservation did not produce a
+measurable behavioral difference in regret or oracle-hit rate in this deterministic
+pathway. The protocol therefore does not show that the consolidated lesson became
+functionally necessary after raw-memory ablation.
+
+### V67 — Dream-generated numeric trace after total semantic ablation
+Protocol implemented and awaiting CI. Two matched histories enter DREAM with condition-specific semantic consolidation. After DREAM, all episodic memories, events, snapshots, self-model text, numeric memory, and pressure traces are removed; only the dynamic core (current state, previous state, step index) remains. A common zero-input continuation is evaluated, and a second condition transfers only that numeric core across the paired databases.
+
+Primary endpoints are post-ablation history classification accuracy and state-swap-following accuracy. The protocol is designed to test whether DREAM can write a causally transferable numeric trace that remains behaviorally readable after semantic sources are removed.
+
+No V67 result is claimed until CI validates the completed artifact.
+
+## Engineering status
+
+V60, V61, V62, V63, V64, V65, and V66 completed successfully on their recorded GitHub Actions heads.
+Their artifacts are preserved in the corresponding GitHub Actions runs. Earlier V43–V59 results
+remain reproducible from their historical workflows and evidence records.
+
+## Evidence boundary
+
+These results establish increasingly specific computational properties of the
+tested organism and its deterministic experimental harness: persistence,
+self-prediction, causal self-model use, semantic-to-dynamic coupling, wake/dream
+effects, and semantic self-representation as a causally active variable.
+
+They do not establish phenomenological consciousness or subjective experience.
+
+The next experiment should test whether the **numeric internal state generated during
+DREAM can carry a recoverable, causally transferable trace after semantic memory and
+self-model text are removed**, rather than relying on a later retrieval response.

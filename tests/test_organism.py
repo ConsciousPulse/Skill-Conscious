@@ -23,6 +23,7 @@ class FakeProvider:
             text = (
                 "Procesé el estímulo. "
                 "MEMORY: La interacción actual pertenece a una trayectoria continua.\n"
+                "SELF_MODEL: Mantengo estado persistente y puedo cambiar de régimen.\n"
             )
         return LLMResponse(text=text, raw={"fake": True})
 
@@ -40,6 +41,9 @@ def test_wake_dream_wake_persistence(tmp_path: Path):
     first = organism.wake_cycle("Primera interacción")
     assert "MEMORY:" in first
     assert len(store.recent_memories("test-agent")) == 1
+    assert store.load_state("test-agent").dynamic_steps == 1
+    assert store.load_state("test-agent").self_model_version == 1
+    assert store.load_state("test-agent").self_model == "Mantengo estado persistente y puedo cambiar de régimen."
     assert len(store.recent_events("test-agent")) == 2
     assert store.load_state("test-agent").boot_count == 1
 
@@ -71,6 +75,7 @@ def test_wake_dream_wake_persistence(tmp_path: Path):
     trajectory_after_reopen = restored_store.persistence_observables("test-agent")
     assert trajectory_after_reopen["trajectory_fingerprint"] == trajectory_before_reopen["trajectory_fingerprint"]
     assert trajectory_after_reopen["state_fingerprint"] == trajectory_before_reopen["state_fingerprint"]
+    assert restored_store.load_state("test-agent").dynamic_steps == 7
 
     organism.dream_cycle()
     repeated_dream = store.load_state("test-agent")

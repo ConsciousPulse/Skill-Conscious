@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Cómo citar Consciencia-Skill"
+title: "Consciencia-Skill"
+type: software
+authors:
+  - family-names: Hotza
+    given-names: Chris
+repository-code: "https://github.com/chrishotza/Consciencia-Skill"
+abstract: "Proyecto de investigación y desarrollo de un organismo de inteligencia artificial persistente orientado hacia la investigación de la consciencia artificial."
+keywords:
+  - inteligencia artificial
+  - consciencia artificial
+  - IA persistente
+  - memoria persistente
+  - cognición autónoma
+  - continuidad informacional
+  - investigación de la consciencia
+date-released: 2026-10-01
