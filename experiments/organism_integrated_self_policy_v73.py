@@ -173,6 +173,22 @@ def ablate_semantic_surfaces(path):
     store.conn.close()
 
 
+def prepare_after_sleep(path, seed):
+    store = MemoryStore(path)
+    cfg = OrganismConfig(
+        agent_id="organism",
+        dynamic_seed=seed,
+        self_observer_enabled=True,
+        self_selection_enabled=True,
+        self_policy_enabled=True,
+        dream_every_cycles=10_000,
+        dynamic_autonomous_steps=1,
+    )
+    organism = PersistentOrganism(cfg, store, NullProvider(), lambda _: None)
+    organism.dream_cycle()
+    store.conn.close()
+
+
 def run_persistent_cycle(path, seed, learned, blind):
     store = MemoryStore(path)
     cfg = OrganismConfig(
@@ -189,7 +205,6 @@ def run_persistent_cycle(path, seed, learned, blind):
     model_loaded = store.load_self_observer_model("organism") is not None
     policy_loaded = store.load_self_policy_model("organism") is not None
 
-    organism.dream_cycle()
     if blind:
         organism.state.dynamic_prev_state = 0.0
         organism.state.dynamic_state = 0.0
@@ -269,15 +284,22 @@ def main():
         ablate_semantic_surfaces(stable_db)
         ablate_semantic_surfaces(frontier_db)
 
+        stable_post_db = out / f"stable_post_{replicate}.db"
+        frontier_post_db = out / f"frontier_post_{replicate}.db"
+        shutil.copy2(stable_db, stable_post_db)
+        shutil.copy2(frontier_db, frontier_post_db)
+        prepare_after_sleep(stable_post_db, seed)
+        prepare_after_sleep(frontier_post_db, seed)
+
         stable_on_db = out / f"stable_on_{replicate}.db"
         stable_blind_db = out / f"stable_blind_{replicate}.db"
         frontier_on_db = out / f"frontier_on_{replicate}.db"
         frontier_blind_db = out / f"frontier_blind_{replicate}.db"
         for source, target in (
-            (stable_db, stable_on_db),
-            (stable_db, stable_blind_db),
-            (frontier_db, frontier_on_db),
-            (frontier_db, frontier_blind_db),
+            (stable_post_db, stable_on_db),
+            (stable_post_db, stable_blind_db),
+            (frontier_post_db, frontier_on_db),
+            (frontier_post_db, frontier_blind_db),
         ):
             shutil.copy2(source, target)
 
@@ -296,8 +318,8 @@ def main():
 
         stable_fixed_db = out / f"stable_fixed_{replicate}.db"
         frontier_fixed_db = out / f"frontier_fixed_{replicate}.db"
-        shutil.copy2(stable_db, stable_fixed_db)
-        shutil.copy2(frontier_db, frontier_fixed_db)
+        shutil.copy2(stable_post_db, stable_fixed_db)
+        shutil.copy2(frontier_post_db, frontier_fixed_db)
         stable_fixed = run_persistent_cycle(
             stable_fixed_db, seed, learned=False, blind=False
         )
@@ -333,8 +355,8 @@ def main():
 
         stable_swap_db = out / f"stable_swap_{replicate}.db"
         frontier_swap_db = out / f"frontier_swap_{replicate}.db"
-        shutil.copy2(stable_db, stable_swap_db)
-        shutil.copy2(frontier_db, frontier_swap_db)
+        shutil.copy2(stable_post_db, stable_swap_db)
+        shutil.copy2(frontier_post_db, frontier_swap_db)
         swap_dynamic_core(stable_swap_db, frontier_db)
         swap_dynamic_core(frontier_swap_db, stable_db)
 
