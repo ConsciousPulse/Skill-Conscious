@@ -116,3 +116,5 @@ V53 agrega selección contrafactual de trayectoria usando el auto-modelo. V54 mi
 V55 agrega recuperación de identidad bajo perturbación, comparando selección contrafactual activada/desactivada.
 
 V56 agrega una política opcional de admisión de memoria basada en compatibilidad futura AEVUM, todavía separada de la memoria canónica del organismo.
+
+V57 compara selección de trayectorias basada en self-model contra un control aleatorio emparejado y calcula regret frente a un oráculo post-hoc.
