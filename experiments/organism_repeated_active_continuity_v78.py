@@ -722,6 +722,10 @@ def main() -> None:
         "learned_minus_random_continuity_p": sign_p(
             learned_all_cont - random_all_cont, 78074
         ),
+        "intervention_target_error_max": max(
+            float(learned[schedule]["intervention_target_error"].max())
+            for schedule in test_schedules
+        ),
         "ood_second_minus_first_gain": ood_second_minus_first,
         "ood_state_dependent_first_action_response_event_1": first_action_response_by_event(
             restored_policy,
