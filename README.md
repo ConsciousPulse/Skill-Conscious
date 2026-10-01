@@ -145,6 +145,10 @@ V58 added an optional semantic bridge that converts the \`MEMORY:\` relation gen
 
 V59 added a 2×2 factorial crossing semantic bridge OFF/ON with \`self_model\`/random selection. The bridge produced a substantial internal change, while the measured utility of the self-model did not change detectably between conditions.
 
+V60 added a closed-loop semantic feedback protocol in which the selected trajectory is persisted as an event, conditions the next semantic memory, and that memory is transduced back into internal dynamics before the next trajectory selection. The V60 experiment is deterministic and synthetic; its CI audit is currently running.
+
+V61 added an optional second-order meta-self-model: the organism learns to predict the error of its own first-order self-model and can use that predicted reliability when selecting among future trajectories. The V61 CI audit is running; no V61 result is claimed until its artifact is produced.
+
 ## Evidence boundary
 
 The experiments in this repository establish computational properties of the tested system and harness.
