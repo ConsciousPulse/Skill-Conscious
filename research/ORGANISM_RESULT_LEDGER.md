@@ -330,6 +330,24 @@ Interpretación: V77 respalda generalización computacional de la política de a
 
 Interpretación: V78 respalda reutilización temporal/composicional de la política de autopredicción ante secuencias repetidas de perturbaciones no vistas y sin reentrenamiento. La pequeña caída entre el primer y segundo evento indica cierta degradación con repetición, pero la ventaja OOD global frente a aleatorio se conserva. El endpoint de continuidad no se separó del control aleatorio.
 
+### V79 — Adaptación online de la política propia
+
+64 réplicas por condición; entrenamiento con single_impulse; evaluación in-domain y bajo un régimen dinámico modificado, incluyendo triple_alternating OOD.
+
+- ganancia in-domain frozen: **0.2109118**;
+- ganancia in-domain adaptive: **0.2109118**;
+- ganancia shifted single frozen: **0.3792665**;
+- ganancia shifted single adaptive: **0.3792665**;
+- ganancia shifted repeated frozen: **0.3799345**;
+- ganancia shifted repeated adaptive: **0.3798509**;
+- ventaja adaptativa en el tercer evento OOD: **-0.0002509**;
+- p emparejada: **1.0**;
+- diferencia-de-diferencias adaptive − frozen: **-0.0002509**, p **1.0**;
+- continuidad OOD adaptive: **0.7270149** frente a **0.7268716** frozen, p **1.0**;
+- error máximo de objetivo terminal: **0.0**.
+
+Interpretación: resultado nulo para adaptación online bajo el protocolo probado. La copia adaptive incorporó las ganancias observadas, pero no se distinguió de la política frozen. El cambio dinámico usado tampoco generó una degradación suficiente de la política congelada como para revelar una ventaja adaptativa.
+
 ## Estado de ingeniería
 
 V60, V61, V62, V63, V64, V65 y V66 finalizaron correctamente en sus respectivos commits registrados de GitHub Actions. Sus artefactos se conservan en las ejecuciones correspondientes. Los resultados anteriores V43–V59 siguen siendo reproducibles a partir de sus workflows históricos y registros de evidencia.
