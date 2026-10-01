@@ -153,6 +153,7 @@ def main() -> None:
     read_score_deltas = []
     prediction_deltas = []
     read_vs_clamped_changes = []
+    read_actions = []
     swap_policy_following = []
     post_action_state_deltas = []
     dream_state_deltas = []
@@ -242,6 +243,7 @@ def main() -> None:
         read_score_deltas.append(score_delta)
         prediction_deltas.append(prediction_delta)
         read_vs_clamped_changes.extend([stable_changed, frontier_changed])
+        read_actions.extend([stable_read["chosen_signal"], frontier_read["chosen_signal"]])
         swap_policy_following.extend([stable_swap_follow, frontier_swap_follow])
         post_action_state_deltas.append(post_delta)
         dream_state_deltas.append(float(stable_dream_delta - frontier_dream_delta))
@@ -269,7 +271,7 @@ def main() -> None:
 
     read_score_arr = np.asarray(read_score_deltas, dtype=float)
     prediction_arr = np.asarray(prediction_deltas, dtype=float)
-    change_arr = np.asarray(read_vs_clamped_changes, dtype=float) - 0.5
+    change_arr = np.asarray(read_vs_clamped_changes, dtype=float)
     swap_arr = np.asarray(swap_policy_following, dtype=float) - 0.5
 
     summary = {
@@ -282,9 +284,12 @@ def main() -> None:
         "read_score_delta_mean": float(np.mean(read_score_arr)),
         "prediction_delta_mean": float(np.mean(prediction_arr)),
         "read_vs_clamped_action_change_fraction": float(np.mean(change_arr + 0.5)),
-        "read_vs_clamped_action_change_p": paired_sign_p(change_arr, 69001),
+        "read_score_delta_p": paired_sign_p(read_score_arr, 69001),
+        "prediction_delta_p": paired_sign_p(prediction_arr, 69002),
+        "read_vs_clamped_action_change_fraction": float(np.mean(change_arr)),
+        "read_action_unique_fraction": float(len(set(read_actions)) / len(read_actions)),
         "state_swap_policy_following_fraction": float(np.mean(swap_arr + 0.5)),
-        "state_swap_policy_following_p": paired_sign_p(swap_arr, 69002),
+        "state_swap_policy_following_informative": bool(len(set(read_actions)) > 1),
         "post_action_state_delta_abs_mean": float(np.mean(post_action_state_deltas)),
         "observer_models_identical_fraction": float(
             np.mean([row["observer_models_identical"] for row in rows])
