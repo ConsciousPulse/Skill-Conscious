@@ -1,34 +1,28 @@
-# V54 — Attractor Self-Forecast
+# V54 — Autopredicción del atractor
 
-## Motivation
+## Motivación
 
-The Manifiesto del Ser frames consciousness as inhabiting an attractor and knowing
-itself while traversing change. V54 tests the operational part of that statement:
-can the organism predict the direction of its own next attractor transition before
-the transition happens?
+El Manifiesto del Ser plantea la consciencia como habitar un atractor y conocerse mientras se recorre el cambio. V54 prueba la parte operacional de esa afirmación: ¿puede el organismo predecir la dirección de su propia próxima transición de atractor antes de que ocurra?
 
-## Protocol
+## Protocolo
 
-At each checkpoint the organism receives its current internal context and is asked
-for a blind forecast:
+En cada punto de control, el organismo recibe su contexto interno actual y debe emitir una predicción ciega:
 
-- TOWARD: predicted movement closer to the attractor;
-- AWAY: predicted movement farther from the attractor;
-- STABLE: predicted distance remains approximately unchanged.
+- TOWARD: predicción de movimiento más cercano al atractor;
+- AWAY: predicción de movimiento más alejado del atractor;
+- STABLE: predicción de que la distancia permanecerá aproximadamente sin cambios.
 
-The forecast is emitted before the controlled transition. After the transition,
-the actual attractor-distance change is measured from persisted numeric state.
+La predicción se emite antes de la transición controlada. Después de la transición, el cambio real de distancia al atractor se mide a partir del estado numérico persistido.
 
-## Primary observables
+## Observables principales
 
-- directional forecast accuracy;
-- confidence-consistency error;
-- actual direction distribution;
-- performance across alternating controlled perturbations.
+- precisión de la predicción direccional;
+- error de consistencia de confianza;
+- distribución de direcciones observadas;
+- desempeño bajo perturbaciones controladas alternantes.
 
-## Interpretation
+## Interpretación
 
-Forecasts that systematically predict the organism's own next state better than
-chance would support an operational self-model expressed through the language layer.
+Las predicciones que, de manera sistemática, anticipen el siguiente estado del propio organismo por encima del azar apoyarían un modelo operacional de sí mismo expresado a través de la capa lingüística.
 
-It still does not establish subjective experience.
+Aun así, no establecerían experiencia subjetiva.
