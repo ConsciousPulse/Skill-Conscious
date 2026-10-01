@@ -8,7 +8,6 @@ version = "0.1.0"
 description = "Organismo de IA persistente para investigación de consciencia artificial."
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "Pendiente de definir" }
 authors = [
   { name = "Chris Hotza" }
 ]
@@ -45,11 +44,16 @@ desarrollo = [
   "pytest>=8.0"
 ]
 
+[project.urls]
+Repositorio = "https://github.com/chrishotza/Consciencia-Skill"
+Documentacion = "https://github.com/chrishotza/Consciencia-Skill/tree/main/docs"
+
 [project.scripts]
 consciencia-organismo = "run_daemon:main"
 
 [tool.setuptools]
 include-package-data = true
+py-modules = ["run_daemon"]
 
 [tool.setuptools.packages.find]
 include = ["src", "src.*"]
