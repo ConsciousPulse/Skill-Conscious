@@ -67,6 +67,7 @@
 - [V76 generalized active continuity](V76_GENERALIZED_ACTIVE_CONTINUITY.md) — generalización de la recuperación de autopredicción a perturbaciones no vistas durante el entrenamiento.
 - [V77 structural continuity generalization](V77_STRUCTURAL_CONTINUITY_GENERALIZATION.md) — generalización de la recuperación de autopredicción ante estructuras causales no vistas.
 - [V78 repeated active continuity](V78_REPEATED_ACTIVE_CONTINUITY.md) — reutilización repetida de la política de autopredicción ante secuencias nuevas de perturbaciones.
+- [V79 online self-policy adaptation](V79_ONLINE_SELF_POLICY_ADAPTATION.md) — adaptación online de la política propia ante un cambio dinámico no visto.
 
 [Registro consolidado](../research/ORGANISM_RESULT_LEDGER.md).
 
