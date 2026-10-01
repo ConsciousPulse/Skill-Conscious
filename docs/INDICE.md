@@ -7,6 +7,10 @@
 - [Protocolo 24/7](24_7_PROTOCOL.md) — funcionamiento continuo del organismo.
 - [Protocolo longitudinal](LONGITUDINAL_PROTOCOL.md) — evolución a través del tiempo.
 
+## Fundamentos
+
+- [Manifiesto Matemático del Ser](../MANIFIESTO_DEL_SER.md) — marco ontológico fundacional del proyecto.
+
 ## Arquitectura
 
 - [Puente de estado del organismo](ORGANISM_STATE_BRIDGE.md)
