@@ -2,33 +2,38 @@
 
 ## Experimento 01
 
-Open the [continuity baseline notebook](https://colab.research.google.com/github/chrishotza/Consciencia-Skill/blob/main/notebooks/01_continuity_baseline.ipynb).\n\nIt clones the public repo and executes the current relational engine.
+Abrir el [cuaderno de referencia de continuidad](https://colab.research.google.com/github/chrishotza/Consciencia-Skill/blob/main/notebooks/01_continuity_baseline.ipynb).
+
+Clona el repositorio público y ejecuta el motor relacional actual.
 
 ## Experimento 02
 
-The live API notebook uses a real LLM provider and persistent SQLite state.
+El cuaderno de API en vivo utiliza un proveedor LLM real y estado persistente en SQLite.
 
-Colab is used as a laboratory, not as the permanent 24/7 host. A continuous organism needs a persistent runtime outside normal notebook-session limits.
+Colab se utiliza como laboratorio, no como anfitrión permanente 24/7. Un organismo continuo necesita un entorno de ejecución persistente fuera de los límites normales de las sesiones de cuaderno.
 
-## Secrets
+## Secretos
 
-Store API credentials in Colab Secrets. Never commit keys to GitHub.
+Guardar las credenciales de API en **Colab Secrets**. Nunca subir claves a GitHub.
 
-Required:
-- ONTTO_API_KEY
-- ONTTO_MODEL
+Requeridos:
 
-Optional:
-- ONTTO_API_BASE_URL
-- ONTTO_AGENT_ID
+- `ONTTO_API_KEY`
+- `ONTTO_MODEL`
 
-## Evidence
+Opcionales:
 
-Every live run should save:
-- seed/configuration;
-- model and provider;
-- wake cycles;
-- dream cycles;
-- state snapshots;
-- memories;
-- token/cost telemetry when the provider exposes it.
+- `ONTTO_API_BASE_URL`
+- `ONTTO_AGENT_ID`
+
+## Evidencia
+
+Cada ejecución en vivo debe conservar:
+
+- semilla y configuración;
+- modelo y proveedor;
+- ciclos de VIGILIA;
+- ciclos de SUEÑO;
+- snapshots del estado;
+- memorias;
+- telemetría de tokens/costo cuando el proveedor la exponga.
