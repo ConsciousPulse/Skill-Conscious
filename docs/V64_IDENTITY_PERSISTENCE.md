@@ -34,8 +34,7 @@ This separates identity persistence from the current semantic description of the
 self. A positive result would mean that an identity-linked dynamic signature remains
 decodable after a common self-model overwrite and textual ablation.
 
-Bridge OFF provides a matched control in which the common semantic perturbation is
-not transduced into dynamics.
+Bridge OFF provides a matched control in which identity encoding is still bridged identically, but the common perturbation is not transduced into numerical dynamics. The ON/OFF comparison therefore isolates the effect of the perturbation pathway rather than the earlier identity encoding.
 
 ## Primary endpoints
 
