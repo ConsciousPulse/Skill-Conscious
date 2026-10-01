@@ -151,9 +151,30 @@ trajectory selection and did not predict first-order model error better than a
 constant baseline in this harness. The result is retained as a negative finding
 and points to a redesign rather than support for metacognitive capability.
 
+### V65 — Dream consolidation and future selection
+24 matched replicates × 24 evaluation cycles across no_dream, dream_no_bridge, and
+dream_bridge.
+
+- no_dream mean regret: 0.3258519211;
+- dream_no_bridge mean regret: 0.2109500171;
+- dream_bridge mean regret: 0.1779272005;
+- dream-bridge regret advantage over dream-no-bridge: 0.0330228167;
+- paired sign-flip p: 0.00005;
+- dream_bridge oracle-hit rate: 25.3472%;
+- dream_no_bridge oracle-hit rate: 13.3681%;
+- oracle-hit advantage: 0.1197916667;
+- paired sign-flip p for hit advantage: 0.00005;
+- dream-no-bridge regret change vs no_dream: -0.1149019040;
+- paired sign-flip p for dream-vs-no-dream regret: 0.00005.
+
+Interpretation: the deterministic harness supports a computational wake/dream mechanism
+in which DREAM-generated semantic consolidation changes internal state and produces
+a measurable downstream effect on future trajectory selection. This does not
+establish subjective dreaming or phenomenological consciousness.
+
 ## Engineering status
 
-V60, V61, V62, and V63 completed successfully on their recorded GitHub Actions heads. Their artifacts
+V60, V61, V62, V63, and V65 completed successfully on their recorded GitHub Actions heads. Their artifacts
 are preserved in the corresponding GitHub Actions runs. Earlier V43–V59 results
 remain reproducible from their historical workflows and evidence records.
 
@@ -166,4 +187,5 @@ semantic self-representation as a causally active variable.
 
 They do not establish phenomenological consciousness or subjective experience.
 The next experiments should target identity persistence under self-model change,
-recovery after self-model perturbation, and a redesigned second-order meta-model.
+recovery after self-model perturbation, and whether dream consolidation can preserve
+learned structure after raw episodic memory is removed.
