@@ -113,6 +113,22 @@ deterministic harness, so V59 does not support a claim that semantic bridging
 itself increases self-model selection utility. It remains a null interaction /
 compositionality result.
 
+### V64 — Identity persistence under self-model perturbation
+24 paired replicates tested whether identity-specific dynamic signatures remained
+decodable after a common semantic self-model overwrite, explicit self-model text
+removal, and autonomous continuation without semantic input.
+
+- bridge OFF post-ablation accuracy: 50.0%;
+- bridge ON post-ablation accuracy: 50.0%;
+- ON-minus-OFF accuracy difference: 0.0;
+- paired sign-flip p: 1.0;
+- folds above chance: 0% in both conditions.
+
+Interpretation: V64 produced a null result. Under the tested perturbation, feature set,
+classifier, and horizon, the original identity was not decodable after semantic
+self-model overwrite and textual ablation. The result is retained as a real
+limitation, not evidence against every possible form of identity persistence.
+
 ### V61 — Metacognitive self-model
 24 paired replicates × 32 evaluation cycles.
 
