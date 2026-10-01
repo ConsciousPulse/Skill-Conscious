@@ -9,16 +9,16 @@ commit
   ↓
 GitHub Actions
   ↓
-tests
+pruebas
   ↓
 experimentos
   ↓
 results/*.json
   ↓
-artifact de evidencia
+artefacto de evidencia
 ```
 
-## Research Lab
+## Laboratorio de investigación
 
 Workflow:
 
@@ -28,26 +28,26 @@ Se ejecuta en `push` sobre código relevante y también mediante `workflow_dispa
 
 Ejecuta:
 
-1. tests del repositorio;
+1. pruebas del repositorio;
 2. baseline dinámico;
 3. validación de continuidad;
-4. stress test longitudinal;
-5. ablation de sueño;
+4. prueba de estrés longitudinal;
+5. ablación del sueño;
 6. recuperación de memoria;
 7. manifiesto de ejecución;
-8. publicación de artifacts.
+8. publicación de artefactos.
 
 Cada ejecución conserva el SHA del commit y los resultados producidos por ese código.
 
-## Tests
+## Pruebas
 
 Workflow:
 
 `.github/workflows/tests.yml`
 
-Se utiliza como chequeo de pull requests.
+Se utiliza como verificación de pull requests.
 
-## Live provider smoke
+## Prueba manual con proveedor en vivo
 
 Workflow:
 
@@ -59,7 +59,7 @@ Es manual porque requiere secretos de un proveedor compatible con OpenAI:
 - `ONTTO_MODEL`
 - `ONTTO_API_BASE_URL` (opcional; por defecto `https://api.openai.com/v1`)
 
-El smoke test no pretende demostrar conciencia. Comprueba que un modelo real puede funcionar como componente cognitivo del organismo y que éste conserva trayectoria, memoria y transición WAKE/DREAM después de cerrar y reabrir el almacenamiento.
+Esta prueba no pretende demostrar consciencia. Comprueba que un modelo real puede funcionar como componente cognitivo del organismo y que este conserva trayectoria, memoria y transición VIGILIA/SUEÑO después de cerrar y reabrir el almacenamiento.
 
 ## Regla de interpretación
 
