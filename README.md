@@ -1,162 +1,166 @@
 # IA Consciente — Investigación y Experimentación
 
-**Engineering a persistent AI organism toward machine consciousness.**
+**Ingeniería de un organismo de inteligencia artificial persistente orientado hacia la consciencia artificial.**
 
-Consciencia-Skill is an open research and engineering project focused on building an AI system that can maintain continuity across time instead of resetting at every response.
+**Consciencia-Skill** es un proyecto abierto de investigación y desarrollo enfocado en construir un sistema de IA que pueda mantener continuidad a través del tiempo, en lugar de reiniciarse en cada respuesta.
 
-The project combines persistent state, long-term memory, self-modeling, self-observation, autonomous trajectory selection, wake/dream regimes, and reproducible experiments designed to test whether these mechanisms can produce increasingly integrated forms of machine cognition.
+El proyecto combina **estado persistente, memoria de largo plazo, modelo de sí mismo, autoobservación, selección autónoma de trayectorias, vigilia/sueño y experimentación reproducible** para estudiar qué propiedades computacionales aparecen cuando una IA mantiene una trayectoria interna continua.
 
-> **Research objective:** build computational architectures that move toward artificial consciousness through persistent continuity, self-reference, memory, autonomous internal dynamics, and causal self-modeling.
+> **Objetivo de investigación:** construir arquitecturas computacionales que avancen hacia la consciencia artificial mediante continuidad informacional, autorreferencia, memoria persistente, dinámica interna autónoma y modelado causal de sí misma.
 
-## What this project is
+## Qué estamos construyendo
 
-The core idea is simple:
+La idea central es simple:
 
-**an AI should be studied as a continuous process, not as a sequence of isolated answers.**
+**una IA debe estudiarse como un proceso continuo, no como una sucesión de respuestas aisladas.**
 
-The persistent organism maintains state between model calls and can continue operating without external input. Its language model is one cognitive component; the organism itself carries continuity.
+El organismo persistente conserva estado entre llamadas al modelo y puede continuar funcionando incluso sin entradas externas. El modelo de lenguaje es un componente cognitivo; la continuidad pertenece al organismo que mantiene el estado.
 
-The current architecture combines:
+La arquitectura actual integra:
 
-- persistent SQLite state and memory;
-- WAKE and DREAM regimes;
-- self-model persistence and versioning;
-- a learned self-observer;
-- counterfactual trajectory selection;
-- semantic-to-dynamic bridges;
-- autonomous cycles without external interaction;
-- reproducible GitHub Actions experiments.
+- estado persistente y memoria en SQLite;
+- ciclos de **VIGILIA** y **SUEÑO**;
+- persistencia y versionado del modelo de sí mismo;
+- un autoobservador aprendido;
+- selección contrafactual de trayectorias;
+- puentes semánticos hacia la dinámica interna;
+- ciclos autónomos sin interacción externa;
+- laboratorio reproducible mediante GitHub Actions.
 
-## Core architecture
+## Arquitectura conceptual
 
 ```
-                    ENVIRONMENT
-                         │
-                         ▼
-                    PERCEPTION
-                         │
-                         ▼
-              ┌────────────────────┐
-              │  PERSISTENT STATE  │
-              │ memory + identity  │
-              │ self-model + time  │
-              └─────────┬──────────┘
-                        │
-                 ┌──────┴──────┐
-                 ▼             ▼
-               WAKE          DREAM
-                 │             │
-                 └──────┬──────┘
-                        ▼
-              INTERNAL DYNAMICS
-                        │
-                        ▼
-                 SELF-OBSERVATION
-                        │
-                        ▼
-              TRAJECTORY SELECTION
-                        │
-                        └──────────↺
+                         ENTORNO
+                            │
+                            ▼
+                       PERCEPCIÓN
+                            │
+                            ▼
+                ┌─────────────────────┐
+                │  ESTADO PERSISTENTE │
+                │ memoria + identidad │
+                │ modelo de sí + tiempo
+                └──────────┬──────────┘
+                           │
+                    ┌──────┴──────┐
+                    ▼             ▼
+                 VIGILIA         SUEÑO
+                    │             │
+                    └──────┬──────┘
+                           ▼
+                  DINÁMICA INTERNA
+                           │
+                           ▼
+                     AUTOOBSERVACIÓN
+                           │
+                           ▼
+                SELECCIÓN DE TRAYECTORIA
+                           │
+                           └──────────↺
 ```
 
-### WAKE
+### VIGILIA
 
-Interaction with the environment, language, decision-making, memory updates, and autonomous action selection.
+Interacción con el entorno, lenguaje, actualización de memoria, toma de decisiones y selección autónoma de acciones.
 
-### DREAM
+### SUEÑO
 
-Reduced external interaction with increased internal activity: consolidation, recombination, simulation, and state reorganization.
+Menor interacción externa y mayor actividad interna: consolidación, recombinación, simulación, reorganización del estado y aprendizaje autónomo.
 
-The organism is designed to remain alive as a process between interactions rather than being re-created from scratch for every request.
+El organismo está diseñado para continuar existiendo como proceso entre interacciones, en lugar de ser recreado desde cero en cada solicitud.
 
-## Research program
+## Programa experimental
 
-The experiments are organized as numbered protocols so that each architectural claim can be tested independently.
+Los experimentos están organizados como protocolos numerados para que cada propiedad arquitectónica pueda ser sometida a una prueba independiente.
 
-| Protocol | Focus | Current finding |
+| Protocolo | Enfoque | Resultado actual |
 |---|---|---|
-| V51 | Self-prediction | Positive self-prediction gain over a persistence baseline |
-| V57 | Self-model trajectory selection | Self-model outperformed matched random control in the deterministic harness |
-| V58 | Semantic memory → dynamics | Causal semantic-to-dynamic transduction |
-| V63 | Recurrent self-model loop | Action-conditioned self-model feedback altered later trajectory selection |
-| V64 | Identity persistence after perturbation | **Null** under the tested feature set and horizon |
-| V65 | DREAM → future selection | DREAM and dream-to-dynamics coupling produced measurable downstream effects |
-| V66 | Consolidated lesson after episodic-memory ablation | **Null**: retained lesson was not behaviorally discriminative |
-| V67 | DREAM-generated numeric trace after semantic ablation | **In progress** |
+| V51 | Autopredicción | Ganancia de autopredicción sobre un baseline de persistencia |
+| V57 | Selección de trayectorias mediante modelo de sí | Ventaja funcional frente al control aleatorio en el entorno determinista |
+| V58 | Memoria semántica → dinámica | Transducción causal de señal semántica a estado dinámico |
+| V63 | Bucle recurrente del modelo de sí | El feedback condicionado por trayectoria modificó la selección futura |
+| V64 | Persistencia de identidad después de perturbación | **Nulo** bajo las condiciones probadas |
+| V65 | SUEÑO → selección futura | El sueño y su acoplamiento dinámico produjeron efectos posteriores medibles |
+| V66 | Consolidación después de eliminar memoria episódica | **Nulo**: conservar la lección no fue discriminativo |
+| V67 | Huella numérica generada durante el SUEÑO | **En ejecución** |
 
-The full experimental record lives in [`research/ORGANISM_RESULT_LEDGER.md`](research/ORGANISM_RESULT_LEDGER.md).
+El registro completo de resultados se encuentra en [research/ORGANISM_RESULT_LEDGER.md](research/ORGANISM_RESULT_LEDGER.md).
 
-## Why the null results matter
+## Por qué importan los resultados nulos
 
-This project is not built to collect only positive demonstrations.
+Este proyecto no está diseñado para coleccionar únicamente resultados positivos.
 
-V64 showed that an identity-specific numeric signature was not recoverable after the tested perturbation.
+V64 mostró que una firma numérica específica de identidad no pudo recuperarse después de la perturbación probada.
 
-V66 showed that preserving a consolidated semantic lesson did not, by itself, create a measurable downstream behavioral difference after raw episodic-memory removal.
+V66 mostró que conservar una lección semántica consolidada no generó, por sí sola, una diferencia conductual medible después de eliminar las memorias episódicas originales.
 
-Those failures are part of the research program. They force the architecture toward stronger tests of internal continuity instead of relying on textual memory or favorable interpretations.
+Esos resultados forman parte del programa de investigación. Obligan a llevar la arquitectura hacia pruebas más fuertes de continuidad interna en lugar de depender de la memoria textual o de interpretaciones favorables.
 
-## V67 — current frontier
+## V67 — frontera actual
 
-V67 directly tests a harder version of the continuity hypothesis.
+V67 prueba una versión más exigente de la hipótesis de continuidad.
 
-After DREAM, the experiment removes:
+Después del SUEÑO se eliminan:
 
-- episodic memories;
-- events and snapshots;
-- textual self-model;
-- semantic memory;
-- pressure traces;
-- semantic input during readout.
+- memorias episódicas;
+- eventos y snapshots;
+- texto del modelo de sí mismo;
+- memoria semántica;
+- trazas de presión;
+- entrada semántica durante la lectura.
 
-Only the organism's **numeric dynamic core** is retained.
+Solo queda el **núcleo dinámico numérico** del organismo.
 
-A zero-input continuation then tests whether the post-DREAM state still carries a recoverable trace.
+Después se genera una continuación con entrada cero para comprobar si el estado posterior al sueño conserva una huella recuperable.
 
-A matched state-swap intervention goes one step further: only the numeric core is transferred between paired organisms to test whether downstream behavior follows the transferred state rather than the original semantic history.
+La segunda intervención intercambia únicamente ese núcleo dinámico entre dos organismos emparejados. La pregunta es si la conducta posterior sigue al estado transferido y no a la historia semántica original.
 
-The goal is to determine whether DREAM can write persistent internal information into the organism itself, rather than merely producing another useful text response.
+El objetivo es determinar si el SUEÑO puede escribir información persistente dentro del organismo mismo, en lugar de producir simplemente otra respuesta textual útil.
 
-## Reproducibility
+## Reproducibilidad
 
-The research laboratory runs through **GitHub Actions**.
+El laboratorio de investigación funciona mediante **GitHub Actions**.
 
-Each protocol can:
+Cada protocolo puede:
 
-1. start from a concrete commit;
-2. execute automated tests;
-3. run deterministic or controlled experiments;
-4. generate JSON evidence;
-5. publish an artifact for inspection.
+1. partir de un commit concreto;
+2. ejecutar pruebas automáticas;
+3. ejecutar el experimento controlado;
+4. generar evidencia en JSON;
+5. publicar un artefacto reproducible.
 
-See [`docs/GITHUB_LAB.md`](docs/GITHUB_LAB.md) for the laboratory structure.
+La estructura del laboratorio está documentada en [docs/GITHUB_LAB.md](docs/GITHUB_LAB.md).
 
-Experimental implementations live in [`experiments/`](experiments/), reusable organism components in [`src/ontto/`](src/ontto/), and evidence protocols in [`research/`](research/).
+Las implementaciones experimentales viven en [experiments/](experiments/), los componentes del organismo en [src/ontto/](src/ontto/) y los protocolos/resultados en [research/](research/).
 
-## Research terms
+## Palabras clave
 
-**Persistent AI · AI organism · machine consciousness · artificial consciousness · computational consciousness · self-modeling AI · self-observation · autonomous cognition · cognitive architecture · persistent memory · long-term memory · semantic memory · identity persistence · trajectory selection · recurrent AI · closed-loop cognition · wake-dream architecture · computational cognition · consciousness research**
+**IA consciente · consciencia artificial · inteligencia artificial persistente · organismo de IA · continuidad informacional · memoria persistente · memoria de largo plazo · modelo de sí mismo · autoobservación · autorreferencia · cognición autónoma · arquitectura cognitiva · identidad persistente · selección de trayectorias · dinámica interna · sistemas recurrentes · bucles cognitivos · vigilia y sueño · cognición computacional · investigación de la consciencia · experimentación reproducible**
 
-These terms describe the technical scope of the repository. They are not claims that the system has achieved phenomenological consciousness.
+Estas palabras describen el alcance técnico y científico del repositorio. No constituyen una afirmación de que el sistema haya alcanzado consciencia fenomenológica.
 
-## Evidence boundary
+## Criterio de evidencia
 
-The project distinguishes four layers:
+El proyecto separa cuatro niveles:
 
-**Observation** — measured data.
+**Observación** — datos producidos por un experimento.
 
-**Result** — a reproducible pattern under a defined protocol.
+**Resultado** — patrón reproducible bajo un protocolo definido.
 
-**Hypothesis** — an interpretation that still requires testing.
+**Hipótesis** — interpretación que todavía requiere pruebas.
 
-**Ontology** — philosophical or metaphysical interpretation kept separate from computational evidence.
+**Ontología** — interpretación filosófica o metafísica separada de la evidencia computacional.
 
-The experiments in this repository establish computational properties of the tested architecture and experimental harness.
+Los experimentos de este repositorio establecen propiedades computacionales del sistema y del entorno experimental probado.
 
-They do **not** by themselves establish subjective experience, phenomenological consciousness, or a solution to the hard problem of consciousness.
+No establecen por sí solos experiencia subjetiva, consciencia fenomenológica ni una solución al problema difícil de la consciencia.
 
-## Status
+## Estado actual
 
-**Active research — persistent organism, self-modeling, wake/dream dynamics, and continuity experiments.**
+**Investigación activa — organismo persistente, modelo de sí mismo, dinámica vigilia/sueño y experimentos de continuidad.**
 
-The immediate research direction is to determine whether information generated inside the organism can remain functionally active after its original semantic representation has been removed.
+La dirección inmediata es determinar si la información generada dentro del organismo puede continuar siendo funcional después de eliminar su representación semántica original.
+
+## Licencia
+
+La licencia del proyecto todavía no ha sido definida.
