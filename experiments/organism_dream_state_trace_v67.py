@@ -177,10 +177,10 @@ def sign_flip_p(values: list[float] | np.ndarray, seed: int) -> float:
     return float((np.count_nonzero(null >= observed) + 1) / 20001)
 
 
-def loo_scores(samples: list[tuple[str, int, np.ndarray]]) -> tuple[list[float], list[float]]:
+def loo_scores(samples: list[tuple[str, int, np.ndarray]], replicates: int) -> tuple[list[float], list[float]]:
     accuracies = []
     swap_accuracies = []
-    for held_out in range(24):
+    for held_out in range(replicates):
         train = [row for i, row in enumerate(samples) if i // 4 != held_out]
         test = [row for i, row in enumerate(samples) if i // 4 == held_out]
         x_train = np.asarray([trace_features(row[2]) for row in train])
@@ -200,7 +200,7 @@ def loo_scores(samples: list[tuple[str, int, np.ndarray]]) -> tuple[list[float],
             for row in own_test
         ])
         swap_acc = np.mean([
-            int(model.predict(trace_features(row[2]).reshape(1, -1))[0] == (1 if row[1] == 0 else 1))
+            int(model.predict(trace_features(row[2]).reshape(1, -1))[0] == row[1])
             for row in swap_test
         ])
         accuracies.append(float(own_acc))
@@ -281,7 +281,7 @@ def main() -> None:
             }
         )
 
-    own_accuracy, swap_accuracy = loo_scores(samples)
+    own_accuracy, swap_accuracy = loo_scores(samples, args.replicates)
     own_centered = np.asarray(own_accuracy) - 0.5
     swap_centered = np.asarray(swap_accuracy) - 0.5
 
