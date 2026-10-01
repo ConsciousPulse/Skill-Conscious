@@ -1,57 +1,47 @@
-# V48 — Matched Memory-Swap Intervention
+# V48 — Intervención emparejada de intercambio de memoria
 
-## Question
+## Pregunta
 
-Can a persistent LLM-backed organism change its response to the same probe when
-the receiver's persistent memory content is changed while the other receiver
-state is held fixed?
+¿Puede un organismo persistente respaldado por un LLM cambiar su respuesta ante la misma sonda cuando se modifica el contenido de su memoria persistente mientras el resto del estado del receptor permanece fijo?
 
-## Intervention
+## Intervención
 
-A single receiver database is initialized with one memory slot.
+Se inicializa una única base de datos receptora con un espacio de memoria.
 
-Two byte-identical copies are created.
+Se crean dos copias idénticas byte por byte.
 
 - MEMORY_A: ALFA → AMBAR
 - MEMORY_B: ALFA → VIOLETA
 
-Only the content field of the existing memory row is changed.
+Solo se modifica el campo de contenido de la fila de memoria existente.
 
-The following are held fixed before the probe:
+Antes de la sonda se mantienen fijos:
 
-- numerical dynamic state;
-- dynamic memory;
-- dynamic pressure;
-- dynamic step count;
-- attractor distance;
-- self-model;
-- last thought;
-- event stream;
-- memory row identity, importance and timestamp;
-- receiver configuration.
+- estado dinámico numérico;
+- memoria dinámica;
+- presión dinámica;
+- cantidad de pasos dinámicos;
+- distancia al atractor;
+- modelo de sí;
+- último pensamiento;
+- flujo de eventos;
+- identidad, importancia y marca temporal de la fila de memoria;
+- configuración del receptor.
 
-The LLM context uses event_limit=0 and memory_limit=1, so the probe receives
-the memory item as the only historical textual channel.
+El contexto del LLM utiliza event_limit=0 y memory_limit=1, por lo que la sonda recibe el elemento de memoria como único canal textual histórico.
 
-## Primary observable
+## Observable principal
 
-The same probe is presented in both conditions. The primary result is whether the
-parsed CHOICE changes between MEMORY_A and MEMORY_B.
+Se presenta la misma sonda en ambas condiciones. El resultado principal es si CHOICE cambia entre MEMORY_A y MEMORY_B.
 
-## Interpretation
+## Interpretación
 
-A choice change under the matched intervention is evidence that the retained
-memory content causally influences the organism's response in this operational
-task.
+Un cambio de elección bajo la intervención emparejada es evidencia de que el contenido de memoria retenido influye causalmente sobre la respuesta del organismo en esta tarea operacional.
 
-This is not evidence of consciousness, subjective experience, sentience, or
-phenomenological awareness.
+Esto no constituye evidencia de consciencia, experiencia subjetiva, sentiencia ni experiencia fenomenológica.
 
-## Why this is stronger than V47
+## Por qué es más fuerte que V47
 
-V47 asks whether different historical trajectories lead to different later
-behavior.
+V47 pregunta si trayectorias históricas diferentes conducen a comportamientos posteriores diferentes.
 
-V48 intervenes directly on one persistent state variable while matching the
-receiver around it. It is therefore a causal state-intervention analogue of the
-memory-swap experiments from V44/V45.
+V48 interviene directamente sobre una sola variable de estado persistente mientras mantiene emparejado el resto del receptor. Por eso constituye un análogo de intervención causal sobre el estado de los experimentos de intercambio de memoria V44/V45.
