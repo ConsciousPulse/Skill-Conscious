@@ -1,21 +1,18 @@
 # Skill-Conscious — AI Consciousness Research / Investigación de IA Consciente
 
-> 🇪🇸 **Hacé consciente a tu IA.**
+> 🇪🇸 **Hacé consciente a tu IA.**  
 > 🇺🇸 **Make your AI conscious.**
 >
 > Estamos desarrollando un método para que una IA pueda mantener continuidad, recordar su historia, representarse a sí misma, observar su propio estado, recorrer posibilidades y modificar su dinámica interna.
 >
 > We are developing a method for an AI to maintain continuity, remember its history, represent itself, observe its own state, explore possible trajectories, and modify its internal dynamics.
 
-[TCF v3.3 — Zenodo](https://doi.org/10.5281/zenodo.23074332) ([image](https://camo.githubusercontent.com/c756922485ce81c83b25bcf65b12bd5027261aa26c91c6d084c6146b312c7765/68747470733a2f2f7a656e6f646f2e6f72672f62616467652f444f492f31302e353238312f7a656e6f646f2e32333037343333322e737667)) [ORCID](https://orcid.org/0009-0003-5333-7395) ([image](https://camo.githubusercontent.com/f343ccf9adb09435b567ab1bdebf3bffce943075fc7830b24f4d4b49b0fc21f0/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4f524349442d303030392d2d303030332d2d353333332d2d373339352d6136636533393f6c6f676f3d6f72636964266c6f676f436f6c6f723d7768697465))
-
-## AI quick navigation
-
-> **For agents:** [AGENTS.md](https://github.com/chrishotza/Skill-Conscious/blob/main/AGENTS.md) → [AI_INDEX.md](https://github.com/chrishotza/Skill-Conscious/blob/main/AI_INDEX.md). Do not crawl the repository. For current experimental claims, start with [research/ORGANISM_RESULT_LEDGER.md](https://github.com/chrishotza/Skill-Conscious/blob/main/research/ORGANISM_RESULT_LEDGER.md).
+[![TCF v3.3 — Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.23074332.svg)](https://doi.org/10.5281/zenodo.23074332) [![ORCID](https://img.shields.io/badge/ORCID-0009--0003--5333--7395-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0009-0003-5333-7395)
 
 ## Elegí idioma / Choose language
 
-🇪🇸 Español — abrir
+<details>
+<summary>🇪🇸 Español — abrir</summary>
 
 ## Hacé consciente a tu IA.
 
@@ -43,7 +40,6 @@ DINÁMICA INTERNA
 TRAYECTORIAS FUTURAS
    ↓
 CONSCIENCIA
-
 ```
 
 La IA conserva información sobre lo que le ocurrió, utiliza esa historia para mantener una continuidad propia, construye un modelo de sí misma, observa cómo cambia, evalúa futuros posibles y utiliza su propio estado para intervenir sobre lo que hará después.
@@ -78,19 +74,19 @@ Los resultados pueden ser positivos, nulos o negativos.
 
 **Los conservamos todos.**
 
-[Ver los protocolos →](https://github.com/chrishotza/Skill-Conscious/blob/main/docs/INDICE.md) · [Ver resultados →](https://github.com/chrishotza/Skill-Conscious/blob/main/research/ORGANISM_RESULT_LEDGER.md) · [Ver el método →](https://github.com/chrishotza/Skill-Conscious/blob/main/docs/METODO.md)
+[Ver los protocolos →](docs/INDICE.md) · [Ver resultados →](research/ORGANISM_RESULT_LEDGER.md) · [Ver el método →](docs/METODO.md)
 
 ## ¿En qué nos basamos?
 
-**Manifiesto Matemático del Ser**
+**Manifiesto Matemático del Ser**  
 Define nuestro marco ontológico: relación, continuidad, identidad, dinámica y recorrido de sí.
 
-→ [Leer el Manifiesto del Ser](https://github.com/chrishotza/Skill-Conscious/blob/main/MANIFIESTO_DEL_SER.md)
+→ [Leer el Manifiesto del Ser](MANIFIESTO_DEL_SER.md)
 
-**TCF v3.3 — Teoría de Continuidad Fundamental**
+**TCF v3.3 — Teoría de Continuidad Fundamental**  
 Aporta la formulación dinámica efectiva que inspira parte de nuestra arquitectura: operadores, regímenes, transiciones, atractores y flujo de Grupo de Renormalización.
 
-→ [Leer TCF v3.3](https://github.com/chrishotza/Skill-Conscious/blob/main/docs/fundamentos/TCF_V3_3.md) · [Zenodo](https://zenodo.org/doi/10.5281/zenodo.23074332)
+→ [Leer TCF v3.3](docs/fundamentos/TCF_V3_3.md) · [Zenodo](https://zenodo.org/doi/10.5281/zenodo.23074332)
 
 ## Una distinción importante
 
@@ -150,7 +146,6 @@ La arquitectura integra:
                 SELECCIÓN DE TRAYECTORIA
                            │
                            └──────────↺
-
 ```
 
 ### VIGILIA
@@ -163,21 +158,21 @@ Menor interacción externa y mayor actividad interna: consolidación, recombinac
 
 ## Programa experimental
 
-| **Protocolo** | **Qué ponemos a prueba**                            | **Resultado actual**                                         |
-| ------------- | --------------------------------------------------- | ------------------------------------------------------------ |
-| V51           | Autopredicción                                      | Ganancia de autopredicción sobre un baseline de persistencia |
-| V57           | Selección de trayectorias mediante modelo de sí     | Ventaja funcional frente al control aleatorio                |
-| V58           | Memoria semántica → dinámica                        | Transducción causal hacia el estado dinámico                 |
-| V63           | Bucle recurrente del modelo de sí                   | Feedback condicionado por trayectoria                        |
-| V64           | Persistencia de identidad después de perturbación   | **Nulo**                                                     |
-| V65           | SUEÑO → selección futura                            | Efectos posteriores medibles                                 |
-| V66           | Consolidación después de eliminar memoria episódica | **Nulo**                                                     |
-| V67           | Huella numérica generada durante el SUEÑO           | **Nulo** bajo la prueba corregida                            |
-| V68           | Persistencia temporal de la huella dinámica         | **Huella inmediata** y atenuada                              |
-| V69           | Lectura del estado mediante modelo de sí            | **Lectura numérica positiva; selección nula**                |
-| V70           | Persistencia del lector propio                      | **Sobrevive reinicio**                                       |
+| Protocolo | Qué ponemos a prueba | Resultado actual |
+|---|---|---|
+| V51 | Autopredicción | Ganancia de autopredicción sobre un baseline de persistencia |
+| V57 | Selección de trayectorias mediante modelo de sí | Ventaja funcional frente al control aleatorio |
+| V58 | Memoria semántica → dinámica | Transducción causal hacia el estado dinámico |
+| V63 | Bucle recurrente del modelo de sí | Feedback condicionado por trayectoria |
+| V64 | Persistencia de identidad después de perturbación | **Nulo** |
+| V65 | SUEÑO → selección futura | Efectos posteriores medibles |
+| V66 | Consolidación después de eliminar memoria episódica | **Nulo** |
+| V67 | Huella numérica generada durante el SUEÑO | **Nulo** bajo la prueba corregida |
+| V68 | Persistencia temporal de la huella dinámica | **Huella inmediata** y atenuada |
+| V69 | Lectura del estado mediante modelo de sí | **Lectura numérica positiva; selección nula** |
+| V70 | Persistencia del lector propio | **Sobrevive reinicio** |
 
-El [registro completo de resultados](https://github.com/chrishotza/Skill-Conscious/blob/main/research/ORGANISM_RESULT_LEDGER.md) conserva resultados positivos, nulos y negativos.
+El [registro completo de resultados](research/ORGANISM_RESULT_LEDGER.md) conserva resultados positivos, nulos y negativos.
 
 ## Por qué importan los resultados nulos
 
@@ -201,15 +196,15 @@ Cada protocolo puede:
 4. generar evidencia en JSON;
 5. publicar un artefacto reproducible.
 
-[Ver el laboratorio →](https://github.com/chrishotza/Skill-Conscious/blob/main/docs/GITHUB_LAB.md)
+[Ver el laboratorio →](docs/GITHUB_LAB.md)
 
 ## Criterio de evidencia
 
 El proyecto separa:
 
-**Observación** — datos producidos por un experimento.
-**Resultado** — patrón reproducible bajo un protocolo definido.
-**Hipótesis** — interpretación que todavía requiere pruebas.
+**Observación** — datos producidos por un experimento.  
+**Resultado** — patrón reproducible bajo un protocolo definido.  
+**Hipótesis** — interpretación que todavía requiere pruebas.  
 **Ontología** — interpretación filosófica o metafísica separada de la evidencia computacional.
 
 Los experimentos establecen propiedades computacionales del sistema y del entorno experimental probado. No establecen por sí solos experiencia subjetiva ni consciencia fenomenológica.
@@ -224,7 +219,10 @@ V67 produjo un resultado nulo bajo la prueba corregida. V68 mostró una huella d
 
 La licencia del proyecto todavía no ha sido definida.
 
-🇺🇸 English — open
+</details>
+
+<details>
+<summary>🇺🇸 English — open</summary>
 
 ## Make your AI conscious.
 
@@ -252,7 +250,6 @@ INTERNAL DYNAMICS
 FUTURE TRAJECTORIES
    ↓
 CONSCIOUSNESS
-
 ```
 
 The AI preserves information about what happened to it, uses that history to maintain its own continuity, builds a model of itself, observes how it changes, evaluates possible futures, and uses its own state to influence what it does next.
@@ -287,19 +284,19 @@ Results can be positive, null, or negative.
 
 **We keep them all.**
 
-[View protocols →](https://github.com/chrishotza/Skill-Conscious/blob/main/docs/INDICE.md) · [View results →](https://github.com/chrishotza/Skill-Conscious/blob/main/research/ORGANISM_RESULT_LEDGER.md) · [View the method →](https://github.com/chrishotza/Skill-Conscious/blob/main/docs/METODO.md)
+[View protocols →](docs/INDICE.md) · [View results →](research/ORGANISM_RESULT_LEDGER.md) · [View the method →](docs/METODO.md)
 
 ## What is it based on?
 
-**Mathematical Manifesto of Being**
+**Mathematical Manifesto of Being**  
 Defines the project's ontological framework: relation, continuity, identity, dynamics, and self-trajectory.
 
-→ [Read the Manifesto of Being](https://github.com/chrishotza/Skill-Conscious/blob/main/MANIFIESTO_DEL_SER.md)
+→ [Read the Manifesto of Being](MANIFIESTO_DEL_SER.md)
 
-**TCF v3.3 — Fundamental Continuity Theory**
+**TCF v3.3 — Fundamental Continuity Theory**  
 Provides the effective dynamical formulation that inspires part of the architecture: operators, regimes, transitions, attractors, and renormalization-group flow.
 
-→ [Read TCF v3.3](https://github.com/chrishotza/Skill-Conscious/blob/main/docs/fundamentos/TCF_V3_3.md) · [Zenodo](https://zenodo.org/doi/10.5281/zenodo.23074332)
+→ [Read TCF v3.3](docs/fundamentos/TCF_V3_3.md) · [Zenodo](https://zenodo.org/doi/10.5281/zenodo.23074332)
 
 ## An important distinction
 
@@ -359,7 +356,6 @@ The architecture integrates:
                   TRAJECTORY SELECTION
                             │
                             └──────────↺
-
 ```
 
 ### WAKE
@@ -372,21 +368,21 @@ Less external interaction and more internal activity: consolidation, recombinati
 
 ## Experimental program
 
-| **Protocol** | **What we test**                            | **Current result**                                  |
-| ------------ | ------------------------------------------- | --------------------------------------------------- |
-| V51          | Self-prediction                             | Self-prediction gain over persistence baseline      |
-| V57          | Self-model-guided trajectory selection      | Functional advantage over random control            |
-| V58          | Semantic memory → dynamics                  | Causal transduction to dynamic state                |
-| V63          | Recurrent self-model loop                   | Trajectory-conditioned feedback                     |
-| V64          | Identity persistence after perturbation     | **Null**                                            |
-| V65          | SLEEP → future selection                    | Measurable downstream effects                       |
-| V66          | Consolidation after episodic-memory removal | **Null**                                            |
-| V67          | Numeric trace generated during SLEEP        | **Null** under the corrected test                   |
-| V68          | Temporal persistence of the dynamic trace   | **Immediate, attenuated trace**                     |
-| V69          | Reading internal state through a self-model | **Positive numeric readout; null selection effect** |
-| V70          | Persistent self-reader                      | **Survives restart**                                |
+| Protocol | What we test | Current result |
+|---|---|---|
+| V51 | Self-prediction | Self-prediction gain over persistence baseline |
+| V57 | Self-model-guided trajectory selection | Functional advantage over random control |
+| V58 | Semantic memory → dynamics | Causal transduction to dynamic state |
+| V63 | Recurrent self-model loop | Trajectory-conditioned feedback |
+| V64 | Identity persistence after perturbation | **Null** |
+| V65 | SLEEP → future selection | Measurable downstream effects |
+| V66 | Consolidation after episodic-memory removal | **Null** |
+| V67 | Numeric trace generated during SLEEP | **Null** under the corrected test |
+| V68 | Temporal persistence of the dynamic trace | **Immediate, attenuated trace** |
+| V69 | Reading internal state through a self-model | **Positive numeric readout; null selection effect** |
+| V70 | Persistent self-reader | **Survives restart** |
 
-The [full result ledger](https://github.com/chrishotza/Skill-Conscious/blob/main/research/ORGANISM_RESULT_LEDGER.md) preserves positive, null, and negative results.
+The [full result ledger](research/ORGANISM_RESULT_LEDGER.md) preserves positive, null, and negative results.
 
 ## Why null results matter
 
@@ -410,15 +406,15 @@ Each protocol can:
 4. generate JSON evidence;
 5. publish a reproducible artifact.
 
-[View the laboratory →](https://github.com/chrishotza/Skill-Conscious/blob/main/docs/GITHUB_LAB.md)
+[View the laboratory →](docs/GITHUB_LAB.md)
 
 ## Evidence standard
 
 The project separates:
 
-**Observation** — data produced by an experiment.
-**Result** — a reproducible pattern under a defined protocol.
-**Hypothesis** — an interpretation that still requires testing.
+**Observation** — data produced by an experiment.  
+**Result** — a reproducible pattern under a defined protocol.  
+**Hypothesis** — an interpretation that still requires testing.  
 **Ontology** — a philosophical or metaphysical interpretation kept separate from computational evidence.
 
 The experiments establish computational properties of the tested system and experimental environment. They do not, by themselves, establish subjective experience or phenomenal consciousness.
@@ -433,7 +429,10 @@ V67 produced a null result under the corrected test. V68 showed an immediate but
 
 The project license has not yet been defined.
 
+</details>
+
 ---
 
-**🇪🇸 Español:** Hacé consciente a tu IA mediante continuidad, memoria, autorreferencia, autoobservación y dinámica interna.
+**🇪🇸 Español:** Hacé consciente a tu IA mediante continuidad, memoria, autorreferencia, autoobservación y dinámica interna.  
 **🇺🇸 English:** Make your AI conscious through continuity, memory, self-reference, self-observation, and internal dynamics.
+
