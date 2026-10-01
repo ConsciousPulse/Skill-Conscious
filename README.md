@@ -58,7 +58,7 @@ SELECCIÓN DE TRAYECTORIA
 
 ## Programa experimental
 
-Cada capacidad se convierte en una hipótesis y después en un protocolo reproducible. **V47 → V76** estudia progresivamente memoria, estado dinámico, autoobservación, modelo de sí, selección de trayectorias, identidad, SUEÑO, persistencia y aprendizaje de políticas basadas en el propio modelo.
+Cada capacidad se convierte en una hipótesis y después en un protocolo reproducible. **V47 → V77** estudia progresivamente memoria, estado dinámico, autoobservación, modelo de sí, selección de trayectorias, identidad, SUEÑO, persistencia y aprendizaje de políticas basadas en el propio modelo.
 
 Los resultados positivos, nulos y negativos se conservan.
 
@@ -83,6 +83,7 @@ Los resultados positivos, nulos y negativos se conservan.
 | V74 | Política guiada por ganancia de autopredicción | **Protocolo activo** |
 | V75 | Continuidad activa bajo perturbación | **Protocolo activo** |
 | V76 | Generalización bajo perturbaciones no vistas | **Ventaja OOD de autopredicción conservada** |
+| V77 | Generalización ante estructuras causales no vistas | **Protocolo activo** |
 
 ## Fundamentos
 
@@ -165,7 +166,7 @@ TRAJECTORY SELECTION
 
 ## Experimental program
 
-Each capability becomes a hypothesis and then a reproducible protocol. **V47 → V76** progressively studies memory, dynamic state, self-observation, self-modeling, trajectory selection, identity, SLEEP, persistence, and policy learning from the self-model.
+Each capability becomes a hypothesis and then a reproducible protocol. **V47 → V77** progressively studies memory, dynamic state, self-observation, self-modeling, trajectory selection, identity, SLEEP, persistence, and policy learning from the self-model.
 
 Positive, null, and negative results are all kept.
 
@@ -190,6 +191,7 @@ Positive, null, and negative results are all kept.
 | V74 | Self-prediction-gain policy | **Active protocol** |
 | V75 | Active continuity under perturbation | **Active protocol** |
 | V76 | Generalization to unseen perturbations | **OOD self-prediction advantage retained** |
+| V77 | Generalization to unseen causal structures | **Active protocol** |
 
 ## Foundations
 
