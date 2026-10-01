@@ -114,3 +114,5 @@ V52 agrega un adaptador de compatibilidad futura inspirado en el operador AEVUM,
 V53 agrega selección contrafactual de trayectoria usando el auto-modelo. V54 mide predicción lingüística del propio movimiento respecto del atractor antes de la transición.
 
 V55 agrega recuperación de identidad bajo perturbación, comparando selección contrafactual activada/desactivada.
+
+V56 agrega una política opcional de admisión de memoria basada en compatibilidad futura AEVUM, todavía separada de la memoria canónica del organismo.
