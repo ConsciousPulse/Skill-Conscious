@@ -242,7 +242,6 @@ class PersistentOrganism:
 
         memory_candidate = self._extract_memory_candidate(out.text)
         self_model_candidate = self._extract_self_model_candidate(out.text)
-        self._extract_self_model(out.text)
 
         semantic_bridge = None
         semantic_self_model_bridge = None
@@ -269,6 +268,8 @@ class PersistentOrganism:
                 )
             else:
                 wake_signal = float(semantic_self_model_bridge["signal"])
+
+        self._extract_self_model(out.text)
 
         dynamic = self._advance_dynamic(
             wake_signal,
