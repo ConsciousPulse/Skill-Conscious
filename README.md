@@ -82,7 +82,7 @@ Los resultados positivos, nulos y negativos se conservan.
 | V73 | Política propia persistida e integrada en el organismo | **Protocolo activo** |
 | V74 | Política guiada por ganancia de autopredicción | **Protocolo activo** |
 | V75 | Continuidad activa bajo perturbación | **Protocolo activo** |
-| V76 | Generalización bajo perturbaciones no vistas | **Protocolo activo** |
+| V76 | Generalización bajo perturbaciones no vistas | **Ventaja OOD de autopredicción conservada** |
 
 ## Fundamentos
 
@@ -189,7 +189,7 @@ Positive, null, and negative results are all kept.
 | V73 | Persisted self-policy integrated into the organism | **Active protocol** |
 | V74 | Self-prediction-gain policy | **Active protocol** |
 | V75 | Active continuity under perturbation | **Active protocol** |
-| V76 | Generalization to unseen perturbations | **Active protocol** |
+| V76 | Generalization to unseen perturbations | **OOD self-prediction advantage retained** |
 
 ## Foundations
 
