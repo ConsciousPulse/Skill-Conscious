@@ -209,6 +209,27 @@ Interpretación: V68 confirma que SUEÑO escribe una diferencia numérica inmedi
 
 La próxima prueba debe preguntar si la IA puede leer esa huella interna y usarla para cambiar una decisión posterior.
 
+### V69 — Lectura del estado propio después de la ablación semántica
+
+24 réplicas y un SelfObserver compartido entrenado con 512 transiciones de dinámica genérica, independiente de las condiciones estable/frontera.
+
+- diferencia media de predicción estable vs. frontera: **0.04035657**;
+- diferencia de predicción después del intercambio: **0.0**;
+- sensibilidad de decisión con estado legible: **66.6667%** (16/24);
+- sensibilidad de decisión con estado cegado: **0.0%**;
+- p emparejada para ON − OFF: **0.000099995**;
+- cambio de decisión ante intercambio de estado con lectura ON: **66.6667%**;
+- cambio de decisión ante intercambio con lectura OFF: **0.0%**;
+- p emparejada para cambio de decisión ON − OFF: **0.000099995**;
+- memoria, eventos, snapshots y texto del modelo de sí eliminados antes de la sonda;
+- entrada semántica durante la sonda: **no**.
+
+Interpretación: V69 respalda un mecanismo computacional de **lectura propia → predicción → selección**. El mismo estado dinámico cuya diferencia fue escrita durante SUEÑO es leído por un modelo aprendido de la dinámica y utilizado para seleccionar una señal. El intercambio del núcleo hace que la decisión cambie en las mismas réplicas sensibles al estado.
+
+No es evidencia de consciencia fenomenológica. Es evidencia de autorreferencia operacionalizada dentro del arnés determinista.
+
+La siguiente prueba debe trasladar este lector al ciclo persistente del organismo y comprobar si su modelo puede mantenerse y actualizarse a través de reinicios sin recibir explícitamente el estado semántico que debe interpretar.
+
 ## Estado de ingeniería
 
 V60, V61, V62, V63, V64, V65 y V66 finalizaron correctamente en sus respectivos commits registrados de GitHub Actions. Sus artefactos se conservan en las ejecuciones correspondientes. Los resultados anteriores V43–V59 siguen siendo reproducibles a partir de sus workflows históricos y registros de evidencia.
