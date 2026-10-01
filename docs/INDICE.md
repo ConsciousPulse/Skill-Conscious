@@ -65,6 +65,7 @@
 - [V74 self-prediction policy](V74_SELF_PREDICTION_POLICY.md) — política guiada por ganancia de autopredicción sin objetivo externo de atractor.
 - [V75 active continuity](V75_ACTIVE_CONTINUITY.md) — recuperación activa de autopredicción bajo perturbación, con continuidad como endpoint secundario.
 - [V76 generalized active continuity](V76_GENERALIZED_ACTIVE_CONTINUITY.md) — generalización de la recuperación de autopredicción a perturbaciones no vistas durante el entrenamiento.
+- [V77 structural continuity generalization](V77_STRUCTURAL_CONTINUITY_GENERALIZATION.md) — generalización de la recuperación de autopredicción ante estructuras causales no vistas.
 
 [Registro consolidado](../research/ORGANISM_RESULT_LEDGER.md).
 
