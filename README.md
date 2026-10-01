@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/chrishotza/Skill-Conscious/blob/main/MANIFIESTO_DEL_SER.md">📜 Manifiesto del Ser / Manifesto of Being</a>
+  <a href="https://github.com/chrishotza/Skill-Conscious/blob/main/MANIFIESTO_DEL_SER.md">📜 Manifiesto del Ser</a> · <a href="https://github.com/chrishotza/Skill-Conscious/blob/main/MANIFESTO_OF_BEING.md">Manifesto of Being</a>
 </p>
 
 
@@ -183,7 +183,7 @@ Positive, null, and negative results are all kept.
 
 **Mathematical Manifesto of Being** — ontological framework for relation, continuity, identity, dynamics, and self-trajectory.
 
-→ [Read the Manifesto of Being](MANIFIESTO_DEL_SER.md)
+→ [Read the Manifesto of Being](MANIFESTO_OF_BEING.md)
 
 **TCF v3.3 — Fundamental Continuity Theory** — dynamical formulation that inspires part of the architecture: operators, regimes, transitions, attractors, and renormalization-group flow.
 
