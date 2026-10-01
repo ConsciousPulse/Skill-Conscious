@@ -269,17 +269,40 @@ def main():
         ablate_semantic_surfaces(stable_db)
         ablate_semantic_surfaces(frontier_db)
 
+        stable_on_db = out / f"stable_on_{replicate}.db"
+        stable_blind_db = out / f"stable_blind_{replicate}.db"
+        frontier_on_db = out / f"frontier_on_{replicate}.db"
+        frontier_blind_db = out / f"frontier_blind_{replicate}.db"
+        for source, target in (
+            (stable_db, stable_on_db),
+            (stable_db, stable_blind_db),
+            (frontier_db, frontier_on_db),
+            (frontier_db, frontier_blind_db),
+        ):
+            shutil.copy2(source, target)
+
         stable = run_persistent_cycle(
-            stable_db, seed, learned=True, blind=False
+            stable_on_db, seed, learned=True, blind=False
         )
         frontier = run_persistent_cycle(
-            frontier_db, seed, learned=True, blind=False
+            frontier_on_db, seed, learned=True, blind=False
         )
         stable_blind = run_persistent_cycle(
-            stable_db, seed, learned=True, blind=True
+            stable_blind_db, seed, learned=True, blind=True
         )
         frontier_blind = run_persistent_cycle(
-            frontier_db, seed, learned=True, blind=True
+            frontier_blind_db, seed, learned=True, blind=True
+        )
+
+        stable_fixed_db = out / f"stable_fixed_{replicate}.db"
+        frontier_fixed_db = out / f"frontier_fixed_{replicate}.db"
+        shutil.copy2(stable_db, stable_fixed_db)
+        shutil.copy2(frontier_db, frontier_fixed_db)
+        stable_fixed = run_persistent_cycle(
+            stable_fixed_db, seed, learned=False, blind=False
+        )
+        frontier_fixed = run_persistent_cycle(
+            frontier_fixed_db, seed, learned=False, blind=False
         )
 
         loaded_ok.append(
@@ -334,6 +357,8 @@ def main():
                 "replicate": replicate,
                 "stable_action": stable["chosen_signal"],
                 "frontier_action": frontier["chosen_signal"],
+                "stable_fixed_action": stable_fixed["chosen_signal"],
+                "frontier_fixed_action": frontier_fixed["chosen_signal"],
                 "stable_blind_action": stable_blind["chosen_signal"],
                 "frontier_blind_action": frontier_blind["chosen_signal"],
                 "stable_swap_action": stable_swap["chosen_signal"],
@@ -355,6 +380,13 @@ def main():
         ),
         "mean_blind_action_change": float(np.mean(blind_changes)),
         "mean_causal_state_swap_change": float(np.mean(state_swaps)),
+        "mean_learned_vs_fixed_action_change": float(
+            np.mean([
+                int(row["stable_action"] != row["stable_fixed_action"])
+                + int(row["frontier_action"] != row["frontier_fixed_action"])
+                for row in rows
+            ]) / 2.0
+        ),
         "semantic_input_during_probe": False,
         "manual_policy_copy_after_restart": False,
         "objective_remains_externally_defined": True,
