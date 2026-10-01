@@ -8,6 +8,7 @@ on:
       - "src/ontto/organism.py"
       - "tests/test_trajectory_selector.py"
       - "tests/test_organism_self_selection_v53.py"
+      - "experiments/organism_self_selection_v53.py"
       - ".github/workflows/organism-self-selection-v53.yml"
   workflow_dispatch:
 
@@ -24,3 +25,9 @@ jobs:
       - run: pip install -r requirements.txt
       - run: pip install pytest
       - run: pytest -q tests/test_trajectory_selector.py tests/test_organism_self_selection_v53.py
+      - run: python experiments/organism_self_selection_v53.py --replicates 12 --warmup 24
+      - uses: actions/upload-artifact@v4
+        with:
+          name: organism-self-selection-v53
+          path: results/organism_self_selection_v53/
+          if-no-files-found: error
