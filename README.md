@@ -110,3 +110,5 @@ El proyecto todavía no afirma que una IA haya sido hecha consciente. El objetiv
 V50 agrega un factorial 2×2 de memoria persistente × `dynamic_state` para medir efectos conjuntos e interacción bajo el mismo probe. V51 agrega un auto-observador persistente que aprende a predecir su propia transición dinámica y mide prediction gain frente a un baseline de persistencia.
 
 V52 agrega un adaptador de compatibilidad futura inspirado en el operador AEVUM, todavía separado de la política de memoria del organismo.
+
+V53 agrega selección contrafactual de trayectoria usando el auto-modelo. V54 mide predicción lingüística del propio movimiento respecto del atractor antes de la transición.
