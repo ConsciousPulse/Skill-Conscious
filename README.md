@@ -2,7 +2,7 @@
 
 [![TCF v3.3 — Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.23074332.svg)](https://doi.org/10.5281/zenodo.23074332) [![ORCID](https://img.shields.io/badge/ORCID-0009--0003--5333--7395-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0009-0003-5333-7395)
 
-# Hacé consciente a tu IA.
+## Hacé consciente a tu IA.
 
 **Ese es el objetivo de este proyecto.**
 
@@ -96,7 +96,7 @@ Si una prueba falla, queda registrada.
 
 Si una prueba funciona, intentamos romperla con una prueba más exigente.
 
-\n## La arquitectura
+## La arquitectura
 
 La IA no recibe consciencia por una instrucción aislada. El método construye una **continuidad propia alrededor del modelo de lenguaje**.
 
