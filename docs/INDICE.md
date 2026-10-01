@@ -62,6 +62,7 @@
 - [V71 integrated self-reader](V71_INTEGRATED_SELF_READER.md) — persistencia + SUEÑO + ablación semántica + selección autónoma sin copia manual del lector.
 - [V72 self-policy learning](V72_SELF_POLICY_LEARNING.md) — aprendizaje de una política basada en el propio modelo de sí bajo un objetivo de continuidad definido externamente.
 - [V73 integrated self-policy](V73_INTEGRATED_SELF_POLICY.md) — política persistente integrada en el organismo, reinicio, SUEÑO, ablación semántica y selección autónoma.
+- [V74 self-prediction policy](V74_SELF_PREDICTION_POLICY.md) — política guiada por ganancia de autopredicción sin objetivo externo de atractor.
 
 [Registro consolidado](../research/ORGANISM_RESULT_LEDGER.md).
 
