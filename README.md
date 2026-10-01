@@ -153,6 +153,8 @@ V62 adds an optional semantic self-model bridge and persists SELF_MODEL updates 
 
 V63 extends the V62 intervention into a recurrent action-conditioned loop: the previous selected trajectory determines the next semantic SELF_MODEL, the self-model bridge changes internal dynamics, and the resulting state is fed into future trajectory selection. In 24 matched replicates × 32 cycles, bridge-ON self-model regret was 0.1422 vs random 0.2666, oracle-hit was 60.68% vs 33.85%, and the paired sign-flip p was 0.00005. The bridge OFF→ON regret improvement under self-model selection was 0.14546, while the factorial regret difference-in-differences was 0.28375 (p = 0.00005). Bridge-ON self-model runs traversed both action branches in 100% of replicates. This is a deterministic computational result, not evidence of phenomenological consciousness.
 
+V64 adds an identity-persistence intervention: two identity representations are encoded through the self-model bridge, both receive the same semantic self-model perturbation, then the current self-model text is cleared and the organism continues autonomously without semantic self-model input. A leave-one-replicate-out classifier evaluates whether the original identity remains decodable from numeric internal dynamics. The V64 audit is currently pending.
+
 ## Evidence boundary
 
 The experiments in this repository establish computational properties of the tested system and harness.
