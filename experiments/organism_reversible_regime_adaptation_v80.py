@@ -262,13 +262,13 @@ def main() -> None:
         recovery_steps=args.recovery_steps,
     )
 
-    final_adaptive = grouped["base_return"]["adaptive_event_3"]
-    final_frozen = grouped["base_return"]["frozen_event_3"]
+    final_adaptive = grouped["base_return"]["adaptive_event_3_gain"]
+    final_frozen = grouped["base_return"]["frozen_event_3_gain"]
 
-    shift_a_adaptive = grouped["shift_a"]["adaptive_event_3"]
-    shift_a_frozen = grouped["shift_a"]["frozen_event_3"]
-    shift_b_adaptive = grouped["shift_b"]["adaptive_event_3"]
-    shift_b_frozen = grouped["shift_b"]["frozen_event_3"]
+    shift_a_adaptive = grouped["shift_a"]["adaptive_event_3_gain"]
+    shift_a_frozen = grouped["shift_a"]["frozen_event_3_gain"]
+    shift_b_adaptive = grouped["shift_b"]["adaptive_event_3_gain"]
+    shift_b_frozen = grouped["shift_b"]["frozen_event_3_gain"]
 
     return_recovery_difference = float(
         np.mean(final_adaptive - final_frozen)
