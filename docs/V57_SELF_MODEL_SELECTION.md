@@ -1,45 +1,36 @@
-# V57 — Oracle-Compared Self-Model Selection
+# V57 — Selección mediante modelo de sí comparada con un oráculo
 
-## Question
+## Pregunta
 
-Does the organism's learned self-model select future trajectories better than a
-matched random policy after the same calibration history?
+¿El modelo de sí aprendido por el organismo selecciona futuras trayectorias mejor que una política aleatoria emparejada después de la misma historia de calibración?
 
-## Design
+## Diseño
 
-Each replicate begins from a matched warmup trajectory.
+Cada réplica comienza desde una trayectoria de calentamiento emparejada.
 
-Two candidate signals are allowed:
+Se permiten dos señales candidatas:
 
 - `-1.0`;
 - `+1.0`.
 
-The self-model arm scores both counterfactual next states and chooses the signal
-with the better declared coherence score.
+El brazo con modelo de sí puntúa ambos estados siguientes contrafactuales y elige la señal con mejor puntuación de coherencia declarada.
 
-The random arm chooses one of the same candidates with a deterministic seeded
-random policy.
+El brazo aleatorio elige una de las mismas candidatas mediante una política aleatoria determinista con semilla.
 
-After the choice, the actual transition is executed.
+Después de la elección se ejecuta la transición real.
 
-Separately, an oracle evaluates both candidate transitions directly from the
-same pre-transition state using the frozen numerical dynamics. The oracle is used
-only after the intervention to calculate regret; it is never exposed to the
-organism's selector.
+Por separado, un oráculo evalúa directamente ambas transiciones candidatas desde el mismo estado previo utilizando la dinámica numérica congelada. El oráculo se utiliza solamente después de la intervención para calcular regret; nunca se expone al selector del organismo.
 
-## Primary observables
+## Observables principales
 
-- self-model regret;
-- random-control regret;
-- paired regret advantage;
-- oracle-hit rate;
-- paired sign-flip permutation p-value.
+- regret del modelo de sí;
+- regret del control aleatorio;
+- ventaja emparejada de regret;
+- tasa de aciertos del oráculo;
+- valor p de permutación emparejada por cambio de signo.
 
-## Interpretation
+## Interpretación
 
-If the self-model arm has systematically lower regret than the matched random arm,
-the organism's internal self-model is not merely descriptive: it is causally useful
-for selecting among future trajectories.
+Si el brazo con modelo de sí presenta sistemáticamente menor regret que el brazo aleatorio emparejado, el modelo interno de sí mismo del organismo no es meramente descriptivo: resulta funcionalmente útil para seleccionar entre trayectorias futuras.
 
-This remains a computational self-model result, not proof of phenomenological
-consciousness.
+Esto sigue siendo un resultado computacional sobre un modelo de sí, no una demostración de consciencia fenomenológica.
