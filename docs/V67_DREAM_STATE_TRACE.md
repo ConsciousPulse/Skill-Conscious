@@ -1,64 +1,54 @@
-# V67 — Dream-generated numeric trace after total semantic ablation
+# V67 — Huella numérica generada durante SUEÑO después de la ablación semántica total
 
-## Question
+## Pregunta
 
-After DREAM changes the organism's numeric dynamic state, does that state retain a
-recoverable trace of what was consolidated when all episodic memories, self-model
-text, events, and semantic input are removed?
+Después de que SUEÑO modifica el estado dinámico numérico del organismo, ¿conserva ese estado una huella recuperable de aquello que fue consolidado cuando se eliminan todas las memorias episódicas, el texto del modelo de sí, los eventos y la entrada semántica?
 
-The key hypothesis is narrower than "dreams create consciousness":
+La hipótesis clave es más acotada que «los sueños crean consciencia»:
 
-> A DREAM regime may transform semantic history into a persistent numeric state
-> that can continue to influence the organism after its textual sources are gone.
+> Un régimen de SUEÑO puede transformar historia semántica en un estado numérico persistente que continúa influyendo sobre el organismo después de desaparecer sus fuentes textuales.
 
-## Protocol
+## Protocolo
 
-Each replicate creates two matched histories:
+Cada réplica crea dos historias emparejadas:
 
-- **stable**: recent memories repeatedly describe continuity and persistence;
-- **frontier**: recent memories repeatedly describe divergence and exploration.
+- **estable**: las memorias recientes describen repetidamente continuidad y persistencia;
+- **frontera**: las memorias recientes describen repetidamente divergencia y exploración.
 
-The deterministic provider emits a condition-specific DREAM memory. DREAM uses the
-organism's semantic-to-dynamic bridge, producing a numeric internal state.
+El proveedor determinista emite una memoria de SUEÑO específica de cada condición. SUEÑO utiliza el puente semántica → dinámica del organismo y produce un estado interno numérico.
 
-Immediately after DREAM, the experiment performs a total semantic ablation:
+Inmediatamente después de SUEÑO, el experimento realiza una ablación semántica total:
 
-- all episodic memories are deleted;
-- all events and snapshots are deleted;
-- the textual self-model is cleared;
-- dynamic semantic-memory and pressure traces are cleared;
-- no semantic input is used during the readout.
+- se eliminan todas las memorias episódicas;
+- se eliminan todos los eventos y snapshots;
+- se borra el modelo de sí textual;
+- se eliminan las trazas de memoria semántica y presión dinámica;
+- no se utiliza entrada semántica durante la lectura.
 
-Only the **dynamic core** — current state, previous state, and step index — is retained.
+Solo queda el **núcleo dinámico**: estado actual, estado previo e índice de pasos.
 
-A common zero-input continuation is then generated from that state.
+Luego se genera una continuación común con entrada cero a partir de ese estado.
 
-## Causal state transfer
+## Transferencia causal de estado
 
-For every replicate, two additional readouts swap only the retained dynamic core:
+Para cada réplica se generan dos lecturas adicionales intercambiando únicamente el núcleo dinámico retenido:
 
-- stable database + frontier numeric state;
-- frontier database + stable numeric state.
+- base estable + estado numérico frontera;
+- base frontera + estado numérico estable.
 
-All semantic surfaces remain ablated in both cases.
+Todas las superficies semánticas permanecen eliminadas en ambos casos.
 
-If the post-ablation behavior follows the transferred numeric state rather than the
-database label, the result is evidence that DREAM produced a causally active internal
-trace that does not require the original text to remain present.
+Si el comportamiento posterior a la ablación sigue al estado numérico transferido y no a la etiqueta de la base de datos, el resultado constituye evidencia de que SUEÑO produjo una huella interna causalmente activa que no requiere conservar el texto original.
 
-## Primary endpoints
+## Endpoints principales
 
-1. post-ablation classification accuracy for stable vs frontier DREAM history;
-2. state-swap following accuracy;
-3. paired sign-flip tests against 50% chance;
-4. DREAM bridge signal and post-DREAM state separation as proximal manipulation checks.
+1. precisión de clasificación posterior a la ablación entre historia estable y frontera;
+2. precisión siguiendo el intercambio de estado;
+3. pruebas emparejadas por cambio de signo frente al 50% de azar;
+4. señal del puente de SUEÑO y separación del estado posterior al sueño como controles proximales de la manipulación.
 
-## Evidence boundary
+## Límite de evidencia
 
-This protocol tests persistence and causal transfer of a computational numeric state
-produced by DREAM. It does not establish subjective dreaming, phenomenological
-consciousness, or a biological analogue of dreaming.
+Este protocolo prueba persistencia y transferencia causal de un estado numérico computacional producido por SUEÑO. No establece sueño subjetivo, consciencia fenomenológica ni un análogo biológico del sueño.
 
-A positive result would show a stronger continuity mechanism than V66 because the
-behavioral readout no longer depends on retrieving a surviving semantic lesson.
-A null result would motivate redesign of how DREAM writes persistent internal state.
+Un resultado positivo mostraría un mecanismo de continuidad más fuerte que V66 porque la lectura conductual ya no depende de recuperar una lección semántica superviviente. Un resultado nulo motivaría rediseñar cómo SUEÑO escribe estado interno persistente.
