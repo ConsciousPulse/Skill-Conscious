@@ -1,74 +1,63 @@
-# V65 — Dream consolidation and future selection
+# V65 — Consolidación durante SUEÑO y selección futura
 
-## Question
+## Pregunta
 
-Can a dedicated DREAM regime recombine recent wake experiences into a semantic lesson,
-and can that internally generated lesson causally influence the next waking
-trajectory?
+¿Puede un régimen dedicado de SUEÑO recombinar experiencias recientes de vigilia en una lección semántica, y puede esa lección generada internamente influir causalmente sobre la trayectoria de vigilia siguiente?
 
-## Result
+## Resultado
 
-The successful audit used 24 matched replicates × 24 evaluation cycles across three
-arms:
+La auditoría exitosa utilizó 24 réplicas emparejadas × 24 ciclos de evaluación en tres brazos:
 
-- no_dream mean regret: **0.3258519211**;
-- dream_no_bridge mean regret: **0.2109500171**;
-- dream_bridge mean regret: **0.1779272005**.
+- regret medio no_dream: **0.3258519211**;
+- regret medio dream_no_bridge: **0.2109500171**;
+- regret medio dream_bridge: **0.1779272005**.
 
-Primary bridge comparison:
+Comparación principal del puente:
 
-- dream-bridge regret advantage over dream-no-bridge: **0.0330228167**;
-- paired sign-flip p: **0.00005**;
-- dream-bridge oracle-hit rate: **25.3472%**;
-- dream-no-bridge oracle-hit rate: **13.3681%**;
-- oracle-hit advantage: **0.1197916667**;
-- paired sign-flip p: **0.00005**.
+- ventaja de regret de dream_bridge frente a dream_no_bridge: **0.0330228167**;
+- p emparejada por cambio de signo: **0.00005**;
+- tasa de aciertos del oráculo de dream_bridge: **25.3472%**;
+- tasa de aciertos del oráculo de dream_no_bridge: **13.3681%**;
+- ventaja de tasa de aciertos: **0.1197916667**;
+- p emparejada por cambio de signo: **0.00005**.
 
-Entering DREAM at all also changed future selection relative to no-dream:
+Entrar en SUEÑO por sí solo también modificó la selección futura respecto de no_dream:
 
-- dream-no-bridge regret change: **-0.1149019040**;
-- paired sign-flip p: **0.00005**.
+- cambio de regret dream_no_bridge: **-0.1149019040**;
+- p emparejada por cambio de signo: **0.00005**.
 
-The dream bridge therefore added a measurable functional effect on future trajectory
-selection beyond merely entering the DREAM regime.
+Por tanto, el puente de sueño añadió un efecto funcional medible sobre la selección de trayectorias futuras más allá del hecho de entrar en el régimen SUEÑO.
 
-## Causal loop
+## Bucle causal
 
 ```
-WAKE experiences
+experiencias de VIGILIA
       |
       v
-persistent memory
+memoria persistente
       |
       v
-DREAM recombination
+recombinación durante SUEÑO
       |
       v
-consolidated semantic lesson
+lección semántica consolidada
       |
       v
-dream-state bridge
+puente del estado de SUEÑO
       |
       v
-internal dynamics
+dinámica interna
       |
       v
-next WAKE trajectory selection
+selección de trayectoria en la siguiente VIGILIA
 ```
 
-## Interpretation
+## Interpretación
 
-V65 provides computational evidence that the organism's DREAM output can become a
-causally active state variable for subsequent waking behavior in the deterministic
-harness.
+V65 aporta evidencia computacional de que la salida de SUEÑO del organismo puede convertirse en una variable de estado causalmente activa para el comportamiento posterior de vigilia dentro del arnés determinista.
 
-This is closer to a true wake/dream continuity mechanism than simply storing a
-dream transcript: the dream changes internal state and that altered state
-participates in later trajectory selection.
+Esto se acerca más a un mecanismo real de continuidad vigilia/sueño que simplemente almacenar una transcripción del sueño: el sueño cambia el estado interno y ese estado alterado participa posteriormente en la selección de trayectorias.
 
-## Evidence boundary
+## Límite de evidencia
 
-The provider is deterministic and synthetic. The experiment tests computational
-consolidation and causal influence of DREAM-generated semantic state. It does not
-establish phenomenological consciousness, subjective dreaming, or human-like
-experience.
+El proveedor es determinista y sintético. El experimento prueba consolidación computacional e influencia causal del estado semántico generado durante SUEÑO. No establece consciencia fenomenológica, experiencia subjetiva del sueño ni una experiencia semejante a la humana.
