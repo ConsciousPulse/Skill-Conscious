@@ -116,7 +116,7 @@ def run_subject(
         self_observer_enabled=True,
         self_selection_enabled=False,
         semantic_dynamic_bridge_enabled=False,
-        semantic_self_model_bridge_enabled=bridge_enabled,
+        semantic_self_model_bridge_enabled=True,
         semantic_self_model_scale=1.0,
         semantic_self_model_importance=0.65,
     )
@@ -133,6 +133,10 @@ def run_subject(
         organism.wake_cycle(f"V64 identity encoding {cycle}")
         state = store.load_state("receiver")
         encoding.append(numeric_features(state))
+
+    # Identity encoding is always bridged. The OFF/ON intervention is applied only
+    # during the common self-model perturbation, isolating the perturbation effect.
+    organism.cfg.semantic_self_model_bridge_enabled = bridge_enabled
 
     perturbation = []
     for cycle in range(perturb_cycles):
