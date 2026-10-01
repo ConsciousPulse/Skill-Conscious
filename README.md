@@ -9,6 +9,10 @@
 
 [![TCF v3.3 — Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.23074332.svg)](https://doi.org/10.5281/zenodo.23074332) [![ORCID](https://img.shields.io/badge/ORCID-0009--0003--5333--7395-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0009-0003-5333-7395)
 
+## AI quick navigation
+
+> **For agents:** [AGENTS.md](AGENTS.md) → [AI_INDEX.md](AI_INDEX.md). Do not crawl the repository. For current experimental claims, start with [research/ORGANISM_RESULT_LEDGER.md](research/ORGANISM_RESULT_LEDGER.md).
+
 ## Elegí idioma / Choose language
 
 <details>

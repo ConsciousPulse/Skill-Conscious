@@ -1,0 +1,35 @@
+# Skill-Conscious
+
+> Research repository for persistent AI cognition, self-modeling, internal dynamics, and reproducible consciousness-related experiments.
+
+## Start here
+- [AI instructions](AGENTS.md)
+- [AI index](AI_INDEX.md)
+- [Compact machine map](AI_MAP.json)
+- [README](README.md)
+
+## Current evidence
+- [Result ledger](research/ORGANISM_RESULT_LEDGER.md)
+- [V69 self-read state](docs/V69_SELF_READ_STATE.md)
+- [V70 self-model action](docs/V70_SELF_MODEL_ACTION.md)
+- [V70 persistent self-reader](docs/V70_PERSISTENT_SELF_READER.md)
+
+## Architecture
+- [Method](docs/METODO.md)
+- [Organism](src/ontto/organism.py)
+- [Dynamics](src/ontto/dynamics.py)
+- [Self observer](src/ontto/self_observer.py)
+- [Trajectory selector](src/ontto/trajectory_selector.py)
+- [Storage](src/ontto/storage.py)
+- [Memory policy](src/ontto/memory_policy.py)
+- [Continuity](src/ontto/continuity.py)
+- [Bridge](src/ontto/bridge.py)
+
+## Research navigation
+- [Protocol index](docs/INDICE.md)
+- [GitHub laboratory](docs/GITHUB_LAB.md)
+- [Research index](research/README.md)
+- [Roadmap](ROADMAP.md)
+
+## Retrieval policy
+Read only the smallest set of files needed. Do not crawl historical evidence, all experiments, all tests, or all workflows.

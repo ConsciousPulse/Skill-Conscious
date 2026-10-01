@@ -1,0 +1,36 @@
+{
+  "repo": "Skill-Conscious",
+  "entry": [
+    "AGENTS.md",
+    "AI_INDEX.md",
+    "llms.txt"
+  ],
+  "overview": "README.md",
+  "current": {
+    "ledger": "research/ORGANISM_RESULT_LEDGER.md",
+    "frontier": [
+      "docs/V69_SELF_READ_STATE.md",
+      "docs/V70_SELF_MODEL_ACTION.md",
+      "docs/V70_PERSISTENT_SELF_READER.md"
+    ]
+  },
+  "architecture": {
+    "organism": "src/ontto/organism.py",
+    "dynamics": "src/ontto/dynamics.py",
+    "self_observer": "src/ontto/self_observer.py",
+    "meta_observer": "src/ontto/meta_observer.py",
+    "selector": "src/ontto/trajectory_selector.py",
+    "memory": "src/ontto/memory_policy.py",
+    "storage": "src/ontto/storage.py",
+    "continuity": "src/ontto/continuity.py",
+    "bridge": "src/ontto/bridge.py",
+    "provider": "src/ontto/provider.py"
+  },
+  "routing": {
+    "method": "docs/METODO.md",
+    "protocols": "docs/INDICE.md",
+    "reproducibility": "docs/GITHUB_LAB.md",
+    "research": "research/README.md"
+  },
+  "rule": "ledger -> protocol -> experiment -> test -> workflow; never crawl recursively"
+}

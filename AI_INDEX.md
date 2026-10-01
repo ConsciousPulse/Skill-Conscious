@@ -1,0 +1,61 @@
+# AI Index — Skill-Conscious
+
+## One-screen route
+
+| Need | Read first | Then |
+|---|---|---|
+| Overview | `README.md` | `docs/METODO.md` |
+| Current state | `research/ORGANISM_RESULT_LEDGER.md` | V69/V70 docs |
+| Architecture | `src/ontto/organism.py` | dynamics/self_observer/storage/selector |
+| Method | `docs/METODO.md` | `docs/ORGANISM_STATE_BRIDGE.md` |
+| Protocol | `docs/INDICE.md` | exact `docs/Vxx_*.md` |
+| Reproduce | `docs/GITHUB_LAB.md` | exact workflow |
+| Implementation | `src/ontto/` | exact experiment + test |
+| Historical research | `research/` | exact file only |
+
+## Current frontier
+
+### V69
+- `docs/V69_SELF_STATE_READOUT.md` — numeric readout; discrete action endpoint is null.
+- `docs/V69_SELF_READ_STATE.md` — readout participates in trajectory selection; includes blinded control and state-swap intervention.
+
+### V70
+- `docs/V70_SELF_MODEL_ACTION.md` — prediction from self-model becomes continuous action.
+- `docs/V70_PERSISTENT_SELF_READER.md` — self-reader persistence across restart.
+
+### Evidence
+- `research/ORGANISM_RESULT_LEDGER.md` — first stop for consolidated experimental claims.
+
+## Architecture map
+- `src/ontto/organism.py` — organism lifecycle/orchestration.
+- `src/ontto/dynamics.py` — internal dynamics.
+- `src/ontto/self_observer.py` — self-model/self-observation.
+- `src/ontto/meta_observer.py` — higher-order observation.
+- `src/ontto/trajectory_selector.py` — trajectory/action selection.
+- `src/ontto/memory_policy.py` — memory handling.
+- `src/ontto/storage.py` — persistence/restart state.
+- `src/ontto/continuity.py` — continuity primitives.
+- `src/ontto/bridge.py` — semantic ↔ internal-state bridge.
+- `src/ontto/provider.py` — model-provider contract.
+
+## Experiment trace
+Most active protocols follow:
+`docs/Vxx_*.md` → `experiments/*vxx*.py` → `tests/*vxx*.py` → `.github/workflows/*vxx*.yml`.
+
+Use the protocol document to find the exact implementation.
+
+## Evidence hierarchy
+1. Result ledger
+2. Protocol document
+3. Experiment source
+4. Test
+5. Workflow
+6. Historical research
+
+## Token-saving policy
+- Never recursively crawl the repository.
+- Do not read all historical `research/EVIDENCE_*.md` files unless asked for historical review.
+- Do not read all workflows; start with `docs/GITHUB_LAB.md`.
+- Do not read all tests; open the matching test only.
+- Prefer exact file reads.
+- Stop when the question is answered and evidence is traceable.
