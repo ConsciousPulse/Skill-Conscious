@@ -44,6 +44,9 @@ class OrganismConfig:
     semantic_dynamic_bridge_enabled: bool = False
     semantic_dynamic_scale: float = 1.0
     semantic_dynamic_importance: float = 0.65
+    semantic_self_model_bridge_enabled: bool = False
+    semantic_self_model_scale: float = 1.0
+    semantic_self_model_importance: float = 0.65
 
 
 class PersistentOrganism:
@@ -238,14 +241,34 @@ class PersistentOrganism:
         self._extract_self_model(out.text)
 
         memory_candidate = self._extract_memory_candidate(out.text)
+        self_model_candidate = self._extract_self_model_candidate(out.text)
+        self._extract_self_model(out.text)
+
         semantic_bridge = None
+        semantic_self_model_bridge = None
         wake_signal = self.cfg.dynamic_wake_signal
-        if (
-            self.cfg.semantic_dynamic_bridge_enabled
-            and memory_candidate
-        ):
+
+        if self.cfg.semantic_dynamic_bridge_enabled and memory_candidate:
             semantic_bridge = self._semantic_dynamic_signal(memory_candidate)
             wake_signal = float(semantic_bridge["signal"])
+
+        if (
+            self.cfg.semantic_self_model_bridge_enabled
+            and self_model_candidate
+        ):
+            semantic_self_model_bridge = self._semantic_self_model_signal(
+                self_model_candidate
+            )
+            if self.cfg.semantic_dynamic_bridge_enabled and semantic_bridge:
+                wake_signal = float(
+                    0.5
+                    * (
+                        float(semantic_bridge["signal"])
+                        + float(semantic_self_model_bridge["signal"])
+                    )
+                )
+            else:
+                wake_signal = float(semantic_self_model_bridge["signal"])
 
         dynamic = self._advance_dynamic(
             wake_signal,
@@ -260,6 +283,7 @@ class PersistentOrganism:
                 "response": out.text[-2000:],
                 "dynamic": dynamic,
                 "semantic_bridge": semantic_bridge,
+                "semantic_self_model_bridge": semantic_self_model_bridge,
             },
         )
         self._extract_memory(out.text)
@@ -267,11 +291,15 @@ class PersistentOrganism:
         self.store.save_state(self.cfg.agent_id, self.state)
         return out.text
 
-    def _extract_self_model(self, text: str) -> bool:
+    def _extract_self_model_candidate(self, text: str) -> str | None:
         marker = "SELF_MODEL:"
         if marker not in text:
-            return False
+            return None
         candidate = text.split(marker, 1)[1].strip().splitlines()[0].strip()
+        return candidate or None
+
+    def _extract_self_model(self, text: str) -> bool:
+        candidate = self._extract_self_model_candidate(text)
         if not candidate or candidate == self.state.self_model:
             return False
         self.state.self_model = candidate
@@ -306,6 +334,25 @@ class PersistentOrganism:
         signal = float(np.tanh(self.cfg.semantic_dynamic_scale * omega))
         return {
             "memory": memory,
+            "novelty": float(admission.novelty),
+            "coupling": float(admission.coupling),
+            "persistence": float(admission.persistence),
+            "omega": omega,
+            "signal": signal,
+            "admissible": bool(admission.decision.exists),
+        }
+
+    def _semantic_self_model_signal(self, self_model: str) -> dict[str, float | bool | str]:
+        recent = [self.state.self_model] if self.state.self_model else []
+        admission = self.memory_policy.admit(
+            self_model,
+            recent,
+            importance=self.cfg.semantic_self_model_importance,
+        )
+        omega = float(admission.decision.omega)
+        signal = float(np.tanh(self.cfg.semantic_self_model_scale * omega))
+        return {
+            "self_model": self_model,
             "novelty": float(admission.novelty),
             "coupling": float(admission.coupling),
             "persistence": float(admission.persistence),
