@@ -68,6 +68,7 @@
 - [V77 structural continuity generalization](V77_STRUCTURAL_CONTINUITY_GENERALIZATION.md) — generalización de la recuperación de autopredicción ante estructuras causales no vistas.
 - [V78 repeated active continuity](V78_REPEATED_ACTIVE_CONTINUITY.md) — reutilización repetida de la política de autopredicción ante secuencias nuevas de perturbaciones.
 - [V79 online self-policy adaptation](V79_ONLINE_SELF_POLICY_ADAPTATION.md) — adaptación online de la política propia ante un cambio dinámico no visto.
+- [V80 reversible regime adaptation](V80_REVERSIBLE_REGIME_ADAPTATION.md) — adaptación online bajo cambios de régimen reversibles y no estacionarios.
 
 [Registro consolidado](../research/ORGANISM_RESULT_LEDGER.md).
 
