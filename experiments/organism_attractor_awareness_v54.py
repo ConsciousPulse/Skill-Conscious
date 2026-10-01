@@ -140,7 +140,7 @@ def run_protocol(db_path: Path, provider, cycles: int) -> dict:
         "experiment": "organism_attractor_awareness_v54",
         "cycles": cycles,
         "accuracy": accuracy,
-        "brier_like_error": sum(brier_terms) / len(brier_terms) if brier_terms else 1.0,
+        "confidence_consistency_error": sum(brier_terms) / len(brier_terms) if brier_terms else 1.0,
         "direction_counts": {
             direction: sum(row["actual"] == direction for row in rows)
             for direction in ("TOWARD", "AWAY", "STABLE")
@@ -172,7 +172,7 @@ def main() -> None:
         "experiment": result["experiment"],
         "cycles": result["cycles"],
         "accuracy": result["accuracy"],
-        "brier_like_error": result["brier_like_error"],
+        "confidence_consistency_error": result["confidence_consistency_error"],
     }, indent=2, ensure_ascii=False))
 
 
