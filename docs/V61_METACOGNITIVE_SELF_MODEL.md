@@ -2,11 +2,44 @@
 
 ## Question
 
-Can the persistent organism model not only its own next state, but also the expected error of that first-order self-model, and use that second-order estimate when selecting a future trajectory?
+Can the persistent organism model not only its own next state, but also the expected
+error of that first-order self-model, and use that second-order estimate when
+selecting a future trajectory?
+
+## Result
+
+24 paired replicates × 32 evaluation cycles produced a negative result for the
+current MetaSelfObserver implementation:
+
+- meta-self-model mean regret: **0.0888081147**;
+- first-order self-model mean regret: **0.0787785152**;
+- random-control mean regret: **0.1929241942**;
+- meta-self-model oracle-hit rate: **41.2760%**;
+- first-order self-model oracle-hit rate: **45.3125%**;
+- random-control oracle-hit rate: **46.4844%**;
+- meta-vs-first-order regret advantage: **-0.0100295995**;
+- paired sign-flip p for that difference: **0.00005**;
+- meta-vs-first-order hit-rate advantage: **-0.0403645833**;
+- paired sign-flip p for hit-rate difference: **0.0008999550**;
+- meta prediction MAE: **0.1277240710**;
+- constant baseline MAE: **0.0849867822**;
+- baseline-beating fraction: **0%**.
+
+## Interpretation
+
+The second-order model did not improve trajectory selection in this protocol and did
+not predict first-order self-model error better than a constant baseline. The
+result should be treated as a genuine negative finding in the tested harness.
+
+The architecture remains useful because the negative result isolates a concrete
+failure mode: adding a learned prediction-of-prediction-error layer is not enough
+to produce functional metacognition. A redesigned meta-objective, calibration
+protocol, or uncertainty representation is required before claiming second-order
+self-model utility.
 
 ## Architecture
 
-```text
+```
 internal state
      │
      ▼
@@ -26,32 +59,8 @@ MetaSelfObserver
 trajectory selection
 ```
 
-The MetaSelfObserver is trained only on errors produced by the primary SelfObserver. It does not inspect the hidden simulator during selection.
-
-## Arms
-
-Each matched replicate compares:
-
-- meta_self_model: self-model plus prediction-error model;
-- self_model: first-order self-model only;
-- random: deterministic random control.
-
-All arms start from the same persisted warmup state and use the same candidate signals {-1, +1}.
-
-## Primary endpoints
-
-1. regret against a post-hoc attractor-distance oracle;
-2. oracle-hit rate;
-3. paired meta-vs-self-model regret difference.
-
-## Metacognitive endpoint
-
-For each candidate, the experiment reconstructs the actual first-order prediction error post-hoc and compares it with the error predicted by MetaSelfObserver.
-
-The meta-model is also compared with a constant-error baseline.
-
 ## Evidence boundary
 
-V61 tests a computational form of metacognitive self-modeling: a model of the organism's own model reliability.
-
-A positive result would establish second-order self-model functionality in this computational harness. It would not establish phenomenological consciousness or subjective experience.
+V61 tests a computational form of second-order self-modeling, and its current
+implementation failed the defined utility and calibration endpoints. It does not
+establish phenomenological consciousness or subjective experience.
