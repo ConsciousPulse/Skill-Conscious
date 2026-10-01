@@ -12,6 +12,7 @@ from .storage import MemoryStore, OntologicalState
 from .self_observer import SelfObserver
 from .trajectory_selector import TrajectorySelector
 from .memory_policy import ContinuityMemoryPolicy
+from .self_policy import SelfPolicy
 from .meta_observer import MetaSelfObserver
 
 
@@ -41,6 +42,8 @@ class OrganismConfig:
     self_selection_meta_error_weight: float = 0.0
     self_selection_policy: str = "self_model"
     self_selection_signals: tuple[float, ...] = (-1.0, 0.0, 1.0)
+    self_policy_enabled: bool = False
+    self_policy_ridge: float = 1e-3
     semantic_dynamic_bridge_enabled: bool = False
     semantic_dynamic_scale: float = 1.0
     semantic_dynamic_importance: float = 0.65
@@ -85,6 +88,12 @@ class PersistentOrganism:
             attractor_weight=cfg.self_selection_attractor_weight,
             coherence_weight=cfg.self_selection_coherence_weight,
             meta_error_weight=cfg.self_selection_meta_error_weight,
+        )
+        persisted_self_policy = store.load_self_policy_model(cfg.agent_id)
+        self.self_policy = (
+            SelfPolicy.from_dict(persisted_self_policy)
+            if persisted_self_policy is not None
+            else SelfPolicy(ridge=cfg.self_policy_ridge)
         )
         self.memory_policy = ContinuityMemoryPolicy()
         if cfg.self_observer_enabled and persisted_self_model is None:
@@ -409,7 +418,24 @@ class PersistentOrganism:
                     else None
                 ),
             )
-            if self.cfg.self_selection_policy == "self_model":
+            if self.cfg.self_policy_enabled:
+                policy_candidates = [
+                    {
+                        "current_state": float(self.state.dynamic_state),
+                        "attractor_distance": float(candidate.attractor_distance),
+                        "predicted_state": float(candidate.prediction.predicted_state),
+                        "predicted_displacement": float(candidate.displacement),
+                        "signal": float(candidate.signal),
+                    }
+                    for candidate in candidates
+                ]
+                chosen_row = self.self_policy.choose(policy_candidates)
+                chosen = next(
+                    candidate
+                    for candidate in candidates
+                    if candidate.signal == float(chosen_row["signal"])
+                )
+            elif self.cfg.self_selection_policy == "self_model":
                 chosen = self.trajectory_selector.choose(candidates)
             elif self.cfg.self_selection_policy == "random":
                 import random
@@ -433,8 +459,14 @@ class PersistentOrganism:
                 "dynamic": dynamic,
                 "self_selection": {
                     "enabled": bool(self.cfg.self_selection_enabled and self.cfg.self_observer_enabled),
-                    "policy": self.cfg.self_selection_policy,
+                    "policy": (
+                        "learned_self_policy"
+                        if self.cfg.self_policy_enabled
+                        else self.cfg.self_selection_policy
+                    ),
                     "candidate_signals": list(self.cfg.self_selection_signals),
+                    "self_policy_enabled": bool(self.cfg.self_policy_enabled),
+                    "self_policy_samples": len(self.self_policy.targets),
                     "meta_self_model_enabled": bool(self.cfg.meta_self_observer_enabled),
                     "chosen_signal": chosen_signal,
                     "candidates": [
