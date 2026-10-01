@@ -19,7 +19,7 @@
 - documentación de los protocolos migrada al español;
 - registro experimental consolidado migrado al español;
 - resultados positivos, nulos y limitaciones conservados;
-- V67 implementado como frontera experimental de continuidad del estado numérico generado durante SUEÑO.
+- V67 auditado y corregido; resultado nulo bajo ablación semántica total y estado transferido.
 
 ### Repositorio
 - README principal en español y reestructurado;
