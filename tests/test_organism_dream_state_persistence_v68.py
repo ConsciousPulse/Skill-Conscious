@@ -30,8 +30,7 @@ def test_v68_output_schema(tmp_path):
     assert summary["self_model_cleared_before_probe"] is True
     assert summary["semantic_text_input_during_probe"] is False
     for row in summary["results"]:
-        assert 0.0 <= row["own_accuracy"] <= 1.0
-        assert 0.0 <= row["state_swap_following_accuracy"] <= 1.0
-        assert 0.0 <= row["own_p"] <= 1.0
-        assert 0.0 <= row["state_swap_p"] <= 1.0
+        assert row["trace_rmse_mean"] >= 0.0
+        assert row["trace_abs_delta_mean"] >= 0.0
+        assert 0.0 <= row["final_state_delta_p"] <= 1.0
         assert 0.0 <= row["swap_core_exact_match_fraction"] <= 1.0
