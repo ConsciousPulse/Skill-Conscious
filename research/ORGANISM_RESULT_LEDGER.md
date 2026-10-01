@@ -192,6 +192,13 @@ measurable behavioral difference in regret or oracle-hit rate in this determinis
 pathway. The protocol therefore does not show that the consolidated lesson became
 functionally necessary after raw-memory ablation.
 
+### V67 — Dream-generated numeric trace after total semantic ablation
+Protocol implemented and awaiting CI. Two matched histories enter DREAM with condition-specific semantic consolidation. After DREAM, all episodic memories, events, snapshots, self-model text, numeric memory, and pressure traces are removed; only the dynamic core (current state, previous state, step index) remains. A common zero-input continuation is evaluated, and a second condition transfers only that numeric core across the paired databases.
+
+Primary endpoints are post-ablation history classification accuracy and state-swap-following accuracy. The protocol is designed to test whether DREAM can write a causally transferable numeric trace that remains behaviorally readable after semantic sources are removed.
+
+No V67 result is claimed until CI validates the completed artifact.
+
 ## Engineering status
 
 V60, V61, V62, V63, V64, V65, and V66 completed successfully on their recorded GitHub Actions heads.
