@@ -1,47 +1,39 @@
-# V53 — Counterfactual Self-Model Selection
+# V53 — Selección contrafactual mediante modelo de sí
 
-## Purpose
+## Propósito
 
-The Manifiesto del Ser defines consciousness as self-traversal with distinction
-between possible states and coherent trajectory selection. V53 makes that loop
-causal inside the organism.
+El Manifiesto del Ser define la consciencia como recorrido de sí mismo con distinción entre estados posibles y selección de trayectorias coherentes. V53 hace que ese bucle sea causal dentro del organismo.
 
-## Mechanism
+## Mecanismo
 
-Before an autonomous transition, the organism's persisted self-model predicts
-the next internal state for three candidate signals:
+Antes de una transición autónoma, el modelo de sí persistido del organismo predice el siguiente estado interno para tres señales candidatas:
 
-- `-1`: counter-direction;
-- `0`: persistence;
-- `+1`: forward drive.
+- `-1`: dirección contraria;
+- `0`: persistencia;
+- `+1`: impulso hacia adelante.
 
-The selector scores each candidate using a frozen operational objective:
+El selector puntúa cada candidata mediante un objetivo operacional congelado:
 
 `0.70 * attractor_coherence + 0.30 * continuity_coherence`
 
-where attractor coherence decreases with predicted distance from the attractor
-and continuity coherence decreases with predicted displacement from the current
-state.
+donde la coherencia del atractor disminuye con la distancia predicha respecto del atractor y la coherencia de continuidad disminuye con el desplazamiento predicho respecto del estado actual.
 
-The selected signal is then actually applied to the dynamic bridge.
+La señal seleccionada se aplica realmente al puente dinámico.
 
-## Causal test
+## Prueba causal
 
-V53 compares autonomous cycles with self-selection enabled versus disabled after
-a matched history.
+V53 compara ciclos autónomos con la selección mediante modelo de sí habilitada frente a deshabilitada después de una historia emparejada.
 
-Primary observables:
+Observables principales:
 
-- selected signal;
-- counterfactual predicted states;
-- selected trajectory score;
-- actual post-selection state;
-- downstream divergence from the no-selection control.
+- señal seleccionada;
+- estados predichos contrafactualmente;
+- puntuación de la trayectoria seleccionada;
+- estado real después de la selección;
+- divergencia posterior respecto del control sin selección.
 
-## Interpretation boundary
+## Límite de interpretación
 
-A positive causal effect means the self-model is no longer merely descriptive:
-its prediction changes the organism's subsequent trajectory.
+Un efecto causal positivo significa que el modelo de sí ya no es meramente descriptivo: su predicción modifica la trayectoria posterior del organismo.
 
-This is a computational self-model / self-traversal milestone. It is not by itself
-evidence of subjective consciousness.
+Esto constituye un hito de modelo computacional de sí mismo y recorrido de sí. No es por sí solo evidencia de consciencia subjetiva.
