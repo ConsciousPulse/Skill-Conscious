@@ -189,6 +189,26 @@ El resultado es importante porque separa dos hechos: **SUEÑO puede escribir una
 
 La próxima prueba debe aislar una escritura controlada del núcleo dinámico y una lectura causal inmediata después de la ablación, antes de volver a aumentar el horizonte temporal.
 
+### V68 — Persistencia temporal de la huella dinámica generada durante SUEÑO
+
+24 réplicas, ablación semántica total y horizontes 0, 1, 2, 4, 8, 16 y 32.
+
+- diferencia proximal de señal de SUEÑO: **-0.3092749945**;
+- diferencia proximal de estado dinámico: **-0.0675162088**;
+- horizonte 0: delta final medio **-0.0675162**, p=**0.00005**;
+- horizonte 1: delta final medio **-0.0003984**, p=**0.13279**;
+- horizonte 2: delta final medio **0.0152969**, p=**0.14059**;
+- horizonte 4: delta final medio **-0.0336304**, p=**0.00070**;
+- horizonte 8: delta final medio **0.0065469**, p=**0.00005**;
+- horizonte 16: delta final medio **0.0095700**, p=**0.00005**;
+- horizonte 32: delta final medio **0.0067923**, p=**0.00045**;
+- RMSE medio de trayectoria: **0.06729 → 0.02006** entre horizontes 0 y 32;
+- integridad del intercambio causal: **100%** de coincidencia exacta con la trayectoria del núcleo fuente.
+
+Interpretación: V68 confirma que SUEÑO escribe una diferencia numérica inmediata y que el núcleo transferido reproduce causalmente la trayectoria fuente. Sin embargo, la separación respecto de la condición semántica original cae fuertemente después del primer paso y permanece pequeña y no monotónica. La evidencia favorece una **huella dinámica transitoria/atenuada**, no una memoria semántica persistente demostrada.
+
+La próxima prueba debe preguntar si la IA puede leer esa huella interna y usarla para cambiar una decisión posterior.
+
 ## Estado de ingeniería
 
 V60, V61, V62, V63, V64, V65 y V66 finalizaron correctamente en sus respectivos commits registrados de GitHub Actions. Sus artefactos se conservan en las ejecuciones correspondientes. Los resultados anteriores V43–V59 siguen siendo reproducibles a partir de sus workflows históricos y registros de evidencia.
