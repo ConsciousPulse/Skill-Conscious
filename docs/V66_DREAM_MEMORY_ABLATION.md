@@ -1,88 +1,70 @@
-# V66 — Dream consolidation after episodic-memory ablation
+# V66 — Consolidación de SUEÑO después de la ablación de memoria episódica
 
-## Question
+## Pregunta
 
-After DREAM transforms recent experiences into a consolidated lesson, does the
-organism retain a functional trace of that lesson when the original episodic
-experience memories are removed?
+Después de que SUEÑO transforma experiencias recientes en una lección consolidada, ¿conserva el organismo una huella funcional de esa lección cuando se eliminan las memorias episódicas originales?
 
-## Protocol
+## Protocolo
 
-Each replicate executes a deterministic DREAM consolidation phase.
+Cada réplica ejecuta una fase determinista de consolidación durante SUEÑO.
 
-After DREAM, the two matched arms are cloned from the same post-dream state:
+Después de SUEÑO, los dos brazos emparejados se clonan a partir del mismo estado posterior al sueño:
 
-1. retained_lesson — raw experience memories are removed, but the consolidated
-   lesson remains;
-2. ablated_lesson — raw experience memories and the consolidated lesson are
-   removed.
+1. **retained_lesson** — se eliminan las memorias de experiencia bruta, pero permanece la lección consolidada;
+2. **ablated_lesson** — se eliminan tanto las memorias de experiencia bruta como la lección consolidada.
 
-Both arms then receive the same post-dream retrieval probe. The resulting MEMORY
-output is routed through the ordinary semantic-to-dynamic bridge before future
-trajectory selection.
+Ambos brazos reciben después la misma sonda de recuperación posterior al sueño. La salida MEMORY resultante se envía mediante el puente ordinario de semántica a dinámica antes de la selección de trayectorias futuras.
 
-The raw episodic records therefore cannot directly explain the retained arm's later
-behavior. The only intended preserved semantic difference is the consolidated lesson.
+Por tanto, los registros episódicos originales no pueden explicar directamente el comportamiento posterior del brazo retenido. La única diferencia semántica preservada intencionalmente es la lección consolidada.
 
-## Causal chain
+## Cadena causal
 
 ```
-experiences
+experiencias
    ↓
-DREAM
+SUEÑO
    ↓
-consolidated lesson
+lección consolidada
    ↓
-raw-memory ablation
+ablación de memoria bruta
    ↓
-lesson retrieval
+recuperación de la lección
    ↓
-semantic bridge
+puente semántico
    ↓
-internal state
+estado interno
    ↓
-future selection
+selección futura
 ```
 
-## Result
+## Resultado
 
-The CI audit completed successfully on 24 matched replicates.
+La auditoría de CI terminó correctamente con 24 réplicas emparejadas.
 
-- retained-lesson mean regret: **-0.1086777912**;
-- ablated-lesson mean regret: **-0.1086777912**;
-- retained-lesson oracle-hit rate: **85.0694%**;
-- ablated-lesson oracle-hit rate: **85.0694%**;
-- ablation-minus-retained regret advantage: **0.0**;
-- paired sign-flip p for regret difference: **1.0**;
-- retained-minus-ablated oracle-hit advantage: **0.0**;
-- paired sign-flip p for hit-rate difference: **1.0**;
-- all retained runs produced a retrieval bridge signal: **true**.
+- regret medio de retained_lesson: **-0.1086777912**;
+- regret medio de ablated_lesson: **-0.1086777912**;
+- tasa de aciertos del oráculo de retained_lesson: **85.0694%**;
+- tasa de aciertos del oráculo de ablated_lesson: **85.0694%**;
+- ventaja de regret ablation − retained: **0.0**;
+- p emparejada por cambio de signo para la diferencia de regret: **1.0**;
+- ventaja de tasa de aciertos retained − ablated: **0.0**;
+- p emparejada por cambio de signo para la diferencia de tasa de aciertos: **1.0**;
+- todas las ejecuciones retenidas produjeron señal de puente de recuperación: **true**.
 
-## Interpretation
+## Interpretación
 
-V66 is a **null result**.
+V66 es un **resultado nulo**.
 
-The retained consolidated lesson was present and generated a semantic retrieval signal,
-but preserving it did not produce a measurable difference in regret or oracle-hit rate
-relative to deleting it in this protocol.
+La lección consolidada retenida estaba presente y generó una señal semántica de recuperación, pero conservarla no produjo una diferencia medible en regret ni en tasa de aciertos del oráculo frente a eliminarla bajo este protocolo.
 
-This means the experiment did **not** demonstrate that DREAM-created episodic
-consolidation becomes functionally necessary for later trajectory selection after raw
-episodic-memory ablation.
+Esto significa que el experimento **no** demostró que la consolidación episódica generada por SUEÑO se vuelva funcionalmente necesaria para la selección posterior de trayectorias después de eliminar la memoria episódica original.
 
-The null does not show that dream consolidation is useless in general. It shows that
-the present retrieval-and-selection pathway did not make the retained lesson
-discriminatively important under the tested deterministic conditions.
+El resultado nulo no demuestra que la consolidación durante SUEÑO sea inútil en general. Muestra que la vía actual de recuperación y selección no hizo que la lección retenida fuera discriminativamente importante bajo las condiciones deterministas probadas.
 
-## Methodological consequence
+## Consecuencia metodológica
 
-The next protocol should avoid asking the retained lesson to influence behavior only
-through a new semantic retrieval response. Instead, it should test whether the
-**numeric internal state produced by DREAM itself** carries a recoverable and
-causally transferable trace after semantic memory and self-model text are removed.
+El siguiente protocolo debe evitar pedir a la lección retenida que influya sobre la conducta únicamente mediante una nueva respuesta semántica de recuperación. En su lugar, debe probar si el **estado interno numérico producido directamente por SUEÑO** contiene una huella recuperable y transferible causalmente después de eliminar la memoria semántica y el texto del modelo de sí.
 
-## Evidence boundary
+## Límite de evidencia
 
-The provider is deterministic and synthetic. V66 tests persistence of a consolidated
-computational trace after source-memory removal. It does not establish human-like
-memory consolidation, subjective dreaming, or phenomenological consciousness.
+El proveedor es determinista y sintético. V66 prueba persistencia de una huella computacional consolidada después de eliminar la memoria fuente. No establece consolidación de memoria humana, sueño subjetivo ni consciencia fenomenológica.
