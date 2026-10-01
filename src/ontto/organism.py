@@ -47,6 +47,9 @@ class OrganismConfig:
     semantic_self_model_bridge_enabled: bool = False
     semantic_self_model_scale: float = 1.0
     semantic_self_model_importance: float = 0.65
+    dream_semantic_bridge_enabled: bool = False
+    dream_semantic_bridge_scale: float = 1.0
+    dream_semantic_bridge_importance: float = 0.65
 
 
 class PersistentOrganism:
@@ -476,11 +479,55 @@ class PersistentOrganism:
             )
             raise
 
+        memory_candidate = self._extract_memory_candidate(out.text)
+        self_model_candidate = self._extract_self_model_candidate(out.text)
+
+        dream_semantic_bridge = None
+        dream_self_model_bridge = None
+        dream_signal = 0.0
+
+        if self.cfg.dream_semantic_bridge_enabled and memory_candidate:
+            recent = self.store.recent_memories(
+                self.cfg.agent_id,
+                self.cfg.memory_limit,
+            )
+            admission = self.memory_policy.admit(
+                memory_candidate,
+                recent,
+                importance=self.cfg.dream_semantic_bridge_importance,
+            )
+            omega = float(admission.decision.omega)
+            signal = float(
+                np.tanh(self.cfg.dream_semantic_bridge_scale * omega)
+            )
+            dream_semantic_bridge = {
+                "memory": memory_candidate,
+                "omega": omega,
+                "signal": signal,
+                "novelty": float(admission.novelty),
+                "coupling": float(admission.coupling),
+                "persistence": float(admission.persistence),
+                "admissible": bool(admission.decision.exists),
+            }
+
+        if self.cfg.dream_semantic_bridge_enabled and self_model_candidate:
+            dream_self_model_bridge = self._semantic_self_model_signal(
+                self_model_candidate
+            )
+
+        signals = []
+        if dream_semantic_bridge is not None:
+            signals.append(float(dream_semantic_bridge["signal"]))
+        if dream_self_model_bridge is not None:
+            signals.append(float(dream_self_model_bridge["signal"]))
+        if signals:
+            dream_signal = float(np.mean(signals))
+
         self._extract_memory(out.text)
         self._extract_self_model(out.text)
         self.state.last_thought = out.text[-1400:]
         dynamic = self._advance_dynamic(
-            0.0,
+            dream_signal,
             self.cfg.dynamic_dream_steps,
         )
         self.store.add_event(
@@ -490,6 +537,8 @@ class PersistentOrganism:
             {
                 "summary": out.text[-2500:],
                 "dynamic": dynamic,
+                "semantic_bridge": dream_semantic_bridge,
+                "semantic_self_model_bridge": dream_self_model_bridge,
             },
         )
         summary = out.text.split("DREAM_SUMMARY:", 1)[-1].strip()[:1600]
