@@ -112,3 +112,5 @@ V50 agrega un factorial 2×2 de memoria persistente × `dynamic_state` para medi
 V52 agrega un adaptador de compatibilidad futura inspirado en el operador AEVUM, todavía separado de la política de memoria del organismo.
 
 V53 agrega selección contrafactual de trayectoria usando el auto-modelo. V54 mide predicción lingüística del propio movimiento respecto del atractor antes de la transición.
+
+V55 agrega recuperación de identidad bajo perturbación, comparando selección contrafactual activada/desactivada.
