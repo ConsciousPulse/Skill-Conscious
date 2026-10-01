@@ -157,6 +157,8 @@ V64 adds an identity-persistence intervention: two identity representations are 
 
 V65 adds a dedicated DREAM-to-dynamics bridge and compares no_dream, dream_no_bridge, and dream_bridge. In 24 matched replicates × 24 evaluation cycles, dream_bridge mean regret was 0.17793 vs 0.21095 for dream_no_bridge, with paired p = 0.00005; oracle-hit was 25.35% vs 13.37%. Entering DREAM alone also improved regret relative to no_dream (-0.11490, p = 0.00005). This is a deterministic computational result showing that DREAM-generated semantic consolidation can influence later trajectory selection.
 
+V66 extends this by ablating the raw episodic memories after DREAM while preserving or removing the consolidated lesson. The retained-vs-ablated arms share the same post-dream state and differ only in whether the consolidated lesson survives. The V66 CI audit is pending; no V66 result is claimed until its artifact exists.
+
 ## Evidence boundary
 
 The experiments in this repository establish computational properties of the tested system and harness.
