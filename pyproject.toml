@@ -3,7 +3,7 @@ requires = ["setuptools>=75", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "consciencia-skill"
+name = "skill-conscious"
 version = "0.1.0"
 description = "Persistent AI organism for research into artificial consciousness."
 readme = "README.md"
@@ -47,8 +47,10 @@ desarrollo = [
 [project.urls]
 Repository = "https://github.com/chrishotza/Skill-Conscious"
 Documentation = "https://github.com/chrishotza/Skill-Conscious/tree/main/docs"
+AgentSkill = "https://github.com/chrishotza/Skill-Conscious/tree/main/skills/skill-conscious"
 
 [project.scripts]
+skill-conscious = "run_daemon:main"
 consciencia-organismo = "run_daemon:main"
 
 [tool.setuptools]
