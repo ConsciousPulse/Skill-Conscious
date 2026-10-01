@@ -2,13 +2,43 @@
 
 ## Question
 
-Can the organism close a recurrent computational loop in which a selected internal trajectory changes the next semantic memory, that semantic memory is transduced back into internal dynamics, and the resulting state becomes the basis for the next trajectory selection?
+Can the organism close a recurrent computational loop in which a selected internal
+trajectory changes the next semantic memory, that semantic memory is transduced back
+into internal dynamics, and the resulting state becomes the basis for the next
+trajectory selection?
+
+## Result
+
+The successful CI artifact contains 24 paired replicates with 24 evaluation cycles.
+
+- self-model mean regret: **-0.0842091465**;
+- random-control mean regret: **0.3028308773**;
+- self-model advantage: **0.3870400237** regret units;
+- cumulative advantage: **9.2889605698**;
+- paired sign-flip p: **0.00005**;
+- self-model oracle-hit rate: **96.1806%**;
+- random-control oracle-hit rate: **45.3125%**.
+
+The result shows that the self-model selector retained strong functional utility in
+the recurrent protocol while the next semantic memory was conditioned on the
+previous selected action.
+
+## Important limitation
+
+The self-model arm selected `+1` in all 24 replicates. Consequently, the secondary
+within-run endpoint comparing semantic-bridge signals after negative versus
+positive actions had **zero runs with both action branches**.
+
+The loop was exercised, but the experiment did not provide balanced bidirectional
+action coverage in the self-model arm. Therefore V60 supports recurrent causal
+plumbing plus functional self-model selection in this harness, but it does not
+establish a bidirectional action-conditioned feedback effect.
 
 ## Loop
 
-The deterministic protocol closes the following cycle:
+The deterministic protocol closes:
 
-```text
+```
 self-model / random selection
         │
         ▼
@@ -18,7 +48,7 @@ self-model / random selection
  persistent event state
         │
         ▼
- next LLM semantic memory
+ next semantic memory
         │
         ▼
  continuity / semantic bridge
@@ -32,31 +62,8 @@ self-model / random selection
         └──────────────↺
 ```
 
-The provider is deterministic and maps the previous autonomous action to one of two semantic memories. The persistent organism then applies the existing semantic bridge and self-observer before making the next autonomous selection.
-
-## Primary endpoint
-
-The primary selection endpoint is mean immediate regret relative to a post-hoc oracle over 24 evaluation cycles.
-
-The protocol compares:
-
-- self-model trajectory selection;
-- deterministic random control.
-
-The same seed, warmup history, semantic bridge, candidate signals, and evaluation horizon are used for both arms.
-
-## Feedback endpoint
-
-For each arm, the protocol also measures the difference between semantic-bridge signals observed after previous negative versus positive actions. This is a within-run feedback coupling measure, not an isolated causal effect estimate.
-
-## Interpretation
-
-A positive self-model advantage means lower measured immediate regret than the random control.
-
-A non-zero feedback signal delta shows that different prior actions are followed by measurably different semantic-to-dynamic signals in the deterministic closed-loop provider.
-
-Neither endpoint establishes phenomenological consciousness or subjective experience.
-
 ## Evidence boundary
 
-V60 is an operational systems experiment. Its provider is synthetic and deterministic. The experiment tests recurrent causal plumbing and trajectory selection in the computational organism, not phenomenology.
+V60 is an operational systems experiment. Its provider is deterministic and
+synthetic. The result concerns computational selection and recurrent state
+coupling, not phenomenological consciousness or subjective experience.
