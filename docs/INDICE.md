@@ -19,6 +19,7 @@
 
 ## Fundamentos
 - [Manifiesto Matemático del Ser](../MANIFIESTO_DEL_SER.md)
+- [Mathematical Manifesto of Being](../MANIFESTO_OF_BEING.md)
 - [TCF](fundamentos/TCF.md)
 - [TCF v3.3](fundamentos/TCF_V3_3.md)
 
@@ -58,6 +59,7 @@
 ### V70 — dos líneas complementarias
 - [V70 self-model action](V70_SELF_MODEL_ACTION.md) — lectura/predicción → acción continua → nuevo estado.
 - [V70 persistent self-reader](V70_PERSISTENT_SELF_READER.md) — persistencia del lector entre reinicios.
+- [V71 integrated self-reader](V71_INTEGRATED_SELF_READER.md) — persistencia + SUEÑO + ablación semántica + selección autónoma sin copia manual del lector.
 
 [Registro consolidado](../research/ORGANISM_RESULT_LEDGER.md).
 
