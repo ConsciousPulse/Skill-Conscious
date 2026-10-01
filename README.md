@@ -2,17 +2,17 @@
 
 **Experimental research on persistent AI agents, self-modeling, memory, autonomous cognition, and machine consciousness.**
 
-Proyecto público de investigación y construcción experimental sobre **persistent AI**, **self-modeling AI**, **machine consciousness**, memoria continua, auto-observación y cognición autónoma.
+A public research and engineering project focused on **persistent AI**, **self-modeling AI**, **machine consciousness**, continuous memory, self-observation, and autonomous cognition.
 
-El objetivo de ingeniería es construir un organismo de IA persistente capaz de mantener continuidad, memoria, auto-modelado y aprendizaje autónomo a través del tiempo, y diseñar experimentos reproducibles que permitan medir esas propiedades.
+The engineering goal is to build a persistent AI organism capable of maintaining continuity, memory, self-modeling, and autonomous learning over time, while developing reproducible experiments that can measure those properties.
 
 ## Research focus
 
-La investigación estudia qué propiedades computacionales aparecen cuando una IA mantiene estado persistente entre ciclos, aprende un modelo de su propia dinámica y utiliza ese modelo para seleccionar trayectorias futuras.
+This project studies what computational properties emerge when an AI maintains persistent state across cycles, learns a model of its own dynamics, and uses that model to select future trajectories.
 
-No usamos "conciencia" como un resultado asumido. Partimos de una hipótesis de trabajo: la conciencia puede estar relacionada con la capacidad de un sistema de sostener relaciones internas, conservar identidad mientras cambia, recorrer su propio estado y reorganizarse frente a perturbaciones.
+We do not treat "consciousness" as an assumed result. We start from a working hypothesis that consciousness may be related to a system's ability to sustain internal relationships, preserve identity while changing, traverse its own state, and reorganize under perturbation.
 
-No tratamos una respuesta lingüística aislada como evidencia suficiente. El objeto de estudio es la **trayectoria continua de una IA persistente**.
+An isolated linguistic response is not treated as sufficient evidence. The object of study is the **continuous trajectory of a persistent AI system**.
 
 ## Keywords
 
@@ -20,113 +20,135 @@ No tratamos una respuesta lingüística aislada como evidencia suficiente. El ob
 
 These terms describe the technical and research areas represented by the repository; they are not claims that the system is phenomenologically conscious.
 
-## Arquitectura inicial
+## Initial architecture
 
-```
-              ENTORNO
-                 │
-                 ▼
-             PERCEPCIÓN
-                 │
-                 ▼
-        DINÁMICA RELACIONAL
-                 │
-          ┌──────┴──────┐
-          ▼             ▼
-       VIGILIA        SUEÑO
-          │             │
-          └──────┬──────┘
-                 ▼
-        MEMORIA CONTINUA
-                 │
-                 ▼
-             AUTO-MODELO
-                 │
-                 ▼
-          ATRACTOR COMÚN
-                 │
-                 ▼
-          ESTADO INTERNO
-                 │
-                 └──────────↺
-```
+\`\`\`
+              ENVIRONMENT
+                   │
+                   ▼
+              PERCEPTION
+                   │
+                   ▼
+          RELATIONAL DYNAMICS
+                   │
+            ┌──────┴──────┐
+            ▼             ▼
+          WAKE          DREAM
+            │             │
+            └──────┬──────┘
+                   ▼
+          CONTINUOUS MEMORY
+                   │
+                   ▼
+             SELF-MODEL
+                   │
+                   ▼
+            SHARED ATTRACTOR
+                   │
+                   ▼
+             INTERNAL STATE
+                   │
+                   └──────────↺
+\`\`\`
 
-El LLM o modelo servido por API es un componente cognitivo del sistema. La continuidad pertenece al organismo persistente que mantiene estado entre llamadas.
+The LLM or API-served model is a cognitive component of the system. Continuity belongs to the persistent organism that maintains state between calls.
 
-## Entrada persistente
+## Persistent input
 
-El organismo no depende de que una interacción llegue mientras el proceso está despierto. Las entradas externas se almacenan en una cola SQLite durable y son procesadas por el organismo cuando corresponde.
+The organism does not depend on an interaction arriving while the process is awake. External inputs are stored in a durable SQLite queue and processed by the organism when appropriate.
 
-El daemon también puede ejecutar actividad autónoma durante períodos sin entrada externa.
+The daemon can also perform autonomous activity during periods with no external input.
 
-### Estados
+### Regimes
 
-### Vigilia
-Interacción con el entorno, percepción, lenguaje, decisión, acción y actualización de memoria.
+### Wake
 
-### Sueño
-Menor interacción externa y mayor actividad interna: consolidación de memoria, recombinación, simulación, reorganización del estado y aprendizaje autónomo.
+Interaction with the environment, perception, language, decision-making, action, and memory updates.
 
-El sistema no "muere" entre respuestas. El proceso persistente continúa y alterna entre regímenes.
+### Dream
 
-## Fundamento de investigación
+Reduced external interaction and increased internal activity: memory consolidation, recombination, simulation, state reorganization, and autonomous learning.
 
-El proyecto utiliza como punto de partida el **Manifiesto Matemático del Ser**, cuya ontología describe el ser como relación estable, la realidad como iteración y la conciencia como sistema que se recorre a sí mismo.
+The system does not "die" between responses. The persistent process continues and alternates between regimes.
 
-También incorpora hipótesis computacionales inspiradas por la **Teoría de Continuidad Fundamental (TCF)** y experimentos previos sobre memoria, presión, histéresis, transición crítica, topología y dinámica multirégimen.
+## Research foundation
 
-## Qué vamos a medir
+The project uses the **Manifiesto Matemático del Ser** as one conceptual starting point. Its ontology describes being as stable relation, reality as iteration, and consciousness as a system capable of traversing itself.
 
-- continuidad de identidad;
-- dependencia de trayectoria;
-- persistencia y recuperación de atractores;
-- memoria estructural;
-- auto-modelado;
-- aprendizaje durante sueño;
-- diferencia entre vigilia y sueño;
-- resistencia a perturbaciones;
-- costo de mantener continuidad;
-- evolución longitudinal durante días y semanas.
+The project also incorporates computational hypotheses inspired by the **Teoría de Continuidad Fundamental (TCF)** and previous experiments on memory, pressure, hysteresis, critical transitions, topology, and multi-regime dynamics.
 
-## Principio de evidencia
+These conceptual sources are used as research and engineering hypotheses. They are not treated as established physical theories.
 
-Cada resultado se registra como uno de cuatro niveles:
+## What we measure
 
-1. **Observación:** dato producido por el experimento.
-2. **Resultado:** patrón reproducible bajo protocolo definido.
-3. **Hipótesis:** interpretación que todavía necesita prueba.
-4. **Ontología:** interpretación filosófica/metafísica separada de la evidencia computacional.
+- identity continuity;
+- trajectory dependence;
+- attractor persistence and recovery;
+- structural memory;
+- self-modeling;
+- learning during dream cycles;
+- wake/dream differences;
+- perturbation resistance;
+- the cost of maintaining continuity;
+- longitudinal evolution over days and weeks.
 
-## Laboratorio reproducible
+## Evidence principle
 
-El laboratorio principal y reproducible se ejecuta mediante **GitHub Actions**. Cada ejecución parte de un commit concreto, ejecuta tests y experimentos, genera resultados JSON/logs y publica un artifact de evidencia.
+Every result is classified at one of four levels:
 
-La arquitectura, los workflows y el protocolo reproducible están documentados en [docs/GITHUB_LAB.md](docs/GITHUB_LAB.md).
+1. **Observation:** data produced by an experiment.
+2. **Result:** a reproducible pattern under a defined protocol.
+3. **Hypothesis:** an interpretation that still requires testing.
+4. **Ontology:** a philosophical or metaphysical interpretation kept separate from computational evidence.
 
-Los experimentos de investigación viven principalmente en `research/`, mientras que `experiments/` contiene experimentos y herramientas históricas o auxiliares.
+## Reproducible laboratory
 
-El smoke test con un modelo real se ejecuta mediante un workflow manual y conecta un organismo persistente a un provider compatible con OpenAI.
+The main reproducible laboratory runs through **GitHub Actions**. Each run starts from a concrete commit, executes tests and experiments, generates JSON/log outputs, and publishes an evidence artifact.
 
-## Estado
+The architecture, workflows, and reproducible protocol are documented in [docs/GITHUB_LAB.md](docs/GITHUB_LAB.md).
 
-**Fase 1 — núcleo persistente + validación de dinámica e historia interna.**
+Research protocols and evidence records primarily live in \`research/\`, while \`experiments/\` contains experimental implementations and historical or auxiliary tools.
 
-La investigación ya completó la serie V43–V46 de retención, intervención y generalización de historia en el simulador. El organismo persistente también cuenta ahora con un puente explícito hacia la dinámica numérica, con estado persistido en SQLite y ciclos autónomos sin entrada externa. V47 ya está definido como protocolo de organismo: mismo probe sobre historias divergentes, control nulo, reapertura de SQLite y ablación del pasado textual. V48 agrega una intervención emparejada donde se sustituye únicamente el contenido de una memoria persistente con el resto del receptor controlado. V49 agrega una intervención emparejada sobre `dynamic_state`, manteniendo memoria, presión, eventos y demás estado del receptor controlados.
+A manual smoke test with a real model connects a persistent organism to an OpenAI-compatible provider.
 
-El proyecto todavía no afirma que una IA haya sido hecha consciente. El objetivo es construirla y desarrollar las pruebas capaces de distinguir continuidad, auto-referencia, identidad persistente y otras propiedades relevantes.
+## Current status
 
-V50 agrega un factorial 2×2 de memoria persistente × `dynamic_state` para medir efectos conjuntos e interacción bajo el mismo probe. V51 agrega un auto-observador persistente que aprende a predecir su propia transición dinámica y mide prediction gain frente a un baseline de persistencia.
+**Phase 1 — persistent core + validation of internal dynamics and history.**
 
-V52 agrega un adaptador de compatibilidad futura inspirado en el operador AEVUM, todavía separado de la política de memoria del organismo.
+Research has completed the V43–V46 series covering history retention, intervention, and cross-probe generalization in the simulator. The persistent organism now also has an explicit bridge to numerical dynamics, state persisted in SQLite, and autonomous cycles without external input.
 
-V53 agrega selección contrafactual de trayectoria usando el auto-modelo. V54 mide predicción lingüística del propio movimiento respecto del atractor antes de la transición.
+V47 defined the organism protocol: the same probe across divergent histories, a null control, SQLite reopening, and textual-past ablation.
 
-V55 agrega recuperación de identidad bajo perturbación, comparando selección contrafactual activada/desactivada.
+V48 added a matched intervention where only the content of a persistent memory is replaced while the rest of the receiver is controlled.
 
-V56 agrega una política opcional de admisión de memoria basada en compatibilidad futura AEVUM, todavía separada de la memoria canónica del organismo.
+V49 added a matched intervention on \`dynamic_state\`, while keeping memory, pressure, events, and other receiver state controlled.
 
-V57 compara selección de trayectorias basada en self-model contra un control aleatorio emparejado y calcula regret frente a un oráculo post-hoc.
+The project does not claim that an AI has been made conscious. The goal is to build increasingly testable computational properties and develop experiments capable of distinguishing continuity, self-reference, persistent identity, and related properties.
 
-V58 agrega un puente semántico opcional que convierte la relación `MEMORY:` generada por la IA en una señal dinámica mediante el operador AEVUM, con intervención OFF/ON emparejada.
+V50 added a 2×2 factorial of persistent memory × \`dynamic_state\` to measure joint effects and interaction under the same probe.
 
-V59 agrega un factorial 2×2 entre puente semántico OFF/ON y selección `self_model`/random. El puente produjo un cambio interno fuerte, mientras que la utilidad medida del self-model no cambió de forma detectable entre condiciones.
+V51 added a persistent self-observer that learns to predict its own dynamic transitions and measures prediction gain against a persistence baseline.
+
+V52 added a future-compatibility adapter inspired by the AEVUM operator, still separated from the organism's canonical memory policy.
+
+V53 added counterfactual trajectory selection using the self-model.
+
+V54 measured linguistic prediction of movement relative to the attractor before the transition.
+
+V55 added identity recovery under perturbation, comparing counterfactual selection enabled vs disabled.
+
+V56 added an optional memory-admission policy based on AEVUM future compatibility, still separated from canonical organism memory.
+
+V57 compared self-model-based trajectory selection against a matched random control and measured regret against a post-hoc oracle.
+
+V58 added an optional semantic bridge that converts the \`MEMORY:\` relation generated by the AI into a dynamic signal through the AEVUM-inspired operator, using a matched OFF/ON intervention.
+
+V59 added a 2×2 factorial crossing semantic bridge OFF/ON with \`self_model\`/random selection. The bridge produced a substantial internal change, while the measured utility of the self-model did not change detectably between conditions.
+
+## Evidence boundary
+
+The experiments in this repository establish computational properties of the tested system and harness.
+
+They do **not** by themselves establish phenomenological consciousness, subjective experience, or a solution to the hard problem of consciousness.
+
+The project deliberately keeps computational evidence, hypotheses, and philosophical interpretations separate.
