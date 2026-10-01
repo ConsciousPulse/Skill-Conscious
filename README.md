@@ -84,6 +84,7 @@ Los resultados positivos, nulos y negativos se conservan.
 | V75 | Continuidad activa bajo perturbación | **Protocolo activo** |
 | V76 | Generalización bajo perturbaciones no vistas | **Ventaja OOD de autopredicción conservada** |
 | V77 | Generalización ante estructuras causales no vistas | **Ventaja OOD de autopredicción conservada** |
+| V78 | Continuidad activa ante perturbaciones repetidas | **Protocolo activo** |
 
 ## Fundamentos
 
@@ -192,6 +193,7 @@ Positive, null, and negative results are all kept.
 | V75 | Active continuity under perturbation | **Active protocol** |
 | V76 | Generalization to unseen perturbations | **OOD self-prediction advantage retained** |
 | V77 | Generalization to unseen causal structures | **OOD self-prediction advantage retained** |
+| V78 | Active continuity under repeated perturbations | **Active protocol** |
 
 ## Foundations
 
