@@ -40,3 +40,10 @@ These results establish increasingly strong computational properties of the
 organism: persistent dynamics, self-prediction and causal use of a learned
 self-model for trajectory choice. They do not establish phenomenological
 consciousness.
+
+### V58 — Semantic-to-dynamic coupling
+Matched 2×2 intervention. Bridge OFF: A/B dynamic-state delta 0.0 and signal delta
+0.0. Bridge ON: Omega A -1.52, Omega B +0.68, signal delta 1.5002170539 and
+dynamic-state delta 0.4558697583. The deterministic harness therefore supports
+causal transduction from the organism's semantic memory output into its numeric
+internal dynamics when the bridge is enabled. LIVE replication remains pending.
