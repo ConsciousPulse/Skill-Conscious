@@ -1,42 +1,35 @@
-# V51 — Self-Observation and Self-Prediction
+# V51 — Autoobservación y autopredicción
 
-## Source connection
+## Conexión con las fuentes
 
-The Manifiesto del Ser defines consciousness as a system traversing itself and
-distinguishing possible states. The Conciencia Cuántica notes operationalize this
-as self-traversal plus internal dynamics and memory.
+El Manifiesto del Ser define la conciencia como un sistema que se recorre a sí mismo y distingue estados posibles. Las notas de Conciencia Cuántica operacionalizan esto como recorrido de sí mismo junto con dinámica interna y memoria.
 
-V51 turns that conceptual requirement into an explicit computational module.
+V51 convierte ese requisito conceptual en un módulo computacional explícito.
 
-## Mechanism
+## Mecanismo
 
-Before every persisted dynamic transition, `SelfObserver` predicts the next
-internal dynamic state using only the organism's previous internal trajectory
-variables. After the transition, the actual state is compared with:
+Antes de cada transición dinámica persistida, `SelfObserver` predice el siguiente estado dinámico interno utilizando únicamente variables de la trayectoria interna previa del organismo. Después de la transición, el estado real se compara con:
 
-- the self-model prediction;
-- a persistence baseline that predicts the current state will remain unchanged.
+- la predicción del modelo de sí;
+- un baseline de persistencia que predice que el estado actual permanecerá sin cambios.
 
-The difference is recorded as `prediction_gain`.
+La diferencia se registra como `prediction_gain`.
 
-## Primary observables
+## Observables principales
 
-- observer MAE;
-- baseline MAE;
-- mean prediction gain;
-- fraction of positive-gain transitions;
-- sign-flip permutation p-value;
-- persistence of the observer model through SQLite restart.
+- MAE del observador;
+- MAE del baseline;
+- ganancia media de predicción;
+- fracción de transiciones con ganancia positiva;
+- valor p de permutación por cambio de signo;
+- persistencia del modelo de observador después de reiniciar SQLite.
 
-## Interpretation
+## Interpretación
 
-A positive prediction gain means the organism's learned self-model predicts its
-own transition better than a trivial persistence baseline under this protocol.
-It is evidence for a computational self-model, not proof of subjective
-consciousness.
+Una ganancia positiva de predicción significa que el modelo de sí aprendido por el organismo predice su propia transición mejor que un baseline trivial de persistencia bajo este protocolo.
 
-## Next dependency
+Es evidencia de un modelo computacional de sí mismo, no una demostración de consciencia subjetiva.
 
-V51 makes the organism capable of *representing* its own trajectory. The next
-layer must make that representation causally relevant to counterfactual trajectory
-selection and attractor-aware action.
+## Próxima dependencia
+
+V51 hace que el organismo pueda *representar* su propia trayectoria. La siguiente capa debe hacer que esa representación sea causalmente relevante para la selección contrafactual de trayectorias y para acciones sensibles al atractor.
