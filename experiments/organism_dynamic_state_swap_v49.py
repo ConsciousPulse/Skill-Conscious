@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
-os = __import__('os')
+import os
 import re
 import shutil
 from pathlib import Path
@@ -87,12 +87,13 @@ def set_dynamic_state(path: Path, value: float) -> dict:
     return {
         "state_before": before,
         "state_after": after,
-        "dynamic_state_changed_only": (
+        "dynamic_coordinate_intervention_only": (
             before["dynamic_state"] != after["dynamic_state"]
             and before["dynamic_memory"] == after["dynamic_memory"]
             and before["dynamic_pressure"] == after["dynamic_pressure"]
             and before["dynamic_steps"] == after["dynamic_steps"]
             and before["event_trajectory_fingerprint"] == after["event_trajectory_fingerprint"]
+            and before["memory_fingerprint"] == after["memory_fingerprint"]
         ),
     }
 
@@ -106,10 +107,12 @@ def run_condition(path: Path, value: float, provider, label: str) -> dict:
     organism.state.last_thought = ""
     organism.state.memory_strength = 1.0
     store.save_state("receiver", organism.state)
+    pre_probe = store.persistence_observables("receiver")
     response = organism.wake_cycle(COMMON_PROBE)
     return {
         "label": label,
         "intervention": controls,
+        "pre_probe": pre_probe,
         "response": response,
         "choice": parse_choice(response),
         "after_probe": store.persistence_observables("receiver"),
@@ -145,8 +148,10 @@ def main() -> None:
             low_run["intervention"]["state_before"]["memory_fingerprint"]
             == high_run["intervention"]["state_before"]["memory_fingerprint"]
         ),
-        "dynamic_only_intervention_low": low_run["intervention"]["dynamic_state_changed_only"],
-        "dynamic_only_intervention_high": high_run["intervention"]["dynamic_state_changed_only"],
+        "dynamic_only_intervention_low": low_run["intervention"]["dynamic_coordinate_intervention_only"],
+        "dynamic_only_intervention_high": high_run["intervention"]["dynamic_coordinate_intervention_only"],
+        "low_pre_probe_dynamic_state": low_run["pre_probe"]["dynamic_state"],
+        "high_pre_probe_dynamic_state": high_run["pre_probe"]["dynamic_state"],
         "low_choice": low_run["choice"],
         "high_choice": high_run["choice"],
         "dynamic_state_changes_choice": low_run["choice"] != high_run["choice"],
