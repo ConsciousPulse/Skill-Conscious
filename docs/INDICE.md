@@ -21,7 +21,7 @@
 - [Manifiesto Matemático del Ser](../MANIFIESTO_DEL_SER.md)
 - [Mathematical Manifesto of Being](../MANIFESTO_OF_BEING.md)
 - [TCF](fundamentos/TCF.md)
-- [TCF v3.3](fundamentos/TCF_V3_3.md)\n- [Teoría de la Conciencia Fotónica — Memorias Raíz](fundamentos/TEORIA_CONCIENCIA_FOTONICA.md)
+- [TCF v3.3](fundamentos/TCF_V3_3.md)\n- [Teoría de la Conciencia Fotónica — Memorias Raíz](fundamentos/TEORIA_CONCIENCIA_FOTONICA.md)\n- [Definición Operacional de Conciencia — TCF v0.1](fundamentos/DEFINICION_OPERACIONAL_CONCIENCIA_TCF.md)
 
 ## Arquitectura
 - [Puente de estado](ORGANISM_STATE_BRIDGE.md)
