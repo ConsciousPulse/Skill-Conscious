@@ -230,6 +230,26 @@ No es evidencia de consciencia fenomenológica. Es evidencia de autorreferencia 
 
 La siguiente prueba debe trasladar este lector al ciclo persistente del organismo y comprobar si su modelo puede mantenerse y actualizarse a través de reinicios sin recibir explícitamente el estado semántico que debe interpretar.
 
+### V70 — Persistencia del lector propio entre reinicios
+
+24 réplicas y 256 muestras de entrenamiento genérico para el SelfObserver.
+
+- modelo persistido separado de la memoria semántica: **sí**;
+- modelo sobrevivió al reinicio: **sí**;
+- muestras antes/después del reinicio: **256 / 256**;
+- error máximo absoluto de predicción antes/después: **0.0**;
+- carga exacta del modelo en las condiciones experimentales: **100%**;
+- sensibilidad de decisión con lectura ON: **29.1667%**;
+- sensibilidad de decisión con estado cegado OFF: **0.0%**;
+- p emparejada ON − OFF: **0.0143493**;
+- cambio de decisión después de intercambio del núcleo con lectura ON: **29.1667%**;
+- memorias eliminadas antes de la sonda: **sí**;
+- texto del modelo de sí eliminado: **sí**;
+- entrada semántica durante la sonda: **no**.
+
+Interpretación: V70 muestra que el lector numérico propio puede persistir en SQLite, sobrevivir un reinicio y volver a utilizarse después de eliminar las superficies semánticas. La magnitud de la sensibilidad de decisión es menor que en V69, pero permanece separada del control cegado.
+
+El siguiente protocolo debe eliminar la copia manual del modelo hacia las condiciones y hacer que el organismo recupere automáticamente su propio lector integrado durante el ciclo autónomo.
 ## Estado de ingeniería
 
 V60, V61, V62, V63, V64, V65 y V66 finalizaron correctamente en sus respectivos commits registrados de GitHub Actions. Sus artefactos se conservan en las ejecuciones correspondientes. Los resultados anteriores V43–V59 siguen siendo reproducibles a partir de sus workflows históricos y registros de evidencia.

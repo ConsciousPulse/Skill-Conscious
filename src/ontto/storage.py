@@ -138,6 +138,11 @@ class MemoryStore:
             );
             CREATE INDEX IF NOT EXISTS idx_self_observer_agent_step
             ON self_observer_snapshots(agent_id, step_end);
+            CREATE TABLE IF NOT EXISTS self_observer_models (
+                agent_id TEXT PRIMARY KEY,
+                model_json TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            );
             CREATE TABLE IF NOT EXISTS input_queue (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 agent_id TEXT NOT NULL,
@@ -254,6 +259,23 @@ class MemoryStore:
             (agent_id,),
         ).fetchone()
         return int(row[0])
+
+    def save_self_observer_model(self, agent_id: str, model: dict[str, Any]) -> None:
+        self.conn.execute(
+            "INSERT INTO self_observer_models(agent_id,model_json,updated_at) VALUES(?,?,?) "
+            "ON CONFLICT(agent_id) DO UPDATE SET model_json=excluded.model_json,updated_at=excluded.updated_at",
+            (agent_id, json.dumps(model, ensure_ascii=False), now_iso()),
+        )
+        self.conn.commit()
+
+    def load_self_observer_model(self, agent_id: str) -> dict[str, Any] | None:
+        row = self.conn.execute(
+            "SELECT model_json FROM self_observer_models WHERE agent_id=?",
+            (agent_id,),
+        ).fetchone()
+        if row is None:
+            return None
+        return json.loads(row[0])
 
     def recent_memories(self, agent_id: str, limit: int = 12) -> list[str]:
         rows = self.conn.execute(

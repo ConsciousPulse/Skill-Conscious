@@ -68,9 +68,14 @@ class PersistentOrganism:
         self.sleep_fn = sleep_fn
         self.state = store.load_state(cfg.agent_id)
         self.dynamic_bridge = DynamicStateBridge(Config(), seed=cfg.dynamic_seed)
-        self.self_observer = SelfObserver(
-            ridge=cfg.self_observer_ridge,
-            max_samples=cfg.self_observer_max_samples,
+        persisted_self_model = store.load_self_observer_model(cfg.agent_id)
+        self.self_observer = (
+            SelfObserver.from_dict(persisted_self_model)
+            if persisted_self_model is not None
+            else SelfObserver(
+                ridge=cfg.self_observer_ridge,
+                max_samples=cfg.self_observer_max_samples,
+            )
         )
         self.meta_observer = MetaSelfObserver(
             ridge=cfg.meta_self_observer_ridge,
@@ -82,7 +87,7 @@ class PersistentOrganism:
             meta_error_weight=cfg.self_selection_meta_error_weight,
         )
         self.memory_policy = ContinuityMemoryPolicy()
-        if cfg.self_observer_enabled:
+        if cfg.self_observer_enabled and persisted_self_model is None:
             for row in store.self_observer_trajectory(cfg.agent_id):
                 features = np.asarray(row["features"], dtype=float)
                 self.self_observer.observe(
@@ -94,6 +99,11 @@ class PersistentOrganism:
                         features=features,
                         prediction_error=float(row["prediction_error"]),
                     )
+            if self.self_observer.targets:
+                self.store.save_self_observer_model(
+                    cfg.agent_id,
+                    self.self_observer.to_dict(),
+                )
         self.state.boot_count += 1
         self.cycles = 0
         self.store.save_state(cfg.agent_id, self.state)
@@ -177,6 +187,10 @@ class PersistentOrganism:
             self.self_observer.observe(
                 features=observer_features,
                 actual_state=snapshot.state,
+            )
+            self.store.save_self_observer_model(
+                self.cfg.agent_id,
+                self.self_observer.to_dict(),
             )
             if self.cfg.meta_self_observer_enabled:
                 self.meta_observer.observe(
