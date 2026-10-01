@@ -166,11 +166,28 @@ Interpretación: V66 es un resultado nulo. La lección consolidada retenida esta
 
 ### V67 — Huella numérica generada durante SUEÑO después de la ablación semántica total
 
-Protocolo implementado y sometido a CI. Dos historias emparejadas entran en SUEÑO con consolidación semántica específica de la condición. Después de SUEÑO se eliminan todas las memorias episódicas, eventos, snapshots, texto del modelo de sí, memoria numérica y trazas de presión; solo queda el núcleo dinámico (estado actual, estado previo, índice de pasos). Se evalúa una continuación común con entrada cero y, en una segunda condición, se transfiere únicamente ese núcleo numérico entre las bases emparejadas.
+V67 pasó por una corrección metodológica antes de interpretar sus resultados. En la primera implementación, el brazo `stable_swap` mutaba `stable_state` y luego ese mismo objeto ya mutado se utilizaba como fuente para `frontier_swap`. El intercambio quedó contaminado y esa ejecución no se considera evidencia.
 
-Los endpoints principales son la precisión de clasificación posterior a la ablación y la precisión siguiendo el intercambio de estado. El protocolo está diseñado para probar si SUEÑO puede escribir una huella numérica causalmente transferible que permanezca conductualmente legible después de eliminar las fuentes semánticas.
+La implementación corregida captura ambos núcleos dinámicos antes de cualquier mutación y añade un control de integridad.
 
-No se reclama un resultado de V67 hasta validar el artefacto completado mediante CI.
+24 réplicas, 12 pasos de continuación:
+
+- diferencia media de señal de SUEÑO estable − frontera: **-0.3092749945**;
+- diferencia media de estado dinámico estable − frontera: **-0.0682840349**;
+- precisión de clasificación de la continuación propia después de la ablación: **50.0%**;
+- p emparejada por cambio de signo: **1.0**;
+- precisión de seguimiento del estado transferido: **50.0%**;
+- p emparejada por cambio de signo: **1.0**;
+- intercambios que reprodujeron exactamente el núcleo fuente: **100%**;
+- memorias eliminadas antes de la sonda: **sí**;
+- modelo de sí eliminado antes de la sonda: **sí**;
+- entrada textual durante la sonda: **no**.
+
+Interpretación: **resultado nulo**. SUEÑO produjo una diferencia proximal medible en señal y estado, pero esa diferencia no permaneció como una firma clasificable después de la ablación semántica y tampoco se transfirió causalmente al intercambiar el núcleo dinámico.
+
+El resultado es importante porque separa dos hechos: **SUEÑO puede escribir una diferencia numérica inmediata**, pero bajo este arnés no se demostró que esa diferencia se convierta en una memoria interna funcional persistente.
+
+La próxima prueba debe aislar una escritura controlada del núcleo dinámico y una lectura causal inmediata después de la ablación, antes de volver a aumentar el horizonte temporal.
 
 ## Estado de ingeniería
 
