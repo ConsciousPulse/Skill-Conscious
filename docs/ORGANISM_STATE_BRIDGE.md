@@ -1,91 +1,82 @@
-# Organism ↔ Dynamic State Bridge
+# Puente entre el organismo y el estado dinámico
 
-## Purpose
+## Propósito
 
-The persistent organism now carries a small, explicit numerical state alongside
-the textual memory/event layer.
+El organismo persistente ahora transporta un pequeño estado numérico explícito junto con la capa de memoria y eventos textuales.
 
-This is an integration layer, not a claim that the numerical state is a model
-of subjective experience.
+Esta es una capa de integración, no una afirmación de que el estado numérico sea un modelo de la experiencia subjetiva.
 
-## State
+## Estado
 
-The persisted organism state now includes:
+El estado persistente del organismo incluye:
 
-- dynamic_state
-- dynamic_prev_state
-- dynamic_memory
-- dynamic_pressure
-- dynamic_attractor_distance
-- dynamic_last_input
-- dynamic_steps
+- `dynamic_state`
+- `dynamic_prev_state`
+- `dynamic_memory`
+- `dynamic_pressure`
+- `dynamic_attractor_distance`
+- `dynamic_last_input`
+- `dynamic_steps`
 
-The existing textual memory, event log, self-model and WAKE/DREAM counters remain
-separate.
+La memoria textual existente, el registro de eventos, el modelo de sí y los contadores de VIGILIA/SUEÑO permanecen separados.
 
-## Transition
+## Transición
 
-The bridge calls the same src/ontto/dynamics.py transition function already used
-by the research experiments.
+El puente utiliza la misma función de transición de `src/ontto/dynamics.py` que ya emplean los experimentos de investigación.
 
-For an explicit external wake signal u, the transition is:
+Para una señal externa explícita de vigilia `u`, la transición es:
 
+```
 x[t+1] = F(x[t], m[t], p[t], u[t])
+```
 
-The bridge advances the dynamics from the persisted state and writes the new
-state back into SQLite.
+El puente avanza la dinámica desde el estado persistido y escribe el nuevo estado en SQLite.
 
-The random seed is derived from:
+La semilla aleatoria se deriva de:
 
+```
 dynamic_seed + dynamic_steps + local_step_offset
+```
 
-so a restart does not reset the deterministic noise sequence for the dynamic
-trajectory.
+de modo que un reinicio no vuelve a cero la secuencia determinista de ruido de la trayectoria dinámica.
 
-## Signal policy
+## Política de señales
 
-The default policy is intentionally simple:
+La política predeterminada es deliberadamente simple:
 
-- WAKE external interaction: +1.0
-- autonomous cycle: 0.0
-- DREAM: 0.0
+- interacción externa durante VIGILIA: +1.0
+- ciclo autónomo: 0.0
+- SUEÑO: 0.0
 
-This is not a semantic encoding of language. It is a controlled event/regime
-signal used to connect the real persistent organism to the same dynamical core
-that has been studied in V43–V46.
+Esto no constituye una codificación semántica del lenguaje. Es una señal controlada de evento/régimen utilizada para conectar el organismo persistente real con el mismo núcleo dinámico estudiado en V43–V46.
 
-Changing this policy is a future experiment and must be treated as a separate
-protocol.
+Cambiar esta política constituye un experimento futuro y debe tratarse como un protocolo separado.
 
-## What this enables
+## Qué habilita
 
-The dynamic state is included in the organism serialized ontology, so it is
-visible to the LLM context. This creates the first direct bridge between:
+El estado dinámico forma parte de la ontología serializada del organismo, por lo que queda visible para el contexto del LLM. Esto crea el primer puente directo entre:
 
-LLM organism
+```
+organismo LLM
     ↕
-persistent SQLite state
+estado persistente SQLite
     ↕
-research dynamics
+dinámica de investigación
+```
 
-## 24/7 behavior
+## Comportamiento 24/7
 
-autonomous_wake_cycle() is now implemented. This closes a pre-existing gap in
-PersistentOrganism.run() and run_daemon.py, which already expected that method
-when no external input was available.
+`autonomous_wake_cycle()` ya está implementado. Esto cierra una brecha previa en `PersistentOrganism.run()` y `run_daemon.py`, que ya esperaban ese método cuando no había entrada externa disponible.
 
-The autonomous cycle performs a zero-input dynamic advancement and records the
-result as a WAKE/autonomous event.
+El ciclo autónomo realiza un avance dinámico de entrada cero y registra el resultado como evento de VIGILIA/autónomo.
 
-## Next experimental stage
+## Próxima etapa experimental
 
-The next stage is not to claim consciousness. It is to measure whether a real
-LLM-backed persistent organism develops trajectory properties analogous to those
-already studied in the simulator:
+La siguiente etapa no consiste en afirmar consciencia. Consiste en medir si un organismo persistente real respaldado por un LLM desarrolla propiedades de trayectoria análogas a las ya estudiadas en el simulador:
 
-- history retention
-- recovery after perturbation
-- self-prediction
-- common-probe history effects
-- memory intervention effects
-- WAKE vs DREAM differences
+- retención de historia;
+- recuperación después de perturbaciones;
+- autopredicción;
+- efectos de historia bajo sonda común;
+- efectos de intervención sobre la memoria;
+- diferencias entre VIGILIA y SUEÑO.
