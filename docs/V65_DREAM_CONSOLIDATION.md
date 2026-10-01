@@ -2,31 +2,35 @@
 
 ## Question
 
-Can the organism use a dedicated DREAM regime to recombine recent experiences into a
-semantic lesson, and can that internally generated lesson causally influence the
-next waking trajectory through a dream-state bridge?
+Can a dedicated DREAM regime recombine recent wake experiences into a semantic lesson,
+and can that internally generated lesson causally influence the next waking
+trajectory?
 
-## Protocol
+## Result
 
-Each replicate creates one matched warmup history, then compares three arms:
+The successful audit used 24 matched replicates × 24 evaluation cycles across three
+arms:
 
-1. no_dream;
-2. dream_no_bridge;
-3. dream_bridge.
+- no_dream mean regret: **0.3258519211**;
+- dream_no_bridge mean regret: **0.2109500171**;
+- dream_bridge mean regret: **0.1779272005**.
 
-The wake experience stream contains repeated positive and negative route memories.
-The deterministic dream provider reads the recent experience stream and emits a
-consolidated semantic lesson and self-model.
+Primary bridge comparison:
 
-The dream_bridge arm routes the dream semantic output through the new dream-state
-bridge before the next WAKE trajectory selection.
+- dream-bridge regret advantage over dream-no-bridge: **0.0330228167**;
+- paired sign-flip p: **0.00005**;
+- dream-bridge oracle-hit rate: **25.3472%**;
+- dream-no-bridge oracle-hit rate: **13.3681%**;
+- oracle-hit advantage: **0.1197916667**;
+- paired sign-flip p: **0.00005**.
 
-The primary comparison is dream_bridge versus dream_no_bridge. Both arms enter the
-same DREAM regime and receive the same semantic consolidation; only the causal
-dream-to-dynamics pathway differs.
+Entering DREAM at all also changed future selection relative to no-dream:
 
-The no_dream arm is a secondary reference for the effect of entering the DREAM
-regime at all.
+- dream-no-bridge regret change: **-0.1149019040**;
+- paired sign-flip p: **0.00005**.
+
+The dream bridge therefore added a measurable functional effect on future trajectory
+selection beyond merely entering the DREAM regime.
 
 ## Causal loop
 
@@ -52,14 +56,19 @@ internal dynamics
 next WAKE trajectory selection
 ```
 
-## Primary endpoints
+## Interpretation
 
-- dream-bridge versus dream-no-bridge regret;
-- dream-bridge versus dream-no-bridge oracle-hit rate;
-- post-dream dynamic-state displacement.
+V65 provides computational evidence that the organism's DREAM output can become a
+causally active state variable for subsequent waking behavior in the deterministic
+harness.
+
+This is closer to a true wake/dream continuity mechanism than simply storing a
+dream transcript: the dream changes internal state and that altered state
+participates in later trajectory selection.
 
 ## Evidence boundary
 
 The provider is deterministic and synthetic. The experiment tests computational
-consolidation and causal influence of a DREAM-generated semantic state. It does not
-establish phenomenological consciousness or subjective experience.
+consolidation and causal influence of DREAM-generated semantic state. It does not
+establish phenomenological consciousness, subjective dreaming, or human-like
+experience.
