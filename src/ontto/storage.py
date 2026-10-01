@@ -39,6 +39,12 @@ class OntologicalState:
     dynamic_attractor_distance: float = 0.0
     dynamic_last_input: float = 0.0
     dynamic_steps: int = 0
+    # Operational self-observation metrics.
+    self_prediction: float = 0.0
+    self_prediction_error: float = 0.0
+    self_prediction_gain: float = 0.0
+    self_prediction_confidence: float = 0.0
+    self_prediction_samples: int = 0
 
     def to_json(self) -> str:
         return json.dumps(asdict(self), ensure_ascii=False)
@@ -112,6 +118,26 @@ class MemoryStore:
             );
             CREATE INDEX IF NOT EXISTS idx_dynamic_snapshots_agent_step
             ON dynamic_snapshots(agent_id, step_end);
+            CREATE TABLE IF NOT EXISTS self_observer_snapshots (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                agent_id TEXT NOT NULL,
+                mode TEXT NOT NULL,
+                label TEXT NOT NULL,
+                step_start INTEGER NOT NULL,
+                step_end INTEGER NOT NULL,
+                features_json TEXT NOT NULL,
+                predicted_state REAL NOT NULL,
+                baseline_state REAL NOT NULL,
+                actual_state REAL NOT NULL,
+                prediction_error REAL NOT NULL,
+                baseline_error REAL NOT NULL,
+                gain REAL NOT NULL,
+                confidence REAL NOT NULL,
+                samples INTEGER NOT NULL,
+                created_at TEXT NOT NULL
+            );
+            CREATE INDEX IF NOT EXISTS idx_self_observer_agent_step
+            ON self_observer_snapshots(agent_id, step_end);
             CREATE TABLE IF NOT EXISTS input_queue (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 agent_id TEXT NOT NULL,
@@ -371,6 +397,12 @@ class MemoryStore:
             "dynamic_last_input": state.dynamic_last_input,
             "dynamic_steps": state.dynamic_steps,
             "dynamic_snapshot_count": self.dynamic_snapshot_count(agent_id),
+            "self_prediction": state.self_prediction,
+            "self_prediction_error": state.self_prediction_error,
+            "self_prediction_gain": state.self_prediction_gain,
+            "self_prediction_confidence": state.self_prediction_confidence,
+            "self_prediction_samples": state.self_prediction_samples,
+            "self_observer_snapshot_count": self.self_observer_snapshot_count(agent_id),
         }
 
     def begin_dream(self, agent_id: str, state_before: OntologicalState) -> int:
@@ -466,6 +498,94 @@ class MemoryStore:
     def dynamic_snapshot_count(self, agent_id: str) -> int:
         row = self.conn.execute(
             "SELECT COUNT(*) FROM dynamic_snapshots WHERE agent_id=?",
+            (agent_id,),
+        ).fetchone()
+        return int(row[0])
+
+
+    def record_self_observer_snapshot(
+        self,
+        agent_id: str,
+        *,
+        mode: str,
+        label: str,
+        step_start: int,
+        step_end: int,
+        features: list[float],
+        predicted_state: float,
+        baseline_state: float,
+        actual_state: float,
+        prediction_error: float,
+        baseline_error: float,
+        gain: float,
+        confidence: float,
+        samples: int,
+    ) -> int:
+        cur = self.conn.execute(
+            "INSERT INTO self_observer_snapshots("
+            "agent_id,mode,label,step_start,step_end,features_json,predicted_state,"
+            "baseline_state,actual_state,prediction_error,baseline_error,gain,"
+            "confidence,samples,created_at"
+            ") VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            (
+                agent_id,
+                mode,
+                label,
+                int(step_start),
+                int(step_end),
+                json.dumps(features, ensure_ascii=False),
+                float(predicted_state),
+                float(baseline_state),
+                float(actual_state),
+                float(prediction_error),
+                float(baseline_error),
+                float(gain),
+                float(confidence),
+                int(samples),
+                now_iso(),
+            ),
+        )
+        self.conn.commit()
+        return int(cur.lastrowid)
+
+    def self_observer_trajectory(
+        self,
+        agent_id: str,
+        limit: int | None = None,
+    ) -> list[dict[str, Any]]:
+        sql = (
+            "SELECT id,mode,label,step_start,step_end,features_json,predicted_state,"
+            "baseline_state,actual_state,prediction_error,baseline_error,gain,"
+            "confidence,samples,created_at "
+            "FROM self_observer_snapshots WHERE agent_id=? ORDER BY step_end ASC"
+        )
+        params: tuple[Any, ...] = (agent_id,)
+        if limit is not None:
+            sql = (
+                "SELECT * FROM ("
+                + sql
+                + ") ORDER BY step_end DESC LIMIT ?"
+            )
+            params = (agent_id, int(limit))
+        rows = self.conn.execute(sql, params).fetchall()
+        if limit is not None:
+            rows = list(reversed(rows))
+        keys = [
+            "id","mode","label","step_start","step_end","features_json",
+            "predicted_state","baseline_state","actual_state",
+            "prediction_error","baseline_error","gain","confidence",
+            "samples","created_at",
+        ]
+        result = []
+        for row in rows:
+            item = dict(zip(keys, row))
+            item["features"] = json.loads(item.pop("features_json"))
+            result.append(item)
+        return result
+
+    def self_observer_snapshot_count(self, agent_id: str) -> int:
+        row = self.conn.execute(
+            "SELECT COUNT(*) FROM self_observer_snapshots WHERE agent_id=?",
             (agent_id,),
         ).fetchone()
         return int(row[0])
