@@ -149,6 +149,8 @@ V60 added a closed-loop semantic feedback protocol in which the selected traject
 
 V61 added an optional second-order meta-self-model: the organism learns to predict the error of its own first-order self-model and can use that predicted reliability when selecting among future trajectories. The V61 CI audit is running; no V61 result is claimed until its artifact is produced.
 
+V62 adds an optional semantic self-model bridge and persists SELF_MODEL updates during wake cycles. It tests whether changing only the organism's semantic self-representation can be causally transduced into its internal numerical dynamics under a matched OFF/ON intervention. The V62 audit is pending; no V62 result is claimed until its artifact is produced.
+
 ## Evidence boundary
 
 The experiments in this repository establish computational properties of the tested system and harness.
