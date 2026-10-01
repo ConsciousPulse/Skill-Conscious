@@ -235,6 +235,7 @@ class PersistentOrganism:
         })
         out = self.provider.chat(messages, temperature=0.7)
         self.state.last_thought = out.text[-1200:]
+        self._extract_self_model(out.text)
 
         memory_candidate = self._extract_memory_candidate(out.text)
         semantic_bridge = None
