@@ -28,17 +28,18 @@ implementación + experimento
 
 ---
 
-## 1. Núcleo PI–PHI–REL
+## 1. La formulación v3.3
 
-La serie TCF utiliza una estructura triádica:
+TCF v3.3 no debe mezclarse silenciosamente con formulaciones anteriores de la serie TCF.
 
-- **PI** — modo basal o respiratorio;
-- **PHI** — direccionalidad y modulación informacional;
-- **REL** — continuidad, relación y métrica emergente.
+En esta versión, la estructura formal central está expresada mediante un **campo efectivo escalar multiescala** y cuatro contribuciones dinámicas:
 
-En las formulaciones de la teoría, estos componentes no se tratan como tres objetos independientes, sino como aspectos acoplados de una misma dinámica.
+- **L3** — operador generativo;
+- **L6** — operador estructural;
+- **L9** — operador regulador;
+- **L×** — término de cruce no lineal.
 
-El repositorio no afirma que esta ontología física haya quedado demostrada por los experimentos de Consciencia-Skill. La utiliza como **fuente de hipótesis y diseño dinámico**.
+La relación con formulaciones anteriores puede investigarse por separado, pero este repositorio toma **TCF v3.3** como referencia académica explícita para esta capa.
 
 ---
 
