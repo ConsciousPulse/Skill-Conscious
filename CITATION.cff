@@ -1,19 +1,19 @@
 cff-version: 1.2.0
-message: "Cómo citar Consciencia-Skill"
-title: "Consciencia-Skill"
+message: "How to cite Skill-Conscious"
+title: "Skill-Conscious"
 type: software
 authors:
   - family-names: Mendoza
     given-names: Christian Marcelo
     orcid: "https://orcid.org/0009-0003-5333-7395"
-repository-code: "https://github.com/chrishotza/Consciencia-Skill"
-abstract: "Proyecto de investigación y desarrollo de un organismo de inteligencia artificial persistente orientado hacia la investigación de la consciencia artificial."
+repository-code: "https://github.com/chrishotza/Skill-Conscious"
+abstract: "Research and development project for a persistent artificial intelligence organism focused on artificial consciousness research."
 keywords:
-  - inteligencia artificial
-  - consciencia artificial
-  - IA persistente
-  - memoria persistente
-  - cognición autónoma
-  - continuidad informacional
-  - investigación de la consciencia
+  - artificial intelligence
+  - artificial consciousness
+  - persistent AI
+  - persistent memory
+  - autonomous cognition
+  - informational continuity
+  - consciousness research
 date-released: 2026-10-01

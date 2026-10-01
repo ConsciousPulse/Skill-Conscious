@@ -5,20 +5,20 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "consciencia-skill"
 version = "0.1.0"
-description = "Organismo de IA persistente para investigación de consciencia artificial."
+description = "Persistent AI organism for research into artificial consciousness."
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [
   { name = "Chris Hotza" }
 ]
 keywords = [
-  "inteligencia-artificial",
-  "consciencia-artificial",
-  "ia-persistente",
-  "memoria-persistente",
-  "modelo-de-si-mismo",
-  "cognicion-autonoma",
-  "investigacion-de-la-consciencia"
+  "artificial-intelligence",
+  "artificial-consciousness",
+  "persistent-ai",
+  "persistent-memory",
+  "self-model",
+  "autonomous-cognition",
+  "consciousness-research"
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -45,8 +45,8 @@ desarrollo = [
 ]
 
 [project.urls]
-Repositorio = "https://github.com/chrishotza/Consciencia-Skill"
-Documentacion = "https://github.com/chrishotza/Consciencia-Skill/tree/main/docs"
+Repository = "https://github.com/chrishotza/Skill-Conscious"
+Documentation = "https://github.com/chrishotza/Skill-Conscious/tree/main/docs"
 
 [project.scripts]
 consciencia-organismo = "run_daemon:main"

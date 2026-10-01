@@ -1,24 +1,24 @@
-# Contribuir
+# Contributing
 
-El proyecto está orientado a investigación reproducible. Las contribuciones deben privilegiar cambios pequeños, medibles y auditables.
+The project is focused on reproducible research. Contributions should favor small, measurable, auditable changes.
 
-## Principios
+## Principles
 
-- documentar la hipótesis antes del experimento;
-- mantener controles y condiciones comparables;
-- conservar resultados nulos y negativos;
-- separar datos, resultados e interpretación;
-- agregar pruebas automáticas cuando se incorpora una capacidad nueva;
-- evitar modificar un protocolo histórico solo para mejorar su resultado.
+- document the hypothesis before the experiment;
+- keep controls and conditions comparable;
+- preserve null and negative results;
+- separate data, results, and interpretation;
+- add automated tests when introducing a new capability;
+- do not modify historical protocols merely to improve their result.
 
-## Para un nuevo experimento
+## New experiment
 
-1. crear la implementación en `experiments/`;
-2. agregar la prueba en `tests/`;
-3. agregar el workflow reproducible;
-4. documentar el protocolo en `docs/`;
-5. registrar el resultado en `research/ORGANISM_RESULT_LEDGER.md`.
+1. implement it in `experiments/`;
+2. add tests in `tests/`;
+3. add a reproducible workflow;
+4. document the protocol in `docs/`;
+5. record the result in `research/ORGANISM_RESULT_LEDGER.md`.
 
-## Idioma
+## Language
 
-La documentación pública del proyecto está migrando al español. Los nombres de código, APIs y protocolos pueden conservar terminología técnica establecida cuando sea necesario.
+The public README is bilingual. Technical identifiers, APIs, experiment names, and stable protocol terminology may remain in English.
