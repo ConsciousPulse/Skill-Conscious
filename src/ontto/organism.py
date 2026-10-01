@@ -12,6 +12,7 @@ from .storage import MemoryStore, OntologicalState
 from .self_observer import SelfObserver
 from .trajectory_selector import TrajectorySelector
 from .memory_policy import ContinuityMemoryPolicy
+from .meta_observer import MetaSelfObserver
 
 
 @dataclass
@@ -31,9 +32,13 @@ class OrganismConfig:
     self_observer_enabled: bool = True
     self_observer_ridge: float = 1e-3
     self_observer_max_samples: int = 2048
+    meta_self_observer_enabled: bool = False
+    meta_self_observer_ridge: float = 1e-3
+    meta_self_observer_max_samples: int = 2048
     self_selection_enabled: bool = True
     self_selection_attractor_weight: float = 0.70
     self_selection_coherence_weight: float = 0.30
+    self_selection_meta_error_weight: float = 0.0
     self_selection_policy: str = "self_model"
     self_selection_signals: tuple[float, ...] = (-1.0, 0.0, 1.0)
     semantic_dynamic_bridge_enabled: bool = False
@@ -61,17 +66,28 @@ class PersistentOrganism:
             ridge=cfg.self_observer_ridge,
             max_samples=cfg.self_observer_max_samples,
         )
+        self.meta_observer = MetaSelfObserver(
+            ridge=cfg.meta_self_observer_ridge,
+            max_samples=cfg.meta_self_observer_max_samples,
+        )
         self.trajectory_selector = TrajectorySelector(
             attractor_weight=cfg.self_selection_attractor_weight,
             coherence_weight=cfg.self_selection_coherence_weight,
+            meta_error_weight=cfg.self_selection_meta_error_weight,
         )
         self.memory_policy = ContinuityMemoryPolicy()
         if cfg.self_observer_enabled:
             for row in store.self_observer_trajectory(cfg.agent_id):
+                features = np.asarray(row["features"], dtype=float)
                 self.self_observer.observe(
-                    features=np.asarray(row["features"], dtype=float),
+                    features=features,
                     actual_state=float(row["actual_state"]),
                 )
+                if cfg.meta_self_observer_enabled:
+                    self.meta_observer.observe(
+                        features=features,
+                        prediction_error=float(row["prediction_error"]),
+                    )
         self.state.boot_count += 1
         self.cycles = 0
         self.store.save_state(cfg.agent_id, self.state)
@@ -156,6 +172,11 @@ class PersistentOrganism:
                 features=observer_features,
                 actual_state=snapshot.state,
             )
+            if self.cfg.meta_self_observer_enabled:
+                self.meta_observer.observe(
+                    features=observer_features,
+                    prediction_error=prediction_error,
+                )
             samples = len(self.self_observer.targets)
             confidence = min(1.0, samples / 32.0)
             self.state.self_prediction = prediction.predicted_state
@@ -317,6 +338,11 @@ class PersistentOrganism:
                 current_attractor=self.dynamic_bridge.cfg.attractor,
                 steps_delta=self.cfg.dynamic_autonomous_steps,
                 signals=self.cfg.self_selection_signals,
+                meta_observer=(
+                    self.meta_observer
+                    if self.cfg.meta_self_observer_enabled
+                    else None
+                ),
             )
             if self.cfg.self_selection_policy == "self_model":
                 chosen = self.trajectory_selector.choose(candidates)
@@ -344,6 +370,7 @@ class PersistentOrganism:
                     "enabled": bool(self.cfg.self_selection_enabled and self.cfg.self_observer_enabled),
                     "policy": self.cfg.self_selection_policy,
                     "candidate_signals": list(self.cfg.self_selection_signals),
+                    "meta_self_model_enabled": bool(self.cfg.meta_self_observer_enabled),
                     "chosen_signal": chosen_signal,
                     "candidates": [
                         {
@@ -351,6 +378,7 @@ class PersistentOrganism:
                             "predicted_state": candidate.prediction.predicted_state,
                             "predicted_attractor_distance": candidate.attractor_distance,
                             "predicted_displacement": candidate.displacement,
+                            "predicted_error": candidate.predicted_error,
                             "score": candidate.score,
                             "samples": candidate.prediction.samples,
                             "confidence": candidate.prediction.confidence,
