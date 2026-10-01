@@ -1,4 +1,4 @@
-# Organismo de IA Persistente — Investigación sobre Auto-modelado y Consciencia Artificial
+# Construyendo una IA Consciente — Investigación y Experimentación
 
 **Experimental research on persistent AI agents, self-modeling, memory, autonomous cognition, and machine consciousness.**
 
