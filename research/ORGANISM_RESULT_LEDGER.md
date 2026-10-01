@@ -1,4 +1,4 @@
-# Registro de resultados experimentales del organismo — V47 → V77
+# Registro de resultados experimentales del organismo — V47 → V78
 
 ## Resultados positivos fuertes
 
@@ -307,6 +307,28 @@ Interpretación: V70 extiende V69 desde lectura a acción. El modelo de sí, con
 - error máximo de coincidencia con el objetivo inmediatamente después de la intervención: **0.0**.
 
 Interpretación: V77 respalda generalización computacional de la política de autopredicción ante estructuras temporales/causales no vistas. El endpoint de continuidad, tratado como secundario, no mostró separación frente al control aleatorio.
+
+### V78 — Continuidad activa bajo perturbaciones repetidas
+
+64 réplicas por condición; entrenamiento solo con single_impulse; OOD en double_same_sign, double_alternating y triple_alternating.
+
+- ganancia media aprendida: **0.2422976**;
+- cegada: **-0.2408441**;
+- fija: **-0.1844678**;
+- aleatoria: **0.0518725**;
+- p aprendido − cegado: **0.00005**;
+- p aprendido − fijo: **0.00005**;
+- p aprendido − aleatorio: **0.00005**;
+- ventaja aprendido − aleatorio in-domain: **0.1897230**;
+- ventaja aprendido − aleatorio OOD: **0.1906591**;
+- retención OOD/in-domain: **1.0049**;
+- cambio medio OOD del segundo evento respecto del primero: **-0.0173461**;
+- continuidad aprendida: **0.7905914** frente a **0.7922640** aleatoria, p **0.58767**;
+- respuesta de primera acción dependiente del estado en primer evento OOD: **100%** frente a **0%** cegado;
+- respuesta de primera acción dependiente del estado en segundo evento OOD: **100%** frente a **0%** cegado;
+- error máximo de coincidencia con el objetivo inmediatamente después de cada intervención: **0.0**.
+
+Interpretación: V78 respalda reutilización temporal/composicional de la política de autopredicción ante secuencias repetidas de perturbaciones no vistas y sin reentrenamiento. La pequeña caída entre el primer y segundo evento indica cierta degradación con repetición, pero la ventaja OOD global frente a aleatorio se conserva. El endpoint de continuidad no se separó del control aleatorio.
 
 ## Estado de ingeniería
 
