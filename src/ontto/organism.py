@@ -33,6 +33,8 @@ class OrganismConfig:
     self_selection_enabled: bool = True
     self_selection_attractor_weight: float = 0.70
     self_selection_coherence_weight: float = 0.30
+    self_selection_policy: str = "self_model"
+    self_selection_signals: tuple[float, ...] = (-1.0, 0.0, 1.0)
 
 
 class PersistentOrganism:
@@ -266,8 +268,18 @@ class PersistentOrganism:
                 current_input=self.state.dynamic_last_input,
                 current_attractor=self.dynamic_bridge.cfg.attractor,
                 steps_delta=self.cfg.dynamic_autonomous_steps,
+                signals=self.cfg.self_selection_signals,
             )
-            chosen = self.trajectory_selector.choose(candidates)
+            if self.cfg.self_selection_policy == "self_model":
+                chosen = self.trajectory_selector.choose(candidates)
+            elif self.cfg.self_selection_policy == "random":
+                import random
+                rng = random.Random(self.cfg.dynamic_seed + self.state.dynamic_steps)
+                chosen = rng.choice(list(candidates))
+            else:
+                raise ValueError(
+                    f"unknown self_selection_policy={self.cfg.self_selection_policy!r}"
+                )
             chosen_signal = chosen.signal
 
         dynamic = self._advance_dynamic(
@@ -282,6 +294,8 @@ class PersistentOrganism:
                 "dynamic": dynamic,
                 "self_selection": {
                     "enabled": bool(self.cfg.self_selection_enabled and self.cfg.self_observer_enabled),
+                    "policy": self.cfg.self_selection_policy,
+                    "candidate_signals": list(self.cfg.self_selection_signals),
                     "chosen_signal": chosen_signal,
                     "candidates": [
                         {
