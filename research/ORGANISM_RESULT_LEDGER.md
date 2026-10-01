@@ -250,6 +250,24 @@ La siguiente prueba debe trasladar este lector al ciclo persistente del organism
 Interpretación: V70 muestra que el lector numérico propio puede persistir en SQLite, sobrevivir un reinicio y volver a utilizarse después de eliminar las superficies semánticas. La magnitud de la sensibilidad de decisión es menor que en V69, pero permanece separada del control cegado.
 
 El siguiente protocolo debe eliminar la copia manual del modelo hacia las condiciones y hacer que el organismo recupere automáticamente su propio lector integrado durante el ciclo autónomo.
+### V69 — Lectura del propio estado mediante modelo de sí
+
+24 réplicas, 48 ciclos de calibración idénticos antes de SUEÑO, modelo numérico de sí congelado antes de SUEÑO y ablación semántica total.
+
+- diferencia media de estado después de SUEÑO estable − frontera: **-0.0963430681**;
+- diferencia media absoluta de las puntuaciones del modelo de sí: **0.0344099851**;
+- p emparejada: **0.00005**;
+- diferencia media absoluta de predicción: **0.0365052134**;
+- p emparejada: **0.00005**;
+- modelos numéricos de sí idénticos entre condiciones: **100%**;
+- cambio de acción por lectura real frente a estado control: **0%**;
+- diversidad de acciones: **1 acción distinta** en las 48 lecturas;
+- memorias eliminadas antes de la sonda: **sí**;
+- texto del modelo de sí eliminado antes de la sonda: **sí**;
+- entrada textual durante la sonda: **no**.
+
+Interpretación: V69 separa dos niveles que hasta ahora estaban mezclados. La **lectura numérica del propio estado es positiva**: el mismo modelo de sí responde de forma distinta a estados internos posteriores a SUEÑO aunque las superficies semánticas hayan sido eliminadas. La **selección conductual es nula** bajo la política actual, porque el selector colapsó en una única acción y por tanto no proporcionó cobertura de decisión. V69 demuestra lectura computacional del estado, pero no demuestra todavía que esa lectura se use para elegir entre acciones.
+
 ## Estado de ingeniería
 
 V60, V61, V62, V63, V64, V65 y V66 finalizaron correctamente en sus respectivos commits registrados de GitHub Actions. Sus artefactos se conservan en las ejecuciones correspondientes. Los resultados anteriores V43–V59 siguen siendo reproducibles a partir de sus workflows históricos y registros de evidencia.
