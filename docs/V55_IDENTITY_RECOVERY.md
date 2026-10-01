@@ -1,46 +1,41 @@
-# V55 — Identity-Preserving Perturbation Recovery
+# V55 — Recuperación de identidad bajo perturbación
 
-## Motivation
+## Motivación
 
-The Manifiesto del Ser describes life as sustained dynamics that can absorb
-perturbations and reorganize without losing identity. The AEVUMARD research
-distinguishes state from event and emphasizes feedback, resilience, auto-adjustment
-and attractor structure.
+El Manifiesto del Ser describe la vida como dinámica sostenida capaz de absorber perturbaciones y reorganizarse sin perder identidad. La investigación AEVUMARD distingue estado de evento y enfatiza feedback, resiliencia, autoajuste y estructura de atractores.
 
-V55 turns that requirement into a longitudinal experiment.
+V55 convierte ese requisito en un experimento longitudinal.
 
-## Protocol
+## Protocolo
 
-Each organism first establishes a matched trajectory.
+Cada organismo establece primero una trayectoria emparejada.
 
-Then its persisted numeric state is perturbed to either:
+Luego su estado numérico persistido es perturbado a uno de estos valores:
 
 - +0.95;
 - -0.95;
 
-while persistent memories and self-model remain untouched.
+mientras las memorias persistentes y el modelo de sí permanecen intactos.
 
-Recovery is observed over subsequent autonomous cycles.
+La recuperación se observa durante ciclos autónomos posteriores.
 
-Two matched arms are run:
+Se ejecutan dos brazos emparejados:
 
-- self-selection disabled;
-- self-selection enabled.
+- selección mediante modelo de sí deshabilitada;
+- selección mediante modelo de sí habilitada.
 
-## Primary observables
+## Observables principales
 
-- recovery time to the pre-perturbation state band;
-- final dynamic-state error;
-- fraction of runs recovering within the horizon;
-- identity fingerprint preservation;
-- comparison of recovery with and without causal self-selection.
+- tiempo de recuperación hasta la banda del estado previo a la perturbación;
+- error final del estado dinámico;
+- fracción de ejecuciones que se recuperan dentro del horizonte;
+- conservación de la huella de identidad;
+- comparación de la recuperación con y sin selección causal mediante el modelo de sí.
 
-## Interpretation
+## Interpretación
 
-Recovery with identity preservation supports an operational form of
-reconfiguration-with-continuity.
+La recuperación con conservación de identidad apoya una forma operacional de reconfiguración con continuidad.
 
-An advantage for self-selection would additionally indicate that the internal
-self-model improves recovery rather than merely describing it.
+Una ventaja de la selección mediante modelo de sí indicaría además que el modelo interno mejora la recuperación, en lugar de limitarse a describirla.
 
-Neither outcome establishes subjective consciousness.
+Ninguno de estos resultados establece consciencia subjetiva.
