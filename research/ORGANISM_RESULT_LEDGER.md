@@ -47,3 +47,19 @@ Matched 2×2 intervention. Bridge OFF: A/B dynamic-state delta 0.0 and signal de
 dynamic-state delta 0.4558697583. The deterministic harness therefore supports
 causal transduction from the organism's semantic memory output into its numeric
 internal dynamics when the bridge is enabled. LIVE replication remains pending.
+
+### V59 — Semantic bridge × self-model selection
+24 paired factorial replicates crossed semantic bridge OFF/ON with self-model/random policy.
+
+- bridge OFF self-model mean regret: 0.0000;
+- bridge OFF random mean regret: 0.23233;
+- bridge ON self-model mean regret: 0.0000;
+- bridge ON random mean regret: 0.24022;
+- self-model oracle-hit rate: 100% in both bridge conditions;
+- random oracle-hit rate: 50% in both bridge conditions;
+- semantic bridge changed the post-wake internal state by mean absolute 0.94273 and the dynamic signal by 0.55376;
+- bridge × selection interaction = +0.00789;
+- interaction sign-flip p = 0.83941.
+
+Interpretation: the protocol reproduces the previously observed self-model selection advantage while independently showing substantial semantic-to-dynamic state transduction. The factorial interaction was not distinguishable from zero in this deterministic harness, so V59 does not support a claim that semantic bridging itself increases self-model selection utility. It is retained as a null interaction / compositionality result.
+
