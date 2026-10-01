@@ -60,6 +60,7 @@
 - [V70 self-model action](V70_SELF_MODEL_ACTION.md) — lectura/predicción → acción continua → nuevo estado.
 - [V70 persistent self-reader](V70_PERSISTENT_SELF_READER.md) — persistencia del lector entre reinicios.
 - [V71 integrated self-reader](V71_INTEGRATED_SELF_READER.md) — persistencia + SUEÑO + ablación semántica + selección autónoma sin copia manual del lector.
+- [V72 self-policy learning](V72_SELF_POLICY_LEARNING.md) — aprendizaje de una política basada en el propio modelo de sí bajo un objetivo de continuidad definido externamente.
 
 [Registro consolidado](../research/ORGANISM_RESULT_LEDGER.md).
 
