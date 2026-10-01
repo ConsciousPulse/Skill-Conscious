@@ -43,6 +43,7 @@
 - [V65 — Consolidación durante SUEÑO](V65_DREAM_CONSOLIDATION.md)
 - [V66 — Ablación de memoria del SUEÑO](V66_DREAM_MEMORY_ABLATION.md)
 - [V67 — Huella de estado del SUEÑO](V67_DREAM_STATE_TRACE.md)
+- [V68 — Persistencia temporal de la huella](V68_DREAM_STATE_PERSISTENCE.md)
 
 El registro consolidado se mantiene en [research/ORGANISM_RESULT_LEDGER.md](../research/ORGANISM_RESULT_LEDGER.md).
 
