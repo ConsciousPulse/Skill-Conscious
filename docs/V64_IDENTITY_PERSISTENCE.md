@@ -42,8 +42,23 @@ Bridge OFF provides a matched control in which identity encoding is still bridge
 - post-ablation identity classification accuracy with bridge OFF;
 - paired ON-minus-OFF accuracy difference.
 
+## Result
+
+The successful audit used 24 paired replicates, 12 encoding cycles, 4 common
+perturbation cycles, and 16 autonomous post-ablation cycles.
+
+- bridge OFF post-ablation accuracy: 50.0%;
+- bridge ON post-ablation accuracy: 50.0%;
+- ON-minus-OFF accuracy difference: 0.0;
+- paired sign-flip p: 1.0;
+- folds above chance: 0% in both conditions.
+
+V64 therefore produced a null result. Under this perturbation, feature set, classifier,
+and horizon, the original identity was not decodable after the semantic self-model
+was overwritten and then removed.
+
 ## Evidence boundary
 
 The classifier reads only numeric dynamic features. The provider is deterministic
-and synthetic. The protocol tests persistence of an operational identity signature;
-it does not establish phenomenological consciousness or subjective experience.
+and synthetic. The protocol tests operational identity persistence; it does not
+establish phenomenological consciousness or subjective experience.
