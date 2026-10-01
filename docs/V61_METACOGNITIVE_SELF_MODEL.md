@@ -1,66 +1,55 @@
-# V61 — Metacognitive self-model
+# V61 — Modelo metacognitivo de sí
 
-## Question
+## Pregunta
 
-Can the persistent organism model not only its own next state, but also the expected
-error of that first-order self-model, and use that second-order estimate when
-selecting a future trajectory?
+¿Puede el organismo persistente modelar no solo su propio estado siguiente, sino también el error esperado de ese modelo de primer orden, y utilizar esa estimación de segundo orden al seleccionar una trayectoria futura?
 
-## Result
+## Resultado
 
-24 paired replicates × 32 evaluation cycles produced a negative result for the
-current MetaSelfObserver implementation:
+24 réplicas emparejadas × 32 ciclos de evaluación produjeron un resultado negativo para la implementación actual de `MetaSelfObserver`:
 
-- meta-self-model mean regret: **0.0888081147**;
-- first-order self-model mean regret: **0.0787785152**;
-- random-control mean regret: **0.1929241942**;
-- meta-self-model oracle-hit rate: **41.2760%**;
-- first-order self-model oracle-hit rate: **45.3125%**;
-- random-control oracle-hit rate: **46.4844%**;
-- meta-vs-first-order regret advantage: **-0.0100295995**;
-- paired sign-flip p for that difference: **0.00005**;
-- meta-vs-first-order hit-rate advantage: **-0.0403645833**;
-- paired sign-flip p for hit-rate difference: **0.0008999550**;
-- meta prediction MAE: **0.1277240710**;
-- constant baseline MAE: **0.0849867822**;
-- baseline-beating fraction: **0%**.
+- regret medio del modelo metacognitivo de sí: **0.0888081147**;
+- regret medio del modelo de sí de primer orden: **0.0787785152**;
+- regret medio del control aleatorio: **0.1929241942**;
+- tasa de aciertos del oráculo del modelo metacognitivo: **41.2760%**;
+- tasa de aciertos del modelo de primer orden: **45.3125%**;
+- tasa de aciertos del control aleatorio: **46.4844%**;
+- ventaja de regret del metamodelo frente al primer orden: **-0.0100295995**;
+- p emparejada por cambio de signo para esa diferencia: **0.00005**;
+- ventaja de tasa de aciertos del metamodelo frente al primer orden: **-0.0403645833**;
+- p emparejada por cambio de signo para la tasa de aciertos: **0.0008999550**;
+- MAE de predicción metacognitiva: **0.1277240710**;
+- MAE del baseline constante: **0.0849867822**;
+- fracción de ejecuciones que supera al baseline: **0%**.
 
-## Interpretation
+## Interpretación
 
-The second-order model did not improve trajectory selection in this protocol and did
-not predict first-order self-model error better than a constant baseline. The
-result should be treated as a genuine negative finding in the tested harness.
+El modelo de segundo orden no mejoró la selección de trayectorias en este protocolo y tampoco predijo el error del modelo de sí de primer orden mejor que un baseline constante. El resultado debe tratarse como un hallazgo negativo genuino bajo el arnés probado.
 
-The architecture remains useful because the negative result isolates a concrete
-failure mode: adding a learned prediction-of-prediction-error layer is not enough
-to produce functional metacognition. A redesigned meta-objective, calibration
-protocol, or uncertainty representation is required before claiming second-order
-self-model utility.
+La arquitectura sigue siendo útil porque el resultado negativo aísla un modo de fallo concreto: agregar una capa aprendida de predicción del error de predicción no basta para producir metacognición funcional. Antes de afirmar utilidad de segundo orden se requiere rediseñar el objetivo metacognitivo, el protocolo de calibración o la representación de incertidumbre.
 
-## Architecture
+## Arquitectura
 
 ```
-internal state
+estado interno
      │
      ▼
 SelfObserver
      │
-     ├── predicted next state
+     ├── siguiente estado predicho
      │
      ▼
-prediction error
+error de predicción
      │
      ▼
 MetaSelfObserver
      │
-     ├── predicted model error
+     ├── error del modelo predicho
      │
      ▼
-trajectory selection
+selección de trayectoria
 ```
 
-## Evidence boundary
+## Límite de evidencia
 
-V61 tests a computational form of second-order self-modeling, and its current
-implementation failed the defined utility and calibration endpoints. It does not
-establish phenomenological consciousness or subjective experience.
+V61 prueba una forma computacional de modelado de sí de segundo orden, y su implementación actual no superó los endpoints definidos de utilidad y calibración. No establece consciencia fenomenológica ni experiencia subjetiva.
