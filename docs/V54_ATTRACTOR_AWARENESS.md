@@ -22,7 +22,7 @@ the actual attractor-distance change is measured from persisted numeric state.
 ## Primary observables
 
 - directional forecast accuracy;
-- confidence calibration;
+- confidence-consistency error;
 - actual direction distribution;
 - performance across alternating controlled perturbations.
 
