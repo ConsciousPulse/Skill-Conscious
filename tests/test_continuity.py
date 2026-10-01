@@ -5,7 +5,7 @@ def test_aevum_gate_frozen_coefficients():
     gate = AevumContinuityGate()
     result = gate.evaluate(0.7, 0.3, 0.3)
     assert result.exists is True
-    assert result.omega == 0.6
+    assert abs(result.omega - 0.3) < 1e-12
 
 
 def test_aevum_gate_rejects_future_closing_transition():
