@@ -2,11 +2,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 from pathlib import Path
 
 from src.ontto.organism import OrganismConfig, PersistentOrganism
-from src.ontto.provider import LLMResponse
+from src.ontto.provider import LLMResponse, OpenAICompatibleProvider
 from src.ontto.storage import MemoryStore
 
 
@@ -28,6 +29,21 @@ class FakeProvider:
             ),
             raw={"fake": True, "memory": self.memory},
         )
+
+
+def build_provider(mode: str, memory: str):
+    if mode == "fake":
+        return FakeProvider(memory)
+    api_key = os.environ.get("ONTTO_API_KEY", "")
+    model = os.environ.get("ONTTO_MODEL", "")
+    if not api_key or not model:
+        raise SystemExit("ONTTO_API_KEY and ONTTO_MODEL are required in live mode")
+    return OpenAICompatibleProvider(
+        base_url=os.environ.get("ONTTO_API_BASE_URL", "https://api.openai.com/v1"),
+        api_key=api_key,
+        model=model,
+        timeout=120,
+    )
 
 
 def make_base(path: Path, seed: int) -> None:
@@ -52,6 +68,7 @@ def run_case(
     seed: int,
     memory: str,
     bridge_enabled: bool,
+    mode: str = "fake",
 ) -> dict:
     store = MemoryStore(db)
     cfg = OrganismConfig(
@@ -67,7 +84,7 @@ def run_case(
     organism = PersistentOrganism(
         cfg,
         store,
-        FakeProvider(memory),
+        build_provider(mode, memory),
         lambda _: None,
     )
 
@@ -91,6 +108,7 @@ def run_case(
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--mode", choices=("fake", "live"), default="fake")
     parser.add_argument("--out", default="results/organism-semantic-bridge-v58")
     args = parser.parse_args()
 
@@ -113,6 +131,7 @@ def main() -> None:
                 seed=seed,
                 memory=memory,
                 bridge_enabled=bridge_enabled,
+                mode=args.mode,
             )
 
     off_state_delta = abs(
@@ -133,6 +152,7 @@ def main() -> None:
 
     summary = {
         "experiment": "organism_semantic_bridge_v58",
+        "mode": args.mode,
         "matched_probe": True,
         "memory_pairs_differ_only_in_memory_content": True,
         "bridge_off_state_delta": off_state_delta,
