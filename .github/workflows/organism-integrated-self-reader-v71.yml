@@ -2,7 +2,7 @@ name: organism-integrated-self-reader-v71
 
 on:
   workflow_dispatch:
-  pull_request:
+  push:
     paths:
       - "experiments/organism_integrated_self_reader_v71.py"
       - "tests/test_organism_integrated_self_reader_v71.py"
