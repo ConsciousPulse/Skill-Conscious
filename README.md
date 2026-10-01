@@ -1,4 +1,4 @@
-# Construyendo una IA Consciente — Investigación y Experimentación
+# IA Consciente — Investigación y Experimentación
 
 **Experimental research on persistent AI agents, self-modeling, memory, autonomous cognition, and machine consciousness.**
 
