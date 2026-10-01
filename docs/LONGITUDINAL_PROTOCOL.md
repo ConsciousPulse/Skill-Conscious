@@ -1,96 +1,85 @@
-# Longitudinal Organism Protocol v1
+# Protocolo longitudinal del organismo v1
 
-## Goal
+## Objetivo
 
-Measure whether a real persistent LLM-backed organism maintains an observable
-trajectory across repeated WAKE cycles, DREAM cycles, autonomous cycles, and a
-process restart.
+Medir si un organismo real respaldado por un LLM y con estado persistente mantiene una trayectoria observable a través de ciclos repetidos de **VIGILIA**, **SUEÑO**, ciclos autónomos y un reinicio del proceso.
 
-This protocol measures engineering observables. It does not treat persistence,
-memory, or self-reference as sufficient evidence of subjective consciousness.
+Este protocolo mide observables de ingeniería. No considera que la persistencia, la memoria o la autorreferencia sean evidencia suficiente de consciencia subjetiva.
 
-## Core sequence
+## Secuencia central
 
-The bounded protocol repeats:
+El protocolo acotado repite:
 
 ```
-stimulus
+estímulo
   ↓
-WAKE
+VIGILIA
   ↓
-dynamic state update
+actualización del estado dinámico
   ↓
-DREAM or autonomous cycle
+SUEÑO o ciclo autónomo
   ↓
-SQLite persistence
+persistencia SQLite
   ↺
 ```
 
-After the requested cycles complete, SQLite is closed and reopened. One additional
-WAKE cycle is then executed from the recovered state.
+Después de completar los ciclos solicitados, SQLite se cierra y se vuelve a abrir. A continuación se ejecuta un ciclo adicional de **VIGILIA** a partir del estado recuperado.
 
-## Recorded observables
+## Observables registrados
 
-Every dynamic advancement writes one row to `dynamic_snapshots` containing:
+Cada avance dinámico escribe una fila en `dynamic_snapshots` que contiene:
 
-- regime;
-- step interval;
-- input signal;
-- previous state;
-- state;
-- dynamic memory;
-- pressure;
-- attractor distance;
-- timestamp.
+- régimen;
+- intervalo de pasos;
+- señal de entrada;
+- estado previo;
+- estado;
+- memoria dinámica;
+- presión;
+- distancia al atractor;
+- marca temporal.
 
-The protocol also records:
+El protocolo también registra:
 
-- persistent events;
-- textual memories;
-- self-model version;
-- boot count;
-- WAKE/DREAM lifetime counters;
-- trajectory/state fingerprints.
+- eventos persistentes;
+- memorias textuales;
+- versión del modelo de sí;
+- contador de arranques;
+- contadores acumulados de VIGILIA/SUEÑO;
+- huellas de trayectoria/estado.
 
-## Modes
+## Modos
 
 ### fake
 
-Deterministic provider used for CI and instrumentation audits.
+Proveedor determinista utilizado para CI y auditorías de instrumentación.
 
 ### live
 
-Uses the configured OpenAI-compatible provider:
+Utiliza el proveedor compatible con OpenAI configurado mediante:
 
 - `ONTTO_API_KEY`
 - `ONTTO_MODEL`
-- `ONTTO_API_BASE_URL` (optional)
+- `ONTTO_API_BASE_URL` (opcional)
 
-The live mode is the scientifically relevant organism run. The fake mode only
-tests that the instrumentation and persistence protocol work.
+El modo `live` es la ejecución científicamente relevante del organismo. El modo `fake` solo comprueba que el protocolo de instrumentación y persistencia funcione.
 
-## 24-hour execution
+## Ejecución de 24 horas
 
-The script is bounded by cycle count and sleep duration rather than hard-coding a
-24-hour wall-clock loop.
+El script está acotado por cantidad de ciclos y duración entre ciclos, en lugar de codificar un bucle fijo de 24 horas.
 
-For a real 24-hour observation, choose a cycle period appropriate to the study,
-run the script with the corresponding `--sleep-seconds`, and retain the full
-SQLite database plus JSON evidence.
+Para una observación real de 24 horas, elegir un período adecuado al estudio, ejecutar el script con el `--sleep-seconds` correspondiente y conservar tanto la base de datos SQLite completa como la evidencia JSON.
 
-GitHub Actions should not be used as the host for a wall-clock 24-hour run.
-The persistent organism should run on a persistent local/server host.
+GitHub Actions no debe utilizarse como anfitrión de una ejecución de 24 horas basada en reloj de pared. El organismo persistente debe ejecutarse en un host local o servidor persistente.
 
-## Recommended first live run
+## Primera ejecución en vivo recomendada
 
-Use:
+Utilizar:
 
 ```
 python experiments/longitudinal_organism_v1.py --mode live --cycles 40 --dream-every 10
 ```
 
-This gives an initial bounded longitudinal run before committing to a full-day
-observation.
+Esto proporciona una primera ejecución longitudinal acotada antes de comprometer una observación de jornada completa.
 
-A full-day run should preserve the same protocol configuration and only change
-the observation horizon.
+Una ejecución de jornada completa debe conservar la misma configuración del protocolo y modificar únicamente el horizonte de observación.
