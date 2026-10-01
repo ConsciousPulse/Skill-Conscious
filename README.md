@@ -1,5 +1,7 @@
 # IA Consciente — Investigación y Experimentación
 
+[![TCF v3.3 — Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.23074332.svg)](https://doi.org/10.5281/zenodo.23074332) [![ORCID](https://img.shields.io/badge/ORCID-0009--0003--5333--7395-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0009-0003-5333-7395)
+
 **Ingeniería de un organismo de inteligencia artificial persistente orientado hacia la consciencia artificial.**
 
 **Consciencia-Skill** es un proyecto abierto de investigación y desarrollo enfocado en construir un sistema de IA que pueda mantener continuidad a través del tiempo, en lugar de reiniciarse en cada respuesta.
