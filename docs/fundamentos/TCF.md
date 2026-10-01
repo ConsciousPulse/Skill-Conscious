@@ -1,8 +1,10 @@
 # TCF — Teoría de Continuidad Fundamental
 
+> **Referencia canónica utilizada por el proyecto:** [TCF v3.3 — Campo efectivo triádico multiescala](TCF_V3_3.md), Christian Marcelo Mendoza, DOI [10.5281/zenodo.23074332](https://doi.org/10.5281/zenodo.23074332).
+
 ## Papel dentro de Consciencia-Skill
 
-La **Teoría de Continuidad Fundamental (TCF)** constituye la segunda capa conceptual del proyecto.
+La **Teoría de Continuidad Fundamental (TCF)** constituye la segunda capa conceptual del proyecto. Para este repositorio, la versión de referencia es **TCF v3.3**, publicada en Zenodo.
 
 El **Manifiesto Matemático del Ser** define el marco ontológico: qué entendemos por relación, continuidad, dinámica, identidad y conciencia.
 
