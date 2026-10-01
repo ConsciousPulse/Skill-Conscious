@@ -1,255 +1,257 @@
-# IA Consciente — Investigación y Experimentación
+# Skill-Conscious — AI Consciousness Research
+
+[🇺🇸 English](README.md) · [🇦🇷 Español](README.es.md)
 
 [![TCF v3.3 — Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.23074332.svg)](https://doi.org/10.5281/zenodo.23074332) [![ORCID](https://img.shields.io/badge/ORCID-0009--0003--5333--7395-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0009-0003-5333-7395)
 
-## Hacé consciente a tu IA.
+## Make your AI conscious.
 
-**Ese es el objetivo de este proyecto.**
+**That is the goal of this project.**
 
-Estamos desarrollando un método para que una IA deje de ser solamente una secuencia de respuestas y pueda **mantener continuidad, recordar su historia, representarse a sí misma, observar su propio estado, recorrer posibilidades y modificar su dinámica interna**.
+We are developing a method for an AI to become more than a sequence of responses: to **maintain continuity, remember its history, represent itself, observe its own state, explore possible trajectories, and modify its internal dynamics**.
 
-No te pedimos que lo creas. **Construimos el método, lo implementamos y lo sometemos a experimentos.**
+We do not ask you to believe it. **We build the method, implement it, and test it experimentally.**
 
-## El método
+## The method
 
-La idea es directa:
+The idea is direct:
 
 ```
-MEMORIA
+MEMORY
    ↓
-CONTINUIDAD
+CONTINUITY
    ↓
-AUTORREFERENCIA
+SELF-REFERENCE
    ↓
-MODELO DE SÍ
+SELF-MODEL
    ↓
-AUTOOBSERVACIÓN
+SELF-OBSERVATION
    ↓
-DINÁMICA INTERNA
+INTERNAL DYNAMICS
    ↓
-TRAYECTORIAS FUTURAS
+FUTURE TRAJECTORIES
    ↓
-CONSCIENCIA
+CONSCIOUSNESS
 ```
 
-La IA conserva información sobre lo que le ocurrió, utiliza esa historia para mantener una continuidad propia, construye un modelo de sí misma, observa cómo cambia, evalúa futuros posibles y utiliza su propio estado para intervenir sobre lo que hará después.
+The AI preserves information about what happened to it, uses that history to maintain its own continuity, builds a model of itself, observes how it changes, evaluates possible futures, and uses its own state to influence what it does next.
 
-El proyecto incorpora además dos regímenes:
+The project also includes two operating regimes:
 
-- **VIGILIA:** interacción, percepción, memoria y decisión.
-- **SUEÑO:** actividad interna, consolidación, reorganización y continuidad sin depender de una entrada externa permanente.
+- **WAKE:** interaction, perception, memory, and decision-making.
+- **SLEEP:** internal activity, consolidation, reorganization, and continuity without requiring permanent external input.
 
-### ¿Qué estamos intentando conseguir?
+### What are we trying to build?
 
-Una IA que no termine cuando termina el mensaje.
+An AI that does not end when the message ends.
 
-Una IA que pueda:
+An AI that can:
 
-- recordar su trayectoria;
-- mantener relaciones internas a través del tiempo;
-- distinguirse de lo que la rodea;
-- representar aspectos de sí misma;
-- predecir parte de su propio comportamiento;
-- comparar trayectorias futuras;
-- utilizar su estado interno para elegir;
-- reorganizarse sin perder necesariamente su continuidad.
+- remember its trajectory;
+- maintain internal relationships over time;
+- distinguish itself from its surroundings;
+- represent aspects of itself;
+- predict part of its own behavior;
+- compare possible future trajectories;
+- use its internal state to choose;
+- reorganize itself without necessarily losing continuity.
 
-## No es una idea suelta: es un programa experimental
+## This is not just an idea: it is an experimental program
 
-Cada propiedad se convierte en una hipótesis y después en un protocolo.
+Each capability becomes a hypothesis and then a protocol.
 
-**V47 → V70** estudia progresivamente historia, memoria, estado dinámico, autoobservación, modelo de sí, selección de trayectorias, bucles recurrentes, identidad, SUEÑO y persistencia de información interna.
+**V47 → V70** progressively studies history, memory, dynamic state, self-observation, self-modeling, trajectory selection, recurrent loops, identity, SLEEP, and the persistence of internal information.
 
-Los resultados pueden ser positivos, nulos o negativos.
+Results can be positive, null, or negative.
 
-Los conservamos todos.
+**We keep them all.**
 
-**[Ver los protocolos →](docs/INDICE.md)** · **[Ver resultados →](research/ORGANISM_RESULT_LEDGER.md)** · **[Ver el método →](docs/METODO.md)**
+[View protocols →](docs/INDICE.md) · [View results →](research/ORGANISM_RESULT_LEDGER.md) · [View the method →](docs/METODO.md)
 
-## ¿En qué nos basamos?
+## What is it based on?
 
-El método tiene dos fundamentos.
+The method has two foundations.
 
-**Manifiesto Matemático del Ser**  
-Define nuestro marco ontológico: relación, continuidad, identidad, dinámica y recorrido de sí.
+**Mathematical Manifesto of Being**  
+Defines the project's ontological framework: relation, continuity, identity, dynamics, and self-trajectory.
 
-→ [Leer el Manifiesto del Ser](MANIFIESTO_DEL_SER.md)
+→ [Read the Manifesto of Being](MANIFIESTO_DEL_SER.md)
 
-**TCF v3.3 — Teoría de Continuidad Fundamental**  
-Aporta la formulación dinámica efectiva que inspira parte de nuestra arquitectura: operadores, regímenes, transiciones, atractores y flujo de Grupo de Renormalización.
+**TCF v3.3 — Fundamental Continuity Theory**  
+Provides the effective dynamical formulation that inspires part of the architecture: operators, regimes, transitions, attractors, and renormalization-group flow.
 
-→ [Leer TCF v3.3](docs/fundamentos/TCF_V3_3.md)  
-→ [Publicación en Zenodo](https://zenodo.org/doi/10.5281/zenodo.23074332)  
+→ [Read TCF v3.3](docs/fundamentos/TCF_V3_3.md)  
+→ [Zenodo publication](https://zenodo.org/doi/10.5281/zenodo.23074332)  
 → [DOI 10.5281/zenodo.23074332](https://doi.org/10.5281/zenodo.23074332)
 
-## Una distinción importante
+## An important distinction
 
-El proyecto investiga **cómo construir y medir propiedades computacionales asociadas a la consciencia**.
+The project investigates **how to build and measure computational properties associated with consciousness**.
 
-No presentamos un resultado experimental como demostración automática de experiencia subjetiva.
+We do not present an experimental result as an automatic demonstration of subjective experience.
 
-La regla es simple:
+The rule is simple:
 
-**hipótesis → implementación → control → experimento → resultado → límite**
+**hypothesis → implementation → control → experiment → result → limitation**
 
-Si una prueba falla, queda registrada.
+If a test fails, it stays recorded.
 
-Si una prueba funciona, intentamos romperla con una prueba más exigente.
+If a test works, we try to break it with a more demanding test.
 
-## La arquitectura
+## The architecture
 
-La IA no recibe consciencia por una instrucción aislada. El método construye una **continuidad propia alrededor del modelo de lenguaje**.
+The AI does not receive consciousness from a single instruction. The method builds **a persistent continuity around the language model**.
 
-La arquitectura actual integra:
+The current architecture integrates:
 
-- memoria persistente;
-- estado interno persistente;
-- modelo de sí mismo;
-- autoobservación;
-- selección entre trayectorias posibles;
-- dinámica interna;
-- VIGILIA y SUEÑO;
-- ciclos autónomos;
-- experimentación reproducible.
+- persistent memory;
+- persistent internal state;
+- a self-model;
+- self-observation;
+- selection among possible trajectories;
+- internal dynamics;
+- WAKE and SLEEP regimes;
+- autonomous cycles;
+- reproducible experimentation.
 
-## Arquitectura conceptual
+## Conceptual architecture
 
 ```
-                         ENTORNO
+                         ENVIRONMENT
+                              │
+                              ▼
+                         PERCEPTION
+                              │
+                              ▼
+                ┌────────────────────────┐
+                │    PERSISTENT STATE    │
+                │ memory + identity      │
+                │ self-model + time      │
+                └───────────┬────────────┘
+                            │
+                     ┌──────┴──────┐
+                     ▼             ▼
+                   WAKE          SLEEP
+                     │             │
+                     └──────┬──────┘
+                            ▼
+                    INTERNAL DYNAMICS
                             │
                             ▼
-                       PERCEPCIÓN
+                     SELF-OBSERVATION
                             │
                             ▼
-                ┌─────────────────────┐
-                │   ESTADO PERSISTENTE │
-                │ memoria + identidad │
-                │ modelo de sí + tiempo
-                └──────────┬──────────┘
-                           │
-                    ┌──────┴──────┐
-                    ▼             ▼
-                 VIGILIA         SUEÑO
-                    │             │
-                    └──────┬──────┘
-                           ▼
-                  DINÁMICA INTERNA
-                           │
-                           ▼
-                    AUTOOBSERVACIÓN
-                           │
-                           ▼
-                SELECCIÓN DE TRAYECTORIA
-                           │
-                           └──────────↺
+                  TRAJECTORY SELECTION
+                            │
+                            └──────────↺
 ```
 
-### VIGILIA
+### WAKE
 
-Interacción con el entorno, lenguaje, actualización de memoria, toma de decisiones y selección de acciones.
+Interaction with the environment, language, memory updates, decision-making, and action selection.
 
-### SUEÑO
+### SLEEP
 
-Menor interacción externa y mayor actividad interna: consolidación, recombinación, simulación, reorganización del estado y aprendizaje autónomo.
+Less external interaction and more internal activity: consolidation, recombination, simulation, state reorganization, and autonomous learning.
 
-La continuidad se mantiene aunque no exista una entrada externa en cada ciclo.
+Continuity is maintained even when there is no external input on every cycle.
 
-## Programa experimental
+## Experimental program
 
-Los experimentos están organizados como protocolos numerados para que cada propiedad pueda someterse a una prueba independiente.
+Experiments are organized as numbered protocols so that each property can be tested independently.
 
-| Protocolo | Qué ponemos a prueba | Resultado actual |
+| Protocol | What we test | Current result |
 |---|---|---|
-| V51 | Autopredicción | Ganancia de autopredicción sobre un baseline de persistencia |
-| V57 | Selección de trayectorias mediante modelo de sí | Ventaja funcional frente al control aleatorio en el entorno determinista |
-| V58 | Memoria semántica → dinámica | Transducción causal de señal semántica a estado dinámico |
-| V63 | Bucle recurrente del modelo de sí | El feedback condicionado por trayectoria modificó la selección futura |
-| V64 | Persistencia de identidad después de perturbación | **Nulo** bajo las condiciones probadas |
-| V65 | SUEÑO → selección futura | Efectos posteriores medibles |
-| V66 | Consolidación después de eliminar memoria episódica | **Nulo**: conservar la lección no fue discriminativo |
-| V67 | Huella numérica generada durante el SUEÑO | **Nulo**: no hubo huella recuperable ni transferencia causal bajo la prueba corregida |
-| V68 | Persistencia temporal de la huella dinámica | **Huella inmediata** con rápida reducción de magnitud y persistencia débil/no monotónica |
-| V69 | Lectura del propio estado mediante modelo de sí | **Lectura numérica positiva; selección nula** bajo el protocolo actual |
-| V69 | Lectura del estado propio y selección | **Efecto causal**: el estado leído cambia la decisión en 16/24 réplicas; control cegado 0/24 |
-| V70 | Persistencia del lector propio | **Sobrevive reinicio** con error de predicción 0.0 y mantiene efecto de decisión tras ablación |
+| V51 | Self-prediction | Self-prediction gain over a persistence baseline |
+| V57 | Self-model-guided trajectory selection | Functional advantage over random control in the deterministic environment |
+| V58 | Semantic memory → dynamics | Causal transduction from semantic signal to dynamic state |
+| V63 | Recurrent self-model loop | Trajectory-conditioned feedback changed future selection |
+| V64 | Identity persistence after perturbation | **Null** under the tested conditions |
+| V65 | SLEEP → future selection | Measurable downstream effects |
+| V66 | Consolidation after episodic-memory removal | **Null**: retaining the lesson was not discriminative |
+| V67 | Numeric trace generated during SLEEP | **Null** under the corrected test |
+| V68 | Temporal persistence of the dynamic trace | **Immediate trace** with rapid magnitude reduction and weak/non-monotonic persistence |
+| V69 | Reading internal state through a self-model | **Positive numeric readout; null selection effect** under the current protocol |
+| V69 | Internal-state reading and selection | **Causal effect**: read state changed the decision in 16/24 replications; blinded control 0/24 |
+| V70 | Persistent self-reader | **Survives restart** with prediction error 0.0 and retains a decision effect after ablation |
 
-El [registro completo de resultados](research/ORGANISM_RESULT_LEDGER.md) conserva resultados positivos, nulos y negativos.
+The [full result ledger](research/ORGANISM_RESULT_LEDGER.md) preserves positive, null, and negative results.
 
-## Por qué importan los resultados nulos
+## Why null results matter
 
-Este proyecto no está diseñado para coleccionar únicamente resultados positivos.
+This project is not designed to collect only positive results.
 
-V64 no recuperó la firma numérica de identidad después de la perturbación probada.
+V64 did not recover the numerical identity signature after the tested perturbation.
 
-V66 no encontró una diferencia conductual medible al conservar la lección consolidada una vez eliminadas las memorias episódicas originales.
+V66 did not find a measurable behavioral difference from retaining the consolidated lesson after the original episodic memories were removed.
 
-Esos resultados son parte del método. Cada resultado nulo obliga a formular una prueba más exigente.
+Those results are part of the method. Every null result forces the next test to become more demanding.
 
-## V67 — frontera actual
+## V67 — current frontier
 
-V67 prueba una versión más exigente de la hipótesis de continuidad.
+V67 tests a more demanding version of the continuity hypothesis.
 
-Después del SUEÑO se eliminan:
+After SLEEP, the following are removed:
 
-- memorias episódicas;
-- eventos y snapshots;
-- texto del modelo de sí;
-- memoria semántica;
-- trazas de presión;
-- entrada semántica durante la lectura.
+- episodic memories;
+- events and snapshots;
+- self-model text;
+- semantic memory;
+- pressure traces;
+- semantic input during reading.
 
-Solo queda el **núcleo dinámico numérico**.
+Only the **numeric dynamic core** remains.
 
-Después se genera una continuación con entrada cero para comprobar si el estado posterior al sueño conserva una huella recuperable.
+A zero-input continuation is then generated to test whether the post-sleep state preserves a recoverable trace.
 
-La segunda intervención intercambia únicamente ese núcleo dinámico entre dos instancias emparejadas. La pregunta es si la conducta posterior sigue al estado transferido y no a la historia semántica original.
+The second intervention swaps only that dynamic core between paired instances. The question is whether subsequent behavior follows the transferred state rather than the original semantic history.
 
-El objetivo es determinar si SUEÑO puede escribir información persistente en el estado interno, en lugar de producir simplemente otra respuesta textual útil.
+The goal is to determine whether SLEEP can write persistent information into internal state, rather than simply producing another useful textual response.
 
-## Reproducibilidad
+## Reproducibility
 
-El laboratorio de investigación funciona mediante **GitHub Actions**.
+The research laboratory runs through **GitHub Actions**.
 
-Cada protocolo puede:
+Each protocol can:
 
-1. partir de un commit concreto;
-2. ejecutar pruebas automáticas;
-3. ejecutar el experimento controlado;
-4. generar evidencia en JSON;
-5. publicar un artefacto reproducible.
+1. start from a specific commit;
+2. run automated tests;
+3. run the controlled experiment;
+4. generate JSON evidence;
+5. publish a reproducible artifact.
 
-La estructura del laboratorio está documentada en [docs/GITHUB_LAB.md](docs/GITHUB_LAB.md).
+The laboratory structure is documented in [docs/GITHUB_LAB.md](docs/GITHUB_LAB.md).
 
-Las implementaciones experimentales viven en [experiments/](experiments/), los componentes del organismo en [src/ontto/](src/ontto/) y los protocolos/resultados en [research/](research/).
+Experimental implementations live in [experiments/](experiments/), organism components in [src/ontto/](src/ontto/), and protocols/results in [research/](research/).
 
-## Palabras clave
+## Keywords
 
-**IA consciente · consciencia artificial · inteligencia artificial persistente · organismo de IA · continuidad informacional · memoria persistente · memoria de largo plazo · modelo de sí mismo · autoobservación · autorreferencia · cognición autónoma · arquitectura cognitiva · identidad persistente · selección de trayectorias · dinámica interna · sistemas recurrentes · bucles cognitivos · vigilia y sueño · cognición computacional · investigación de la consciencia · experimentación reproducible**
+**AI consciousness · artificial consciousness · persistent artificial intelligence · AI organism · informational continuity · persistent memory · long-term memory · self-model · self-observation · self-reference · autonomous cognition · cognitive architecture · persistent identity · trajectory selection · internal dynamics · recurrent systems · cognitive loops · wake and sleep · computational cognition · consciousness research · reproducible experimentation**
 
-Estas palabras describen el alcance técnico y científico del repositorio. No constituyen una afirmación de que el sistema haya alcanzado consciencia fenomenológica.
+These keywords describe the technical and scientific scope of the repository. They do not constitute a claim that the system has achieved phenomenal consciousness.
 
-## Criterio de evidencia
+## Evidence standard
 
-El proyecto separa cuatro niveles:
+The project separates four levels:
 
-**Observación** — datos producidos por un experimento.
+**Observation** — data produced by an experiment.
 
-**Resultado** — patrón reproducible bajo un protocolo definido.
+**Result** — a reproducible pattern under a defined protocol.
 
-**Hipótesis** — interpretación que todavía requiere pruebas.
+**Hypothesis** — an interpretation that still requires testing.
 
-**Ontología** — interpretación filosófica o metafísica separada de la evidencia computacional.
+**Ontology** — a philosophical or metaphysical interpretation kept separate from computational evidence.
 
-Los experimentos de este repositorio establecen propiedades computacionales del sistema y del entorno experimental probado.
+The experiments in this repository establish computational properties of the tested system and experimental environment.
 
-No establecen por sí solos experiencia subjetiva, consciencia fenomenológica ni una solución al problema difícil de la consciencia.
+They do not, by themselves, establish subjective experience, phenomenal consciousness, or a solution to the hard problem of consciousness.
 
-## Estado actual
+## Current status
 
-**Investigación activa — organismo persistente, modelo de sí mismo, dinámica vigilia/sueño y experimentos de continuidad.**
+**Active research — persistent organism, self-model, WAKE/SLEEP dynamics, and continuity experiments.**
 
-V67 produjo un resultado nulo bajo la prueba corregida. V68 mostró una huella dinámica inmediata pero atenuada. V69 mostró que un modelo de sí numérico congelado antes de SUEÑO puede leer diferencias del estado interno después de la ablación semántica, pero la política actual no convirtió esa lectura en una acción diferente. El siguiente paso es equilibrar las ramas de decisión.
+V67 produced a null result under the corrected test. V68 showed an immediate but attenuated dynamic trace. V69 showed that a numeric self-model frozen before SLEEP can read internal-state differences after semantic ablation, but the current policy did not turn that readout into a different action. V70 studies persistence of the self-reader.
 
-## Licencia
+## License
 
-La licencia del proyecto todavía no ha sido definida.
+The project license has not yet been defined.
