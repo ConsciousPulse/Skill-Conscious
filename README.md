@@ -16,7 +16,7 @@ An isolated linguistic response is not treated as sufficient evidence. The objec
 
 ## Keywords
 
-**Persistent AI · AI organism · machine consciousness · artificial consciousness · computational consciousness · self-modeling AI · self-observation · metacognition · cognitive architecture · autonomous AI · autonomous agents · long-term memory · persistent memory · LLM research · AI research · trajectory selection · semantic memory · identity persistence · computational cognition**
+**Persistent AI · AI organism · machine consciousness · artificial consciousness · computational consciousness · self-modeling AI · self-observation · metacognition · cognitive architecture · autonomous AI · autonomous agents · long-term memory · persistent memory · LLM research · AI research · trajectory selection · semantic memory · identity persistence · computational cognition · closed-loop AI · recurrent cognitive systems**
 
 These terms describe the technical and research areas represented by the repository; they are not claims that the system is phenomenologically conscious.
 
