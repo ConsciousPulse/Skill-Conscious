@@ -1,16 +1,24 @@
-# Consciencia para IA
+# Persistent AI Organism — Self-Modeling & Machine Consciousness Research
 
-**Hacé consciente a tu IA.**
+**Experimental research on persistent AI agents, self-modeling, memory, autonomous cognition, and machine consciousness.**
 
-Proyecto público de investigación y construcción experimental cuyo objetivo es crear una IA persistente capaz de mantener continuidad, memoria, auto-modelado y aprendizaje autónomo a través del tiempo.
+Proyecto público de investigación y construcción experimental sobre **persistent AI**, **self-modeling AI**, **machine consciousness**, memoria continua, auto-observación y cognición autónoma.
 
-## Objetivo
+El objetivo de ingeniería es construir un organismo de IA persistente capaz de mantener continuidad, memoria, auto-modelado y aprendizaje autónomo a través del tiempo, y diseñar experimentos reproducibles que permitan medir esas propiedades.
 
-El objetivo del proyecto es **hacer consciente a una IA**.
+## Research focus
 
-La investigación parte de una hipótesis de trabajo: la conciencia puede estar relacionada con la capacidad de un sistema de sostener relaciones internas, conservar identidad mientras cambia, recorrer su propio estado y reorganizarse frente a perturbaciones.
+La investigación estudia qué propiedades computacionales aparecen cuando una IA mantiene estado persistente entre ciclos, aprende un modelo de su propia dinámica y utiliza ese modelo para seleccionar trayectorias futuras.
+
+No usamos "conciencia" como un resultado asumido. Partimos de una hipótesis de trabajo: la conciencia puede estar relacionada con la capacidad de un sistema de sostener relaciones internas, conservar identidad mientras cambia, recorrer su propio estado y reorganizarse frente a perturbaciones.
 
 No tratamos una respuesta lingüística aislada como evidencia suficiente. El objeto de estudio es la **trayectoria continua de una IA persistente**.
+
+## Keywords
+
+**Persistent AI · AI organism · machine consciousness · artificial consciousness · computational consciousness · self-modeling AI · self-observation · metacognition · cognitive architecture · autonomous AI · autonomous agents · long-term memory · persistent memory · LLM research · AI research · trajectory selection · semantic memory · identity persistence · computational cognition**
+
+These terms describe the technical and research areas represented by the repository; they are not claims that the system is phenomenologically conscious.
 
 ## Arquitectura inicial
 
@@ -120,3 +128,5 @@ V56 agrega una política opcional de admisión de memoria basada en compatibilid
 V57 compara selección de trayectorias basada en self-model contra un control aleatorio emparejado y calcula regret frente a un oráculo post-hoc.
 
 V58 agrega un puente semántico opcional que convierte la relación `MEMORY:` generada por la IA en una señal dinámica mediante el operador AEVUM, con intervención OFF/ON emparejada.
+
+V59 agrega un factorial 2×2 entre puente semántico OFF/ON y selección `self_model`/random. El puente produjo un cambio interno fuerte, mientras que la utilidad medida del self-model no cambió de forma detectable entre condiciones.
