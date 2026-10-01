@@ -53,6 +53,27 @@ semantic self-model altered its internal numerical state only when the explicit
 self-model bridge was enabled. This is causal computational coupling, not
 evidence of subjective experience.
 
+
+### V63 — Causal self-model loop
+24 matched replicates × 32 evaluation cycles across self-model/random selection and self-model bridge OFF/ON.
+
+- bridge ON self-model mean regret: 0.1422226601;
+- bridge ON random-control mean regret: 0.2666042539;
+- random-minus-self-model regret advantage: 0.1243815939;
+- paired sign-flip p: 0.00005;
+- bridge OFF self-model regret: 0.2876865581;
+- bridge ON self-model regret: 0.1422226601;
+- self-model bridge OFF-minus-ON regret improvement: 0.1454638980;
+- paired sign-flip p for bridge regret: 0.00005;
+- self-model oracle-hit increased from 10.0260% OFF to 60.6771% ON;
+- paired sign-flip p for hit-rate change: 0.00005;
+- regret difference-in-differences between self-model and random arms: 0.2837493367;
+- paired sign-flip p for the interaction: 0.00005;
+- bridge ON + self-model action-branch coverage: 100%;
+- bridge ON + self-model action-conditioned bridge signal difference: 0.7405 across 243 negative-branch and 501 positive-branch observations.
+
+Interpretation: the deterministic harness supports a recurrent computational loop in which prior trajectory conditions the next semantic self-model, the self-model is transduced into internal dynamics, and that state participates in future trajectory selection. The action-conditioned signal comparison is a within-loop association, not an isolated causal effect estimate.
+
 ## Negative / null / limitation results
 
 ### V53
@@ -116,7 +137,7 @@ and points to a redesign rather than support for metacognitive capability.
 
 ## Engineering status
 
-V60, V61, and V62 completed successfully on the recorded V62 head. Their artifacts
+V60, V61, V62, and V63 completed successfully on their recorded GitHub Actions heads. Their artifacts
 are preserved in the corresponding GitHub Actions runs. Earlier V43–V59 results
 remain reproducible from their historical workflows and evidence records.
 
@@ -128,6 +149,5 @@ self-prediction, causal self-model use, semantic-to-dynamic coupling, and
 semantic self-representation as a causally active variable.
 
 They do not establish phenomenological consciousness or subjective experience.
-The next experiments should specifically target closed-loop self-model causality,
-identity persistence under self-model change, and a redesigned second-order
-meta-model rather than treating the current metacognitive result as a success.
+The next experiments should target identity persistence under self-model change,
+recovery after self-model perturbation, and a redesigned second-order meta-model.
