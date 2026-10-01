@@ -1,0 +1,44 @@
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Variables y secretos
+.env
+.env.*
+!.env.example
+
+# Cachés
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Cobertura
+.coverage
+htmlcov/
+coverage.xml
+
+# Builds y paquetes
+build/
+dist/
+*.egg-info/
+
+# Datos locales
+data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Resultados experimentales locales
+results/
+
+# Notebooks temporales
+.ipynb_checkpoints/
+
+# Sistema operativo / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
