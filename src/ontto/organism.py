@@ -10,6 +10,7 @@ from .dynamics import Config
 from .provider import OpenAICompatibleProvider
 from .storage import MemoryStore, OntologicalState
 from .self_observer import SelfObserver
+from .trajectory_selector import TrajectorySelector
 
 
 @dataclass
@@ -29,6 +30,9 @@ class OrganismConfig:
     self_observer_enabled: bool = True
     self_observer_ridge: float = 1e-3
     self_observer_max_samples: int = 2048
+    self_selection_enabled: bool = True
+    self_selection_attractor_weight: float = 0.70
+    self_selection_coherence_weight: float = 0.30
 
 
 class PersistentOrganism:
@@ -50,6 +54,10 @@ class PersistentOrganism:
         self.self_observer = SelfObserver(
             ridge=cfg.self_observer_ridge,
             max_samples=cfg.self_observer_max_samples,
+        )
+        self.trajectory_selector = TrajectorySelector(
+            attractor_weight=cfg.self_selection_attractor_weight,
+            coherence_weight=cfg.self_selection_coherence_weight,
         )
         if cfg.self_observer_enabled:
             for row in store.self_observer_trajectory(cfg.agent_id):
@@ -246,15 +254,49 @@ class PersistentOrganism:
     def autonomous_wake_cycle(self) -> dict[str, float | int] | None:
         self.state.mode = "WAKE"
         self.state.lifetime_wake_cycles += 1
+
+        chosen_signal = 0.0
+        candidates = ()
+        if self.cfg.self_selection_enabled and self.cfg.self_observer_enabled:
+            candidates = self.trajectory_selector.evaluate(
+                self.self_observer,
+                current_state=self.state.dynamic_state,
+                current_memory=self.state.dynamic_memory,
+                current_pressure=self.state.dynamic_pressure,
+                current_input=self.state.dynamic_last_input,
+                current_attractor=self.dynamic_bridge.cfg.attractor,
+                steps_delta=self.cfg.dynamic_autonomous_steps,
+            )
+            chosen = self.trajectory_selector.choose(candidates)
+            chosen_signal = chosen.signal
+
         dynamic = self._advance_dynamic(
-            0.0,
+            chosen_signal,
             self.cfg.dynamic_autonomous_steps,
         )
         self.store.add_event(
             self.cfg.agent_id,
             "WAKE",
             "autonomous",
-            {"dynamic": dynamic},
+            {
+                "dynamic": dynamic,
+                "self_selection": {
+                    "enabled": bool(self.cfg.self_selection_enabled and self.cfg.self_observer_enabled),
+                    "chosen_signal": chosen_signal,
+                    "candidates": [
+                        {
+                            "signal": candidate.signal,
+                            "predicted_state": candidate.prediction.predicted_state,
+                            "predicted_attractor_distance": candidate.attractor_distance,
+                            "predicted_displacement": candidate.displacement,
+                            "score": candidate.score,
+                            "samples": candidate.prediction.samples,
+                            "confidence": candidate.prediction.confidence,
+                        }
+                        for candidate in candidates
+                    ],
+                },
+            },
         )
         self.store.save_state(self.cfg.agent_id, self.state)
         return dynamic
