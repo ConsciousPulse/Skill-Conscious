@@ -405,6 +405,7 @@ def recovery_episode(
     observer: SelfObserver,
     seed: int,
     structure: str,
+    perturbation_sign: float | None = None,
     state_blind: bool = False,
     fixed: bool = False,
     random_policy: bool = False,
@@ -412,14 +413,22 @@ def recovery_episode(
 ) -> dict[str, float | str | list[float]]:
     bridge = DynamicStateBridge(DynamicsConfig(), seed=seed)
     context = warmup_context(bridge, seed=seed + 1000)
-    sign_rng = np.random.default_rng(seed + 2000)
-    sign = float(sign_rng.choice(np.asarray([-1.0, 1.0])))
+    if perturbation_sign is None:
+        sign_rng = np.random.default_rng(seed + 2000)
+        sign = float(sign_rng.choice(np.asarray([-1.0, 1.0])))
+    else:
+        sign = float(perturbation_sign)
+        if sign not in (-1.0, 1.0):
+            raise ValueError("perturbation_sign must be -1.0 or 1.0")
+
     context, reference_state, target_state = apply_perturbation_structure(
         bridge,
         context=context,
         structure=structure,
         sign=sign,
     )
+
+    intervention_target_error = float(abs(context.state - target_state))
 
     rng = np.random.default_rng(seed + 5000)
     gains = []
@@ -461,7 +470,8 @@ def recovery_episode(
         "mean_abs_action": float(np.mean(np.abs(actions))),
         "actions": actions,
         "structure": structure,
-        "terminal_target_error": float(abs(context.state - target_state)),
+        "intervention_target_error": intervention_target_error,
+        "final_state_target_error": float(abs(context.state - target_state)),
     }
 
 
@@ -514,8 +524,12 @@ def paired_rows(
                 [row["mean_continuity_index"] for row in rows],
                 dtype=float,
             ),
-            "terminal_error": np.asarray(
-                [row["terminal_target_error"] for row in rows],
+            "intervention_target_error": np.asarray(
+                [row["intervention_target_error"] for row in rows],
+                dtype=float,
+            ),
+            "final_target_error": np.asarray(
+                [row["final_state_target_error"] for row in rows],
                 dtype=float,
             ),
         }
@@ -545,16 +559,18 @@ def response_by_structure(
         positive = recovery_episode(
             policy=policy,
             observer=observer,
-            seed=seed + 10000,
+            seed=seed,
             structure=structure,
+            perturbation_sign=1.0,
             state_blind=state_blind,
             recovery_steps=1,
         )["first_action"]
         negative = recovery_episode(
             policy=policy,
             observer=observer,
-            seed=seed + 20000,
+            seed=seed,
             structure=structure,
+            perturbation_sign=-1.0,
             state_blind=state_blind,
             recovery_steps=1,
         )["first_action"]
@@ -651,13 +667,21 @@ def main() -> None:
             "random_gain": float(random_policy[structure]["gain"].mean()),
             "learned_continuity": float(learned[structure]["continuity"].mean()),
             "random_continuity": float(random_policy[structure]["continuity"].mean()),
-            "terminal_target_error_mean": float(
-                learned[structure]["terminal_error"].mean()
+            "intervention_target_error_mean": float(
+                learned[structure]["intervention_target_error"].mean()
+            ),
+            "final_state_target_error_mean": float(
+                learned[structure]["final_target_error"].mean()
             ),
         }
 
     id_advantage = float(np.mean(learned_id_gain - random_id_gain))
     ood_advantage = float(np.mean(learned_ood_gain - random_ood_gain))
+
+    intervention_error_max = max(
+        float(learned[structure]["intervention_target_error"].max())
+        for structure in test_structures
+    )
 
     summary = {
         "experiment": "organism_structural_continuity_generalization_v77",
@@ -695,6 +719,7 @@ def main() -> None:
         "learned_minus_random_continuity_p": sign_p(
             learned_all_cont - random_all_cont, 77074
         ),
+        "intervention_target_error_max": intervention_error_max,
         "ood_state_dependent_first_action_response_rate": response_by_structure(
             restored_policy,
             observer,
