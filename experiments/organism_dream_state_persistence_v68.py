@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import shutil
 from pathlib import Path
@@ -173,21 +174,31 @@ def main() -> None:
             frontier_state.dynamic_steps,
         )
 
-        prepared.append((seed, stable_state, frontier_state, stable_core, frontier_core))
+        prepared.append((seed, copy.deepcopy(stable_state), copy.deepcopy(frontier_state), stable_core, frontier_core))
 
     rows = []
     for horizon in horizons:
         samples = []
         exact_swaps = []
 
-        for replicate, (seed, stable_state, frontier_state, stable_core, frontier_core) in enumerate(prepared):
+        for replicate, (seed, stable_state_base, frontier_state_base, stable_core, frontier_core) in enumerate(prepared):
+            # Each horizon gets fresh state objects. Swapping a state is an
+            # intervention, so the target objects must never be reused across
+            # horizons or one horizon would contaminate the next.
+            stable_state = copy.deepcopy(stable_state_base)
+            frontier_state = copy.deepcopy(frontier_state_base)
+
             stable_own = run_zero_input_trace_horizon(stable_state, seed, horizon)
             frontier_own = run_zero_input_trace_horizon(frontier_state, seed, horizon)
             stable_swap = run_zero_input_trace_horizon(
-                build_swapped_state(stable_state, frontier_core), seed, horizon
+                build_swapped_state(copy.deepcopy(stable_state_base), frontier_core),
+                seed,
+                horizon,
             )
             frontier_swap = run_zero_input_trace_horizon(
-                build_swapped_state(frontier_state, stable_core), seed, horizon
+                build_swapped_state(copy.deepcopy(frontier_state_base), stable_core),
+                seed,
+                horizon,
             )
 
             samples.extend(
