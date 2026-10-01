@@ -20,7 +20,7 @@ class SelfObserver:
     from the currently observed internal state and transition variables.
     """
 
-    FEATURE_COUNT = 7
+    FEATURE_COUNT = 8
 
     def __init__(self, ridge: float = 1e-3, max_samples: int = 2048):
         self.ridge = float(ridge)
