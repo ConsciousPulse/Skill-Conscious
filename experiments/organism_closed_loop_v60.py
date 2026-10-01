@@ -170,9 +170,7 @@ def run_arm(
         selection = autonomous_event["payload"]["self_selection"]
         chosen_signal = float(selection["chosen_signal"])
 
-        actual_distance = abs(
-            after_selection.dynamic_state - after_selection.dynamic_attractor
-        )
+        actual_distance = float(after_selection.dynamic_attractor_distance)
         regret = actual_distance - oracle["oracle_distance"]
 
         rows.append(
