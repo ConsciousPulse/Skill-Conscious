@@ -172,6 +172,14 @@ in which DREAM-generated semantic consolidation changes internal state and produ
 a measurable downstream effect on future trajectory selection. This does not
 establish subjective dreaming or phenomenological consciousness.
 
+### V66 — Dream consolidation after episodic-memory ablation
+Protocol implemented and CI audit pending. After DREAM consolidation, raw experience
+memories are removed from matched cloned states. One arm retains the consolidated
+lesson; the other removes it as well. Both then receive the same retrieval probe and
+semantic bridge before trajectory selection.
+
+No V66 result is claimed until a successful artifact exists.
+
 ## Engineering status
 
 V60, V61, V62, V63, and V65 completed successfully on their recorded GitHub Actions heads. Their artifacts
