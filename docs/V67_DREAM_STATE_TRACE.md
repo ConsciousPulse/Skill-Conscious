@@ -52,3 +52,53 @@ Si el comportamiento posterior a la ablación sigue al estado numérico transfer
 Este protocolo prueba persistencia y transferencia causal de un estado numérico computacional producido por SUEÑO. No establece sueño subjetivo, consciencia fenomenológica ni un análogo biológico del sueño.
 
 Un resultado positivo mostraría un mecanismo de continuidad más fuerte que V66 porque la lectura conductual ya no depende de recuperar una lección semántica superviviente. Un resultado nulo motivaría rediseñar cómo SUEÑO escribe estado interno persistente.
+
+
+## Resultado validado — 1 de octubre de 2026
+
+La primera ejecución de V67 reveló una **falla metodológica en el brazo de intercambio**: el código mutaba el estado estable antes de construir el segundo intercambio y terminaba reutilizando el núcleo ya modificado. Ese resultado no se utilizó como evidencia.
+
+La implementación fue corregida capturando ambos núcleos dinámicos antes de cualquier mutación. La corrección añadió además un control de integridad que exige que cada estado intercambiado reproduzca exactamente, bajo el mismo seed y entrada cero, la continuación del estado fuente.
+
+### Resultado de la prueba corregida
+
+24 réplicas, 12 pasos de continuación, ablación semántica total.
+
+- diferencia media de señal de SUEÑO estable − frontera: **-0.3092749945**;
+- diferencia media de estado dinámico de SUEÑO estable − frontera: **-0.0682840349**;
+- precisión de clasificación de la continuación propia después de la ablación: **50.0%**;
+- p emparejada por cambio de signo: **1.0**;
+- precisión de seguimiento del estado transferido: **50.0%**;
+- p emparejada por cambio de signo: **1.0**;
+- fracción de intercambios que reprodujo exactamente el núcleo fuente: **100%**;
+- memorias eliminadas antes de la sonda: **sí**;
+- modelo de sí eliminado antes de la sonda: **sí**;
+- entrada textual durante la sonda: **no**.
+
+### Interpretación
+
+V67 corregido produjo un **resultado nulo**.
+
+La intervención de SUEÑO sí produjo una diferencia proximal en la señal de puente y en el estado numérico inmediatamente posterior al sueño. Sin embargo, después de eliminar las superficies semánticas:
+
+1. la continuación propia no conservó una firma clasificable por encima del azar;
+2. transferir el núcleo dinámico no transfirió una condición conductualmente distinguible;
+3. el control de integridad confirmó que el intercambio sí estaba implementado correctamente.
+
+Esto descarta una explicación fácil basada en el bug del intercambio y deja una conclusión más precisa: **la diferencia numérica generada por SUEÑO en este arnés no demostró ser una huella funcional recuperable ni causalmente transferible después de la ablación semántica total.**
+
+### Consecuencia experimental
+
+El siguiente protocolo debe dejar de preguntar primero «¿puedo decodificar la historia?» y preguntar primero «¿qué operación causal sobre el estado interno hace que una información escrita durante SUEÑO cambie una respuesta posterior?».
+
+La próxima línea experimental debería probar una escritura controlada en el núcleo dinámico con una lectura ciega inmediata y un contrafactual emparejado, aislando:
+
+```
+ESCRITURA INTERNA
+      ↓
+ABLACIÓN SEMÁNTICA
+      ↓
+LECTURA CAUSAL
+```
+
+antes de volver a ampliar el horizonte temporal.
