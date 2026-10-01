@@ -91,6 +91,60 @@ ventaja OOD / ventaja in-domain
 - tasa de respuestas distintas al signo de una perturbación reversal_pulse;
 - error entre el estado terminal de la intervención y el estado objetivo.
 
+## Resultado observado
+
+La ejecución corregida de GitHub Actions completó **64 réplicas por condición**, con **64 episodios de entrenamiento**, **512 muestras del SelfObserver** y **12 pasos de recuperación**. La política fue guardada y recargada sin reentrenamiento.
+
+### Endpoint primario
+
+Sobre todas las condiciones:
+
+- ganancia media de autopredicción, política aprendida: **0.2377583**;
+- estado cegado: **-0.1917033**;
+- política fija: **-0.1566228**;
+- selección aleatoria: **0.0632567**;
+- aprendido − cegado, p emparejada: **0.00005**;
+- aprendido − fijo, p emparejada: **0.00005**;
+- aprendido − aleatorio, p emparejada: **0.00005**.
+
+La ventaja aprendida frente a aleatorio fue:
+
+- **in-domain:** 0.1715437;
+- **OOD:** 0.1754876;
+- retención OOD/in-domain: **1.0230**.
+
+Por condición:
+
+| Estructura | Ganancia aprendida | Ganancia aleatoria |
+|---|---:|---:|
+| single_impulse | 0.2439115 | 0.0723678 |
+| split_impulse | 0.2341456 | 0.0764841 |
+| reversal_pulse | 0.2352617 | 0.0547020 |
+| delayed_impulse | 0.2377144 | 0.0494728 |
+
+### Endpoints secundarios
+
+El índice de continuidad no mostró una ventaja diferenciable:
+
+- continuidad aprendida: **0.7926861**;
+- continuidad aleatoria: **0.7950760**;
+- p emparejada: **0.48033**.
+
+La respuesta de primera acción dependiente del estado en la estructura OOD reversal_pulse fue:
+
+- política con estado: **100%**;
+- política con estado cegado: **0%**.
+
+El error entre el estado inmediatamente posterior a la intervención y el objetivo terminal de la intervención fue **0.0** en todas las réplicas.
+
+### Interpretación
+
+V77 respalda que una política entrenada únicamente con single_impulse puede conservar una ventaja de autopredicción cuando la perturbación adopta estructuras temporales y causales no vistas durante el aprendizaje. La ventaja OOD no se redujo respecto de la condición in-domain bajo este arnés.
+
+Esto es una **generalización computacional de la política de autopredicción**, no una demostración de que el organismo posea un valor autónomo de continuidad.
+
+Además, el índice de continuidad como endpoint secundario no se separó de la selección aleatoria. Por tanto, el resultado fuerte de V77 es la **generalización de autopredicción**, no una preferencia demostrada por mantener continuidad en el sentido conductual más amplio.
+
 ## Qué significaría un resultado favorable
 
 Un resultado favorable respaldaría una propiedad más fuerte que V76:
