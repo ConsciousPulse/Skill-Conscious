@@ -33,7 +33,7 @@ Para cada réplica:
 
 1. Se entrena el lector numérico dentro del propio organismo.
 2. Se conserva en SQLite mediante la persistencia normal del organismo.
-3. Se crean dos condiciones dinámicas.
+3. Se crean dos condiciones dinámicas mediante un pulso numérico controlado de igual magnitud y signo opuesto.
 4. Se eliminan memorias, eventos, texto del modelo de sí y superficies semánticas.
 5. El organismo se reinicia y reconstruye automáticamente su `SelfObserver`.
 6. Entra en SUEÑO con un proveedor controlado que no aporta memoria ni `SELF_MODEL`.
