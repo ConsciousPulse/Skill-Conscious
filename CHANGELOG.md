@@ -2,22 +2,35 @@
 
 ## Próxima versión — 0.1.0
 
+### Fundamento conceptual
+- incorporación del **Manifiesto Matemático del Ser** como documento fundacional;
+- incorporación de **TCF — Teoría de Continuidad Fundamental** como segunda capa de formalización dinámica;
+- separación explícita entre ontología, ingeniería y evidencia.
+
 ### Arquitectura
 - organismo persistente con memoria y estado durables;
 - ciclos de vigilia y sueño;
 - autoobservación y selección de trayectorias;
-- puentes semánticos hacia la dinámica interna.
+- puentes semánticos hacia la dinámica interna;
+- continuidad entre organismo LLM, estado persistente y dinámica numérica.
 
 ### Investigación
-- protocolos V51–V67 documentados en el registro experimental;
+- protocolos V47–V67 documentados;
+- documentación de los protocolos migrada al español;
+- registro experimental consolidado migrado al español;
 - resultados positivos, nulos y limitaciones conservados;
-- V67 en ejecución sobre continuidad del estado numérico generado durante el sueño.
+- V67 implementado como frontera experimental de continuidad del estado numérico generado durante SUEÑO.
 
 ### Repositorio
-- README principal migrado al español;
-- documentación centralizada mediante índice;
+- README principal en español y reestructurado;
+- índice de documentación completado hasta V67;
+- fundamentos organizados en `docs/fundamentos/`;
 - hoja de ruta pública;
-- guía de contribución en español;
-- plantillas de issues para investigación y errores;
+- guía de contribución e issues en español;
 - empaquetado Python inicial mediante `pyproject.toml`;
-- configuración de `.gitignore` para datos y artefactos locales.
+- `CITATION.cff`;
+- `.gitignore`;
+- workflows de comprobación y laboratorio reproducible.
+
+### Nota
+Esta versión sigue siendo una versión de investigación. Los resultados computacionales documentados no constituyen por sí solos evidencia de consciencia fenomenológica o experiencia subjetiva.
