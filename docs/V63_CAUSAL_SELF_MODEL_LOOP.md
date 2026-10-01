@@ -1,38 +1,49 @@
-# V63 — Causal self-model loop
+# V63 — Bucle causal del modelo de sí
 
-## Result
+## Resultado
 
-24 matched replicates × 32 evaluation cycles across four arms.
+24 réplicas emparejadas × 32 ciclos de evaluación en cuatro brazos.
 
-With the self-model bridge ON:
-- self-model mean regret: 0.1422226601
-- random-control mean regret: 0.2666042539
-- random-minus-self-model regret advantage: 0.1243815939
-- paired sign-flip p: 0.00005
-- self-model oracle-hit rate: 60.6771%
-- random-control oracle-hit rate: 33.8542%
+Con el puente del modelo de sí ON:
 
-For the self-model selection arm:
-- bridge OFF mean regret: 0.2876865581
-- bridge ON mean regret: 0.1422226601
-- OFF-minus-ON regret improvement: 0.1454638980
-- paired sign-flip p: 0.00005
-- oracle-hit rate: 10.0260% -> 60.6771%
-- paired sign-flip p for hit-rate change: 0.00005
+- regret medio del modelo de sí: 0.1422226601;
+- regret medio del control aleatorio: 0.2666042539;
+- ventaja de regret aleatorio − modelo de sí: 0.1243815939;
+- p emparejada por cambio de signo: 0.00005;
+- tasa de aciertos del oráculo del modelo de sí: 60.6771%;
+- tasa de aciertos del control aleatorio: 33.8542%.
 
-The regret difference-in-differences between self-model and random arms was
-0.2837493367 with paired sign-flip p = 0.00005.
+Para el brazo de selección mediante modelo de sí:
 
-Action coverage reached 100% of replicates for bridge ON + self-model, bridge OFF + random, and bridge ON + random; bridge OFF + self-model reached 66.67%.
+- regret medio con puente OFF: 0.2876865581;
+- regret medio con puente ON: 0.1422226601;
+- mejora de regret OFF − ON: 0.1454638980;
+- p emparejada por cambio de signo: 0.00005;
+- tasa de aciertos del oráculo: 10.0260% → 60.6771%;
+- p emparejada por cambio de signo para el cambio de tasa de aciertos: 0.00005.
 
-For bridge ON + self-model, the action-conditioned self-model bridge signal was observed after both branches. Across 243 observations after -1 and 501 after +1, mean signals were approximately +0.4999 and -0.2406, respectively, absolute difference 0.7405. This is a within-loop association, not an isolated causal effect estimate.
+La diferencia de diferencias de regret entre los brazos con modelo de sí y aleatorio fue 0.2837493367, con p emparejada por cambio de signo = 0.00005.
 
-## Interpretation
+La cobertura de acciones alcanzó el 100% de las réplicas para puente ON + modelo de sí, puente OFF + aleatorio y puente ON + aleatorio; puente OFF + modelo de sí alcanzó 66.67%.
 
-V62 showed one-step causal transduction of semantic self-representation into numerical state. V63 extends that pathway into a recurrent action-conditioned loop: prior trajectory -> next self-model -> internal dynamics -> next trajectory selection.
+Para puente ON + modelo de sí, la señal del puente causal condicionada por acción se observó después de ambas ramas. Entre 243 observaciones posteriores a -1 y 501 posteriores a +1, las señales medias fueron aproximadamente +0.4999 y -0.2406, respectivamente, con diferencia absoluta 0.7405. Esto es una asociación dentro del bucle, no una estimación causal aislada.
 
-The matched deterministic harness therefore supports recurrent computational coupling between semantic self-representation and future trajectory selection.
+## Interpretación
 
-## Evidence boundary
+V62 mostró la transducción causal en un paso de la autorrepresentación semántica hacia el estado numérico. V63 extiende esa vía a un bucle recurrente condicionado por acciones:
 
-The provider is deterministic and synthetic. These results establish computational behavior in the tested harness; they do not establish phenomenological consciousness or subjective experience.
+```
+trayectoria previa
+    →
+siguiente modelo de sí
+    →
+dinámica interna
+    →
+siguiente selección de trayectoria
+```
+
+El arnés determinista emparejado, por tanto, respalda un acoplamiento computacional recurrente entre la autorrepresentación semántica y la selección de trayectorias futuras.
+
+## Límite de evidencia
+
+El proveedor es determinista y sintético. Estos resultados establecen comportamiento computacional dentro del arnés probado; no establecen consciencia fenomenológica ni experiencia subjetiva.
