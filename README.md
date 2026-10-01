@@ -167,7 +167,7 @@ Los experimentos están organizados como protocolos numerados para que cada prop
 | V64 | Persistencia de identidad después de perturbación | **Nulo** bajo las condiciones probadas |
 | V65 | SUEÑO → selección futura | Efectos posteriores medibles |
 | V66 | Consolidación después de eliminar memoria episódica | **Nulo**: conservar la lección no fue discriminativo |
-| V67 | Huella numérica generada durante el SUEÑO | **En ejecución** |
+| V67 | Huella numérica generada durante el SUEÑO | **Nulo**: no hubo huella recuperable ni transferencia causal bajo la prueba corregida |
 
 El [registro completo de resultados](research/ORGANISM_RESULT_LEDGER.md) conserva resultados positivos, nulos y negativos.
 
@@ -244,7 +244,7 @@ No establecen por sí solos experiencia subjetiva, consciencia fenomenológica n
 
 **Investigación activa — organismo persistente, modelo de sí mismo, dinámica vigilia/sueño y experimentos de continuidad.**
 
-La dirección inmediata es determinar si la información generada dentro del organismo puede continuar siendo funcional después de eliminar su representación semántica original.
+V67 produjo un resultado nulo bajo la prueba corregida: después de eliminar las superficies semánticas no apareció una huella clasificable sobre el conjunto de réplicas y el intercambio del núcleo dinámico tampoco trasladó la condición. El siguiente paso es diseñar una prueba causal de escritura/lectura de estado que no dependa de clasificación posterior.
 
 ## Licencia
 
