@@ -151,7 +151,7 @@ V61 added an optional second-order meta-self-model: the organism learns to predi
 
 V62 adds an optional semantic self-model bridge and persists SELF_MODEL updates during wake cycles. In 24 matched replicates, bridge OFF produced exactly 0.0 mean state and signal separation, while bridge ON produced 0.05675 mean state separation and 0.18446 mean signal separation, with successful transduction in all runs. This is a deterministic computational causal result, not evidence of phenomenological consciousness.
 
-V63 extends the V62 intervention into a recurrent action-conditioned loop: the previous selected trajectory determines the next semantic SELF_MODEL, the self-model bridge changes internal dynamics, and the resulting state is fed into future trajectory selection. The protocol crosses self-model/random selection with bridge OFF/ON while isolating semantic memory. The CI audit is pending; no V63 result is claimed until its artifact is produced.
+V63 extends the V62 intervention into a recurrent action-conditioned loop: the previous selected trajectory determines the next semantic SELF_MODEL, the self-model bridge changes internal dynamics, and the resulting state is fed into future trajectory selection. In 24 matched replicates × 32 cycles, bridge-ON self-model regret was 0.1422 vs random 0.2666, oracle-hit was 60.68% vs 33.85%, and the paired sign-flip p was 0.00005. The bridge OFF→ON regret improvement under self-model selection was 0.14546, while the factorial regret difference-in-differences was 0.28375 (p = 0.00005). Bridge-ON self-model runs traversed both action branches in 100% of replicates. This is a deterministic computational result, not evidence of phenomenological consciousness.
 
 ## Evidence boundary
 
