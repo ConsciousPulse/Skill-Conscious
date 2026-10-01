@@ -63,6 +63,7 @@
 - [V72 self-policy learning](V72_SELF_POLICY_LEARNING.md) — aprendizaje de una política basada en el propio modelo de sí bajo un objetivo de continuidad definido externamente.
 - [V73 integrated self-policy](V73_INTEGRATED_SELF_POLICY.md) — política persistente integrada en el organismo, reinicio, SUEÑO, ablación semántica y selección autónoma.
 - [V74 self-prediction policy](V74_SELF_PREDICTION_POLICY.md) — política guiada por ganancia de autopredicción sin objetivo externo de atractor.
+- [V75 active continuity](V75_ACTIVE_CONTINUITY.md) — recuperación activa de autopredicción bajo perturbación, con continuidad como endpoint secundario.
 
 [Registro consolidado](../research/ORGANISM_RESULT_LEDGER.md).
 
