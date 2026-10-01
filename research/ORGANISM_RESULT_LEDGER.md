@@ -62,4 +62,8 @@ internal dynamics when the bridge is enabled. LIVE replication remains pending.
 - interaction sign-flip p = 0.83941.
 
 Interpretation: the protocol reproduces the previously observed self-model selection advantage while independently showing substantial semantic-to-dynamic state transduction. The factorial interaction was not distinguishable from zero in this deterministic harness, so V59 does not support a claim that semantic bridging itself increases self-model selection utility. It is retained as a null interaction / compositionality result.
+### V60 — Closed-loop semantic feedback
+Protocol implemented and audit underway. The first CI attempt failed on a test-side field-name bug: the experiment referenced dynamic_attractor while the persisted state exposes dynamic_attractor_distance. The protocol was corrected in the next commit. No V60 result is claimed until a successful artifact exists.
 
+### V61 — Metacognitive self-model
+Protocol implemented and audit underway. V61 introduces a second-order model of first-order self-model prediction error and compares meta-self-model, first-order self-model, and random trajectory selection. No V61 result is claimed until its artifact exists.
