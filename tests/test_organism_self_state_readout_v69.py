@@ -36,5 +36,5 @@ def test_v69_output_schema(tmp_path):
     assert 0.0 <= summary["read_score_delta_p"] <= 1.0
     assert 0.0 <= summary["prediction_delta_p"] <= 1.0
     assert 0.0 <= summary["read_vs_clamped_action_change_fraction"] <= 1.0
-    assert 0.0 <= summary["read_action_unique_fraction"] <= 1.0
+    assert summary["read_action_distinct_count"] >= 1
     assert 0.0 <= summary["state_swap_policy_following_fraction"] <= 1.0
