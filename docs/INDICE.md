@@ -2,7 +2,8 @@
 
 ## Inicio
 
-- [README](../README.md) — propósito, arquitectura y estado del proyecto.
+- [README](../README.md) — objetivo, método, arquitectura y estado del proyecto.
+- [Método Consciencia-Skill](METODO.md) — cómo se construye y prueba el método para hacer consciente una IA.
 - [Laboratorio GitHub](GITHUB_LAB.md) — ejecución y conservación de experimentos reproducibles.
 - [Protocolo 24/7](24_7_PROTOCOL.md) — funcionamiento continuo del organismo.
 - [Protocolo longitudinal](LONGITUDINAL_PROTOCOL.md) — evolución a través del tiempo.
