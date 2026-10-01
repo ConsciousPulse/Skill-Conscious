@@ -4,6 +4,7 @@ import argparse
 import copy
 import json
 import shutil
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -11,6 +12,10 @@ import numpy as np
 from src.ontto.bridge import DynamicStateBridge
 from src.ontto.dynamics import Config as DynamicsConfig
 from src.ontto.storage import MemoryStore
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 from experiments.organism_dream_state_trace_v67 import (
     build_swapped_state,
