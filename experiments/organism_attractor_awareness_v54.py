@@ -29,7 +29,7 @@ class FakeProvider:
 
     def chat(self, messages, temperature=0.7):
         self.calls += 1
-        state_text = messages[-1]["content"]
+        state_text = "\n".join(message["content"] for message in messages)
         match = re.search(r'"dynamic_state":\s*(-?[0-9.]+)', state_text)
         state = float(match.group(1)) if match else 0.0
         direction = "TOWARD" if abs(state) > 0.12 else "STABLE"
