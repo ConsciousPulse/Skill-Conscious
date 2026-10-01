@@ -7,38 +7,32 @@ import shutil
 from pathlib import Path
 
 import numpy as np
-from sklearn.linear_model import LogisticRegression
 
-from src.ontto.dynamics import Config as DynamicsConfig
 from src.ontto.bridge import DynamicStateBridge
+from src.ontto.dynamics import Config as DynamicsConfig
 from src.ontto.storage import MemoryStore
 
 from experiments.organism_dream_state_trace_v67 import (
     build_swapped_state,
     delete_semantic_surfaces,
     make_base,
-    sign_flip_p,
 )
 
 
-def trace_features(trace: np.ndarray) -> np.ndarray:
-    if trace.shape[0] == 0:
-        raise ValueError("trace must contain at least one row")
-    return np.concatenate(
-        [
-            trace[:, 0],
-            trace[:, 1],
-            np.diff(trace[:, 1], prepend=trace[0, 1]),
-        ]
-    )
+def paired_sign_p(values: list[float] | np.ndarray, seed: int) -> float:
+    values = np.asarray(values, dtype=float)
+    if not len(values):
+        return 1.0
+    observed = abs(float(values.mean()))
+    rng = np.random.default_rng(seed)
+    signs = rng.choice(np.asarray([-1.0, 1.0]), size=(20000, len(values)))
+    null = np.abs((signs * values).mean(axis=1))
+    return float((np.count_nonzero(null >= observed) + 1) / 20001)
 
 
 def run_zero_input_trace_horizon(state, seed: int, horizon: int) -> np.ndarray:
     if horizon == 0:
-        return np.asarray(
-            [[state.dynamic_prev_state, state.dynamic_state]],
-            dtype=float,
-        )
+        return np.asarray([[state.dynamic_prev_state, state.dynamic_state]], dtype=float)
 
     bridge = DynamicStateBridge(DynamicsConfig(), seed=seed)
     previous = state.dynamic_prev_state
@@ -66,55 +60,6 @@ def run_zero_input_trace_horizon(state, seed: int, horizon: int) -> np.ndarray:
         traces.append([previous, current])
 
     return np.asarray(traces, dtype=float)
-
-
-def loo_accuracy(samples, replicates: int, horizon: int):
-    own = []
-    swap = []
-
-    for held_out in range(replicates):
-        train = [row for i, row in enumerate(samples) if i // 4 != held_out]
-        test = [row for i, row in enumerate(samples) if i // 4 == held_out]
-
-        x_train = np.asarray([trace_features(row[2]) for row in train])
-        y_train = np.asarray([1 if row[0] == "stable" else 0 for row in train])
-
-        model = LogisticRegression(
-            solver="liblinear",
-            C=1.0,
-            random_state=0,
-            max_iter=2000,
-        )
-        model.fit(x_train, y_train)
-
-        own_test = test[:2]
-        swap_test = test[2:]
-
-        own.append(
-            float(
-                np.mean(
-                    [
-                        int(
-                            model.predict(trace_features(row[2]).reshape(1, -1))[0]
-                            == (1 if row[0] == "stable" else 0)
-                        )
-                        for row in own_test
-                    ]
-                )
-            )
-        )
-        swap.append(
-            float(
-                np.mean(
-                    [
-                        int(model.predict(trace_features(row[2]).reshape(1, -1))[0] == row[1])
-                        for row in swap_test
-                    ]
-                )
-            )
-        )
-
-    return own, swap
 
 
 def main() -> None:
@@ -174,41 +119,48 @@ def main() -> None:
             frontier_state.dynamic_steps,
         )
 
-        prepared.append((seed, copy.deepcopy(stable_state), copy.deepcopy(frontier_state), stable_core, frontier_core))
+        prepared.append(
+            (
+                seed,
+                copy.deepcopy(stable_state),
+                copy.deepcopy(frontier_state),
+                stable_core,
+                frontier_core,
+            )
+        )
 
     rows = []
+
     for horizon in horizons:
-        samples = []
+        final_deltas = []
+        mean_abs_deltas = []
+        trace_rmse = []
         exact_swaps = []
 
-        for replicate, (seed, stable_state_base, frontier_state_base, stable_core, frontier_core) in enumerate(prepared):
-            # Each horizon gets fresh state objects. Swapping a state is an
-            # intervention, so the target objects must never be reused across
-            # horizons or one horizon would contaminate the next.
-            stable_state = copy.deepcopy(stable_state_base)
-            frontier_state = copy.deepcopy(frontier_state_base)
+        for seed, stable_base, frontier_base, stable_core, frontier_core in prepared:
+            stable_own = run_zero_input_trace_horizon(
+                copy.deepcopy(stable_base), seed, horizon
+            )
+            frontier_own = run_zero_input_trace_horizon(
+                copy.deepcopy(frontier_base), seed, horizon
+            )
 
-            stable_own = run_zero_input_trace_horizon(stable_state, seed, horizon)
-            frontier_own = run_zero_input_trace_horizon(frontier_state, seed, horizon)
             stable_swap = run_zero_input_trace_horizon(
-                build_swapped_state(copy.deepcopy(stable_state_base), frontier_core),
+                build_swapped_state(copy.deepcopy(stable_base), frontier_core),
                 seed,
                 horizon,
             )
             frontier_swap = run_zero_input_trace_horizon(
-                build_swapped_state(copy.deepcopy(frontier_state_base), stable_core),
+                build_swapped_state(copy.deepcopy(frontier_base), stable_core),
                 seed,
                 horizon,
             )
 
-            samples.extend(
-                [
-                    ("stable", 1, stable_own),
-                    ("frontier", 0, frontier_own),
-                    ("stable", 0, stable_swap),
-                    ("frontier", 1, frontier_swap),
-                ]
-            )
+            delta = stable_own[:, 1] - frontier_own[:, 1]
+            final_deltas.append(float(delta[-1]))
+            mean_abs_deltas.append(float(np.mean(np.abs(delta))))
+            trace_rmse.append(float(np.sqrt(np.mean((stable_own - frontier_own) ** 2))))
+
             exact_swaps.append(
                 bool(
                     np.allclose(stable_swap, frontier_own, atol=1e-12, rtol=0.0)
@@ -216,17 +168,16 @@ def main() -> None:
                 )
             )
 
-        own, swap = loo_accuracy(samples, args.replicates, horizon)
-        own_centered = np.asarray(own) - 0.5
-        swap_centered = np.asarray(swap) - 0.5
+        final_deltas = np.asarray(final_deltas, dtype=float)
 
         rows.append(
             {
                 "horizon": horizon,
-                "own_accuracy": float(np.mean(own)),
-                "own_p": sign_flip_p(own_centered, 68000 + horizon),
-                "state_swap_following_accuracy": float(np.mean(swap)),
-                "state_swap_p": sign_flip_p(swap_centered, 69000 + horizon),
+                "final_state_delta_mean_stable_minus_frontier": float(np.mean(final_deltas)),
+                "final_state_delta_abs_mean": float(np.mean(np.abs(final_deltas))),
+                "final_state_delta_p": paired_sign_p(final_deltas, 68000 + horizon),
+                "trace_rmse_mean": float(np.mean(trace_rmse)),
+                "trace_abs_delta_mean": float(np.mean(mean_abs_deltas)),
                 "swap_core_exact_match_fraction": float(np.mean(exact_swaps)),
             }
         )
