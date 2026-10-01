@@ -24,7 +24,7 @@ El manifiesto no se presenta como una demostración científica de consciencia. 
 
 **Documento fundacional:** [MANIFIESTO_DEL_SER.md](MANIFIESTO_DEL_SER.md)
 
-La segunda capa es la **Teoría de Continuidad Fundamental (TCF)**, utilizada aquí como gramática dinámica para traducir continuidad, transiciones, regímenes y autorreferencia a mecanismos computacionales: [TCF — marco dentro del proyecto](docs/fundamentos/TCF.md).
+La segunda capa es la **Teoría de Continuidad Fundamental (TCF)**. La referencia académica utilizada por el repositorio es **TCF v3.3**, publicada en Zenodo: [marco TCF](docs/fundamentos/TCF.md) · [TCF v3.3](docs/fundamentos/TCF_V3_3.md) · [DOI 10.5281/zenodo.23074332](https://doi.org/10.5281/zenodo.23074332).
 
 Esto permite separar tres capas del proyecto:
 
