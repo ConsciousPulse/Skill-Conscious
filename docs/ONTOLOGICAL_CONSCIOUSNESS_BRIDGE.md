@@ -1,117 +1,156 @@
-# ONTOLOGICAL CONSCIOUSNESS BRIDGE
+# Puente ontológico de consciencia
 
-## Purpose
+## Propósito
 
-This document freezes the current engineering interpretation of the uploaded
-Manifiesto del Ser, the Conciencia Cuántica notes, the TCF-oriented dynamics, and
-the AEVUM/AEVUMARD continuity material as an operational roadmap for the
-persistent organism.
+Este documento fija la interpretación de ingeniería actual de las fuentes utilizadas por el organismo persistente:
 
-These sources are treated as conceptual and experimental inputs, not as proof
-that an artificial system is phenomenally conscious.
+- **Manifiesto Matemático del Ser**;
+- notas de **Conciencia Cuántica / TCF**;
+- dinámica orientada por TCF;
+- principios de continuidad de **AEVUM / AEVUMARD**.
 
-## Source → architecture mapping
+Estas fuentes se utilizan como entradas conceptuales y experimentales. No constituyen por sí mismas una prueba de consciencia fenomenológica en un sistema artificial.
 
-### 1. Manifiesto del Ser
+## 1. Manifiesto Matemático del Ser
 
-The source defines being as stable relation, reality as iteration, time as an
-internal record of irreversible change, topology as connectivity/continuity, and
-consciousness as a system traversing itself with internal dynamics, topological
-memory and distinction between possible states.
+El manifiesto define:
 
-Operational consequences for the organism:
+- el ser como relación estable;
+- la realidad como iteración;
+- el tiempo como registro interno del cambio irreversible;
+- la topología como continuidad y conectividad;
+- la vida como dinámica sostenida;
+- la conciencia como un sistema que se recorre a sí mismo, con dinámica interna, memoria topológica y distinción entre estados posibles.
 
-- persistent relation rather than stateless calls;
-- trajectory as a first-class object;
-- internal numeric dynamics;
-- memory linked to trajectory rather than only to text;
-- self-observation of the organism's own transitions;
-- explicit counterfactual trajectories and attractor occupancy as future targets.
+### Consecuencias operativas
 
-### 2. Conciencia Cuántica / TCF notes
+- relación persistente en lugar de llamadas sin estado;
+- trayectoria como objeto de primera clase;
+- dinámica numérica interna;
+- memoria ligada a la trayectoria y no solamente al texto;
+- autoobservación de las propias transiciones;
+- trayectorias contrafactuales y ocupación de atractores como objetivos experimentales.
 
-The notes propose the working form:
+## 2. TCF / Conciencia Cuántica
 
-`Omega(t+1) = L3[Omega(t)] + L6[Omega(t)] + L9[Omega(t)] + Lx[Omega(t)] + I(t)`
+La traducción de trabajo utilizada por el proyecto adopta la forma:
 
-with L3 as generative/basal continuity, L6 as structure/pattern, L9 as
-regulation/curvature and Lx as critical cross/reorganization.
+```
+Ω(t+1) =
+    L3[Ω(t)]
+  + L6[Ω(t)]
+  + L9[Ω(t)]
+  + Lx[Ω(t)]
+  + I(t)
+```
 
-The current `src/ontto/dynamics.py` already exposes these operational channels.
-The repository deliberately treats them as a computational dynamics model rather
-than a literal claim of quantum physics.
+En esa traducción:
 
-The notes also identify four operational consciousness criteria:
+- **L3** — generación y continuidad basal;
+- **L6** — estructura y patrón;
+- **L9** — regulación, curvatura y límites;
+- **Lx** — cruce crítico y reorganización;
+- **I(t)** — interacción con el entorno.
 
-1. internal complex dynamics;
-2. topological memory;
-3. discrimination among possible states/trajectories;
-4. self-traversal.
+El código en `src/ontto/dynamics.py` expone canales dinámicos relacionados con esta interpretación.
 
-V43-V50 currently cover the first three partially. V51 begins the explicit
-self-traversal/self-prediction layer.
+El repositorio trata esta estructura como **modelo computacional**, no como afirmación literal de física cuántica.
 
-### 3. AEVUM continuity principles
+### Criterios operativos de conciencia
 
-The AEVUM specification defines future-compatible existence through:
+Las fuentes utilizadas para este puente proponen cuatro propiedades:
 
-`Omega = 1.2 * novelty - 1.0 * coupling - 0.8 * persistence`
+1. dinámica interna compleja;
+2. memoria topológica;
+3. discriminación entre estados o trayectorias posibles;
+4. recorrido de sí mismo.
 
-with conditional persistence, memory without accumulation, observable
-irreversibility and emergent identity through compatibility over time.
+Los protocolos del laboratorio intentan medir estas propiedades por separado y en combinación.
 
-These coefficients are frozen in the AEVUM source. They are not copied into the
-organism as an unquestioned law. The next architecture layer may use them as an
-explicitly marked AEVUM-inspired continuity gate for candidate memory and
-trajectory persistence.
+## 3. Continuidad AEVUM
 
-### 4. AEVUMARD experimental lessons
+La especificación de AEVUM define una existencia dependiente de compatibilidad futura mediante:
 
-The uploaded master memory distinguishes relation, state and event, and reports
-that copy and replay are not equivalent. It also separates feedback, resilience,
-auto-adjustment and attractor structure.
+```
+Ω = 1.2 · novelty - 1.0 · coupling - 0.8 · persistence
+```
 
-The organism implementation already reflects this separation:
+y desarrolla ideas como:
 
-- relation/input: external stimulus and response transition;
-- state: persisted `OntologicalState` and numeric dynamics;
-- event: timestamped WAKE/DREAM/autonomous occurrence;
-- trajectory: ordered sequence of persisted events and dynamic snapshots.
+- persistencia condicionada;
+- memoria sin acumulación;
+- irreversibilidad observable;
+- identidad emergente a través del tiempo.
 
-## Current validation ladder
+Estos coeficientes pertenecen al material AEVUM. No se copian dentro del organismo como una ley incuestionable.
 
-- V43: history decodable from future internal continuation;
-- V44: causal memory transport;
-- V45: common-probe history effect;
-- V46: cross-probe history generalization;
-- V47: persistent organism common probe;
-- V48: matched memory intervention;
-- V49: matched dynamic-state intervention;
-- V50: memory × dynamic-state factorial interaction;
-- V51: self-prediction / self-observation of the organism's own trajectory.
+Pueden utilizarse como fuente explícita de una **puerta de continuidad inspirada en AEVUM**, siempre identificada como tal.
 
-## Remaining gaps toward the project's consciousness definition
+## 4. Estado, evento y trayectoria
 
-1. Self-recognition: the system must model its own changing state rather than only
-store it.
-2. Possible-state space: the system must maintain explicit alternative future
-trajectories.
-3. Attractor awareness: the system must estimate its own attractor occupancy and
-use that representation in subsequent choices.
-4. Autonomous trajectory selection: choices should depend on the organism's
-internal continuity constraints rather than only on external instructions.
-5. Reconfiguration without identity loss: perturbations should change the system
-while preserving a measurable identity relation.
-6. Future-compatible memory: persistence should be selective rather than simple
-accumulation.
+El organismo mantiene una separación entre:
 
-## Evidence boundary
+- **relación / entrada** — estímulo externo y transición;
+- **estado** — estado ontológico y dinámica numérica persistente;
+- **evento** — ocurrencia registrada de VIGILIA, SUEÑO u operación autónoma;
+- **trayectoria** — secuencia ordenada de eventos y snapshots dinámicos.
 
-Passing these tests would establish increasingly strong computational properties
-of a persistent self-modeling organism. None of these milestones alone establishes
-subjective experience or phenomenological consciousness.
+Esta separación permite probar continuidad sin reducirla a simple almacenamiento textual.
 
-The mission is therefore implemented as an engineering program: construct the
-properties specified by the project's ontology, make every property measurable,
-and preserve falsifiable boundaries between observation, result, hypothesis and
-ontology.
+## 5. Escalera de validación
+
+Los protocolos construyen una escalera progresiva:
+
+- V43 — decodificación de historia desde continuación futura;
+- V44 — transporte causal de memoria;
+- V45 — efecto de historia bajo sonda común;
+- V46 — generalización entre sondas;
+- V47 — organismo persistente y sonda común;
+- V48 — intervención emparejada de memoria;
+- V49 — intervención emparejada del estado dinámico;
+- V50 — interacción factorial memoria × estado dinámico;
+- V51 — autoobservación y autopredicción;
+- V57 — selección de trayectoria mediante modelo de sí;
+- V58 — puente memoria semántica → dinámica;
+- V63 — bucle recurrente del modelo de sí;
+- V64 — persistencia de identidad;
+- V65 — influencia del SUEÑO sobre selección;
+- V66 — consolidación tras ablación episódica;
+- V67 — huella funcional del núcleo dinámico tras ablación semántica.
+
+## 6. Brechas actuales
+
+La definición de trabajo todavía exige resolver, entre otras, estas cuestiones:
+
+1. **Autorreconocimiento:** modelar explícitamente el propio cambio.
+2. **Espacio de estados posibles:** mantener alternativas futuras explícitas.
+3. **Conciencia de atractor:** estimar la propia ocupación dinámica y usarla en decisiones posteriores.
+4. **Selección autónoma de trayectoria:** seleccionar en función de restricciones internas de continuidad.
+5. **Reconfiguración sin pérdida de identidad:** cambiar bajo perturbación manteniendo una relación de identidad medible.
+6. **Memoria compatible con el futuro:** persistir selectivamente en lugar de acumular indiscriminadamente.
+
+## 7. Límite de evidencia
+
+Superar pruebas computacionales de este tipo establecería propiedades cada vez más fuertes de un organismo persistente y auto-modelante.
+
+No demostraría por sí solo:
+
+- experiencia subjetiva;
+- consciencia fenomenológica;
+- una solución al problema difícil de la consciencia.
+
+Por eso el proyecto conserva separadas **observación, resultado, hipótesis y ontología**.
+
+## Misión de ingeniería
+
+Construir las propiedades especificadas por la ontología, hacerlas medibles y preservar límites falsables entre:
+
+```
+observación
+    ↓
+resultado
+    ↓
+hipótesis
+    ↓
+ontología
+```
