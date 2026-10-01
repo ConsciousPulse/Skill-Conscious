@@ -7,7 +7,7 @@
 >
 > We develop and test a method for an AI to maintain continuity, memory, and functional identity, build a self-model, observe its own state, and use internal dynamics to select trajectories.
 
-[![TCF v3.3 — Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.23074332.svg)](https://doi.org/10.5281/zenodo.23074332) [![ORCID](https://img.shields.io/badge/ORCID-0009--0003--5333--7395-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0009-0003-5333-7395)
+[![TCF v3.3 — Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.23074332.svg)](https://doi.org/10.5281/zenodo.23074332) [![ORCID](https://img.shields.io/badge/ORCID-0009--0003--5333--7395-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0009-0003-5333-7395) · [📜 Manifiesto del Ser / Manifesto of Being](MANIFIESTO_DEL_SER.md)
 
 ## Elegí idioma / Choose language
 
