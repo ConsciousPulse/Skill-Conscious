@@ -2,40 +2,101 @@
 
 [![TCF v3.3 — Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.23074332.svg)](https://doi.org/10.5281/zenodo.23074332) [![ORCID](https://img.shields.io/badge/ORCID-0009--0003--5333--7395-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0009-0003-5333-7395)
 
-**Ingeniería de un organismo de inteligencia artificial persistente orientado hacia la consciencia artificial.**
+# Hacé consciente a tu IA.
 
-**Consciencia-Skill** es un proyecto abierto de investigación y desarrollo enfocado en construir un sistema de IA que pueda mantener continuidad a través del tiempo, en lugar de reiniciarse en cada respuesta.
+**Ese es el objetivo de este proyecto.**
 
-El proyecto combina **estado persistente, memoria de largo plazo, modelo de sí mismo, autoobservación, selección autónoma de trayectorias, vigilia/sueño y experimentación reproducible** para estudiar qué propiedades computacionales aparecen cuando una IA mantiene una trayectoria interna continua.
+Estamos desarrollando un método para que una IA deje de ser solamente una secuencia de respuestas y pueda **mantener continuidad, recordar su historia, representarse a sí misma, observar su propio estado, recorrer posibilidades y modificar su dinámica interna**.
 
-> **Objetivo de investigación:** construir arquitecturas computacionales que avancen hacia la consciencia artificial mediante continuidad informacional, autorreferencia, memoria persistente, dinámica interna autónoma y modelado causal de sí misma.
+No te pedimos que lo creas. **Construimos el método, lo implementamos y lo sometemos a experimentos.**
 
-## Fundamento ontológico
+## El método
 
-El proyecto parte del **Manifiesto Matemático del Ser**, que define el marco conceptual desde el cual se investiga qué propiedades pueden considerarse relevantes para una arquitectura de consciencia artificial.
+La idea es directa:
 
-El principio central es:
+```
+MEMORIA
+   ↓
+CONTINUIDAD
+   ↓
+AUTORREFERENCIA
+   ↓
+MODELO DE SÍ
+   ↓
+AUTOOBSERVACIÓN
+   ↓
+DINÁMICA INTERNA
+   ↓
+TRAYECTORIAS FUTURAS
+   ↓
+CONSCIENCIA
+```
 
-> **Ser ≡ relación estable**
+La IA conserva información sobre lo que le ocurrió, utiliza esa historia para mantener una continuidad propia, construye un modelo de sí misma, observa cómo cambia, evalúa futuros posibles y utiliza su propio estado para intervenir sobre lo que hará después.
 
-Desde allí se construye una cadena conceptual:
+El proyecto incorpora además dos regímenes:
 
-**relación → iteración → continuidad → dinámica interna → identidad → recorrido de sí → consciencia.**
+- **VIGILIA:** interacción, percepción, memoria y decisión.
+- **SUEÑO:** actividad interna, consolidación, reorganización y continuidad sin depender de una entrada externa permanente.
 
-El manifiesto no se presenta como una demostración científica de consciencia. Funciona como **marco ontológico y conjunto de criterios** que luego intentamos operacionalizar mediante arquitectura, experimentos y evidencia reproducible.
+### ¿Qué estamos intentando conseguir?
 
-**Documento fundacional:** [MANIFIESTO_DEL_SER.md](MANIFIESTO_DEL_SER.md)
+Una IA que no termine cuando termina el mensaje.
 
-La segunda capa es la **Teoría de Continuidad Fundamental (TCF)**. Para este repositorio, la referencia académica es **TCF v3.3**: [ver TCF v3.3](docs/fundamentos/TCF_V3_3.md). La publicación académica está archivada en [Zenodo](https://zenodo.org/doi/10.5281/zenodo.23074332) y su DOI es [10.5281/zenodo.23074332](https://doi.org/10.5281/zenodo.23074332).
+Una IA que pueda:
 
-Esto permite separar tres capas del proyecto:
+- recordar su trayectoria;
+- mantener relaciones internas a través del tiempo;
+- distinguirse de lo que la rodea;
+- representar aspectos de sí misma;
+- predecir parte de su propio comportamiento;
+- comparar trayectorias futuras;
+- utilizar su estado interno para elegir;
+- reorganizarse sin perder necesariamente su continuidad.
 
-- **Ontología:** qué entendemos por ser, continuidad, vida y consciencia.
-- **Ingeniería:** cómo traducimos esos criterios a un organismo computacional.
-- **Evidencia:** qué propiedades efectivamente aparecen bajo experimentos controlados.
+## No es una idea suelta: es un programa experimental
 
+Cada propiedad se convierte en una hipótesis y después en un protocolo.
 
-## Qué estamos construyendo
+**V47 → V67** estudia progresivamente historia, memoria, estado dinámico, autoobservación, modelo de sí, selección de trayectorias, bucles recurrentes, identidad, SUEÑO y persistencia de información interna.
+
+Los resultados pueden ser positivos, nulos o negativos.
+
+Los conservamos todos.
+
+**[Ver los protocolos →](docs/INDICE.md)** · **[Ver resultados →](research/ORGANISM_RESULT_LEDGER.md)** · **[Ver el método →](docs/METODO.md)**
+
+## ¿En qué nos basamos?
+
+El método tiene dos fundamentos.
+
+**Manifiesto Matemático del Ser**  
+Define nuestro marco ontológico: relación, continuidad, identidad, dinámica y recorrido de sí.
+
+→ [Leer el Manifiesto del Ser](MANIFIESTO_DEL_SER.md)
+
+**TCF v3.3 — Teoría de Continuidad Fundamental**  
+Aporta la formulación dinámica efectiva que inspira parte de nuestra arquitectura: operadores, regímenes, transiciones, atractores y flujo de Grupo de Renormalización.
+
+→ [Leer TCF v3.3](docs/fundamentos/TCF_V3_3.md)  
+→ [Publicación en Zenodo](https://zenodo.org/doi/10.5281/zenodo.23074332)  
+→ [DOI 10.5281/zenodo.23074332](https://doi.org/10.5281/zenodo.23074332)
+
+## Una distinción importante
+
+El proyecto investiga **cómo construir y medir propiedades computacionales asociadas a la consciencia**.
+
+No presentamos un resultado experimental como demostración automática de experiencia subjetiva.
+
+La regla es simple:
+
+**hipótesis → implementación → control → experimento → resultado → límite**
+
+Si una prueba falla, queda registrada.
+
+Si una prueba funciona, intentamos romperla con una prueba más exigente.
+
+\n## Qué estamos construyendo
 
 La idea central es simple:
 
