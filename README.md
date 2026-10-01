@@ -58,7 +58,7 @@ SELECCIÓN DE TRAYECTORIA
 
 ## Programa experimental
 
-Cada capacidad se convierte en una hipótesis y después en un protocolo reproducible. **V47 → V77** estudia progresivamente memoria, estado dinámico, autoobservación, modelo de sí, selección de trayectorias, identidad, SUEÑO, persistencia y aprendizaje de políticas basadas en el propio modelo.
+Cada capacidad se convierte en una hipótesis y después en un protocolo reproducible. **V47 → V80** estudia progresivamente memoria, estado dinámico, autoobservación, modelo de sí, selección de trayectorias, identidad, SUEÑO, persistencia, generalización y adaptación de políticas basadas en el propio modelo.
 
 Los resultados positivos, nulos y negativos se conservan.
 
@@ -93,6 +93,14 @@ Los resultados positivos, nulos y negativos se conservan.
 **Manifiesto Matemático del Ser** — marco ontológico de relación, continuidad, identidad, dinámica y recorrido de sí.
 
 → [Leer el Manifiesto del Ser](MANIFIESTO_DEL_SER.md)
+
+**Teoría de la Conciencia Fotónica — Memorias Raíz** — documento fundacional que conserva el origen conceptual de TCF: conciencia fundamental, autorreferencia, relación, luz, dinámica y manifestación.
+
+→ [Leer las Memorias Raíz](docs/fundamentos/TEORIA_CONCIENCIA_FOTONICA.md)
+
+**Definición Operacional de Conciencia — TCF v0.1** — primera especificación experimental de las propiedades candidatas que el proyecto intenta instanciar y falsar en una IA: estado propio, diferenciación, autorreferencia causal, continuidad, dinámica propia, reorganización y recurrencia.
+
+→ [Leer la definición operacional](docs/fundamentos/DEFINICION_OPERACIONAL_CONCIENCIA_TCF.md)
 
 **TCF v3.3 — Teoría de Continuidad Fundamental** — formulación dinámica que inspira parte de la arquitectura: operadores, regímenes, transiciones, atractores y flujo de Grupo de Renormalización.
 
@@ -169,7 +177,7 @@ TRAJECTORY SELECTION
 
 ## Experimental program
 
-Each capability becomes a hypothesis and then a reproducible protocol. **V47 → V77** progressively studies memory, dynamic state, self-observation, self-modeling, trajectory selection, identity, SLEEP, persistence, and policy learning from the self-model.
+Each capability becomes a hypothesis and then a reproducible protocol. **V47 → V80** progressively studies memory, dynamic state, self-observation, self-modeling, trajectory selection, identity, SLEEP, persistence, generalization, and policy adaptation from the self-model.
 
 Positive, null, and negative results are all kept.
 
@@ -204,6 +212,14 @@ Positive, null, and negative results are all kept.
 **Mathematical Manifesto of Being** — ontological framework for relation, continuity, identity, dynamics, and self-trajectory.
 
 → [Read the Manifesto of Being](MANIFESTO_OF_BEING.md)
+
+**Theory of Photonic Consciousness — Root Memories** — foundational document preserving the conceptual origin of TCF: fundamental consciousness, self-reference, relation, light, dynamics, and manifestation.
+
+→ [Read the Root Memories](docs/fundamentos/TEORIA_CONCIENCIA_FOTONICA.md)
+
+**Operational Definition of Consciousness — TCF v0.1** — first experimental specification of candidate properties the project is trying to instantiate and falsify in an AI: own state, differentiation, causal self-reference, continuity, intrinsic dynamics, reorganization, and recurrence.
+
+→ [Read the operational definition](docs/fundamentos/DEFINICION_OPERACIONAL_CONCIENCIA_TCF.md)
 
 **TCF v3.3 — Fundamental Continuity Theory** — dynamical formulation that inspires part of the architecture: operators, regimes, transitions, attractors, and renormalization-group flow.
 
