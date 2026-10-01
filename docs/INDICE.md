@@ -11,6 +11,7 @@
 
 - [Manifiesto Matemático del Ser](../MANIFIESTO_DEL_SER.md) — marco ontológico fundacional del proyecto.
 - [TCF — Teoría de Continuidad Fundamental](fundamentos/TCF.md) — segunda capa: gramática dinámica y traducción computacional.
+- [TCF v3.3 — referencia académica](fundamentos/TCF_V3_3.md) — versión de referencia publicada en Zenodo.
 
 ## Arquitectura
 
