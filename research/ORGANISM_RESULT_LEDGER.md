@@ -1,4 +1,4 @@
-# Organism Experimental Result Ledger — V47 → V62
+# Organism Experimental Result Ledger — V47 → V66
 
 ## Strong positive results
 
@@ -53,7 +53,6 @@ semantic self-model altered its internal numerical state only when the explicit
 self-model bridge was enabled. This is causal computational coupling, not
 evidence of subjective experience.
 
-
 ### V63 — Causal self-model loop
 24 matched replicates × 32 evaluation cycles across self-model/random selection and self-model bridge OFF/ON.
 
@@ -73,6 +72,27 @@ evidence of subjective experience.
 - bridge ON + self-model action-conditioned bridge signal difference: 0.7405 across 243 negative-branch and 501 positive-branch observations.
 
 Interpretation: the deterministic harness supports a recurrent computational loop in which prior trajectory conditions the next semantic self-model, the self-model is transduced into internal dynamics, and that state participates in future trajectory selection. The action-conditioned signal comparison is a within-loop association, not an isolated causal effect estimate.
+
+### V65 — Dream consolidation and future selection
+24 matched replicates × 24 evaluation cycles across no_dream, dream_no_bridge, and
+dream_bridge.
+
+- no_dream mean regret: 0.3258519211;
+- dream_no_bridge mean regret: 0.2109500171;
+- dream_bridge mean regret: 0.1779272005;
+- dream-bridge regret advantage over dream-no-bridge: 0.0330228167;
+- paired sign-flip p: 0.00005;
+- dream_bridge oracle-hit rate: 25.3472%;
+- dream_no_bridge oracle-hit rate: 13.3681%;
+- oracle-hit advantage: 0.1197916667;
+- paired sign-flip p for hit advantage: 0.00005;
+- dream-no-bridge regret change vs no_dream: -0.1149019040;
+- paired sign-flip p for dream-vs-no-dream regret: 0.00005.
+
+Interpretation: the deterministic harness supports a computational wake/dream mechanism
+in which DREAM-generated semantic consolidation changes internal state and produces
+a measurable downstream effect on future trajectory selection. This does not
+establish subjective dreaming or phenomenological consciousness.
 
 ## Negative / null / limitation results
 
@@ -109,25 +129,9 @@ benefit from self-modeling.
 Interpretation: the protocol reproduces the previously observed self-model selection
 advantage while independently showing substantial semantic-to-dynamic state
 transduction. The factorial interaction was not distinguishable from zero in this
-deterministic harness, so V59 does not support a claim that semantic bridging
-itself increases self-model selection utility. It remains a null interaction /
-compositionality result.
-
-### V64 — Identity persistence under self-model perturbation
-24 paired replicates tested whether identity-specific dynamic signatures remained
-decodable after a common semantic self-model overwrite, explicit self-model text
-removal, and autonomous continuation without semantic input.
-
-- bridge OFF post-ablation accuracy: 50.0%;
-- bridge ON post-ablation accuracy: 50.0%;
-- ON-minus-OFF accuracy difference: 0.0;
-- paired sign-flip p: 1.0;
-- folds above chance: 0% in both conditions.
-
-Interpretation: V64 produced a null result. Under the tested perturbation, feature set,
-classifier, and horizon, the original identity was not decodable after semantic
-self-model overwrite and textual ablation. The result is retained as a real
-limitation, not evidence against every possible form of identity persistence.
+deterministic harness, so V59 does not support a claim that semantic bridging itself
+increases self-model selection utility. It remains a null interaction / compositionality
+result.
 
 ### V61 — Metacognitive self-model
 24 paired replicates × 32 evaluation cycles.
@@ -146,54 +150,63 @@ limitation, not evidence against every possible form of identity persistence.
 - constant baseline MAE: 0.0849867822;
 - meta model beat the constant baseline in 0% of replicates.
 
-Interpretation: the implemented second-order meta-self-model did not improve
-trajectory selection and did not predict first-order model error better than a
-constant baseline in this harness. The result is retained as a negative finding
-and points to a redesign rather than support for metacognitive capability.
+Interpretation: the implemented second-order meta-self-model did not improve trajectory
+selection and did not predict first-order model error better than a constant baseline
+in this harness. The result is retained as a negative finding and points to a redesign
+rather than support for metacognitive capability.
 
-### V65 — Dream consolidation and future selection
-24 matched replicates × 24 evaluation cycles across no_dream, dream_no_bridge, and
-dream_bridge.
+### V64 — Identity persistence under self-model perturbation
+24 paired replicates tested whether identity-specific dynamic signatures remained
+decodable after a common semantic self-model overwrite, explicit self-model text
+removal, and autonomous continuation without semantic input.
 
-- no_dream mean regret: 0.3258519211;
-- dream_no_bridge mean regret: 0.2109500171;
-- dream_bridge mean regret: 0.1779272005;
-- dream-bridge regret advantage over dream-no-bridge: 0.0330228167;
-- paired sign-flip p: 0.00005;
-- dream_bridge oracle-hit rate: 25.3472%;
-- dream_no_bridge oracle-hit rate: 13.3681%;
-- oracle-hit advantage: 0.1197916667;
-- paired sign-flip p for hit advantage: 0.00005;
-- dream-no-bridge regret change vs no_dream: -0.1149019040;
-- paired sign-flip p for dream-vs-no-dream regret: 0.00005.
+- bridge OFF post-ablation accuracy: 50.0%;
+- bridge ON post-ablation accuracy: 50.0%;
+- ON-minus-OFF accuracy difference: 0.0;
+- paired sign-flip p: 1.0;
+- folds above chance: 0% in both conditions.
 
-Interpretation: the deterministic harness supports a computational wake/dream mechanism
-in which DREAM-generated semantic consolidation changes internal state and produces
-a measurable downstream effect on future trajectory selection. This does not
-establish subjective dreaming or phenomenological consciousness.
+Interpretation: V64 produced a null result. Under the tested perturbation, feature set,
+classifier, and horizon, the original identity was not decodable after semantic
+self-model overwrite and textual ablation. The result is retained as a real
+limitation, not evidence against every possible form of identity persistence.
 
 ### V66 — Dream consolidation after episodic-memory ablation
-Protocol implemented and CI audit pending. After DREAM consolidation, raw experience
-memories are removed from matched cloned states. One arm retains the consolidated
-lesson; the other removes it as well. Both then receive the same retrieval probe and
-semantic bridge before trajectory selection.
+24 matched replicates tested whether keeping only the consolidated lesson after DREAM
+was sufficient to change later trajectory selection once raw episodic memories were
+removed.
 
-No V66 result is claimed until a successful artifact exists.
+- retained-lesson mean regret: -0.1086777912;
+- ablated-lesson mean regret: -0.1086777912;
+- retained-lesson oracle-hit rate: 85.0694%;
+- ablated-lesson oracle-hit rate: 85.0694%;
+- regret difference (ablation - retained): 0.0;
+- paired sign-flip p for regret: 1.0;
+- oracle-hit advantage (retained - ablated): 0.0;
+- paired sign-flip p for hit rate: 1.0;
+- all retained runs produced a retrieval bridge signal.
+
+Interpretation: V66 is a null result. The retained consolidated lesson was present
+and generated a semantic retrieval signal, but its preservation did not produce a
+measurable behavioral difference in regret or oracle-hit rate in this deterministic
+pathway. The protocol therefore does not show that the consolidated lesson became
+functionally necessary after raw-memory ablation.
 
 ## Engineering status
 
-V60, V61, V62, V63, and V65 completed successfully on their recorded GitHub Actions heads. Their artifacts
-are preserved in the corresponding GitHub Actions runs. Earlier V43–V59 results
+V60, V61, V62, V63, V64, V65, and V66 completed successfully on their recorded GitHub Actions heads.
+Their artifacts are preserved in the corresponding GitHub Actions runs. Earlier V43–V59 results
 remain reproducible from their historical workflows and evidence records.
 
 ## Evidence boundary
 
 These results establish increasingly specific computational properties of the
 tested organism and its deterministic experimental harness: persistence,
-self-prediction, causal self-model use, semantic-to-dynamic coupling, and
-semantic self-representation as a causally active variable.
+self-prediction, causal self-model use, semantic-to-dynamic coupling, wake/dream
+effects, and semantic self-representation as a causally active variable.
 
 They do not establish phenomenological consciousness or subjective experience.
-The next experiments should target identity persistence under self-model change,
-recovery after self-model perturbation, and whether dream consolidation can preserve
-learned structure after raw episodic memory is removed.
+
+The next experiment should test whether the **numeric internal state generated during
+DREAM can carry a recoverable, causally transferable trace after semantic memory and
+self-model text are removed**, rather than relying on a later retrieval response.
