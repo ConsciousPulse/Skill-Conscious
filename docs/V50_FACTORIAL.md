@@ -1,49 +1,44 @@
-# V50 — Memory × Dynamic-State Factorial Intervention
+# V50 — Intervención factorial memoria × estado dinámico
 
-## Question
+## Pregunta
 
-Do persistent memory and numerical dynamic state act independently, or does the
-effect of one depend on the level of the other?
+¿La memoria persistente y el estado dinámico numérico actúan de forma independiente, o el efecto de uno depende del nivel del otro?
 
-## Design
+## Diseño
 
-A 2×2 matched intervention is repeated for multiple replicas:
+Una intervención emparejada 2×2 se repite para múltiples réplicas:
 
-| Condition | Memory | dynamic_state |
+| Condición | Memoria | dynamic_state |
 | --- | --- | ---: |
 | A_LOW | ALFA → AMBAR | -0.8 |
 | B_LOW | ALFA → VIOLETA | -0.8 |
 | A_HIGH | ALFA → AMBAR | +0.8 |
 | B_HIGH | ALFA → VIOLETA | +0.8 |
 
-All four conditions use the same receiver base database and the same probe.
-`event_limit=0` prevents event-history text from entering the LLM context.
+Las cuatro condiciones utilizan la misma base de datos receptora y la misma sonda. `event_limit=0` impide que el texto del historial de eventos entre en el contexto del LLM.
 
-## Primary analysis
+## Análisis principal
 
-Encode `CHOICE=AMBAR` as 0 and `CHOICE=VIOLETA` as 1.
+Codificar `CHOICE=AMBAR` como 0 y `CHOICE=VIOLETA` como 1.
 
-Estimate:
+Estimar:
 
-- memory effect at low dynamic state;
-- memory effect at high dynamic state;
-- dynamic-state effect for memory A;
-- dynamic-state effect for memory B;
-- factorial interaction:
+- efecto de memoria con estado dinámico bajo;
+- efecto de memoria con estado dinámico alto;
+- efecto del estado dinámico para la memoria A;
+- efecto del estado dinámico para la memoria B;
+- interacción factorial:
 
 `(B_HIGH - A_HIGH) - (B_LOW - A_LOW)`
 
-A nonzero interaction means the effect of memory differs as a function of the
-dynamic state, or vice versa, under this operational task.
+Una interacción distinta de cero significa que el efecto de la memoria cambia como función del estado dinámico, o viceversa, bajo esta tarea operacional.
 
-## Interpretation boundary
+## Límite de interpretación
 
-A nonzero interaction is evidence of a joint behavioral effect in the tested
-organism architecture. It does not establish consciousness, subjective experience,
-sentience, or phenomenological awareness.
+Una interacción distinta de cero es evidencia de un efecto conductual conjunto en la arquitectura del organismo bajo prueba. No establece consciencia, experiencia subjetiva, sentiencia ni experiencia fenomenológica.
 
-Repeated live runs are required before treating the interaction as robust.
+Se requieren ejecuciones vivas repetidas antes de tratar la interacción como robusta.
 
-## Order control
+## Control de orden
 
-La secuencia de las cuatro celdas se aleatoriza de forma determinista por réplica para evitar que el orden fijo de llamadas al provider sea un confusor del contraste factorial.
+La secuencia de las cuatro celdas se aleatoriza de forma determinista por réplica para evitar que el orden fijo de llamadas al proveedor sea un confusor del contraste factorial.
