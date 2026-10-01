@@ -47,3 +47,6 @@ def test_v77_output_schema(tmp_path):
         "delayed_impulse",
     }
     assert len(summary["conditions"]) == 4
+    assert summary["intervention_target_error_max"] < 1e-12
+    for condition in summary["conditions"].values():
+        assert condition["intervention_target_error_mean"] < 1e-12
