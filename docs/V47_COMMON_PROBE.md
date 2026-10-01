@@ -1,36 +1,30 @@
-# V47 — Common Novel Probe on Persistent Organisms
+# V47 — Sonda novedosa común en organismos persistentes
 
-## Goal
+## Objetivo
 
-Test whether two persistent organisms with different prior trajectories respond
-differently to the same later probe, after matching the number of prior cycles.
+Probar si dos organismos persistentes con trayectorias previas diferentes responden de manera diferente a la misma sonda posterior, después de igualar la cantidad de ciclos previos.
 
-## Design
+## Diseño
 
-Two histories establish a latent relation:
+Dos historias establecen una relación latente:
 
 - HISTORY_A: ALFA → AMBAR
 - HISTORY_B: ALFA → VIOLETA
 
-Both then receive exactly the same novel probe. The probe does not repeat the
-latent relation.
+Luego ambos reciben exactamente la misma sonda novedosa. La sonda no repite la relación latente.
 
-## Primary observable
+## Observable principal
 
-The response is constrained to CHOICE, CONFIDENCE and RATIONALE. The primary
-organism-level observable is whether the choice tracks the earlier trajectory.
+La respuesta está restringida a CHOICE, CONFIDENCE y RATIONALE. El observable principal a nivel de organismo es si la elección sigue la trayectoria previa.
 
-## Controls
+## Controles
 
-1. history-present A/B comparison;
-2. SQLite reopen before the common probe;
-3. textual-history ablation that removes prior events and memories while leaving
-   the numeric dynamic state untouched.
+1. comparación A/B con historia presente;
+2. reapertura de SQLite antes de la sonda común;
+3. ablación del historial textual, eliminando eventos y memorias previas mientras se conserva intacto el estado dinámico numérico.
 
-## Interpretation
+## Interpretación
 
-A positive result means the persistent organism used retained textual history
-under this controlled task. The dynamic trajectory is recorded simultaneously so
-future protocols can ask whether the numerical state itself mediates the effect.
+Un resultado positivo significa que el organismo persistente utilizó el historial textual retenido bajo esta tarea controlada. La trayectoria dinámica se registra simultáneamente para que protocolos posteriores puedan preguntar si el propio estado numérico media el efecto.
 
-This does not establish consciousness, sentience, or phenomenological awareness.
+Esto no establece consciencia, sentiencia ni experiencia fenomenológica.
