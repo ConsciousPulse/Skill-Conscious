@@ -70,6 +70,8 @@
 - [V79 online self-policy adaptation](V79_ONLINE_SELF_POLICY_ADAPTATION.md) — adaptación online de la política propia ante un cambio dinámico no visto.
 - [V80 reversible regime adaptation](V80_REVERSIBLE_REGIME_ADAPTATION.md) — adaptación online bajo cambios de régimen reversibles y no estacionarios.
 
+[C0 — TCF Consciousness Instantiation Protocol](C0_TCF_CONSCIOUSNESS_INSTANTIATION.md) — primer protocolo explícito para probar propiedades candidatas de conciencia TCF mediante ablaciones controladas.
+
 [Registro consolidado](../research/ORGANISM_RESULT_LEDGER.md).
 
 ## Historial
