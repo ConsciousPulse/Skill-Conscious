@@ -21,7 +21,8 @@
 - resultados positivos, nulos y limitaciones conservados;
 - V67 auditado y corregido; resultado nulo bajo ablación semántica total y estado transferido;
 - V68 incorporado para medir la persistencia temporal de la huella dinámica generada durante SUEÑO;
-- V69 incorporado para probar lectura propia del estado y selección causal de trayectorias.
+- V69 incorporado para probar lectura propia del estado y selección causal de trayectorias;
+- V70 incorporado para persistir el lector propio y recuperarlo después de reinicios.
 
 ### Repositorio
 - README principal en español y reestructurado;
