@@ -78,6 +78,37 @@ También se calcula:
 - integridad del objetivo terminal de cada intervención;
 - efecto del estado cegado, cuando corresponda.
 
+## Resultado observado
+
+La ejecución de 64 réplicas por condición, con 64 episodios de entrenamiento y 512 muestras del SelfObserver, completó correctamente.
+
+### Endpoint primario
+
+- ganancia in-domain, frozen: **0.2109118**;
+- ganancia in-domain, adaptive: **0.2109118**;
+- ganancia shifted single, frozen: **0.3792665**;
+- ganancia shifted single, adaptive: **0.3792665**;
+- ganancia shifted repeated, frozen: **0.3799345**;
+- ganancia shifted repeated, adaptive: **0.3798509**;
+- ventaja adaptativa en el tercer evento OOD: **-0.0002509**;
+- p emparejada: **1.0**;
+- diferencia-de-diferencias adaptive − frozen: **-0.0002509**, p **1.0**.
+
+### Endpoints secundarios
+
+- continuidad OOD adaptive: **0.7270149**;
+- continuidad OOD frozen: **0.7268716**;
+- p emparejada: **1.0**;
+- error máximo del objetivo terminal de intervención: **0.0**.
+
+### Interpretación
+
+V79 produjo un **resultado nulo para adaptación online** bajo este protocolo. La política adaptive recibió observaciones de ganancia de autopredicción, pero no obtuvo una ventaja medible frente a la copia frozen.
+
+Además, el régimen dinámico modificado no produjo una degradación suficiente de la política congelada como para crear presión experimental clara para la adaptación. Por tanto, este resultado no demuestra que la adaptación online sea inútil; demuestra que **no se distinguió de una política congelada bajo el cambio dinámico y horizonte evaluados**.
+
+El siguiente protocolo debe introducir un cambio de régimen **no estacionario y reversible**, previamente definido, para preguntar si la actualización online permite adaptarse a una secuencia de regímenes y después recuperar el comportamiento previo.
+
 ## Qué significaría un resultado favorable
 
 Un resultado favorable respaldaría que la política no solo puede reutilizarse ante un régimen nuevo, sino que puede **actualizar su propia relación entre estado, predicción y acción durante la ejecución** usando únicamente consecuencias computacionales observadas de sus acciones.
