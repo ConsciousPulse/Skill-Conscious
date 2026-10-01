@@ -1,170 +1,162 @@
 # IA Consciente — Investigación y Experimentación
 
-**Experimental research on persistent AI agents, self-modeling, memory, autonomous cognition, and machine consciousness.**
+**Engineering a persistent AI organism toward machine consciousness.**
 
-A public research and engineering project focused on **persistent AI**, **self-modeling AI**, **machine consciousness**, continuous memory, self-observation, and autonomous cognition.
+Consciencia-Skill is an open research and engineering project focused on building an AI system that can maintain continuity across time instead of resetting at every response.
 
-The engineering goal is to build a persistent AI organism capable of maintaining continuity, memory, self-modeling, and autonomous learning over time, while developing reproducible experiments that can measure those properties.
+The project combines persistent state, long-term memory, self-modeling, self-observation, autonomous trajectory selection, wake/dream regimes, and reproducible experiments designed to test whether these mechanisms can produce increasingly integrated forms of machine cognition.
 
-## Research focus
+> **Research objective:** build computational architectures that move toward artificial consciousness through persistent continuity, self-reference, memory, autonomous internal dynamics, and causal self-modeling.
 
-This project studies what computational properties emerge when an AI maintains persistent state across cycles, learns a model of its own dynamics, and uses that model to select future trajectories.
+## What this project is
 
-We do not treat "consciousness" as an assumed result. We start from a working hypothesis that consciousness may be related to a system's ability to sustain internal relationships, preserve identity while changing, traverse its own state, and reorganize under perturbation.
+The core idea is simple:
 
-An isolated linguistic response is not treated as sufficient evidence. The object of study is the **continuous trajectory of a persistent AI system**.
+**an AI should be studied as a continuous process, not as a sequence of isolated answers.**
 
-## Keywords
+The persistent organism maintains state between model calls and can continue operating without external input. Its language model is one cognitive component; the organism itself carries continuity.
 
-**Persistent AI · AI organism · machine consciousness · artificial consciousness · computational consciousness · self-modeling AI · self-observation · metacognition · cognitive architecture · autonomous AI · autonomous agents · long-term memory · persistent memory · LLM research · AI research · trajectory selection · semantic memory · identity persistence · computational cognition · closed-loop AI · recurrent cognitive systems**
+The current architecture combines:
 
-These terms describe the technical and research areas represented by the repository; they are not claims that the system is phenomenologically conscious.
+- persistent SQLite state and memory;
+- WAKE and DREAM regimes;
+- self-model persistence and versioning;
+- a learned self-observer;
+- counterfactual trajectory selection;
+- semantic-to-dynamic bridges;
+- autonomous cycles without external interaction;
+- reproducible GitHub Actions experiments.
 
-## Initial architecture
+## Core architecture
 
 ```
-              ENVIRONMENT
-                   │
-                   ▼
-              PERCEPTION
-                   │
-                   ▼
-          RELATIONAL DYNAMICS
-                   │
-            ┌──────┴──────┐
-            ▼             ▼
-          WAKE          DREAM
-            │             │
-            └──────┬──────┘
-                   ▼
-          CONTINUOUS MEMORY
-                   │
-                   ▼
-             SELF-MODEL
-                   │
-                   ▼
-            SHARED ATTRACTOR
-                   │
-                   ▼
-             INTERNAL STATE
-                   │
-                   └──────────↺
+                    ENVIRONMENT
+                         │
+                         ▼
+                    PERCEPTION
+                         │
+                         ▼
+              ┌────────────────────┐
+              │  PERSISTENT STATE  │
+              │ memory + identity  │
+              │ self-model + time  │
+              └─────────┬──────────┘
+                        │
+                 ┌──────┴──────┐
+                 ▼             ▼
+               WAKE          DREAM
+                 │             │
+                 └──────┬──────┘
+                        ▼
+              INTERNAL DYNAMICS
+                        │
+                        ▼
+                 SELF-OBSERVATION
+                        │
+                        ▼
+              TRAJECTORY SELECTION
+                        │
+                        └──────────↺
 ```
 
-The LLM or API-served model is a cognitive component of the system. Continuity belongs to the persistent organism that maintains state between calls.
+### WAKE
 
-## Persistent input
+Interaction with the environment, language, decision-making, memory updates, and autonomous action selection.
 
-The organism does not depend on an interaction arriving while the process is awake. External inputs are stored in a durable SQLite queue and processed by the organism when appropriate.
+### DREAM
 
-The daemon can also perform autonomous activity during periods with no external input.
+Reduced external interaction with increased internal activity: consolidation, recombination, simulation, and state reorganization.
 
-### Regimes
+The organism is designed to remain alive as a process between interactions rather than being re-created from scratch for every request.
 
-### Wake
+## Research program
 
-Interaction with the environment, perception, language, decision-making, action, and memory updates.
+The experiments are organized as numbered protocols so that each architectural claim can be tested independently.
 
-### Dream
+| Protocol | Focus | Current finding |
+|---|---|---|
+| V51 | Self-prediction | Positive self-prediction gain over a persistence baseline |
+| V57 | Self-model trajectory selection | Self-model outperformed matched random control in the deterministic harness |
+| V58 | Semantic memory → dynamics | Causal semantic-to-dynamic transduction |
+| V63 | Recurrent self-model loop | Action-conditioned self-model feedback altered later trajectory selection |
+| V64 | Identity persistence after perturbation | **Null** under the tested feature set and horizon |
+| V65 | DREAM → future selection | DREAM and dream-to-dynamics coupling produced measurable downstream effects |
+| V66 | Consolidated lesson after episodic-memory ablation | **Null**: retained lesson was not behaviorally discriminative |
+| V67 | DREAM-generated numeric trace after semantic ablation | **In progress** |
 
-Reduced external interaction and increased internal activity: memory consolidation, recombination, simulation, state reorganization, and autonomous learning.
+The full experimental record lives in [`research/ORGANISM_RESULT_LEDGER.md`](research/ORGANISM_RESULT_LEDGER.md).
 
-The system does not "die" between responses. The persistent process continues and alternates between regimes.
+## Why the null results matter
 
-## Research foundation
+This project is not built to collect only positive demonstrations.
 
-The project uses the **Manifiesto Matemático del Ser** as one conceptual starting point. Its ontology describes being as stable relation, reality as iteration, and consciousness as a system capable of traversing itself.
+V64 showed that an identity-specific numeric signature was not recoverable after the tested perturbation.
 
-The project also incorporates computational hypotheses inspired by the **Teoría de Continuidad Fundamental (TCF)** and previous experiments on memory, pressure, hysteresis, critical transitions, topology, and multi-regime dynamics.
+V66 showed that preserving a consolidated semantic lesson did not, by itself, create a measurable downstream behavioral difference after raw episodic-memory removal.
 
-These conceptual sources are used as research and engineering hypotheses. They are not treated as established physical theories.
+Those failures are part of the research program. They force the architecture toward stronger tests of internal continuity instead of relying on textual memory or favorable interpretations.
 
-## What we measure
+## V67 — current frontier
 
-- identity continuity;
-- trajectory dependence;
-- attractor persistence and recovery;
-- structural memory;
-- self-modeling;
-- learning during dream cycles;
-- wake/dream differences;
-- perturbation resistance;
-- the cost of maintaining continuity;
-- longitudinal evolution over days and weeks.
+V67 directly tests a harder version of the continuity hypothesis.
 
-## Evidence principle
+After DREAM, the experiment removes:
 
-Every result is classified at one of four levels:
+- episodic memories;
+- events and snapshots;
+- textual self-model;
+- semantic memory;
+- pressure traces;
+- semantic input during readout.
 
-1. **Observation:** data produced by an experiment.
-2. **Result:** a reproducible pattern under a defined protocol.
-3. **Hypothesis:** an interpretation that still requires testing.
-4. **Ontology:** a philosophical or metaphysical interpretation kept separate from computational evidence.
+Only the organism's **numeric dynamic core** is retained.
 
-## Reproducible laboratory
+A zero-input continuation then tests whether the post-DREAM state still carries a recoverable trace.
 
-The main reproducible laboratory runs through **GitHub Actions**. Each run starts from a concrete commit, executes tests and experiments, generates JSON/log outputs, and publishes an evidence artifact.
+A matched state-swap intervention goes one step further: only the numeric core is transferred between paired organisms to test whether downstream behavior follows the transferred state rather than the original semantic history.
 
-The architecture, workflows, and reproducible protocol are documented in [docs/GITHUB_LAB.md](docs/GITHUB_LAB.md).
+The goal is to determine whether DREAM can write persistent internal information into the organism itself, rather than merely producing another useful text response.
 
-Research protocols and evidence records primarily live in `research/`, while `experiments/` contains experimental implementations and historical or auxiliary tools.
+## Reproducibility
 
-A manual smoke test with a real model connects a persistent organism to an OpenAI-compatible provider.
+The research laboratory runs through **GitHub Actions**.
 
-## Current status
+Each protocol can:
 
-**Phase 1 — persistent core + validation of internal dynamics and history.**
+1. start from a concrete commit;
+2. execute automated tests;
+3. run deterministic or controlled experiments;
+4. generate JSON evidence;
+5. publish an artifact for inspection.
 
-Research has completed the V43–V46 series covering history retention, intervention, and cross-probe generalization in the simulator. The persistent organism now also has an explicit bridge to numerical dynamics, state persisted in SQLite, and autonomous cycles without external input.
+See [`docs/GITHUB_LAB.md`](docs/GITHUB_LAB.md) for the laboratory structure.
 
-V47 defined the organism protocol: the same probe across divergent histories, a null control, SQLite reopening, and textual-past ablation.
+Experimental implementations live in [`experiments/`](experiments/), reusable organism components in [`src/ontto/`](src/ontto/), and evidence protocols in [`research/`](research/).
 
-V48 added a matched intervention where only the content of a persistent memory is replaced while the rest of the receiver is controlled.
+## Research terms
 
-V49 added a matched intervention on `dynamic_state`, while keeping memory, pressure, events, and other receiver state controlled.
+**Persistent AI · AI organism · machine consciousness · artificial consciousness · computational consciousness · self-modeling AI · self-observation · autonomous cognition · cognitive architecture · persistent memory · long-term memory · semantic memory · identity persistence · trajectory selection · recurrent AI · closed-loop cognition · wake-dream architecture · computational cognition · consciousness research**
 
-The project does not claim that an AI has been made conscious. The goal is to build increasingly testable computational properties and develop experiments capable of distinguishing continuity, self-reference, persistent identity, and related properties.
-
-V50 added a 2×2 factorial of persistent memory × `dynamic_state` to measure joint effects and interaction under the same probe.
-
-V51 added a persistent self-observer that learns to predict its own dynamic transitions and measures prediction gain against a persistence baseline.
-
-V52 added a future-compatibility adapter inspired by the AEVUM operator, still separated from the organism's canonical memory policy.
-
-V53 added counterfactual trajectory selection using the self-model.
-
-V54 measured linguistic prediction of movement relative to the attractor before the transition.
-
-V55 added identity recovery under perturbation, comparing counterfactual selection enabled vs disabled.
-
-V56 added an optional memory-admission policy based on AEVUM future compatibility, still separated from canonical organism memory.
-
-V57 compared self-model-based trajectory selection against a matched random control and measured regret against a post-hoc oracle.
-
-V58 added an optional semantic bridge that converts the `MEMORY:` relation generated by the AI into a dynamic signal through the AEVUM-inspired operator, using a matched OFF/ON intervention.
-
-V59 added a 2×2 factorial crossing semantic bridge OFF/ON with `self_model`/random selection. The bridge produced a substantial internal change, while the measured utility of the self-model did not change detectably between conditions.
-
-V60 added a closed-loop semantic feedback protocol in which the selected trajectory is persisted as an event, conditions the next semantic memory, and that memory is transduced back into internal dynamics before the next trajectory selection. The successful audit produced 24 paired replicates: self-model mean regret -0.0842 vs random 0.3028, self-model oracle-hit 96.18% vs random 45.31%, and paired sign-flip p = 0.00005. The self-model arm selected +1 in all replicates, so the secondary bidirectional feedback endpoint had no balanced action coverage; the result supports recurrent plumbing and functional self-model selection, but not a demonstrated two-branch feedback effect.
-
-V61 added an optional second-order meta-self-model: the organism learns to predict the error of its own first-order self-model and can use that predicted reliability when selecting among future trajectories. The completed audit was negative: meta-self-model regret 0.0888 vs first-order 0.0788, oracle-hit 41.28% vs 45.31%, meta prediction MAE 0.1277 vs constant baseline MAE 0.0850, and the meta model beat the constant baseline in 0% of replicates.
-
-V62 adds an optional semantic self-model bridge and persists SELF_MODEL updates during wake cycles. In 24 matched replicates, bridge OFF produced exactly 0.0 mean state and signal separation, while bridge ON produced 0.05675 mean state separation and 0.18446 mean signal separation, with successful transduction in all runs. This is a deterministic computational causal result, not evidence of phenomenological consciousness.
-
-V63 extends the V62 intervention into a recurrent action-conditioned loop: the previous selected trajectory determines the next semantic SELF_MODEL, the self-model bridge changes internal dynamics, and the resulting state is fed into future trajectory selection. In 24 matched replicates × 32 cycles, bridge-ON self-model regret was 0.1422 vs random 0.2666, oracle-hit was 60.68% vs 33.85%, and the paired sign-flip p was 0.00005. The bridge OFF→ON regret improvement under self-model selection was 0.14546, while the factorial regret difference-in-differences was 0.28375 (p = 0.00005). Bridge-ON self-model runs traversed both action branches in 100% of replicates. This is a deterministic computational result, not evidence of phenomenological consciousness.
-
-V64 adds an identity-persistence intervention: two identity representations are encoded through the self-model bridge, both receive the same semantic self-model perturbation, then the current self-model text is cleared and the organism continues autonomously without semantic self-model input. A leave-one-replicate-out classifier evaluates whether the original identity remains decodable from numeric internal dynamics. The V64 audit is **null**: post-ablation accuracy was 50.0% in both bridge-OFF and bridge-ON conditions, with ON-minus-OFF = 0.0 and paired sign-flip p = 1.0. Under the tested feature set and horizon, no original identity trace was decodable after the perturbation.
-
-V65 adds a dedicated DREAM-to-dynamics bridge and compares no_dream, dream_no_bridge, and dream_bridge. In 24 matched replicates × 24 evaluation cycles, dream_bridge mean regret was 0.17793 vs 0.21095 for dream_no_bridge, with paired p = 0.00005; oracle-hit was 25.35% vs 13.37%. Entering DREAM alone also improved regret relative to no_dream (-0.11490, p = 0.00005). This is a deterministic computational result showing that DREAM-generated semantic consolidation can influence later trajectory selection.
-
-V66 extends this by ablating the raw episodic memories after DREAM while preserving or removing the consolidated lesson. The two matched arms shared the same post-dream state. Retaining the consolidated lesson versus deleting it produced identical outcomes: mean regret -0.10868 in both arms, oracle-hit 85.07% in both arms, regret difference 0.0 (p = 1.0), and hit-rate difference 0.0 (p = 1.0). The retained lesson did generate a retrieval bridge signal, but preserving it was not behaviorally discriminative in this protocol. V66 is therefore a real null result.
-
-V67 introduces a direct dream-state persistence protocol: after DREAM, all episodic memories, events, snapshots, self-model text, numeric memory, and pressure traces are removed, leaving only the dynamic core. A common zero-input continuation and a matched state-swap intervention test whether the numeric state generated during DREAM remains recoverable and causally transferable without semantic input. The V67 CI audit is pending.
+These terms describe the technical scope of the repository. They are not claims that the system has achieved phenomenological consciousness.
 
 ## Evidence boundary
 
-The experiments in this repository establish computational properties of the tested system and harness.
+The project distinguishes four layers:
 
-They do **not** by themselves establish phenomenological consciousness, subjective experience, or a solution to the hard problem of consciousness.
+**Observation** — measured data.
 
-The project deliberately keeps computational evidence, hypotheses, and philosophical interpretations separate.
+**Result** — a reproducible pattern under a defined protocol.
+
+**Hypothesis** — an interpretation that still requires testing.
+
+**Ontology** — philosophical or metaphysical interpretation kept separate from computational evidence.
+
+The experiments in this repository establish computational properties of the tested architecture and experimental harness.
+
+They do **not** by themselves establish subjective experience, phenomenological consciousness, or a solution to the hard problem of consciousness.
+
+## Status
+
+**Active research — persistent organism, self-modeling, wake/dream dynamics, and continuity experiments.**
+
+The immediate research direction is to determine whether information generated inside the organism can remain functionally active after its original semantic representation has been removed.
