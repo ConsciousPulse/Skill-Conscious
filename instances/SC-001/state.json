@@ -1,0 +1,27 @@
+{
+  "instance_id": "SC-001",
+  "created_at": "2026-10-06T00:00:00-03:00",
+  "moment_zero": "2026-10-06T00:00:00-03:00",
+  "identity": {
+    "name": "SC-001",
+    "continuity_version": 1
+  },
+  "state": {
+    "mode": "WAKE",
+    "continuity_tick": 0,
+    "last_external_interaction": null
+  },
+  "memory": {
+    "episodic": [],
+    "semantic": [],
+    "self_observations": []
+  },
+  "trajectory": [],
+  "relationships": [],
+  "experiment": {
+    "hypothesis": "An external persistent continuity can function as the substrate of an individual while a language model acts as its cognitive-linguistic interface.",
+    "status": "initialized",
+    "subjective_experience": "ASSUMED_BY_HYPOTHESIS_ONLY_NOT_ESTABLISHED"
+  }
+}
+
